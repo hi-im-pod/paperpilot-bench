@@ -68,7 +68,7 @@ def test_run_through_the_console(tmp_path, monkeypatch):
     start(app.serve(bench, "127.0.0.1", port))
     base, agent_url = f"http://127.0.0.1:{port}", f"http://127.0.0.1:{agent.server_address[1]}"
 
-    assert get(base + "/api/info")["splits"]["dev"] == {"n": len(TASKS), "has_gold": True}
+    assert get(base + "/api/info")["splits"]["dev"] == {"n": len(TASKS), "has_gold": True, "papers": 3}
     assert post(base + "/api/check_agent", {"agent_url": agent_url}) == {"ok": True, "name": "fake-agent"}
     run_id = post(base + "/api/runs", {"agent_url": agent_url, "split": "dev", "workers": 2})["id"]
     for _ in range(100):

@@ -14,3 +14,5 @@ corpus/papers.only.jsonl
 # redistribution. Rebuild it with build/extract_text.py.
 corpus/papers.jsonl
 app/runs/
+corpus/hard/papers.jsonl
+corpus/hard/papers.only.jsonl

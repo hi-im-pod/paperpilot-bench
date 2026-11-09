@@ -137,13 +137,12 @@ def split_sections(lines):
     return out
 
 
-def check_checksum(path):
+def check_checksum(path, ref):
     """Compare a rebuilt corpus with the published one, or record it on the first build."""
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    ref = ROOT / "corpus" / "papers.sha256"
     if not ref.exists():
         ref.write_text(f"{digest}  papers.jsonl\n", encoding="utf-8")
-        print(f"recorded corpus checksum {digest[:16]}... in corpus/papers.sha256")
+        print(f"recorded corpus checksum {digest[:16]}... in {ref.relative_to(ROOT)}")
     elif ref.read_text(encoding="utf-8").split()[0] == digest:
         print(f"corpus matches the published checksum ({digest[:16]}...)")
     else:
@@ -154,8 +153,13 @@ def check_checksum(path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--only", nargs="*", help="re-extract just these IDs (for debugging)")
+    ap.add_argument("--track", choices=["v1", "hard"], default="v1",
+                    help="v1: the frozen 138-paper corpus; hard: the recent-papers track")
     args = ap.parse_args()
-    selected = read_jsonl(ROOT / "build" / "selected.jsonl")
+    build_dir = ROOT / "build" / ("hard" if args.track == "hard" else "")
+    corpus_dir = ROOT / "corpus" / ("hard" if args.track == "hard" else "")
+    corpus_dir.mkdir(parents=True, exist_ok=True)
+    selected = read_jsonl(build_dir / "selected.jsonl")
     if args.only:
         selected = [r for r in selected if r["id"] in set(args.only)]
     ax = arxiv_client()
@@ -187,10 +191,10 @@ def main():
                        "abstract": abstract, "clusters": rec["clusters"], "sections": sections})
         if n % 10 == 0:
             print(f"[{n}/{len(selected)}] extracted")
-    out = ROOT / "corpus" / ("papers.only.jsonl" if args.only else "papers.jsonl")
+    out = corpus_dir / ("papers.only.jsonl" if args.only else "papers.jsonl")
     write_jsonl(out, papers)
     if not args.only:
-        check_checksum(out)
+        check_checksum(out, corpus_dir / "papers.sha256")
     print(f"wrote {out.relative_to(ROOT)}: {len(papers)} papers; {len(failed)} failed {failed}")
     if no_abstract:
         print(f"{no_abstract} papers have no abstract from S2 or the PDF")

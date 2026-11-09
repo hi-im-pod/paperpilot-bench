@@ -190,6 +190,7 @@ POST {tools_url}/get_metadata  {"paper_id": "..."}
 </dialog>
 
 <script>
+const SPLIT_NAMES = {dev: "Dev", test: "Test", hard_dev: "Hard dev (2026 papers)", hard_test: "Hard test (2026 papers)"};
 const TYPE_NAMES = {find_papers: "Find papers", comparison_table: "Comparison table", citation_links: "Citation links",
   grounded_claims: "Grounded claims", followup_questions: "Follow-up questions", traps: "Traps"};
 const $ = id => document.getElementById(id);
@@ -213,7 +214,7 @@ async function loadInfo() {
   $("corpus").textContent = `${info.corpus.papers} papers, corpus ${info.corpus.sha256}`;
   $("splits").innerHTML = Object.entries(info.splits).map(([name, s], i) => `
     <label><input type="radio" name="split" value="${name}" ${i === 0 ? "checked" : ""}>
-      <span><b>${name === "dev" ? "Dev" : "Test"}</b>, ${s.n} items
+      <span><b>${SPLIT_NAMES[name] || name}</b>, ${s.n} items over ${s.papers} papers
       <small>${s.has_gold ? "Scored here, gold included" : "Gold held back: you'll download predictions to send in"}</small></span></label>`).join("");
   $("judge").innerHTML = info.judges.map(j => `<option value="${j}" ${j === info.default_judge ? "selected" : ""}>${j === "none" ? "No judge (those metrics show n/a)" : j.replace("ollama:", "")}</option>`).join("");
   document.querySelectorAll("input[name=split]").forEach(el => el.addEventListener("change", updateStart));
@@ -265,7 +266,7 @@ function render(s) {
   const label = {running: `Running: ${done} of ${s.items.length} items back`, scoring: "Scoring…",
     done: `Scored ${s.items.length} items in ${Math.round(s.elapsed)} s`, no_gold: `Answered ${done} of ${s.items.length} items`,
     error: `Stopped: ${s.error}`}[s.status];
-  $("plate-title").textContent = `${s.split === "dev" ? "Dev" : "Test"} run, ${s.agent_name || s.agent_url}`;
+  $("plate-title").textContent = `${SPLIT_NAMES[s.split] || s.split} run, ${s.agent_name || s.agent_url}`;
   $("status-line").textContent = label;
   const byType = {};
   Object.keys(TYPE_NAMES).forEach(t => { if (s.items.some(i => i.type === t)) byType[t] = []; });

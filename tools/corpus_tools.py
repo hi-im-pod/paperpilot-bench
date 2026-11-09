@@ -6,6 +6,8 @@ CLI for manual poking:
   py tools/corpus_tools.py sections 2302.12173
   py tools/corpus_tools.py meta 2302.12173
 """
+import contextlib
+import contextvars
 import json
 import os
 import re
@@ -22,8 +24,24 @@ _STOP = set("a an the of and or to in on for with by from is are was were be as 
             "those it its we our their they which can using use used via into than then also".split())
 
 
+# Set per request by the run console, which serves more than one corpus at once
+# (v1 and the hard track); a process-wide environment variable would let two
+# concurrent runs read each other's corpus.
+_CORPUS = contextvars.ContextVar("paperpilot_corpus", default=None)
+
+
 def _corpus_path():
-    return Path(os.environ.get("PAPERPILOT_CORPUS") or ROOT / "corpus" / "papers.jsonl")
+    return Path(_CORPUS.get() or os.environ.get("PAPERPILOT_CORPUS") or ROOT / "corpus" / "papers.jsonl")
+
+
+@contextlib.contextmanager
+def using_corpus(path):
+    """Make the tools read `path` for the duration of the block, in this thread only."""
+    token = _CORPUS.set(str(path))
+    try:
+        yield
+    finally:
+        _CORPUS.reset(token)
 
 
 def _tokens(text):

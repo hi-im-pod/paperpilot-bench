@@ -76,7 +76,8 @@ class Run:
             if self.budget and item["steps"] >= self.budget:
                 return {"error": f"tool budget of {self.budget} calls used up for {item_id}; return your answer"}
             item["steps"] += 1
-        out = corpus_tools.call_tool(name, args if isinstance(args, dict) else {})
+        with corpus_tools.using_corpus(self.bench.splits[self.split]["corpus_path"]):
+            out = corpus_tools.call_tool(name, args if isinstance(args, dict) else {})
         if isinstance(out, str) and out.startswith("error:"):
             return {"error": out[len("error: "):]}
         return {"result": out if name == "read" else json.loads(out)}
@@ -124,7 +125,8 @@ class Run:
         if self.judge_spec and self.judge_spec != "none":
             from judge import Judge
             judge = Judge.from_spec(self.judge_spec)
-        res = scoring.score_all(self.tasks, gold, list(self.preds.values()), self.bench.corpus, judge)
+        corpus = self.bench.corpora[self.bench.splits[self.split]["corpus_path"]]["corpus"]
+        res = scoring.score_all(self.tasks, gold, list(self.preds.values()), corpus, judge)
         for rec in res["items"]:
             self.items[rec["id"]]["primary"] = rec["primary"]
         self.results = res
@@ -142,7 +144,7 @@ class Run:
                 "hallucination_rate": round(r["hallucination_rate"], 4),
                 "macro_avg": None if r["macro_avg"] is None else round(r["macro_avg"], 4),
                 "judge": (r.get("judge") or {}).get("model", "none"),
-                "corpus_sha256": self.bench.corpus_sha[:16]}
+                "corpus_sha256": self.bench.corpora[self.bench.splits[self.split]["corpus_path"]]["sha"][:16]}
 
     def state(self, full=False):
         out = {"id": self.id, "split": self.split, "agent_url": self.agent_url, "agent_name": self.agent_name,
@@ -166,14 +168,22 @@ class Run:
 
 class Bench:
     def __init__(self, splits, corpus_path, host, port, default_judge):
-        self.splits = {}
-        for name, (tasks, gold) in splits.items():
-            if Path(tasks).exists():
-                self.splits[name] = {"tasks": read_jsonl(tasks),
-                                     "gold": read_jsonl(gold) if gold and Path(gold).exists() else None}
-        os.environ["PAPERPILOT_CORPUS"] = str(corpus_path)
-        self.corpus = scoring.load_corpus(corpus_path)
+        """splits: {name: (tasks, gold) or (tasks, gold, corpus)}; corpus defaults to corpus_path."""
         import hashlib
+        self.splits, self.corpora = {}, {}
+        for name, spec in splits.items():
+            tasks, gold = spec[0], spec[1]
+            corpus = str(spec[2] if len(spec) > 2 else corpus_path)
+            if not Path(tasks).exists() or not Path(corpus).exists():
+                continue
+            if corpus not in self.corpora:
+                self.corpora[corpus] = {"corpus": scoring.load_corpus(corpus),
+                                        "sha": hashlib.sha256(Path(corpus).read_bytes()).hexdigest()}
+            self.splits[name] = {"tasks": read_jsonl(tasks), "corpus_path": corpus,
+                                 "gold": read_jsonl(gold) if gold and Path(gold).exists() else None}
+        self.default_corpus = str(corpus_path)
+        os.environ["PAPERPILOT_CORPUS"] = self.default_corpus
+        self.corpus = scoring.load_corpus(corpus_path)
         self.corpus_sha = hashlib.sha256(Path(corpus_path).read_bytes()).hexdigest()
         self.base_url = f"http://{host}:{port}"
         self.default_judge = default_judge
@@ -190,7 +200,9 @@ class Bench:
         return out
 
     def info(self):
-        return {"splits": {k: {"n": len(v["tasks"]), "has_gold": v["gold"] is not None} for k, v in self.splits.items()},
+        return {"splits": {k: {"n": len(v["tasks"]), "has_gold": v["gold"] is not None,
+                               "papers": len(self.corpora[v["corpus_path"]]["corpus"].papers)}
+                           for k, v in self.splits.items()},
                 "judges": self.judges(), "default_judge": self.default_judge,
                 "corpus": {"papers": len(self.corpus.papers), "sha256": self.corpus_sha[:16]},
                 "tools_url_example": f"{self.base_url}/runs/<run_id>/items/<item_id>/tools"}
@@ -312,6 +324,10 @@ def main():
     if not Path(args.corpus).exists():
         raise SystemExit("corpus/papers.jsonl is missing; build it with: py build/extract_text.py")
     splits = {s: (ROOT / "tasks" / f"{s}.jsonl", ROOT / "gold" / f"{s}_gold.jsonl") for s in ("dev", "test")}
+    # The hard track: recent papers in their own corpus, offered when it has been built.
+    hard_corpus = ROOT / "corpus" / "hard" / "papers.jsonl"
+    for s in ("dev", "test"):
+        splits[f"hard_{s}"] = (ROOT / "tasks" / "hard" / f"{s}.jsonl", ROOT / "gold" / "hard" / f"{s}_gold.jsonl", hard_corpus)
     bench = Bench(splits, args.corpus, args.host, args.port, args.judge)
     server = serve(bench, args.host, args.port)
     print(f"PaperPilot-Bench console at {bench.base_url}  (splits: "

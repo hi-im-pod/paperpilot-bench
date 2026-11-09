@@ -1,0 +1,14 @@
+{
+  "frozen_on": "2026-11-09",
+  "papers": 138,
+  "per_cluster": {
+    "llm_security": 50,
+    "rag": 50,
+    "llm_agents": 50
+  },
+  "cross_cluster": 10,
+  "citation_edges": 1536,
+  "papers_sha256": "12820178d898cc96cb5868e34e3f1d186c4fba83760f7a1c7f877af956aed34b",
+  "selected_sha256": "fef2a37d207c15d8ef21ee2d41f986f2837398991c4419ae8470c269987f3bd3",
+  "note": "Labels refer to this exact paper set and text. Do not rerun fetch_corpus.py; rebuild text with extract_text.py, which checks papers_sha256."
+}

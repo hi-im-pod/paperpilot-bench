@@ -134,7 +134,7 @@ The tests use a three-paper fixture corpus (`tests/fixtures/`), so they need nei
 
 The design is in `docs/plan.md`. Building the corpus and labels uses `build/`, which doesn't ship to Phase 3:
 
-1. `py build/fetch_corpus.py` picks the papers and the S2 citation edges. `py build/extract_text.py` downloads the PDFs and splits them into sections. **The corpus is frozen once labeling starts: don't rerun these.** Semantic Scholar's data changes, so a fresh fetch can pick a different paper set and break every drafted label. To drop a paper, add it to `_exclude` in `build/seeds.json` before the freeze, not after.
+1. `py build/fetch_corpus.py` picks the papers and the S2 citation edges. `py build/extract_text.py` downloads the PDFs and splits them into sections. **The corpus was frozen on 2026-11-09 (`corpus/FREEZE.json`), and `fetch_corpus.py` now refuses to run.** Semantic Scholar's data changes, so a fresh fetch can pick a different paper set and break every drafted label. To drop a paper, add it to `_exclude` in `build/seeds.json` before the freeze, not after.
 2. Write task items in `tasks/items.jsonl`; `prompts/label_draft.md` says how. Then run `py build/draft_labels.py --type <type> --provider anthropic` and verify each file in `gold/drafts/`.
 3. `py build/draft_labels.py --sample-check` marks the 20% second-check sample.
 4. `py build/assemble_gold.py --perfect-preds gold/dev_perfect.jsonl` writes the task and gold files. Scoring that file must give 1.0 on every deterministic metric; anything less points at a gold quote that doesn't match the corpus.

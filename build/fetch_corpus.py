@@ -96,7 +96,14 @@ def main():
                     help="candidates per cluster whose references are fetched to score connectivity")
     ap.add_argument("--min-citers-citations", type=int, default=20)
     ap.add_argument("--citation-pages", type=int, default=2)
+    ap.add_argument("--unfreeze", action="store_true",
+                    help="rebuild the paper set even though corpus/FREEZE.json exists; invalidates every label")
     args = ap.parse_args()
+    freeze = ROOT / "corpus" / "FREEZE.json"
+    if freeze.exists() and not args.unfreeze:
+        # S2 data drifts, so a rerun can pick different papers and orphan the gold labels.
+        raise SystemExit(f"the corpus is frozen ({freeze.relative_to(ROOT)}). Rebuild the text with "
+                         "build/extract_text.py instead. Pass --unfreeze only if you mean to relabel everything.")
 
     seeds_cfg = json.loads((ROOT / "build" / "seeds.json").read_text())
     exclude = set(seeds_cfg.pop("_exclude", []))

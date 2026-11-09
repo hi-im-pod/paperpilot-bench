@@ -1,0 +1,21 @@
+{
+  "frozen_on": "2026-11-09",
+  "track": "hard",
+  "papers": 95,
+  "window": "first submitted 2026-07-01 to 2026-10-31",
+  "per_subtopic": {
+    "pi-defenses": 11,
+    "reasoning-jailbreaks": 8,
+    "mcp-security": 11,
+    "graph-rag": 10,
+    "rag-poisoning": 11,
+    "deep-research": 11,
+    "gui-agents": 11,
+    "agent-memory": 11,
+    "multi-agent": 11
+  },
+  "citation_edges_in_corpus": 8,
+  "papers_sha256": "2d2a109d1917e468098a3248518c8a404c7e846b5fb6a7435f43943f686568b1",
+  "selected_sha256": "2e1df9a3d14178b209bf3b67b17ace84cb75746362426e9c1139ff4bbdf15048",
+  "note": "Labels refer to this exact paper set and text. Rebuild text with extract_text.py --track hard."
+}

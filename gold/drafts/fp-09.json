@@ -1,0 +1,302 @@
+{
+  "id": "fp-09",
+  "type": "find_papers",
+  "input": {
+    "topic": "Language models that retrieve from large text datastores during pre-training or inference"
+  },
+  "grades": [
+    {
+      "paper_id": "2002.08909",
+      "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "1911.00172",
+      "title": "Generalization through Memorization: Nearest Neighbor Language Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2112.04426",
+      "title": "Improving language models by retrieving from trillions of tokens",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2208.03299",
+      "title": "Atlas: Few-shot Learning with Retrieval Augmented Language Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2005.11401",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2301.12652",
+      "title": "REPLUG: Retrieval-Augmented Black-Box Language Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2302.00083",
+      "title": "In-Context Retrieval-Augmented Language Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "added by verifier"
+      ]
+    },
+    {
+      "paper_id": "2310.11511",
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2312.10997",
+      "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2203.05115",
+      "title": "Internet-augmented language models through few-shot prompting for open-domain question answering",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "1906.00300",
+      "title": "Latent Retrieval for Weakly Supervised Open Domain Question Answering",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2002.08910",
+      "title": "How Much Knowledge Can You Pack Into the Parameters of a Language Model?",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2201.07207",
+      "title": "Language Models as Zero-Shot Planners: Extracting Actionable Knowledge for Embodied Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2309.01219",
+      "title": "Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2005.04611",
+      "title": "How Context Affects Language Models' Factual Predictions",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2012.07805",
+      "title": "Extracting Training Data from Large Language Models",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "1910.13461",
+      "title": "BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2302.07842",
+      "title": "Augmented Language Models: a Survey",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2204.01691",
+      "title": "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2212.14024",
+      "title": "Demonstrate-Search-Predict: Composing retrieval and language models for knowledge-intensive NLP",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2307.03172",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2209.10063",
+      "title": "Generate rather than Retrieve: Large Language Models are Strong Context Generators",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2402.00888",
+      "title": "Security and Privacy Challenges of Large Language Models: A Survey",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2212.10511",
+      "title": "When Not to Trust Language Models: Investigating Effectiveness of Parametric and Non-Parametric Memories",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "1909.01066",
+      "title": "Language Models as Knowledge Bases?",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2305.14627",
+      "title": "Enabling Large Language Models to Generate Text with Citations",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2203.11147",
+      "title": "Teaching language models to support answers with verified quotes",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2211.09527",
+      "title": "Ignore Previous Prompt: Attack Techniques For Language Models",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2203.02155",
+      "title": "Training language models to follow instructions with human feedback",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2205.11916",
+      "title": "Large Language Models are Zero-Shot Reasoners",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2305.15334",
+      "title": "Gorilla: Large Language Model Connected with Massive APIs",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

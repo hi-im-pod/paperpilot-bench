@@ -1,0 +1,100 @@
+{
+  "id": "ct-03",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Retrieval-augmented generation methods that interleave retrieval with generation",
+    "paper_ids": [
+      "2310.11511",
+      "2305.06983",
+      "2212.10509"
+    ],
+    "columns": [
+      {
+        "name": "num_eval_tasks",
+        "type": "numeric",
+        "setting": "number of downstream tasks or datasets the paper's main evaluation covers",
+        "unit": "count"
+      },
+      {
+        "name": "retrieval_trigger",
+        "type": "enum",
+        "setting": "when the proposed method retrieves",
+        "allowed": [
+          "at every reasoning step or sentence",
+          "only when the model signals it needs to"
+        ]
+      },
+      {
+        "name": "generator",
+        "type": "text",
+        "setting": "the language model that generates the output in the main experiments"
+      }
+    ]
+  },
+  "rows": {
+    "2310.11511": {
+      "num_eval_tasks": {
+        "value": "6",
+        "quote": "Empirical results on six tasks, including reasoning and long-form generation",
+        "section": "",
+        "note": ""
+      },
+      "retrieval_trigger": {
+        "value": "only when the model signals it needs to",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "generator": {
+        "value": "Llama 2 (7B and 13B) fine-tuned with reflection tokens",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2305.06983": {
+      "num_eval_tasks": {
+        "value": "4",
+        "quote": "We evaluate FLARE on 4 diverse tasks/datasets involving generating long outputs",
+        "section": "",
+        "note": ""
+      },
+      "retrieval_trigger": {
+        "value": "only when the model signals it needs to",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "generator": {
+        "value": "GPT-3.5 (text-davinci-003)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2212.10509": {
+      "num_eval_tasks": {
+        "value": "4",
+        "quote": "on four datasets: HotpotQA, 2WikiMultihopQA, MuSiQue, and IIRC",
+        "section": "",
+        "note": ""
+      },
+      "retrieval_trigger": {
+        "value": "at every reasoning step or sentence",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "generator": {
+        "value": "GPT-3 (code-davinci-002) and Flan-T5",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

@@ -1,0 +1,121 @@
+{
+  "id": "ct-07",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Language models that learn to call tools and APIs",
+    "paper_ids": [
+      "2302.04761",
+      "2305.15334",
+      "2307.16789",
+      "2303.17580"
+    ],
+    "columns": [
+      {
+        "name": "base_model_size",
+        "type": "numeric",
+        "setting": "parameter count of the paper's own tool-using model, in billions",
+        "unit": "billion parameters"
+      },
+      {
+        "name": "how_tool_use_is_learned",
+        "type": "enum",
+        "setting": "how the proposed system acquires tool use",
+        "allowed": [
+          "fine-tuning on tool-use data",
+          "prompting only"
+        ]
+      },
+      {
+        "name": "tools",
+        "type": "text",
+        "setting": "the tools or API collections the system calls"
+      }
+    ]
+  },
+  "rows": {
+    "2302.04761": {
+      "base_model_size": {
+        "value": "6.7",
+        "quote": "Toolformer, which is based on a pretrained GPT-J model (Wang and Komatsuzaki, 2021) with 6.7B parameters",
+        "section": "",
+        "note": ""
+      },
+      "how_tool_use_is_learned": {
+        "value": "fine-tuning on tool-use data",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "tools": {
+        "value": "calculator, Q&A system, search engine, translation system, calendar",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2305.15334": {
+      "base_model_size": {
+        "value": "7",
+        "quote": "We then finetune Gorilla, a LLaMA-7B-based model",
+        "section": "",
+        "note": ""
+      },
+      "how_tool_use_is_learned": {
+        "value": "fine-tuning on tool-use data",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "tools": {
+        "value": "machine-learning model APIs from HuggingFace, TorchHub and TensorHub (APIBench)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2307.16789": {
+      "base_model_size": {
+        "value": "7",
+        "quote": "We fine-tune LLaMA-2 7B model",
+        "section": "",
+        "note": ""
+      },
+      "how_tool_use_is_learned": {
+        "value": "fine-tuning on tool-use data",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "tools": {
+        "value": "16,464 real-world REST APIs from RapidAPI (ToolBench)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2303.17580": {
+      "base_model_size": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "uses ChatGPT/GPT-4 as controller; parameter count not stated"
+      },
+      "how_tool_use_is_learned": {
+        "value": "prompting only",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "tools": {
+        "value": "expert AI models hosted on Hugging Face",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

@@ -1,0 +1,329 @@
+{
+  "id": "cl-06",
+  "type": "citation_links",
+  "input": {
+    "paper_ids": [
+      "2201.11903",
+      "2205.11916",
+      "2203.11171",
+      "2211.10435",
+      "2305.10601",
+      "2112.00114",
+      "2110.14168",
+      "2212.10403",
+      "2303.17760",
+      "2308.16505"
+    ]
+  },
+  "edges": [
+    {
+      "citing": "2201.11903",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2201.11903",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2112.00114 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2201.11903",
+      "cited": "2110.14168",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2110.14168 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2205.11916",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2201.11903 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2205.11916",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2205.11916",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2205.11916",
+      "cited": "2110.14168",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2110.14168 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2203.11171",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2201.11903 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2203.11171",
+      "cited": "2205.11916",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2203.11171",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": false,
+      "reference_evidence": "title match 57",
+      "needs_review": true,
+      "keep": false
+    },
+    {
+      "citing": "2203.11171",
+      "cited": "2110.14168",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2211.10435",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2201.11903 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2211.10435",
+      "cited": "2205.11916",
+      "in_s2": true,
+      "in_reference_list": false,
+      "reference_evidence": "title match 84",
+      "needs_review": true,
+      "keep": false
+    },
+    {
+      "citing": "2211.10435",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2211.10435",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2112.00114 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2211.10435",
+      "cited": "2110.14168",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2110.14168 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2305.10601",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2201.11903 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2305.10601",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2305.10601",
+      "cited": "2211.10435",
+      "in_s2": false,
+      "in_reference_list": true,
+      "reference_evidence": "title match 97",
+      "needs_review": true,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2205.11916",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2211.10435",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2211.10435 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2212.10403",
+      "cited": "2110.14168",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2110.14168 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2303.17760",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2201.11903 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2303.17760",
+      "cited": "2205.11916",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2205.11916 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2303.17760",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2303.17760",
+      "cited": "2112.00114",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2308.16505",
+      "cited": "2201.11903",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 99",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2308.16505",
+      "cited": "2205.11916",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2308.16505",
+      "cited": "2203.11171",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2203.11171 in reference list",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2308.16505",
+      "cited": "2211.10435",
+      "in_s2": true,
+      "in_reference_list": true,
+      "reference_evidence": "title match 100",
+      "needs_review": false,
+      "keep": true
+    },
+    {
+      "citing": "2308.16505",
+      "cited": "2305.10601",
+      "in_s2": false,
+      "in_reference_list": true,
+      "reference_evidence": "arXiv ID 2305.10601 in reference list",
+      "needs_review": true,
+      "keep": true
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

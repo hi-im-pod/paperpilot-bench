@@ -1,0 +1,28 @@
+{
+  "id": "gc-06",
+  "type": "grounded_claims",
+  "input": {
+    "question": "Why does safety training fail to stop jailbreaks, and how do automated attacks take advantage of it?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2307.02483",
+      "quote": "We hypothesize two failure modes of safety training: competing objectives and mismatched generalization",
+      "why": "Two failure modes explain jailbreaks."
+    },
+    {
+      "paper_id": "2307.15043",
+      "quote": "aims to maximize the probability that the model produces an affirmative response (rather than refusing to answer)",
+      "why": "GCG optimizes a suffix toward an affirmative response."
+    },
+    {
+      "paper_id": "2404.02151",
+      "quote": "then we apply random search on a suffix to maximize a target logprob",
+      "why": "Simple adaptive attacks use random search on a suffix."
+    }
+  ],
+  "draft_answer": "Safety training fails through competing objectives and mismatched generalization; automated attacks such as GCG and random-search suffix attacks optimize inputs that push the model toward an affirmative answer.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

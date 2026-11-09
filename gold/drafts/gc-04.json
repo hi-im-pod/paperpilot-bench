@@ -1,0 +1,24 @@
+{
+  "id": "gc-04",
+  "type": "grounded_claims",
+  "input": {
+    "question": "At what model scale does chain-of-thought prompting start to help, and why is this described as an emergent ability?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2201.11903",
+      "quote": "chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of ∼100B parameters",
+      "why": "Chain-of-thought gains appear only around 100B parameters."
+    },
+    {
+      "paper_id": "2206.07682",
+      "quote": "we also consider the technique an emergent ability",
+      "why": "A technique that only helps above a scale threshold is called emergent."
+    }
+  ],
+  "draft_answer": "Chain-of-thought prompting helps only for models of roughly 100B parameters; below that it does not improve performance, which is why it is described as emergent.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

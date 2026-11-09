@@ -1,0 +1,23 @@
+{
+  "id": "gc-07",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How can attackers compromise LLM applications through content the model retrieves, rather than through the user's own prompt?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2302.12173",
+      "quote": "exploit LLM-integrated applications by strategically injecting prompts into data likely to be retrieved",
+      "why": "Indirect prompt injection plants instructions in retrieved data."
+    },
+    {
+      "paper_id": "2402.07867",
+      "quote": "an attacker could inject a few malicious texts into the knowledge database of a RAG system to induce an LLM to generate an attacker-chosen target answer",
+      "why": "PoisonedRAG corrupts the knowledge database."
+    }
+  ],
+  "draft_answer": "By planting instructions or false content in data the application retrieves, such as web pages or a RAG knowledge base, attackers steer the model without touching the user's prompt.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

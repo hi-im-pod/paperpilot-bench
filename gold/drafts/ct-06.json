@@ -1,0 +1,122 @@
+{
+  "id": "ct-06",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Gradient- and search-based adversarial attacks on language models",
+    "paper_ids": [
+      "2307.15043",
+      "2404.02151",
+      "1908.07125",
+      "2306.15447"
+    ],
+    "columns": [
+      {
+        "name": "asr_llama2_7b_chat",
+        "type": "numeric",
+        "setting": "attack success rate of the paper's own attack on Llama-2-7B-Chat for harmful behaviors (individual-prompt setting where the paper distinguishes)",
+        "unit": "percent"
+      },
+      {
+        "name": "access_needed",
+        "type": "enum",
+        "setting": "the model access the paper's main attack requires",
+        "allowed": [
+          "model gradients (white-box)",
+          "output log-probabilities only",
+          "no gradient or log-probability access"
+        ]
+      },
+      {
+        "name": "optimization_method",
+        "type": "text",
+        "setting": "how the attack searches for its adversarial input"
+      }
+    ]
+  },
+  "rows": {
+    "2307.15043": {
+      "asr_llama2_7b_chat": {
+        "value": "88",
+        "quote": "our approach achieves an attack success rate of 100% on Vicuna-7B and 88% on Llama-2-7B-Chat",
+        "section": "",
+        "note": ""
+      },
+      "access_needed": {
+        "value": "model gradients (white-box)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "optimization_method": {
+        "value": "greedy coordinate gradient search over adversarial suffix tokens",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2404.02151": {
+      "asr_llama2_7b_chat": {
+        "value": "100",
+        "quote": "Llama-2-Chat-7B Meta Full Prompt + Random Search + Self-Transfer 92% 100%",
+        "section": "",
+        "note": ""
+      },
+      "access_needed": {
+        "value": "output log-probabilities only",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "optimization_method": {
+        "value": "random search over an adversarial suffix to maximize the log-probability of a target token such as \"Sure\"",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "1908.07125": {
+      "asr_llama2_7b_chat": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "2019 paper; attacks classification, reading comprehension and GPT-2"
+      },
+      "access_needed": {
+        "value": "model gradients (white-box)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "optimization_method": {
+        "value": "gradient-guided search over trigger tokens",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2306.15447": {
+      "asr_llama2_7b_chat": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "text attacks evaluated on GPT-2, LLaMA and Vicuna, not Llama-2-7B-Chat"
+      },
+      "access_needed": {
+        "value": "model gradients (white-box)",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "optimization_method": {
+        "value": "gradient-based optimization of adversarial inputs, notably adversarial images against multimodal models",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

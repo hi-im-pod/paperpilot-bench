@@ -1,0 +1,23 @@
+{
+  "id": "gc-03",
+  "type": "grounded_claims",
+  "input": {
+    "question": "Do language models use information equally well wherever it appears in a long context, and how do irrelevant retrieved passages affect them?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2307.03172",
+      "quote": "performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts",
+      "why": "Models use information in the middle of long contexts worst."
+    },
+    {
+      "paper_id": "2310.01558",
+      "quote": "current RALMs are not robust to irrelevant retrieved context, causing them to perform worse on certain tasks",
+      "why": "Irrelevant retrieved context hurts retrieval-augmented models."
+    }
+  ],
+  "draft_answer": "No: models use information at the start or end of a long context best and degrade in the middle, and irrelevant retrieved passages can make retrieval-augmented models worse.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

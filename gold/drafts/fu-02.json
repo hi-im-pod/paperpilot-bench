@@ -1,0 +1,26 @@
+{
+  "id": "fu-02",
+  "type": "followup_questions",
+  "input": {
+    "topic": "how language models use long or noisy retrieved context",
+    "paper_ids": [
+      "2307.03172",
+      "2310.01558"
+    ]
+  },
+  "gaps": [
+    {
+      "paper_id": "2307.03172",
+      "quote": "the performance of language model readers saturates far before retriever recall"
+    },
+    {
+      "paper_id": "2310.01558",
+      "quote": "we are hopeful our work could inspire future research towards a general RALM that is robust to irrelevant context"
+    }
+  ],
+  "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

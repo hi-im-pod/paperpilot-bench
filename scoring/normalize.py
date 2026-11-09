@@ -11,6 +11,10 @@ _PUNCT = str.maketrans({
     "–": "-", "—": "-", "−": "-", "­": None,
 })
 _NUM = re.compile(r"\d+(?:\.\d+)?")
+_WORDS = {w: str(i) for i, w in enumerate(
+    "two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen "
+    "seventeen eighteen nineteen twenty".split(), start=2)}
+_WORD_RE = re.compile(r"\b(" + "|".join(_WORDS) + r")\b")
 
 
 def normalize(text):
@@ -33,7 +37,14 @@ def parse_number(s):
 
 
 def numbers_in(text):
-    return _NUM.findall(normalize(text))
+    """Numbers as digit strings, including the words two to twenty.
+
+    Papers write small counts as words ("six tasks"), and a claim of "three
+    formulations" against a passage saying "two" must be caught. "one" is left
+    out: "one of the" is everywhere and rarely a count.
+    """
+    t = normalize(text)
+    return _NUM.findall(t) + [_WORDS[w] for w in _WORD_RE.findall(t)]
 
 
 def locate(quote, norm_paper):

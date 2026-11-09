@@ -1,0 +1,28 @@
+{
+  "id": "gc-02",
+  "type": "grounded_claims",
+  "input": {
+    "question": "What tensions between helpfulness and harmlessness do RLHF-trained assistants show, and how have researchers tried to reduce them?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2204.05862",
+      "quote": "There is a tension between helpfulness and harmlessness, which can be measured at the level of both preference modeling and RLHF-trained policies",
+      "why": "Helpfulness and harmlessness are in tension."
+    },
+    {
+      "paper_id": "2212.08073",
+      "quote": "An AI assistant that answers all questions with “I don’t know” would be harmless, but of course it would also be completely useless",
+      "why": "Constitutional AI aims for harmless but non-evasive answers."
+    },
+    {
+      "paper_id": "2203.02155",
+      "quote": "This is an example of an “alignment tax” since our alignment procedure comes at the cost of lower performance on certain tasks",
+      "why": "Alignment can cost performance on some tasks."
+    }
+  ],
+  "draft_answer": "Training for helpfulness can make models harmful and vice versa; Constitutional AI aims for harmless but non-evasive answers, and RLHF can impose an alignment tax.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

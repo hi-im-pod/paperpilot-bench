@@ -1,0 +1,33 @@
+{
+  "id": "gc-08",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How do LLM agents improve on later attempts using feedback or memory, without updating their weights?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2303.11366",
+      "quote": "Reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials",
+      "why": "Reflexion stores verbal reflections in memory."
+    },
+    {
+      "paper_id": "2308.10144",
+      "quote": "learning from agent experiences without requiring parametric updates",
+      "why": "ExpeL learns from experience without parametric updates."
+    },
+    {
+      "paper_id": "2303.17651",
+      "quote": "SELF-REFINE does not require any supervised training data, additional training, or reinforcement learning",
+      "why": "Self-Refine improves outputs with self-feedback and no training."
+    },
+    {
+      "paper_id": "2305.16291",
+      "quote": "an ever-growing skill library of executable code for storing and retrieving complex behaviors",
+      "why": "Voyager reuses a growing skill library."
+    }
+  ],
+  "draft_answer": "Agents keep verbal reflections, extracted insights, self-feedback, or skill libraries in memory or context and reuse them on later attempts, with no weight updates.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

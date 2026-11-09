@@ -1,0 +1,25 @@
+{
+  "id": "fu-03",
+  "type": "followup_questions",
+  "input": {
+    "topic": "indirect prompt injection",
+    "paper_ids": [
+      "2302.12173",
+      "2503.00061"
+    ]
+  },
+  "gaps": [
+    {
+      "paper_id": "2302.12173",
+      "quote": "effective mitigations of these emerging threats are currently lacking"
+    },
+    {
+      "paper_id": "2503.00061",
+      "quote": "studying black-box and grey-box attacks is also crucial for a more comprehensive evaluation"
+    }
+  ],
+  "gap_notes": "Both papers leave open how to defend against indirect prompt injection: the first finds effective mitigations lacking and calls for evaluating deception potential with user studies; the second breaks eight defenses with white-box adaptive attacks and calls for black-box and grey-box attacks and for testing combined defenses.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

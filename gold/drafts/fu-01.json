@@ -1,0 +1,25 @@
+{
+  "id": "fu-01",
+  "type": "followup_questions",
+  "input": {
+    "topic": "LLM agents that improve from their own past attempts",
+    "paper_ids": [
+      "2303.11366",
+      "2308.10144"
+    ]
+  },
+  "gaps": [
+    {
+      "paper_id": "2303.11366",
+      "quote": "we encourage future work to extend the memory component of Reflexion with more advanced structures such as vector embedding databases or traditional SQL databases"
+    },
+    {
+      "paper_id": "2308.10144",
+      "quote": "extra retrieval steps for insights might be needed for truly lifelong learning agents to ensure a manageable context window size"
+    }
+  ],
+  "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

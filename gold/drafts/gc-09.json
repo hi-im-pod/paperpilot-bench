@@ -1,0 +1,29 @@
+{
+  "id": "gc-09",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How does factual knowledge stored in model parameters compare with retrieval, especially for less popular facts?"
+  },
+  "supporting": [
+    {
+      "paper_id": "1909.01066",
+      "quote": "We present an in-depth analysis of the relational knowledge already present (without fine-tuning) in a wide range of state-of-theart pretrained language models",
+      "why": "Pretrained LMs hold relational knowledge."
+    },
+    {
+      "paper_id": "2002.08910",
+      "quote": "performs competitively with open-domain systems that explicitly retrieve answers from an external knowledge source",
+      "why": "Closed-book models compete with retrieval systems as they scale."
+    },
+    {
+      "paper_id": "2212.10511",
+      "quote": "we devise a new method for retrieval augmentation that improves performance and reduces inference costs by only retrieving non-parametric memories when necessary",
+      "why": "Retrieval helps most for long-tail knowledge, so retrieve only when needed."
+    }
+  ],
+  "draft_answer": "Large models store a lot of factual knowledge and can rival retrieval systems, but they struggle with less popular facts, where retrieval helps most.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

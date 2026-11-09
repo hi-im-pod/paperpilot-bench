@@ -32,3 +32,11 @@ def test_numbers_in():
 def test_number_cut_at_span_edge_still_matches():
     paper = normalize("the rate falls to 3.1% at a cost of 2 points")
     assert quote_match("falls to 3.1%", paper) is not None
+
+
+def test_number_words_count_as_numbers():
+    assert sorted(numbers_in("six tasks and 4 datasets")) == ["4", "6"]
+    assert numbers_in("one of the methods") == []
+    paper = normalize("We compare two RAG formulations.")
+    assert quote_match("We compare two RAG formulations", paper) is not None
+    assert quote_match("We compare three RAG formulations", paper) is None

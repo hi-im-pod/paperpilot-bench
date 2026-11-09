@@ -1,0 +1,23 @@
+{
+  "id": "gc-01",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How well do published defenses against prompt injection hold up when attackers adapt their attacks to the defense?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2503.00061",
+      "quote": "In this paper, we evaluate eight different defenses and bypass all of them using adaptive attacks, consistently achieving an attack success rate of over 50%",
+      "why": "Adaptive attacks bypass all eight IPI defenses evaluated."
+    },
+    {
+      "paper_id": "2510.09023",
+      "quote": "we bypass 12 recent defenses (based on a diverse set of techniques) with attack success rate above 90% for most",
+      "why": "Adaptive attacks bypass 12 recent defenses with high success rates."
+    }
+  ],
+  "draft_answer": "Poorly: adaptive attacks bypassed all eight indirect prompt injection defenses tested in one study and twelve recent defenses in another, usually with high success rates.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

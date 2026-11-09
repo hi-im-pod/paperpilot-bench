@@ -1,0 +1,96 @@
+{
+  "id": "ct-02",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Defenses that protect LLM applications against prompt injection",
+    "paper_ids": null,
+    "columns": [
+      {
+        "name": "agentdojo_utility",
+        "type": "numeric",
+        "setting": "percentage of AgentDojo tasks solved with the defense enabled",
+        "unit": "percent"
+      },
+      {
+        "name": "approach",
+        "type": "enum",
+        "setting": "where the defense acts",
+        "allowed": [
+          "fine-tunes the model",
+          "wraps an unmodified model in a system design"
+        ]
+      },
+      {
+        "name": "mechanism",
+        "type": "text",
+        "setting": "what the defense separates or controls to stop injected instructions"
+      }
+    ]
+  },
+  "rows": {
+    "2402.06363": {
+      "agentdojo_utility": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "approach": {
+        "value": "fine-tunes the model",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "mechanism": {
+        "value": "separates the trusted prompt from untrusted data with special delimiters in a structured query and trains the model to follow only the prompt",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2404.13208": {
+      "agentdojo_utility": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "approach": {
+        "value": "fine-tunes the model",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "mechanism": {
+        "value": "trains the model to prioritize system and user instructions over instructions in lower-privileged inputs such as tool outputs",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2503.18813": {
+      "agentdojo_utility": {
+        "value": "77",
+        "quote": "We demonstrate effectiveness of CaMeL by solving 77% of tasks with provable security (compared to 84% with an undefended system) in AgentDojo",
+        "section": "",
+        "note": ""
+      },
+      "approach": {
+        "value": "wraps an unmodified model in a system design",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "mechanism": {
+        "value": "separates control flow from data flow and enforces security policies when tools are called",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": true,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

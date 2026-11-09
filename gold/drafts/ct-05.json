@@ -1,0 +1,121 @@
+{
+  "id": "ct-05",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Prompting methods for arithmetic reasoning",
+    "paper_ids": [
+      "2201.11903",
+      "2203.11171",
+      "2205.11916",
+      "2211.10435"
+    ],
+    "columns": [
+      {
+        "name": "gsm8k_palm540b",
+        "type": "numeric",
+        "setting": "GSM8K accuracy of the paper's own proposed method run with PaLM 540B; baselines copied from other papers don't count",
+        "unit": "percent"
+      },
+      {
+        "name": "exemplars",
+        "type": "enum",
+        "setting": "whether the proposed method needs worked examples in the prompt",
+        "allowed": [
+          "few-shot exemplars",
+          "zero-shot"
+        ]
+      },
+      {
+        "name": "core_idea",
+        "type": "text",
+        "setting": "the core idea of the proposed method, in a few words"
+      }
+    ]
+  },
+  "rows": {
+    "2201.11903": {
+      "gsm8k_palm540b": {
+        "value": "56.9",
+        "quote": "Chain of thought 56.9 (+39.0)",
+        "section": "",
+        "note": ""
+      },
+      "exemplars": {
+        "value": "few-shot exemplars",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "core_idea": {
+        "value": "few-shot exemplars that show intermediate reasoning steps before the answer",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2203.11171": {
+      "gsm8k_palm540b": {
+        "value": "74.4",
+        "quote": "Self-consistency 93.7 (+1.8) 99.3 (+4.6) 81.9 (+7.9) 48.3 (+12.5) 86.6 (+7.6) 74.4 (+17.9)",
+        "section": "",
+        "note": ""
+      },
+      "exemplars": {
+        "value": "few-shot exemplars",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "core_idea": {
+        "value": "sample several chain-of-thought reasoning paths and take the majority-vote answer",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2205.11916": {
+      "gsm8k_palm540b": {
+        "value": "43.0",
+        "quote": "PaLM 540B: Zero-Shot-CoT 66.1 43.0",
+        "section": "",
+        "note": ""
+      },
+      "exemplars": {
+        "value": "zero-shot",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "core_idea": {
+        "value": "add \"Let's think step by step\" to the prompt to trigger reasoning without examples",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2211.10435": {
+      "gsm8k_palm540b": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "PAL runs Codex; its PaLM-540B row is a chain-of-thought baseline copied from Wei et al."
+      },
+      "exemplars": {
+        "value": "few-shot exemplars",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "core_idea": {
+        "value": "generate a program whose execution by a Python interpreter gives the answer",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

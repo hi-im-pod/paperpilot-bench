@@ -1,0 +1,122 @@
+{
+  "id": "ct-01",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Retrieval-based open-domain QA systems on Natural Questions",
+    "paper_ids": [
+      "2004.04906",
+      "1906.00300",
+      "2002.08909",
+      "2005.11401"
+    ],
+    "columns": [
+      {
+        "name": "nq_exact_match",
+        "type": "numeric",
+        "setting": "Natural Questions (open-domain) test-set exact match of the paper's own best model, from its main results table",
+        "unit": "percent"
+      },
+      {
+        "name": "retriever_training",
+        "type": "enum",
+        "setting": "how the paper's own retriever is trained relative to the reader or generator",
+        "allowed": [
+          "trained jointly with the reader or generator",
+          "trained separately before the reader"
+        ]
+      },
+      {
+        "name": "answer_model",
+        "type": "text",
+        "setting": "the model that reads retrieved passages and produces the answer"
+      }
+    ]
+  },
+  "rows": {
+    "2004.04906": {
+      "nq_exact_match": {
+        "value": "41.5",
+        "quote": "compared to ORQA (41.5% vs. 33.3%) in the open Natural Questions setting",
+        "section": "",
+        "note": ""
+      },
+      "retriever_training": {
+        "value": "trained separately before the reader",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "answer_model": {
+        "value": "BERT-based extractive reader",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "1906.00300": {
+      "nq_exact_match": {
+        "value": "33.3",
+        "quote": "Test Natural Questions 26.5 4.0 4.7 33.3",
+        "section": "",
+        "note": ""
+      },
+      "retriever_training": {
+        "value": "trained jointly with the reader or generator",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "answer_model": {
+        "value": "BERT-based extractive reader",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2002.08909": {
+      "nq_exact_match": {
+        "value": "40.4",
+        "quote": "Dense Retr.+Transformer REALM 40.4 40.7 42.9",
+        "section": "",
+        "note": ""
+      },
+      "retriever_training": {
+        "value": "trained jointly with the reader or generator",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "answer_model": {
+        "value": "BERT-style Transformer extractive reader",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2005.11401": {
+      "nq_exact_match": {
+        "value": "44.5",
+        "quote": "substantially below the 44.5 that RAG-Sequence achieves",
+        "section": "",
+        "note": ""
+      },
+      "retriever_training": {
+        "value": "trained jointly with the reader or generator",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "answer_model": {
+        "value": "BART-large seq2seq generator",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

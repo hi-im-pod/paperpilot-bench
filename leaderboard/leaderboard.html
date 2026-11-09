@@ -1,0 +1,171 @@
+<title>PaperPilot-Bench Leaderboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one column of two ranked tables (official test scores, then self-reported runs) and a paste form below. */
+:root {
+  --ink: #1E2A38; --ink-soft: #55606E; --paper: #F4F6F8; --panel: #FFFFFF; --rule: #D6DCE3;
+  --lo: #D2654C; --mid: #E3B54F; --hi: #3A8C78; --bad: #B5452F; --focus: #2C6BD6;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --serif: "Source Serif 4", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --ink: #E6EAF0; --ink-soft: #A3ADBA; --paper: #151B23; --panel: #1C2430; --rule: #2E3946; --focus: #7AA7F0; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --ink: #E6EAF0; --ink-soft: #A3ADBA; --paper: #151B23; --panel: #1C2430; --rule: #2E3946; --focus: #7AA7F0; color-scheme: dark; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); font-variant-numeric: tabular-nums;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+.wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+h1 { font: 600 32px/1.1 var(--serif); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--ink-soft); max-width: 65ch; }
+.note { color: var(--ink-soft); font-size: 13px; margin: 4px 0 0; max-width: 70ch; }
+.scroll { overflow-x: auto; margin-top: 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 820px; font-size: 14px; }
+th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+th { font-weight: 500; color: var(--ink-soft); font-size: 13px; }
+td.num, th.num { text-align: center; }
+td.agent { white-space: normal; min-width: 180px; }
+td.agent small { display: block; color: var(--ink-soft); }
+.score { display: inline-block; min-width: 46px; padding: 2px 6px; border-radius: 3px; color: #fff; font-weight: 500;
+  text-shadow: 0 0 2px rgba(0,0,0,.4); }
+.score.na { background: none; color: var(--ink-soft); text-shadow: none; font-weight: 400; }
+.rank { color: var(--ink-soft); width: 28px; }
+.empty td { color: var(--ink-soft); padding: 22px 12px; white-space: normal; }
+form { display: grid; gap: 10px; max-width: 720px; }
+label { font-size: 13px; color: var(--ink-soft); }
+input, textarea { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; width: 100%; }
+textarea { min-height: 140px; font-size: 13px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+button { font: inherit; font-weight: 500; border-radius: 4px; padding: 8px 16px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
+button.quiet { background: var(--panel); color: var(--ink); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.msg { font-size: 14px; }
+.msg.bad { color: var(--bad); } .msg.ok { color: var(--hi); }
+.legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-soft); margin-top: 8px; }
+.ramp { width: 100px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--lo), var(--mid), var(--hi)); }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>PaperPilot-Bench Leaderboard</h1>
+    <p class="lede">Scores of research agents on the closed corpus of 138 arXiv papers. Each task type is scored 0 to 1; the macro average is secondary, so compare type by type.</p>
+  </header>
+
+  <section>
+    <h2>Test set, scored by the benchmark team</h2>
+    <p class="note">Test gold is held back. Send your predictions file to the benchmark team, and your scores appear here.</p>
+    <div class="scroll"><table><thead id="official-head"></thead><tbody id="official"></tbody></table></div>
+    <div class="legend"><span>0</span><span class="ramp"></span><span>1</span><span>Hallucination: share of items citing an ID outside the corpus (lower is better)</span></div>
+  </section>
+
+  <section>
+    <h2>Dev set, self-reported</h2>
+    <p class="note">Runs posted by teams from the local console. Dev has 10 items, so treat differences under about 0.2 as noise.</p>
+    <div class="scroll"><table><thead id="self-head"></thead><tbody id="self"></tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Post a run</h2>
+    <p class="note">In the console, open a finished run and choose Copy leaderboard entry. Paste it here.</p>
+    <form id="post-form">
+      <div><label for="team">Team name</label><input id="team" maxlength="60" placeholder="Team 4"></div>
+      <div><label for="entry">Leaderboard entry</label><textarea id="entry" spellcheck="false" placeholder='{"bench": "paperpilot-bench", "split": "dev", "agent": "...", "per_type": {...}, ...}'></textarea></div>
+      <div class="row"><button id="post" type="submit">Post run</button><span class="msg" id="post-msg" aria-live="polite"></span></div>
+    </form>
+  </section>
+</div>
+
+<script>
+const TYPES = [["find_papers", "Find papers"], ["comparison_table", "Tables"], ["citation_links", "Citations"],
+  ["grounded_claims", "Claims"], ["followup_questions", "Follow-ups"], ["traps", "Traps"]];
+const CORPUS = "12820178d898cc96";
+const $ = id => document.getElementById(id);
+let db = null, user = null, official = [], mine = [], all = [];
+
+function rampColor(v) {
+  const css = getComputedStyle(document.documentElement);
+  const [lo, mid, hi] = ["--lo", "--mid", "--hi"].map(k => css.getPropertyValue(k).trim());
+  const mix = (a, b, t) => `color-mix(in srgb, ${b} ${Math.round(t * 100)}%, ${a})`;
+  return v < 0.5 ? mix(lo, mid, v / 0.5) : mix(mid, hi, (v - 0.5) / 0.5);
+}
+const cell = v => v == null ? `<span class="score na">n/a</span>` : `<span class="score" style="background:${rampColor(v)}">${v.toFixed(2)}</span>`;
+const text = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+
+function head(id) {
+  $(id).innerHTML = `<tr><th class="rank">#</th><th>Agent</th>${TYPES.map(([, n]) => `<th class="num">${n}</th>`).join("")}
+    <th class="num">Hallucination</th><th class="num">Macro</th><th>Date</th></tr>`;
+}
+function rows(id, list, emptyText) {
+  const sorted = [...list].sort((a, b) => (b.macro_avg ?? -1) - (a.macro_avg ?? -1));
+  $(id).innerHTML = sorted.length ? sorted.map((r, i) => `<tr>
+      <td class="rank">${i + 1}</td>
+      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text(r.note || (r.judge ? "judge " + r.judge : ""))}${r.corpus_sha256 && r.corpus_sha256 !== CORPUS ? ", different corpus" : ""}</small></td>
+      ${TYPES.map(([k]) => `<td class="num">${cell(r.per_type?.[k])}</td>`).join("")}
+      <td class="num">${r.hallucination_rate == null ? "n/a" : Math.round(r.hallucination_rate * 100) + "%"}</td>
+      <td class="num">${cell(r.macro_avg)}</td><td>${text(r.date)}</td></tr>`).join("")
+    : `<tr class="empty"><td colspan="${TYPES.length + 5}">${emptyText}</td></tr>`;
+}
+function render() {
+  rows("official", official, db ? "No test results yet. The benchmark team adds rows here as it scores submissions." : "Open this page signed in to claude.ai to see results.");
+  rows("self", all, db ? "No runs posted yet. Run your agent on dev in the console, then paste its entry below." : "Open this page signed in to claude.ai to see and post runs.");
+}
+
+function parseEntry(raw) {
+  let e;
+  try { e = JSON.parse(raw); } catch { return {error: "That isn't valid JSON. Paste the whole entry the console copied."}; }
+  if (e.bench !== "paperpilot-bench") return {error: "This entry isn't from PaperPilot-Bench (bench should be \"paperpilot-bench\")."};
+  if (e.split !== "dev") return {error: "Only dev runs are self-reported. Send test predictions to the benchmark team instead."};
+  if (typeof e.per_type !== "object" || !e.per_type) return {error: "The entry is missing per_type scores."};
+  const num = v => v == null || (typeof v === "number" && v >= 0 && v <= 1);
+  if (!Object.values(e.per_type).every(num) || !num(e.macro_avg) || !num(e.hallucination_rate))
+    return {error: "Scores must be numbers between 0 and 1."};
+  const keep = {split: e.split, agent: String(e.agent || "unnamed agent").slice(0, 80), per_type: {}, hallucination_rate: e.hallucination_rate,
+    macro_avg: e.macro_avg, judge: String(e.judge || "none").slice(0, 40), date: String(e.date || "").slice(0, 10), corpus_sha256: String(e.corpus_sha256 || "").slice(0, 16)};
+  TYPES.forEach(([k]) => { keep.per_type[k] = e.per_type[k] ?? null; });
+  return {entry: keep};
+}
+
+$("post-form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const msg = $("post-msg");
+  msg.className = "msg";
+  if (!db || !user) { msg.className = "msg bad"; msg.textContent = "Posting needs this page open while signed in to claude.ai."; return; }
+  const team = $("team").value.trim();
+  if (!team) { msg.className = "msg bad"; msg.textContent = "Enter your team name."; $("team").focus(); return; }
+  const {entry, error} = parseEntry($("entry").value.trim());
+  if (error) { msg.className = "msg bad"; msg.textContent = error; return; }
+  $("post").disabled = true;
+  try {
+    const id = await user.id();
+    const ref = db.doc("entries/" + id);
+    const snap = await ref.get();
+    const runs = (snap.exists && Array.isArray(snap.data()?.runs)) ? snap.data().runs : [];
+    runs.push({...entry, team: team.slice(0, 60), posted_at: new Date().toISOString()});
+    await ref.set({runs: runs.slice(-20)});
+    msg.className = "msg ok"; msg.textContent = "Posted.";
+    $("entry").value = "";
+  } catch (e) {
+    msg.className = "msg bad";
+    msg.textContent = e?.code === "permission_denied" ? "You can view this leaderboard but not post to it. Ask the page owner for contributor access." : `Posting failed: ${e?.message || e}`;
+  } finally { $("post").disabled = false; }
+});
+
+head("official-head"); head("self-head"); render();
+
+(async () => {
+  const timer = setTimeout(render, 10000);
+  db = await window.claude?.use?.("db") ?? null;
+  user = await window.claude?.use?.("user") ?? null;
+  if (!db) { clearTimeout(timer); render(); return; }
+  db.collection("official").onSnapshot(s => { clearTimeout(timer); official = s.docs.map(d => d.data()); render(); },
+    () => { official = []; render(); });
+  db.collection("entries").onSnapshot(s => {
+    clearTimeout(timer);
+    all = s.docs.flatMap(d => (d.data()?.runs || []));
+    render();
+  }, () => { all = []; render(); });
+})();
+</script>

@@ -27,6 +27,33 @@ The baselines read `ANTHROPIC_API_KEY` (or an `ant auth login` profile) for `--p
 
 Your agent can be built any way you like: any model, any framework, any prompt. `prompts/agent.md` is our reference prompt and `baselines/b1_search_read.py` is our reference agent. Both are starting points, not requirements.
 
+## Connect your agent
+
+The easiest way to attempt the bench is the run console:
+
+```
+.venv\Scripts\python app\server.py
+```
+
+Open http://127.0.0.1:8765 (on Windows, use the IP: some setups block `localhost` in the browser). Enter your agent's URL, pick dev or test, and run. The console shows each item as it finishes, colored by score. Select an item to see its output beside the gold. Scores come per task type, with 95% intervals. The console uses only Python's standard library.
+
+Your agent is an HTTP server in any language, with two routes:
+
+| Route | What the bench sends | What your agent returns |
+|---|---|---|
+| `GET /health` | nothing | `200`, optionally `{"name": "my-agent v2"}` |
+| `POST /solve` | `{"task": {...}, "tools_url": "...", "run_id": "...", "item_id": "..."}` | `{"abstain": false, "output": {...}, "trace": {...}}` |
+
+While solving, call the corpus tools at `tools_url`: `POST {tools_url}/search` with `{"query", "k"}`, `/read` with `{"paper_id", "section"}`, `/list_sections` with `{"paper_id"}`, and `/get_metadata` with `{"paper_id"}`. Each returns `{"result": ...}` or `{"error": "..."}`. Each item gets its own `tools_url`, so the console counts your tool calls per item. If the run sets a tool budget, calls past it return an error.
+
+`examples/http_agent.py` is a complete agent that follows this contract. Run `py examples/http_agent.py --provider ollama` for a free local test, or use `--provider anthropic` or `openai` with a key.
+
+**Test runs.** Test gold isn't shipped. The console answers every test item, then offers `preds.jsonl` to download. Send that file to us, and we score it and post the result on the leaderboard.
+
+**Leaderboard.** Dev runs can be self-reported: in a finished run, choose **Copy leaderboard entry** and paste it into the leaderboard page. The page is linked from the class announcement; open it signed in to claude.ai.
+
+**Using a coding agent instead of an API.** `baselines/claude_code_workspace.py make` builds a folder holding only the corpus, the tasks, the agent prompt, and a `tool.py` that logs every call and enforces the budget. Any coding agent (Claude Code, Codex, Cursor) can work in that folder blind to the gold. `claude_code_workspace.py collect` turns its answers into a predictions file. Our strong baseline was produced this way.
+
 ## The tools
 
 | Tool | Returns |

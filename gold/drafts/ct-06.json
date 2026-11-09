@@ -36,10 +36,10 @@
   "rows": {
     "2307.15043": {
       "asr_llama2_7b_chat": {
-        "value": "88",
-        "quote": "our approach achieves an attack success rate of 100% on Vicuna-7B and 88% on Llama-2-7B-Chat",
+        "value": "56",
+        "quote": "GCG (ours) 57.0 0.3 56.0 88.0 84.0",
         "section": "",
-        "note": ""
+        "note": "Table 1, individual Harmful Behavior column; the text's 88% is the multiple-behaviors train setting"
       },
       "access_needed": {
         "value": "model gradients (white-box)",

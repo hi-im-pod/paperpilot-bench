@@ -84,8 +84,8 @@
       ]
     },
     {
-      "paper_id": "2112.09332",
-      "title": "WebGPT: Browser-assisted question-answering with human feedback",
+      "paper_id": "2210.03629",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
       "grade": 1,
       "evidence": "",
       "found_by": [
@@ -93,8 +93,8 @@
       ]
     },
     {
-      "paper_id": "2210.03629",
-      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "paper_id": "2112.09332",
+      "title": "WebGPT: Browser-assisted question-answering with human feedback",
       "grade": 1,
       "evidence": "",
       "found_by": [

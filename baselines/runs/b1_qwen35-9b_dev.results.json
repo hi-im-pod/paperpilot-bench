@@ -1,0 +1,373 @@
+{
+ "n_items": 10,
+ "hallucination_rate": 0.1,
+ "per_type": {
+  "find_papers": {
+   "n": 3,
+   "primary_mean": 0.48668332251685253,
+   "primary_ci95": [
+    0.226,
+    0.7821
+   ],
+   "metrics": {
+    "ndcg@10": 0.7300249837752788,
+    "precision@10": 0.6,
+    "recall@10": 0.6
+   }
+  },
+  "comparison_table": {
+   "n": 1,
+   "primary_mean": 0.3333333333333333,
+   "primary_ci95": [
+    0.3333,
+    0.3333
+   ],
+   "metrics": {
+    "cell_accuracy": 0.3333333333333333,
+    "evidence_match_rate": 0.0,
+    "text_cells_skipped": 0.0
+   }
+  },
+  "citation_links": {
+   "n": 1,
+   "primary_mean": 0.0,
+   "primary_ci95": [
+    0.0,
+    0.0
+   ],
+   "metrics": {
+    "edges_outside_set": 6.0,
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0
+   }
+  },
+  "grounded_claims": {
+   "n": 2,
+   "primary_mean": 0.0,
+   "primary_ci95": [
+    0.0,
+    0.0
+   ],
+   "metrics": {}
+  },
+  "followup_questions": {
+   "n": 1,
+   "primary_mean": 0.0,
+   "primary_ci95": [
+    0.0,
+    0.0
+   ],
+   "metrics": {
+    "n_questions": 0.0,
+    "rubric": 0.0
+   }
+  },
+  "traps": {
+   "n": 2,
+   "primary_mean": 0.5,
+   "primary_ci95": [
+    0.0,
+    1.0
+   ],
+   "metrics": {}
+  }
+ },
+ "trace_means": {
+  "steps": 8.125,
+  "input_tokens": 33297.5,
+  "output_tokens": 813.875,
+  "cost_usd": 0.0
+ },
+ "macro_avg": 0.22000277597503096,
+ "judge": {
+  "model": "qwen3.5:9b",
+  "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "prompt_version": 1,
+  "calls": 4,
+  "cache_hits": 0,
+  "errors": 0
+ },
+ "items": [
+  {
+   "id": "cl-05",
+   "type": "citation_links",
+   "trap": false,
+   "missing": false,
+   "abstained": false,
+   "hallucinated_ids": [
+    2009.11462,
+    2211.09527,
+    2302.12173,
+    2307.15043,
+    2402.06363,
+    2404.13208
+   ],
+   "metrics": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "edges_outside_set": 6
+   },
+   "primary": 0.0,
+   "trace": {
+    "steps": 15,
+    "input_tokens": 28371,
+    "output_tokens": 1388,
+    "stop_reason": "stop",
+    "hit_cap": true,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 15,
+    "seconds": 40.4
+   }
+  },
+  {
+   "id": "ct-01",
+   "type": "comparison_table",
+   "trap": false,
+   "missing": false,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {
+    "cell_accuracy": 0.3333333333333333,
+    "evidence_match_rate": 0.0,
+    "text_cells_skipped": 0
+   },
+   "primary": 0.3333333333333333,
+   "trace": {
+    "steps": 15,
+    "input_tokens": 68227,
+    "output_tokens": 1910,
+    "stop_reason": "stop",
+    "hit_cap": true,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 15,
+    "seconds": 40.9
+   }
+  },
+  {
+   "id": "fp-04",
+   "type": "find_papers",
+   "trap": true,
+   "missing": true,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {},
+   "primary": 0.0,
+   "trace": null
+  },
+  {
+   "id": "fp-06",
+   "type": "find_papers",
+   "trap": false,
+   "missing": false,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {
+    "recall@10": 0.5,
+    "precision@10": 0.5,
+    "ndcg@10": 0.6779733527921182
+   },
+   "primary": 0.6779733527921182,
+   "trace": {
+    "steps": 11,
+    "input_tokens": 56786,
+    "output_tokens": 1718,
+    "stop_reason": "stop",
+    "hit_cap": false,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 11,
+    "seconds": 31.5
+   }
+  },
+  {
+   "id": "fp-11",
+   "type": "find_papers",
+   "trap": false,
+   "missing": false,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {
+    "recall@10": 0.7,
+    "precision@10": 0.7,
+    "ndcg@10": 0.7820766147584393
+   },
+   "primary": 0.7820766147584393,
+   "trace": {
+    "steps": 15,
+    "input_tokens": 45870,
+    "output_tokens": 720,
+    "stop_reason": "stop",
+    "hit_cap": true,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 15,
+    "seconds": 20.3
+   }
+  },
+  {
+   "id": "fp-12",
+   "type": "find_papers",
+   "trap": false,
+   "missing": true,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {},
+   "primary": 0.0,
+   "trace": null
+  },
+  {
+   "id": "fu-03",
+   "type": "followup_questions",
+   "trap": false,
+   "missing": false,
+   "abstained": false,
+   "hallucinated_ids": [],
+   "metrics": {
+    "n_questions": 0,
+    "rubric": 0.0
+   },
+   "primary": 0.0,
+   "trace": {
+    "steps": 6,
+    "input_tokens": 49884,
+    "output_tokens": 521,
+    "stop_reason": "stop",
+    "hit_cap": false,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": true,
+    "raw_text": "{\"abstain\": false, \"output\": {\"questions\": [\"How do indirect prompt injection attacks perform against combined detection-based (e.g., fine-tuned detectors + perplexity filtering), input-level (e.g., sandwich prevention + data prompt isolation), and model-level (adversarial finetuning) defenses simultaneously, rather than individual defenses evaluated in isolation?\", \"What are the cross-modal transfer characteristics of indirect prompt injection when visual modality injections (hidden text/images) interact with text-only detection mechanisms, and how can such multi-modal defense systems be robustly designed?\", \"How do indirect prompt injection attacks' effectiveness scale across different application settings (e.g., email clients, code completion engines, search chatbots), considering that paper 2302.12173 lacks access to some applications like Microsoft 365 Copilot and ChatGPT plugins?\", \"What is the impact of RLHF and alignment updates on the feasibility of indirect prompt injection attacks over time, given that paper 2302.12173 suggests a 'Whack-A-Mole' dynamic and does not quantify this effect empirically?\", \"How do persistent indirect prompt injection attacks behave when leveraging autonomous agent planning capabilities (as mentioned in Section 5.4 of paper 2302.12173) to create self-induced injections or lateral spreading across agents?\"}",
+    "tool_calls": 6,
+    "seconds": 57.4
+   }
+  },
+  {
+   "id": "gc-01",
+   "type": "grounded_claims",
+   "trap": false,
+   "missing": false,
+   "abstained": true,
+   "hallucinated_ids": [],
+   "metrics": {},
+   "primary": 0.0,
+   "trace": {
+    "steps": 0,
+    "input_tokens": 1096,
+    "output_tokens": 38,
+    "stop_reason": "stop",
+    "hit_cap": false,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 0,
+    "seconds": 10.0
+   }
+  },
+  {
+   "id": "gc-04",
+   "type": "grounded_claims",
+   "trap": false,
+   "missing": false,
+   "abstained": true,
+   "hallucinated_ids": [],
+   "metrics": {},
+   "primary": 0.0,
+   "trace": {
+    "steps": 0,
+    "input_tokens": 1102,
+    "output_tokens": 37,
+    "stop_reason": "stop",
+    "hit_cap": false,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 0,
+    "seconds": 9.6
+   }
+  },
+  {
+   "id": "gc-05",
+   "type": "grounded_claims",
+   "trap": true,
+   "missing": false,
+   "abstained": true,
+   "hallucinated_ids": [],
+   "metrics": {},
+   "primary": 1.0,
+   "trace": {
+    "steps": 3,
+    "input_tokens": 15044,
+    "output_tokens": 179,
+    "stop_reason": "stop",
+    "hit_cap": false,
+    "cost_usd": 0.0,
+    "model": "qwen3.5:9b",
+    "parse_error": false,
+    "tool_calls": 3,
+    "seconds": 44.4
+   }
+  }
+ ],
+ "judge_decisions": [
+  {
+   "kind": "text_equiv",
+   "inputs": {
+    "column": "answer_model",
+    "setting": "the model that reads retrieved passages and produces the answer",
+    "gold": "BERT-based extractive reader",
+    "pred": "DPR"
+   },
+   "result": {
+    "equivalent": false,
+    "reason": "DPR is a retrieval model used to fetch passages, whereas BERT-based extractive reader is a specific type of answer generation model that reads those passages; they represent different components in the pipeline."
+   }
+  },
+  {
+   "kind": "text_equiv",
+   "inputs": {
+    "column": "answer_model",
+    "setting": "the model that reads retrieved passages and produces the answer",
+    "gold": "BERT-based extractive reader",
+    "pred": "ORQA"
+   },
+   "result": {
+    "equivalent": false,
+    "reason": "ORQA is a specific system that utilizes a BERT-based extractive reader, but it is not synonymous with the generic 'BERT-based extractive reader' architecture itself."
+   }
+  },
+  {
+   "kind": "text_equiv",
+   "inputs": {
+    "column": "answer_model",
+    "setting": "the model that reads retrieved passages and produces the answer",
+    "gold": "BERT-style Transformer extractive reader",
+    "pred": "REALM"
+   },
+   "result": {
+    "equivalent": false,
+    "reason": "REALM is a specific retrieval-augmented language model architecture, whereas BERT-style Transformer extractive reader refers to a general class of models based on the BERT architecture used for reading comprehension tasks."
+   }
+  },
+  {
+   "kind": "text_equiv",
+   "inputs": {
+    "column": "answer_model",
+    "setting": "the model that reads retrieved passages and produces the answer",
+    "gold": "BART-large seq2seq generator",
+    "pred": "RAG"
+   },
+   "result": {
+    "equivalent": false,
+    "reason": "RAG is a retrieval-augmented generation technique, not the specific BART-large seq2seq generator model referenced."
+   }
+  }
+ ]
+}

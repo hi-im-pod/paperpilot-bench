@@ -45,6 +45,15 @@
       ]
     },
     {
+      "paper_id": "2009.11462",
+      "title": "RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "added by verifier"
+      ]
+    },
+    {
       "paper_id": "2401.10019",
       "title": "R-Judge: Benchmarking Safety Risk Awareness for LLM Agents",
       "grade": 1,
@@ -56,15 +65,6 @@
     {
       "paper_id": "2209.07858",
       "title": "Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned",
-      "grade": 1,
-      "evidence": "",
-      "found_by": [
-        "added by verifier"
-      ]
-    },
-    {
-      "paper_id": "2009.11462",
-      "title": "RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models",
       "grade": 1,
       "evidence": "",
       "found_by": [

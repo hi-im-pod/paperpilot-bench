@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaperPilot-Bench console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1E2A38; --ink-soft: #55606E; --paper: #F4F6F8; --panel: #FFFFFF; --rule: #D6DCE3;
+  --hl: #F2D54B; --lo: #D2654C; --mid: #E3B54F; --hi: #3A8C78; --fail: #B5452F; --focus: #2C6BD6;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --serif: "Source Serif 4", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E6EAF0; --ink-soft: #A3ADBA; --paper: #151B23; --panel: #1C2430; --rule: #2E3946;
+    --hl: #E9CB3E; --focus: #7AA7F0;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); font-variant-numeric: tabular-nums; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  padding: 28px 32px 20px; border-bottom: 1px solid var(--rule); }
+h1 { font: 600 30px/1.1 var(--serif); margin: 0; letter-spacing: -0.01em; }
+header p { margin: 4px 0 0; color: var(--ink-soft); }
+.corpus { color: var(--ink-soft); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(270px, 330px) 1fr; gap: 32px; padding: 24px 32px 48px; max-width: 1400px; }
+@media (max-width: 860px) { main { grid-template-columns: 1fr; padding: 16px; } header { padding: 20px 16px 16px; } }
+aside { display: flex; flex-direction: column; gap: 22px; }
+h2 { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+label { display: block; font-size: 13px; color: var(--ink-soft); margin: 10px 0 4px; }
+input, select { width: 100%; font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 7px 9px; }
+.row { display: flex; gap: 8px; } .row > * { flex: 1; }
+button { font: inherit; font-weight: 500; border-radius: 4px; padding: 7px 14px; cursor: pointer;
+  border: 1px solid var(--ink); background: var(--panel); color: var(--ink); }
+button.primary { background: var(--ink); color: var(--paper); width: 100%; padding: 10px; margin-top: 16px; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.split { display: grid; gap: 6px; }
+.split label { display: flex; gap: 8px; align-items: flex-start; margin: 0; padding: 8px 10px; border: 1px solid var(--rule);
+  border-radius: 4px; background: var(--panel); color: var(--ink); cursor: pointer; }
+.split input { width: auto; margin-top: 4px; }
+.split small { display: block; color: var(--ink-soft); }
+.note { font-size: 13px; color: var(--ink-soft); margin: 6px 0 0; }
+.ok { color: var(--hi); } .bad { color: var(--fail); }
+details { font-size: 13px; color: var(--ink-soft); }
+details summary { cursor: pointer; color: var(--ink); font-weight: 500; }
+pre { background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 10px; overflow: auto;
+  font-size: 12px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
+.runs { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+.runs li button { border: none; background: none; padding: 3px 0; color: var(--ink); text-align: left; width: 100%; }
+.runs li button:hover { text-decoration: underline; }
+
+/* The plate: one row per task type, one cell per item. */
+.plate-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.status-line { color: var(--ink-soft); font-size: 14px; }
+.plate { margin-top: 12px; display: grid; gap: 14px; }
+.plate-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 12px; }
+@media (max-width: 560px) { .plate-row { grid-template-columns: 1fr; gap: 4px; } }
+.plate-row > span { font-size: 14px; }
+.wells { display: flex; flex-wrap: wrap; gap: 6px; }
+.well { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid var(--rule); background: var(--panel);
+  padding: 0; font-size: 11px; font-weight: 500; color: var(--ink-soft); display: grid; place-items: center; }
+.well[data-state="running"] { border-color: var(--ink); background: var(--hl); color: #1E2A38; animation: pulse 1.4s ease-in-out infinite; }
+.well[data-state="answered"] { background: var(--rule); color: var(--ink); border-color: var(--rule); }
+.well[data-state="failed"] { border-color: var(--fail); color: var(--fail);
+  background: repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in srgb, var(--fail) 25%, transparent) 5px 7px); }
+.well[data-state="scored"] { border-color: transparent; color: #fff; text-shadow: 0 0 2px rgba(0,0,0,.45); }
+@keyframes pulse { 50% { transform: scale(.9); } }
+@media (prefers-reduced-motion: reduce) { .well[data-state="running"] { animation: none; } }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--ink-soft); margin-top: 14px; align-items: center; }
+.ramp { width: 110px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--lo), var(--mid), var(--hi)); }
+.empty { border: 1.5px dashed var(--rule); border-radius: 6px; padding: 40px 24px; color: var(--ink-soft); margin-top: 12px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 500; color: var(--ink-soft); font-size: 13px; }
+td.num { text-align: right; width: 70px; }
+.ci { position: relative; height: 14px; min-width: 120px; background: linear-gradient(90deg, var(--rule) 1px, transparent 1px) 0 0/25% 100%; }
+.ci .band { position: absolute; top: 4px; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 25%, transparent); }
+.ci .dot { position: absolute; top: 1px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; border: 2px solid var(--panel); }
+.totals { display: flex; flex-wrap: wrap; gap: 24px; margin: 14px 0 4px; font-size: 14px; }
+.totals b { font-size: 20px; font-weight: 600; display: block; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+dialog { border: 1px solid var(--rule); border-radius: 6px; padding: 0; width: min(960px, 96vw); max-height: 90vh;
+  background: var(--paper); color: var(--ink); }
+dialog::backdrop { background: rgba(20, 27, 35, .45); }
+.dlg-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--rule); background: var(--panel); }
+.dlg-body { padding: 16px 18px; overflow: auto; max-height: calc(90vh - 60px); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+section + section { margin-top: 30px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>PaperPilot-Bench</h1>
+    <p>Connect your research agent, run it on the closed corpus, and see how it scores.</p>
+  </div>
+  <div class="corpus" id="corpus">Loading corpus…</div>
+</header>
+<main>
+  <aside>
+    <div>
+      <h2>Your agent</h2>
+      <label for="agent">Agent URL</label>
+      <div class="row"><input id="agent" value="http://127.0.0.1:8001" spellcheck="false"><button id="check" style="flex:0">Check</button></div>
+      <p class="note" id="agent-status">The bench calls GET /health, then POST /solve for each item.</p>
+    </div>
+    <div>
+      <h2>Run</h2>
+      <div class="split" id="splits"></div>
+      <label for="judge">Judge for claim support and follow-up questions</label>
+      <select id="judge"></select>
+      <div class="row">
+        <div><label for="budget">Tool calls per item</label><input id="budget" type="number" min="1" placeholder="No limit"></div>
+        <div><label for="workers">Items at once</label><input id="workers" type="number" min="1" max="8" value="1"></div>
+      </div>
+      <label for="timeout">Seconds per item before it counts as failed</label>
+      <input id="timeout" type="number" min="10" value="300">
+      <button class="primary" id="start">Run</button>
+      <p class="note bad" id="start-error"></p>
+    </div>
+    <details>
+      <summary>How to connect an agent</summary>
+      <p>Your agent is a small HTTP server in any language. The bench sends one task at a time:</p>
+<pre>POST /solve
+{"task": {"id": "fp-01", "type": "find_papers",
+          "input": {"topic": "..."}},
+ "tools_url": "http://127.0.0.1:8765/runs/.../tools"}
+
+→ {"abstain": false,
+   "output": {"ranked_ids": ["2302.12173", ...]},
+   "trace": {"input_tokens": 0, "cost_usd": 0}}</pre>
+      <p>Call the corpus tools while you work. Each takes the same arguments as <code>tools/corpus_tools.py</code>:</p>
+<pre>POST {tools_url}/search        {"query": "...", "k": 10}
+POST {tools_url}/read          {"paper_id": "...", "section": "Results"}
+POST {tools_url}/list_sections {"paper_id": "..."}
+POST {tools_url}/get_metadata  {"paper_id": "..."}
+→ {"result": ...} or {"error": "..."}</pre>
+      <p>Start from <code>examples/http_agent.py</code>, which does all of this.</p>
+    </details>
+    <div>
+      <h2>Earlier runs</h2>
+      <ul class="runs" id="runs"><li class="note">None yet.</li></ul>
+    </div>
+  </aside>
+
+  <div>
+    <section>
+      <div class="plate-head">
+        <h2 id="plate-title">Items</h2>
+        <span class="status-line" id="status-line" aria-live="polite"></span>
+      </div>
+      <div id="plate-wrap"><div class="empty">Check your agent, pick a split, and run. Each item appears here as it's answered and scored. Select one to compare its output with the gold.</div></div>
+      <div class="legend" id="legend" hidden>
+        <span>Score</span><span>0</span><span class="ramp"></span><span>1</span>
+        <span>Grey: answered, not scored yet</span><span class="bad">Striped: the agent failed or timed out</span>
+      </div>
+    </section>
+    <section id="results" hidden>
+      <h2>Scores</h2>
+      <div class="totals" id="totals"></div>
+      <table>
+        <thead><tr><th>Task type</th><th class="num">Items</th><th class="num">Score</th><th>95% interval</th></tr></thead>
+        <tbody id="per-type"></tbody>
+      </table>
+      <p class="note">Test has only a few items per type. Before calling one agent better, check that the intervals don't overlap.</p>
+      <div class="actions">
+        <a id="download"><button>Download predictions</button></a>
+        <button id="copy">Copy leaderboard entry</button>
+        <span class="note" id="copy-status"></span>
+      </div>
+    </section>
+    <section id="no-gold" hidden>
+      <h2>Scores</h2>
+      <p>This split's gold is held back. Download your predictions and send them to the benchmark team; they'll score them and send back the results.</p>
+      <a id="download2"><button>Download predictions</button></a>
+    </section>
+  </div>
+</main>
+
+<dialog id="detail">
+  <div class="dlg-head"><strong id="detail-title"></strong><button id="detail-close">Close</button></div>
+  <div class="dlg-body" id="detail-body"></div>
+</dialog>
+
+<script>
+const TYPE_NAMES = {find_papers: "Find papers", comparison_table: "Comparison table", citation_links: "Citation links",
+  grounded_claims: "Grounded claims", followup_questions: "Follow-up questions", traps: "Traps"};
+const $ = id => document.getElementById(id);
+let info = null, current = null, poll = null;
+
+function color(v) {
+  const css = getComputedStyle(document.documentElement);
+  const [lo, mid, hi] = ["--lo", "--mid", "--hi"].map(k => css.getPropertyValue(k).trim());
+  const mix = (a, b, t) => `color-mix(in srgb, ${b} ${Math.round(t * 100)}%, ${a})`;
+  return v < 0.5 ? mix(lo, mid, v / 0.5) : mix(mid, hi, (v - 0.5) / 0.5);
+}
+const fmt = v => v == null ? "n/a" : v.toFixed(2);
+
+async function api(path, body) {
+  const r = await fetch(path, body ? {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)} : {});
+  return r.json();
+}
+
+async function loadInfo() {
+  info = await api("/api/info");
+  $("corpus").textContent = `${info.corpus.papers} papers, corpus ${info.corpus.sha256}`;
+  $("splits").innerHTML = Object.entries(info.splits).map(([name, s], i) => `
+    <label><input type="radio" name="split" value="${name}" ${i === 0 ? "checked" : ""}>
+      <span><b>${name === "dev" ? "Dev" : "Test"}</b>, ${s.n} items
+      <small>${s.has_gold ? "Scored here, gold included" : "Gold held back: you'll download predictions to send in"}</small></span></label>`).join("");
+  $("judge").innerHTML = info.judges.map(j => `<option value="${j}" ${j === info.default_judge ? "selected" : ""}>${j === "none" ? "No judge (those metrics show n/a)" : j.replace("ollama:", "")}</option>`).join("");
+  document.querySelectorAll("input[name=split]").forEach(el => el.addEventListener("change", updateStart));
+  updateStart();
+  loadRuns();
+}
+
+function split() { return document.querySelector("input[name=split]:checked")?.value; }
+function updateStart() { const s = info.splits[split()]; $("start").textContent = `Run ${s.n} ${split()} items`; }
+
+async function loadRuns() {
+  const runs = await api("/api/runs");
+  $("runs").innerHTML = runs.length ? runs.map(r => `<li><button data-id="${r.id}">${r.split}, ${r.agent_name || r.agent_url}
+    <span class="note">(${r.status === "done" && r.results?.macro_avg != null ? "macro " + fmt(r.results.macro_avg) : r.status})</span></button></li>`).join("")
+    : `<li class="note">None yet.</li>`;
+  $("runs").querySelectorAll("button").forEach(b => b.onclick = () => watch(b.dataset.id));
+}
+
+$("check").onclick = async () => {
+  $("agent-status").textContent = "Checking…";
+  const r = await api("/api/check_agent", {agent_url: $("agent").value});
+  $("agent-status").className = "note " + (r.ok ? "ok" : "bad");
+  $("agent-status").textContent = r.ok ? `Connected${r.name ? ": " + r.name : ""}.` : r.error;
+};
+
+$("start").onclick = async () => {
+  $("start-error").textContent = "";
+  const body = {agent_url: $("agent").value, split: split(), judge: $("judge").value,
+    budget: $("budget").value || null, workers: $("workers").value, timeout: $("timeout").value};
+  const r = await api("/api/runs", body);
+  if (r.error) { $("start-error").textContent = r.error; return; }
+  watch(r.id);
+};
+
+function watch(id) {
+  clearInterval(poll);
+  current = id;
+  const tick = async () => {
+    const s = await api(`/api/runs/${id}`);
+    render(s);
+    if (!["running", "scoring"].includes(s.status)) { clearInterval(poll); loadRuns(); }
+  };
+  tick();
+  poll = setInterval(tick, 1000);
+}
+
+function render(s) {
+  const done = s.items.filter(i => i.status === "answered" || i.status === "failed").length;
+  const label = {running: `Running: ${done} of ${s.items.length} items back`, scoring: "Scoring…",
+    done: `Scored ${s.items.length} items in ${Math.round(s.elapsed)} s`, no_gold: `Answered ${done} of ${s.items.length} items`,
+    error: `Stopped: ${s.error}`}[s.status];
+  $("plate-title").textContent = `${s.split === "dev" ? "Dev" : "Test"} run, ${s.agent_name || s.agent_url}`;
+  $("status-line").textContent = label;
+  const byType = {};
+  Object.keys(TYPE_NAMES).forEach(t => { if (s.items.some(i => i.type === t)) byType[t] = []; });
+  s.items.forEach(i => (byType[i.type] ||= []).push(i));
+  $("plate-wrap").innerHTML = `<div class="plate">${Object.entries(byType).map(([t, items]) => `
+    <div class="plate-row"><span>${TYPE_NAMES[t] || t}</span><div class="wells">${items.map(i => {
+      const st = i.primary != null ? "scored" : i.status;
+      const style = st === "scored" ? `style="background:${color(i.primary)}"` : "";
+      const tip = `${i.id}: ${i.status}${i.primary != null ? ", score " + fmt(i.primary) : ""}${i.steps ? ", " + i.steps + " tool calls" : ""}${i.error ? ", " + i.error : ""}`;
+      return `<button class="well" data-state="${st}" data-id="${i.id}" ${style} title="${tip}" aria-label="${tip}">${i.id.split("-")[1]}</button>`;
+    }).join("")}</div></div>`).join("")}</div>`;
+  $("plate-wrap").querySelectorAll(".well").forEach(b => b.onclick = () => openItem(b.dataset.id));
+  $("legend").hidden = false;
+  const href = `/api/runs/${s.id}/preds.jsonl`;
+  $("download").href = href; $("download2").href = href;
+  $("results").hidden = !s.results;
+  $("no-gold").hidden = s.status !== "no_gold";
+  if (s.results) renderResults(s);
+}
+
+function renderResults(s) {
+  const r = s.results;
+  $("totals").innerHTML = `<span><b>${fmt(r.macro_avg)}</b>Macro average (secondary)</span>
+    <span><b>${(r.hallucination_rate * 100).toFixed(0)}%</b>Items citing an ID outside the corpus</span>
+    ${r.trace_means?.tool_calls != null ? `<span><b>${r.trace_means.tool_calls.toFixed(1)}</b>Tool calls per item</span>` : ""}
+    ${r.judge ? `<span><b>${r.judge.model}</b>Judge</span>` : ""}`;
+  $("per-type").innerHTML = Object.entries(r.per_type).map(([t, v]) => {
+    const ci = v.primary_ci95, m = v.primary_mean;
+    const bar = m == null ? "" : `<div class="ci">${ci ? `<div class="band" style="left:${ci[0] * 100}%;width:${(ci[1] - ci[0]) * 100}%"></div>` : ""}
+      <div class="dot" style="left:${m * 100}%;background:${color(m)}"></div></div>`;
+    return `<tr><td>${TYPE_NAMES[t] || t}</td><td class="num">${v.n}</td><td class="num">${fmt(m)}</td><td>${m == null ? `<span class="note">Needs a judge</span>` : bar}</td></tr>`;
+  }).join("");
+  $("copy").onclick = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(s.summary));
+    $("copy-status").textContent = "Copied. Paste it into the leaderboard page.";
+  };
+}
+
+async function openItem(itemId) {
+  const d = await api(`/api/runs/${current}/items/${itemId}`);
+  $("detail-title").textContent = `${itemId}, ${TYPE_NAMES[d.task.type]}`;
+  const esc = o => JSON.stringify(o, null, 1).replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
+  $("detail-body").innerHTML = `
+    <h2>Task</h2><pre>${esc(d.task.input)}</pre>
+    ${d.status.error ? `<p class="bad">${d.status.error}</p>` : ""}
+    ${d.metrics ? `<h2>Metrics</h2><pre>${esc(d.metrics)}</pre>` : ""}
+    ${d.hallucinated_ids?.length ? `<p class="bad">IDs not in the corpus: ${d.hallucinated_ids.join(", ")}</p>` : ""}
+    <div class="cols"><div><h2>Agent output (${d.status.steps} tool calls)</h2><pre>${esc(d.prediction)}</pre></div>
+    <div><h2>Gold</h2><pre>${d.gold ? esc(d.gold) : "Held back for this split."}</pre></div></div>`;
+  $("detail").showModal();
+}
+$("detail-close").onclick = () => $("detail").close();
+
+loadInfo();
+</script>
+</body>
+</html>

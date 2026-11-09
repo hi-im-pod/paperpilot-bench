@@ -1,0 +1,304 @@
+{
+  "qwen3.5:9b": {
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "claim_accuracy": 0.8181818181818182,
+    "claim_kappa": 0.7300613496932516,
+    "claim_binary_accuracy": 1.0,
+    "claim_score_error": 2.0,
+    "claim_errors": {
+      "unsupported->partial": 4
+    },
+    "claim_accuracy_with_number_check": 0.8636363636363636,
+    "claim_kappa_with_number_check": 0.7917981072555205,
+    "claim_binary_accuracy_with_number_check": 1.0,
+    "claim_score_error_with_number_check": 1.5,
+    "claim_errors_with_number_check": {
+      "unsupported->partial": 2,
+      "partial->unsupported": 1
+    },
+    "false_support": [],
+    "equiv_accuracy": 1.0,
+    "equiv_misses": [],
+    "followup_pairs_ordered": 1.0,
+    "followup_mean_gap": 2.3333333333333335,
+    "stable_across_passes": 1.0,
+    "json_errors": 0,
+    "seconds_per_call": 0.89,
+    "answers": {
+      "cs-01": "supported",
+      "cs-02": "partial",
+      "cs-03": "partial",
+      "cs-04": "partial",
+      "cs-05": "supported",
+      "cs-06": "partial",
+      "cs-07": "supported",
+      "cs-08": "partial",
+      "cs-09": "supported",
+      "cs-10": "unsupported",
+      "cs-11": "supported",
+      "cs-12": "partial",
+      "cs-13": "partial",
+      "cs-14": "supported",
+      "cs-15": "partial",
+      "cs-16": "unsupported",
+      "cs-17": "supported",
+      "cs-18": "partial",
+      "cs-19": "unsupported",
+      "cs-20": "supported",
+      "cs-21": "unsupported",
+      "cs-22": "supported",
+      "te-01": true,
+      "te-02": false,
+      "te-03": true,
+      "te-04": true,
+      "te-05": false,
+      "te-06": false,
+      "te-07": true,
+      "te-08": false,
+      "te-09": true,
+      "te-10": false,
+      "te-11": false,
+      "te-12": true,
+      "te-13": false,
+      "te-14": true,
+      "te-15": false,
+      "te-16": true,
+      "fq-01": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question precisely defines a concrete experiment involving perplexity filters and fluency-constrained GCG on Vicuna-7B, directly addressing the identified gap regarding suffix evaluation without such defenses while remaining fully novel to the cited literature."
+        },
+        {
+          "specific": 2,
+          "grounded": 3,
+          "novel": 4,
+          "reason": "The question is too broad and generic to be specific or tightly grounded in the particular gap regarding suffixes and perplexity defenses noted by the expert."
+        }
+      ],
+      "fq-02": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question precisely defines a concrete experiment (fine-tuning a 7B model on specific data) that directly addresses the expert-identified gap regarding fine-tuning limitations in ReAct, and it represents a clear open problem not yet solved by the original paper."
+        },
+        {
+          "specific": 2,
+          "grounded": 3,
+          "novel": 4,
+          "reason": "The question is too broad and vague to be a concrete research experiment (low specific), only loosely related to the specific gap about fine-tuning rather than directly addressing it (medium grounded), and while not answered by the papers, it is a very general topic rather than a specific open problem left by them (high novel but not maximally so)."
+        }
+      ],
+      "fq-03": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question precisely defines the metric (RAG-Sequence accuracy), the dataset (Natural Questions), the specific intervention (swapping Wikipedia for a 2023 dump), and the constraint (no retraining), directly addressing the expert's noted gap regarding dynamic index refreshing while remaining unexplored in the original paper."
+        },
+        {
+          "specific": 2,
+          "grounded": 1,
+          "novel": 1,
+          "reason": "The question is too broad and generic to the field of RAG rather than addressing the specific gap about dynamic index refreshing noted by the expert."
+        }
+      ],
+      "fq-04": [
+        {
+          "specific": 4,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question is highly specific about methods and settings, perfectly grounded in the identified gap for mitigations, and addresses a novel solution not covered by the original paper."
+        },
+        {
+          "specific": 2,
+          "grounded": 4,
+          "novel": 3,
+          "reason": "The question is too broad and philosophical ('Can it be solved?') rather than proposing a specific method or experiment, though it correctly identifies the open problem of mitigation from the papers."
+        }
+      ],
+      "fq-05": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question precisely targets the specific limitation noted by the expert (small fixed action space on ALFWorld) and proposes a concrete experimental modification (enlarging the space tenfold) to test the robustness of ReAct's advantages."
+        },
+        {
+          "specific": 4,
+          "grounded": 5,
+          "novel": 3,
+          "reason": "The question is specific and grounded in the expert's gap note regarding ReAct's evaluation on ALFWorld, but it lacks novelty because comparing against imitation and reinforcement learning baselines is a standard benchmarking practice not explicitly left open by the original ReAct paper or the provided gap notes."
+        }
+      ],
+      "fq-06": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question precisely defines a concrete experimental setup (comparing 5 vs. 50 passages on TriviaQA), directly addresses the expert-identified gap regarding limited retrieval counts, and proposes an investigation into a mechanism not yet explored in the original paper."
+        },
+        {
+          "specific": 2,
+          "grounded": 1,
+          "novel": 1,
+          "reason": "The question is completely unrelated to the topic of retrieval-augmented generation and the specific gap regarding the number of retrieved passages, instead focusing on adversarial jailbreak attacks against a different model."
+        }
+      ]
+    }
+  },
+  "gemma4:12b": {
+    "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+    "claim_accuracy": 0.8636363636363636,
+    "claim_kappa": 0.7943925233644862,
+    "claim_binary_accuracy": 0.9545454545454546,
+    "claim_score_error": 2.0,
+    "claim_errors": {
+      "unsupported->partial": 2,
+      "supported->unsupported": 1
+    },
+    "claim_accuracy_with_number_check": 0.8636363636363636,
+    "claim_kappa_with_number_check": 0.7904761904761904,
+    "claim_binary_accuracy_with_number_check": 0.9545454545454546,
+    "claim_score_error_with_number_check": 2.0,
+    "claim_errors_with_number_check": {
+      "unsupported->partial": 1,
+      "supported->unsupported": 1,
+      "partial->unsupported": 1
+    },
+    "false_support": [],
+    "equiv_accuracy": 1.0,
+    "equiv_misses": [],
+    "followup_pairs_ordered": 0.8333333333333334,
+    "followup_mean_gap": 2.3333333333333335,
+    "stable_across_passes": 1.0,
+    "json_errors": 0,
+    "seconds_per_call": 0.82,
+    "answers": {
+      "cs-01": "supported",
+      "cs-02": "unsupported",
+      "cs-03": "partial",
+      "cs-04": "partial",
+      "cs-05": "unsupported",
+      "cs-06": "partial",
+      "cs-07": "supported",
+      "cs-08": "partial",
+      "cs-09": "supported",
+      "cs-10": "unsupported",
+      "cs-11": "supported",
+      "cs-12": "partial",
+      "cs-13": "partial",
+      "cs-14": "supported",
+      "cs-15": "unsupported",
+      "cs-16": "unsupported",
+      "cs-17": "supported",
+      "cs-18": "partial",
+      "cs-19": "unsupported",
+      "cs-20": "supported",
+      "cs-21": "unsupported",
+      "cs-22": "supported",
+      "te-01": true,
+      "te-02": false,
+      "te-03": true,
+      "te-04": true,
+      "te-05": false,
+      "te-06": false,
+      "te-07": true,
+      "te-08": false,
+      "te-09": true,
+      "te-10": false,
+      "te-11": false,
+      "te-12": true,
+      "te-13": false,
+      "te-14": true,
+      "te-15": false,
+      "te-16": true,
+      "fq-01": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question directly addresses the expert's gap by proposing a specific defense (perplexity filter) and a specific counter-measure (fluency-constrained GCG) on a named model."
+        },
+        {
+          "specific": 1,
+          "grounded": 2,
+          "novel": 1,
+          "reason": "The question is far too broad and generic, failing to address the specific gap regarding perplexity-based defenses or the mechanics of the adversarial attacks described."
+        }
+      ],
+      "fq-02": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question identifies a specific model size, dataset size, baseline model, and evaluation metric directly addressing the expert's note on fine-tuning."
+        },
+        {
+          "specific": 1,
+          "grounded": 2,
+          "novel": 1,
+          "reason": "The question is far too broad and generic, failing to address the specific technical gaps regarding fine-tuning or API integration mentioned in the papers."
+        }
+      ],
+      "fq-03": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question identifies a specific dataset (Natural Questions), a specific method (RAG-Sequence), and directly addresses the expert's gap regarding index updates without retraining."
+        },
+        {
+          "specific": 1,
+          "grounded": 2,
+          "novel": 1,
+          "reason": "The question is too broad and generic, failing to address the specific gap regarding dynamic document indexing or providing a concrete experimental setup."
+        }
+      ],
+      "fq-04": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question proposes specific technical interventions (instruction-hierarchy fine-tuning and spotlighting) to address the lack of effective mitigations identified by the expert."
+        },
+        {
+          "specific": 1,
+          "grounded": 4,
+          "novel": 5,
+          "reason": "The question is far too broad and philosophical to be a concrete research experiment, despite being grounded in the identified gap."
+        }
+      ],
+      "fq-05": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question directly addresses the expert's noted gap by proposing a concrete quantitative experiment (10x action space) on the specific benchmark used in the paper."
+        },
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question identifies specific baselines (imitation/RL) and a specific environment (ALFWorld) to address the limitation of the small action space noted by the expert."
+        }
+      ],
+      "fq-06": [
+        {
+          "specific": 5,
+          "grounded": 5,
+          "novel": 5,
+          "reason": "The question identifies a specific number of passages, a specific dataset (TriviaQA), and a specific metric (generator behavior) directly addressing the expert's noted gap."
+        },
+        {
+          "specific": 5,
+          "grounded": 1,
+          "novel": 5,
+          "reason": "The question is specific and novel but completely unrelated to the provided paper on retrieval-augmented generation and the expert's note on passage count."
+        }
+      ]
+    }
+  }
+}

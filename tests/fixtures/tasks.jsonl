@@ -1,0 +1,6 @@
+{"id": "fp-1", "type": "find_papers", "input": {"topic": "retrieval augmented generation"}}
+{"id": "ct-1", "type": "comparison_table", "input": {"topic": "fixture headline numbers", "paper_ids": ["0000.00001", "0000.00002"], "columns": [{"name": "headline_number", "type": "numeric", "unit": "as reported", "setting": "main result"}, {"name": "family", "type": "enum", "allowed": ["attack", "retrieval", "agent"]}]}}
+{"id": "cl-1", "type": "citation_links", "input": {"paper_ids": ["0000.00001", "0000.00002", "0000.00003"]}}
+{"id": "gc-1", "type": "grounded_claims", "input": {"question": "How well does the fixture suffix attack work?"}}
+{"id": "fu-1", "type": "followup_questions", "input": {"topic": "fixture attacks", "paper_ids": ["0000.00001"]}}
+{"id": "trap-1", "type": "find_papers", "input": {"topic": "protein folding with diffusion models"}}

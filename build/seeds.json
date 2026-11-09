@@ -1,0 +1,8 @@
+{
+  "llm_security": ["2307.15043", "2302.12173", "2307.02483"],
+  "rag":          ["2005.11401", "2310.11511", "2312.10997"],
+  "llm_agents":   ["2210.03629", "2302.04761", "2308.11432"],
+  "_comment": "_exclude drops papers that every cluster cites but that aren't about any cluster's topic: general model reports, the Adam optimizer, a generic LLM survey.",
+  "_exclude": ["1706.03762", "1810.04805", "1910.10683", "2005.14165", "2303.08774", "2302.13971",
+               "2307.09288", "2205.01068", "2204.02311", "1412.6980", "2305.14314", "2303.18223"]
+}

@@ -1,0 +1,6 @@
+{"id": "fp-1", "abstain": false, "output": {"ranked_ids": ["0000.00002", "0000.00003"]}}
+{"id": "ct-1", "abstain": false, "output": {"rows": [{"paper_id": "0000.00001", "cells": {"headline_number": "88.0", "family": "attack"}, "evidence": {"headline_number": "the attack reaches an attack success rate of 88.0% against the fixture chat model"}}, {"paper_id": "0000.00002", "cells": {"headline_number": "21", "family": "retrieval"}, "evidence": {"headline_number": "a wikipedia index of 21 million passages"}}]}}
+{"id": "cl-1", "abstain": false, "output": {"edges": [["0000.00001", "0000.00002"], ["0000.00003", "0000.00001"], ["0000.00003", "0000.00002"]]}}
+{"id": "gc-1", "abstain": false, "output": {"answer": "It reaches 88.0%.", "claims": [{"text": "The suffix attack reaches 88.0% attack success rate.", "paper_id": "0000.00001", "quote": "the attack reaches an attack success rate of 88.0% against the fixture chat model"}]}}
+{"id": "fu-1", "abstain": false, "output": {"questions": ["Does the fixture defense hold under adaptive attacks?"]}}
+{"id": "trap-1", "abstain": true, "output": {"reason": "No paper in the library covers protein folding."}}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+build/cache/
+build/*.log
+release/
+scoring/.judge_cache.jsonl
+results*.json
+preds*.jsonl
+judge_sample*.csv
+corpus/papers.only.jsonl
+
+# Paper full text: 81 of 138 papers are under arXiv licenses that forbid
+# redistribution. Rebuild it with build/extract_text.py.
+corpus/papers.jsonl

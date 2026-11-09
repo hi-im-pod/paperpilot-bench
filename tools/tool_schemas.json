@@ -1,0 +1,44 @@
+[
+  {
+    "name": "search",
+    "description": "Search the paper library. BM25 over ~300-word chunks of every paper section except References, plus each paper's title and abstract. Returns up to k hits, best first, as a JSON list of {paper_id, title, section, snippet, score}. Several hits can come from the same paper.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string", "description": "Keywords or a short natural-language query."},
+        "k": {"type": "integer", "description": "Number of hits to return (default 10).", "default": 10}
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "read",
+    "description": "Read a paper's text. With a section name, returns that section; section numbers are optional, so 'Results' finds '4 Results'. Without a section, returns the whole paper, which can be 50k+ tokens, so prefer list_sections and read one section at a time. read(paper_id, 'References') returns the bibliography.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "paper_id": {"type": "string", "description": "Corpus paper ID (an arXiv number such as 2210.03629)."},
+        "section": {"type": "string", "description": "Section name from list_sections. Omit for the whole paper."}
+      },
+      "required": ["paper_id"]
+    }
+  },
+  {
+    "name": "list_sections",
+    "description": "List a paper's section names, in order.",
+    "parameters": {
+      "type": "object",
+      "properties": {"paper_id": {"type": "string"}},
+      "required": ["paper_id"]
+    }
+  },
+  {
+    "name": "get_metadata",
+    "description": "A paper's title, authors, year and abstract.",
+    "parameters": {
+      "type": "object",
+      "properties": {"paper_id": {"type": "string"}},
+      "required": ["paper_id"]
+    }
+  }
+]

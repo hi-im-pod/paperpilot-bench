@@ -22,21 +22,22 @@ Paused partway through `docs/phase2_execution.md`. Steps 2–4 and the front end
 - **Number words count as numbers** in quote and claim checks (two to twenty).
 - **Citation checker.** `build/ref_match.py` agreed with a manual reading of the reference lists on all 18 disputed edges.
 
+## Done in the second session (2026-11-09, afternoon)
+
+- **Pushed** everything to GitHub.
+- **Judge validation, stand-in.** 30 decisions from both baselines, labeled by Claude and marked as not human: `docs/judge_validation.csv`, with the write-up in `docs/judge_validation.md`. Claims agreed 22/22, but every label was "supported", so kappa is undefined. Equivalence agreed 2/3, and follow-up ratings differed by a mean of 0.2. `judge.py` now samples from several results files and filters agreement by labeler.
+- **Judge comparison refreshed.** With the number check, Qwen's error is 1.0 against Gemma's 2.0. Qwen stays the default.
+- **Leaderboard seeded** with the B1 and B0 test rows in `official`. A write test at contributor level was refused, so the rules hold.
+
 ## Not done yet
 
-1. **Judge validation (step 5).** Export 30 judge decisions from `baselines/runs/b1_claude_test.results.json`:
-
-   ```
-   py scoring/judge.py --sample 30 --results baselines/runs/b1_claude_test.results.json --out judge_sample.csv
-   ```
-
-   The scorer doesn't save `judge_decisions` into results files from the CLI; check that first. Then label the decisions, marking any Claude stand-in labels as not human, and leave the CSV for teammates.
-2. **Refresh `docs/judge_comparison.md`.** With number words added, Qwen's support-score error under the number check fell to 1.0, against Gemma's 2.0. Rerun with `py scoring/judge_eval.py --out docs/judge_eval_results.json` and update the tables.
-3. **Seed the leaderboard's `official` collection** with the B1 and B0 test rows. Use ArtifactData on the URL above, with docs shaped like `Run.summary()` in `app/server.py`.
-4. **Share the leaderboard** with the class. Only Garrett can do this, from the page's Share menu. Contributors can post; viewers can only read.
-5. **Push.** Commits after `3217458` aren't on GitHub yet: the freeze, the items and gold, the console, and the baselines. The repo is public, and Garrett chose to publish the answer keys too.
-6. **Teammates** re-check the 7 marked drafts, and review `scoring/judge_eval_cases.jsonl`.
-7. **Presentation** (Nov 16).
+1. **Share the leaderboard** with the class. Only Garrett can do this, from the page's Share menu. Contributors can post; viewers can only read.
+2. **Teammates:**
+   - re-check the 7 marked drafts
+   - add human labels to `docs/judge_validation.csv`, using their own name in `labeler`
+   - review `scoring/judge_eval_cases.jsonl`
+3. **Decide on frontier headroom** (see the findings below). The options are a harder item set inside the frozen corpus, or reporting the ceiling as a limitation.
+4. **Presentation** (Nov 16).
 
 ## Findings for the presentation
 

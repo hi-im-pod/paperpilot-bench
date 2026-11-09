@@ -8,12 +8,12 @@
     "claim_errors": {
       "unsupported->partial": 4
     },
-    "claim_accuracy_with_number_check": 0.8636363636363636,
-    "claim_kappa_with_number_check": 0.7917981072555205,
+    "claim_accuracy_with_number_check": 0.9090909090909091,
+    "claim_kappa_with_number_check": 0.8598726114649681,
     "claim_binary_accuracy_with_number_check": 1.0,
-    "claim_score_error_with_number_check": 1.5,
+    "claim_score_error_with_number_check": 1.0,
     "claim_errors_with_number_check": {
-      "unsupported->partial": 2,
+      "unsupported->partial": 1,
       "partial->unsupported": 1
     },
     "false_support": [],
@@ -23,7 +23,7 @@
     "followup_mean_gap": 2.3333333333333335,
     "stable_across_passes": 1.0,
     "json_errors": 0,
-    "seconds_per_call": 0.89,
+    "seconds_per_call": 6.32,
     "answers": {
       "cs-01": "supported",
       "cs-02": "partial",
@@ -175,7 +175,7 @@
     "followup_mean_gap": 2.3333333333333335,
     "stable_across_passes": 1.0,
     "json_errors": 0,
-    "seconds_per_call": 0.82,
+    "seconds_per_call": 0.83,
     "answers": {
       "cs-01": "supported",
       "cs-02": "unsupported",

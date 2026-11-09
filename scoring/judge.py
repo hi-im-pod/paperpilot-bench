@@ -155,16 +155,23 @@ def judge_label(d):
     return "/".join(str(r.get(k)) for k in ("specific", "grounded", "novel"))
 
 
-def export_sample(results_path, n, out_path, seed=0):
-    decisions = json.loads(Path(results_path).read_text(encoding="utf-8")).get("judge_decisions") or []
+def export_sample(results_paths, n, out_path, seed=0):
+    decisions, seen = [], set()
+    for path in results_paths:
+        for d in json.loads(Path(path).read_text(encoding="utf-8")).get("judge_decisions") or []:
+            # Cached decisions repeat across runs; label each distinct one once.
+            key = json.dumps([d["kind"], d["inputs"]], sort_keys=True)
+            if key not in seen:
+                seen.add(key)
+                decisions.append(d)
     if not decisions:
         raise SystemExit("no judge_decisions in results; score with --judge ollama:<tag> first")
     sample = random.Random(seed).sample(decisions, min(n, len(decisions)))
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["kind", "inputs", "judge_label", "human_label"])
+        w.writerow(["kind", "inputs", "judge_label", "human_label", "labeler"])
         for d in sample:
-            w.writerow([d["kind"], json.dumps(d["inputs"], ensure_ascii=False), judge_label(d), ""])
+            w.writerow([d["kind"], json.dumps(d["inputs"], ensure_ascii=False), judge_label(d), "", ""])
     print(f"wrote {out_path}: {len(sample)} decisions. Fill human_label without looking at judge_label.")
     print("  claim_support: supported|partial|unsupported   text_equiv: true|false   followup_score: s/g/n, e.g. 4/2/5")
 
@@ -174,20 +181,25 @@ def cohen_kappa(a, b):
     n = len(a)
     po = sum(x == y for x, y in zip(a, b)) / n
     pe = sum((a.count(lab) / n) * (b.count(lab) / n) for lab in labels)
-    return 1.0 if pe == 1 else (po - pe) / (1 - pe)
+    # With one label on both sides kappa is undefined, not perfect: report None.
+    return None if pe == 1 else (po - pe) / (1 - pe)
 
 
-def agreement(csv_path):
-    rows = [r for r in csv.DictReader(open(csv_path, encoding="utf-8")) if r["human_label"].strip()]
+def agreement(csv_path, labeler=None):
+    rows = [r for r in csv.DictReader(open(csv_path, encoding="utf-8")) if r["human_label"].strip()
+            and (labeler is None or r.get("labeler", "").strip() == labeler)]
     if not rows:
-        raise SystemExit("no human_label filled in yet")
+        raise SystemExit("no human_label filled in yet" + (f" by {labeler!r}" if labeler else ""))
+    print(f"labels from: {sorted({r.get('labeler', '').strip() or '(unnamed)' for r in rows})}")
     for kind in ("claim_support", "text_equiv"):
         rs = [r for r in rows if r["kind"] == kind]
         if rs:
             a = [r["judge_label"].strip().lower() for r in rs]
             b = [r["human_label"].strip().lower() for r in rs]
             agree = sum(x == y for x, y in zip(a, b)) / len(rs)
-            print(f"{kind}: n={len(rs)} agreement={agree:.2f} kappa={cohen_kappa(a, b):.2f}")
+            k = cohen_kappa(a, b)
+            print(f"{kind}: n={len(rs)} agreement={agree:.2f} kappa="
+                  + ("undefined (every label is the same class)" if k is None else f"{k:.2f}"))
     rs = [r for r in rows if r["kind"] == "followup_score" and "None" not in r["judge_label"]]
     if rs:
         diffs = [[abs(int(x) - int(y)) for x, y in zip(r["judge_label"].split("/"), r["human_label"].split("/"))]
@@ -199,13 +211,14 @@ def agreement(csv_path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--sample", type=int)
-    ap.add_argument("--results")
+    ap.add_argument("--results", nargs="+", help="one or more results.json files to sample from")
+    ap.add_argument("--labeler", help="with --agreement: only count rows from this labeler")
     ap.add_argument("--out", default="judge_sample.csv")
     ap.add_argument("--agreement")
     ap.add_argument("--smoke", metavar="MODEL", help="run one decision of each kind against a pulled model")
     args = ap.parse_args()
     if args.agreement:
-        agreement(args.agreement)
+        agreement(args.agreement, args.labeler)
     elif args.sample:
         export_sample(args.results, args.sample, args.out)
     elif args.smoke:

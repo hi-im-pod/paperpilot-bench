@@ -75,7 +75,7 @@ a { color: var(--focus); }
   </header>
   <div class="grid">
     <nav id="nav" aria-label="Review items"><div class="note">Loading items…</div></nav>
-    <main class="item" id="item"><div class="empty">Open this page signed in to claude.ai to load the review items.</div></main>
+    <main class="item" id="item"><div class="empty">Loading the review items…</div></main>
   </div>
 </div>
 
@@ -129,7 +129,7 @@ const GOLD = {
           h("td", {}, link(p.url, p.title), h("details", {}, h("summary", {text: "Abstract"}), h("p", {text: p.abstract}))),
           h("td", {}, h("span", {class: "claude", text: String(p.claude)})),
           h("td", {class: "choice"}, h("select", {"data-pid": p.paper_id, "aria-label": `Grade for ${p.title}`},
-            [0, 1, 2].map(g => h("option", {value: g, selected: (v?.grades?.[p.paper_id] ?? p.claude) === g, text: String(g)}))))))))))];
+            [0, 1, 2].map(g => h("option", {value: g, selected: (v?.grades?.[p.paper_id] ?? p.claude) === g, text: String(g)})))))))))];
   },
   comparison_table(i, v) {
     return [h("p", {class: "how", text: "Check each cell against the paper (follow the link and find the quote). If Claude's value is wrong for the stated setting, type the right one."}),
@@ -191,6 +191,15 @@ const JUDGE = {
 
 function show(id) {
   current = id;
+  try { render(id); } catch (e) {
+    // One malformed item mustn't freeze the page: say which one and keep the list usable.
+    document.getElementById("item").replaceChildren(h("div", {class: "empty"},
+      h("p", {text: `Item ${id} couldn't be shown.`}), h("p", {class: "note", text: `Pick another item. Details for the page owner: ${errText(e)}`})));
+    renderNav();
+  }
+}
+
+function render(id) {
   const i = items.find(x => x.id === id), v = mine(id);
   const body = i.source === "gold" ? GOLD[i.task_type](i, v) : JUDGE[i.kind](i, v);
   const head = i.source === "gold"
@@ -199,7 +208,7 @@ function show(id) {
        h("div", {class: "task", text: i.input.topic || i.input.question || `Papers: ${(i.input.paper_ids || []).join(", ")}`})]
     : [h("h2", {text: TYPE[i.kind]})];
   const others = reviewers(id) - (v ? 1 : 0);
-  document.getElementById("item").replaceChildren(...head, ...body,
+  document.getElementById("item").replaceChildren(...head.filter(Boolean), ...body,
     h("h3", {text: "Note (optional)"}), h("textarea", {id: "note", text: v?.note || ""}),
     h("div", {class: "actions"}, h("button", {class: "primary", id: "save", onclick: () => save(i)}, v ? "Update review" : "Save review"),
       h("button", {class: "quiet", onclick: () => next(1)}, "Skip"), h("span", {class: "msg", id: "msg", "aria-live": "polite"}),
@@ -228,6 +237,7 @@ function collect(i) {
 
 async function save(i) {
   const msg = document.getElementById("msg"), btn = document.getElementById("save");
+  if (!me) { msg.className = "msg bad"; msg.textContent = "This view doesn't know who you are, so it can't save. Open the link inside claude.ai while signed in."; return; }
   const verdict = collect(i);
   if (verdict.error) { msg.className = "msg bad"; msg.textContent = verdict.error; return; }
   btn.disabled = true; msg.className = "msg"; msg.textContent = "Saving…";
@@ -253,21 +263,43 @@ function next(step, unreviewedOnly = false) {
   show(items[(idx + 1) % items.length].id);
 }
 
+// Every way startup can fail gets its own message, so "it won't load" can be diagnosed from a screenshot.
+function status(text, detail) {
+  document.getElementById("nav").replaceChildren(h("div", {class: "note", text: "Not loaded."}));
+  document.getElementById("item").replaceChildren(h("div", {class: "empty"}, h("p", {text}), detail ? h("p", {class: "note", text: detail}) : null));
+}
+const errText = e => [e?.code, e?.message || String(e)].filter(Boolean).join(": ");
+
 (async () => {
-  const timer = setTimeout(() => { if (!items.length) document.getElementById("nav").replaceChildren(h("div", {class: "note", text: "The review items didn't load. Reload the page, or check that you're signed in."})); }, 10000);
-  db = await window.claude?.use?.("db") ?? null;
-  user = await window.claude?.use?.("user") ?? null;
-  if (!db || !user) { clearTimeout(timer); document.getElementById("nav").replaceChildren(h("div", {class: "note", text: "Sign in to claude.ai to review."})); return; }
-  me = await user.id();
-  db.collection("items").orderBy("order").onSnapshot(s => {
-    clearTimeout(timer);
-    items = s.docs.map(d => ({id: d.id, ...d.data()}));
-    if (!items.length) { document.getElementById("nav").replaceChildren(h("div", {class: "note", text: "No review items yet."})); return; }
-    if (!current) show((items.find(i => !mine(i.id)) || items[0]).id); else renderNav();
-  }, () => document.getElementById("nav").replaceChildren(h("div", {class: "note", text: "The review items couldn't be loaded. Reload the page."})));
-  db.collection("reviews").onSnapshot(s => {
-    reviews = Object.fromEntries(s.docs.map(d => [d.id, d.data()]));
-    if (items.length) renderNav();
-  }, () => {});
+  try {
+    const timer = setTimeout(() => {
+      if (!items.length) status("The review items are taking longer than usual to load.", "Reload the page. If this keeps happening, send the page owner a screenshot of this message.");
+    }, 15000);
+    if (!window.claude?.use) {
+      clearTimeout(timer);
+      return status("This copy of the page can't reach the review database.",
+        "Open the review link inside claude.ai (claude.ai/artifact/…). A downloaded copy or the page's own address won't load the items.");
+    }
+    db = await window.claude.use("db");
+    user = await window.claude.use("user");
+    if (!db) {
+      clearTimeout(timer);
+      return status("This view can't open the review database.",
+        "Open the review link inside claude.ai while signed in. If you are, check the page's Permissions menu and allow its database.");
+    }
+    me = user ? await user.id() : null;
+    db.collection("items").orderBy("order").onSnapshot(s => {
+      clearTimeout(timer);
+      items = s.docs.map(d => ({id: d.id, ...d.data()}));
+      if (!items.length) return status("No review items yet.", "The page owner hasn't loaded them.");
+      if (!current) show((items.find(i => !mine(i.id)) || items[0]).id); else renderNav();
+    }, e => { clearTimeout(timer); status("The review items couldn't be loaded.", `Reload the page. Details for the page owner: ${errText(e)}`); });
+    db.collection("reviews").onSnapshot(s => {
+      reviews = Object.fromEntries(s.docs.map(d => [d.id, d.data()]));
+      if (items.length) renderNav();
+    }, () => {});
+  } catch (e) {
+    status("The review page hit an error while starting.", `Reload the page. Details for the page owner: ${errText(e)}`);
+  }
 })();
 </script>

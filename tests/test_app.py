@@ -44,6 +44,8 @@ class FakeAgent(BaseHTTPRequestHandler):
         assert "result" in hits
         missing = post(req["tools_url"] + "/read", {"paper_id": "9999.99999"})
         assert "error" in missing
+        invented = post(req["tools_url"] + "/fetch_paper", {"paper_id": "x"})
+        assert "no tool named" in invented["error"]
         a = self.answers[req["task"]["id"]]
         self.reply({"abstain": a["abstain"], "output": a["output"]})
 
@@ -77,7 +79,7 @@ def test_run_through_the_console(tmp_path, monkeypatch):
             break
         time.sleep(0.1)
     assert state["status"] == "done", state
-    assert all(i["steps"] == 2 for i in state["items"])
+    assert all(i["steps"] == 2 for i in state["items"])  # the invented tool is refused before counting
     assert state["results"]["per_type"]["find_papers"]["primary_mean"] == 1.0
     assert state["results"]["per_type"]["traps"]["primary_mean"] == 1.0
     assert state["summary"]["agent"] == "fake-agent"

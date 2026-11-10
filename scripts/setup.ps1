@@ -1,5 +1,5 @@
 # One-time setup on Windows PowerShell: a virtualenv, the dependencies, and both
-# corpora rebuilt from arXiv (about 25 minutes, because arXiv asks for 3 seconds
+# corpora rebuilt from arXiv (about 15 minutes, because arXiv asks for 3 seconds
 # between downloads). Safe to rerun: downloads are cached.
 $ErrorActionPreference = "Stop"
 Set-Location (Join-Path $PSScriptRoot "..")

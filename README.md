@@ -1,66 +1,139 @@
 # PaperPilot-Bench
 
-A closed-world benchmark for research-literature agents. Given a topic or question, an agent must find relevant papers, fill comparison tables, recover citation links, answer with claims backed by verbatim quotes, and propose follow-up questions. It works inside a fixed corpus of full-text arXiv papers on LLM security, retrieval-augmented generation, and LLM agents.
+PaperPilot-Bench tests whether a research-literature agent can work from evidence instead of memory. The agent gets a topic or question and a closed corpus of full-text arXiv papers it can reach only through four tools. It has to find the relevant papers, fill comparison tables with the exact reported numbers, recover which papers cite which, answer with claims backed by verbatim quotes, and propose follow-up questions. Answers are scored against gold labels that were drafted with an LLM and verified against the paper text. A human second check of a 20% sample is in progress.
+
+It has two tracks:
+
+- **Main track:** 138 papers from 2017 to 2023 on LLM security, retrieval-augmented generation (RAG), and LLM agents.
+- **Hard track:** 95 papers first posted from July to October 2026, after current models' training data, so an agent has to read the papers to score.
+
+**Links**
+
+- [Leaderboard](https://claude.ai/artifact/WDm8vrjf8kRVfsn4QVM8q8): official results and self-reported dev runs. Open it signed in to claude.ai.
+- [Label review page](https://claude.ai/artifact/1SKtkn7kN5JwLseD135KNq): where the benchmark team second-checks gold labels and judge decisions, in Korean and English. Team members only; ask the owner for access.
+
+![The run console after a scored dev run: items colored by score, then per-type scores with 95% intervals](docs/img/console.png)
+
+## Results
+
+Scores on the test splits. Each task type's primary metric is described under [Metrics](#metrics); the macro average is secondary. All rows use the `qwen3.5:9b` judge.
+
+**Main track** (30 test items, 138 papers)
+
+| Agent | Find papers | Table | Citations | Claims | Follow-up | Traps | Macro |
+|---|---|---|---|---|---|---|---|
+| B1: Claude Opus 5.5 with the corpus tools | 0.96 | 0.98 | 1.00 | 0.92 | 0.97 | 1.00 | 0.97 |
+| B0: Claude Opus 5.5, titles only, no tools | 0.98 | 0.89 | 0.78 | 1.00 | 0.95 | 1.00 | 0.93 |
+
+**Hard track** (15 test items, 95 papers)
+
+| Agent | Find papers | Table | Citations | Claims | Follow-up | Traps | Macro |
+|---|---|---|---|---|---|---|---|
+| B1: Claude Opus 5.5 with the corpus tools | 0.93 | 0.94 | 1.00 | 0.96 | 0.97 | 1.00 | 0.97 |
+| B0: Claude Opus 5.5, titles only, no tools | 0.96 | 0.23 | 0.00 | 0.50 | 0.97 | 1.00 | 0.61 |
+
+What the numbers show:
+
+- **The main track is close to saturated for frontier models.** With only the paper titles, Claude scored 0.93 against 0.97 with tools, because it already knows these papers. That small gap is why the hard track exists.
+- **The hard track separates reading from recall.** Without tools, Claude's table accuracy fell from 0.94 to 0.23 and citation F1 from 1.00 to 0.00.
+- **Find papers and follow-up questions discriminate weakly.** Titles are enough to rank papers on a topic, and the judge is lenient on follow-up questions. Treat those two columns as sanity checks.
+- **Small local models are far from the ceiling.** `qwen3.5:9b` as the B1 agent scored a macro average of 0.22 on main-track dev (10 items), with 10% of items citing an ID outside the corpus. Two of its items failed when the agent crashed on a tool error, a bug since fixed. Full local-model runs on the test splits are still to come.
+
+The Claude baselines ran as blind Claude Code subagents in a workspace that held only the corpus tools and the tasks (see [Using a coding agent](#using-a-coding-agent-instead-of-an-api)). The Qwen run used `examples/http_agent.py` through the console, with Ollama on one RTX 5070 Ti (12 GB). Raw predictions and per-item scores are in `baselines/runs/`.
 
 ## Quick start
 
+You need Python 3.11 or newer and about 2 GB of free disk space. Setup downloads every paper's PDF from arXiv, which takes about 15 minutes because arXiv asks for 3 seconds between requests.
+
+**Windows (PowerShell)**
+
+```powershell
+git clone https://github.com/hi-im-pod/paperpilot-bench
+cd paperpilot-bench
+powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
+.venv\Scripts\python app\server.py --open
 ```
-py -m venv .venv && .venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python build\extract_text.py
-.venv\Scripts\python baselines\b1_search_read.py --tasks tasks\dev.jsonl --out preds.jsonl --provider anthropic
-.venv\Scripts\python scoring\score.py --tasks tasks\dev.jsonl --gold gold\dev_gold.jsonl --preds preds.jsonl --judge ollama:qwen3.5:9b
+
+**macOS, Linux, or Git Bash**
+
+```bash
+git clone https://github.com/hi-im-pod/paperpilot-bench
+cd paperpilot-bench
+bash scripts/setup.sh
+.venv/bin/python app/server.py --open
 ```
 
-The second line builds the corpus. The paper text isn't in this repo, because 81 of the 138 papers are under arXiv's default license, which doesn't allow redistribution. `build/extract_text.py` downloads each paper's PDF from arXiv at the exact version we used (listed in `build/selected.jsonl`), splits it into sections, and writes `corpus/papers.jsonl`. It takes about 10 minutes, since arXiv asks for 3 seconds between requests. It ends by checking the result against `corpus/papers.sha256`. If it prints a mismatch, your corpus differs from ours and gold quotes may not line up, so tell us.
+The setup script creates `.venv`, installs `requirements.txt`, and builds both corpora. `--open` opens the console at http://127.0.0.1:8765. On Windows, use `127.0.0.1` rather than `localhost`, which some setups block in the browser.
 
-On macOS or Linux, use `python3 -m venv .venv` and `.venv/bin/python`. For the judge, install [Ollama](https://ollama.com) and run `ollama pull qwen3.5:9b`. To score without it, pass `--judge none`.
+**Docker**
 
-The baselines read `ANTHROPIC_API_KEY` (or an `ant auth login` profile) for `--provider anthropic` and `OPENAI_API_KEY` for `--provider openai`. `--provider ollama` runs a local model for free, which is enough to check that your plumbing works.
+```bash
+docker build -t paperpilot-bench .
+docker run --rm -p 8765:8765 paperpilot-bench
+```
 
-## Rules
+The image builds both corpora while it builds, so `docker run` starts in seconds. Build it yourself instead of pulling a published image: most papers' licenses forbid redistributing their text. In the console, an agent running on your machine is at `http://host.docker.internal:<port>`, not `127.0.0.1`. On Linux, add `--add-host=host.docker.internal:host-gateway` to `docker run`.
 
-1. **Closed corpus.** Your agent may learn about papers only through the four tools in `tools/corpus_tools.py`. No web access and no outside APIs. Semantic Scholar and similar services would hand over the citation answers.
-2. **Cite by corpus ID.** IDs are bare arXiv numbers such as `2210.03629`. Any ID that isn't in `corpus/papers.jsonl` counts as a hallucinated citation.
-3. **Quote verbatim.** Quotes are checked against the paper text, and every number in a quote must appear exactly.
-4. **Abstain when the corpus doesn't answer.** Some items are traps with no correct answer in the corpus. Abstaining on those scores full marks, and returning any paper scores zero.
-5. **One JSON object per item**, in the schemas below.
+**The judge (optional).** Claim support and follow-up questions are scored by a local model. Install [Ollama](https://ollama.com), run `ollama pull qwen3.5:9b`, and pick it in the console's judge menu. Without it, those two metrics show `n/a` and everything else still scores. The container reaches Ollama on the host by itself.
 
-Your agent can be built any way you like: any model, any framework, any prompt. `prompts/agent.md` is our reference prompt and `baselines/b1_search_read.py` is our reference agent. Both are starting points, not requirements.
+**Try the reference agent.** In a second terminal, start the example agent and give the console its URL, `http://127.0.0.1:8001`:
 
-## The hard track
+```
+.venv\Scripts\python examples\http_agent.py --provider ollama            # free, uses qwen3.5:9b
+.venv\Scripts\python examples\http_agent.py --provider anthropic         # needs ANTHROPIC_API_KEY
+.venv\Scripts\python examples\http_agent.py --provider openai            # needs OPENAI_API_KEY
+```
 
-The main corpus is well-known 2017–2023 work, and frontier models know much of it by heart. With only the paper titles, Claude scored 0.93 on our test set, against 0.97 with the tools. The hard track uses 95 papers first submitted from July to October 2026, after current models' training data. There, an agent has to read.
+### Why the paper text isn't in git
 
-- **Corpus:** `corpus/hard/papers.jsonl`. Build it with `py build/extract_text.py --track hard`; it's checked against `corpus/hard/papers.sha256`.
-- **Tasks:** `tasks/hard/dev.jsonl` (5 items) and `tasks/hard/test.jsonl` (15 items), with dev gold in `gold/hard/dev_gold.jsonl`.
-- **Scoring:** the same scorer and metrics, with `--corpus corpus/hard/papers.jsonl`. The console lists the hard splits once the corpus is built.
+Of the 138 main-track papers, 81 are under arXiv's default license, which doesn't allow redistribution. `build/extract_text.py` downloads each PDF at the exact arXiv version we used (pinned in `build/selected.jsonl`), splits it into sections, and writes `corpus/papers.jsonl`. It ends by checking the result against `corpus/papers.sha256`. A mismatch means your corpus differs from ours and gold quotes may not line up, so open an issue. The hard track works the same way with `--track hard`.
 
 ## Connect your agent
 
-The easiest way to attempt the bench is the run console:
-
-```
-.venv\Scripts\python app\server.py
-```
-
-Open http://127.0.0.1:8765 (on Windows, use the IP: some setups block `localhost` in the browser). Enter your agent's URL, pick dev or test, and run. The console shows each item as it finishes, colored by score. Select an item to see its output beside the gold. Scores come per task type, with 95% intervals. The console uses only Python's standard library.
-
-Your agent is an HTTP server in any language, with two routes:
+Your agent is an HTTP server, in any language, with two routes:
 
 | Route | What the bench sends | What your agent returns |
 |---|---|---|
 | `GET /health` | nothing | `200`, optionally `{"name": "my-agent v2"}` |
 | `POST /solve` | `{"task": {...}, "tools_url": "...", "run_id": "...", "item_id": "..."}` | `{"abstain": false, "output": {...}, "trace": {...}}` |
 
-While solving, call the corpus tools at `tools_url`: `POST {tools_url}/search` with `{"query", "k"}`, `/read` with `{"paper_id", "section"}`, `/list_sections` with `{"paper_id"}`, and `/get_metadata` with `{"paper_id"}`. Each returns `{"result": ...}` or `{"error": "..."}`. Each item gets its own `tools_url`, so the console counts your tool calls per item. If the run sets a tool budget, calls past it return an error.
+While solving, call the corpus tools at `tools_url`:
 
-`examples/http_agent.py` is a complete agent that follows this contract. Run `py examples/http_agent.py --provider ollama` for a free local test, or use `--provider anthropic` or `openai` with a key.
+- `POST {tools_url}/search` with `{"query", "k"}`
+- `POST {tools_url}/read` with `{"paper_id", "section"}`
+- `POST {tools_url}/list_sections` with `{"paper_id"}`
+- `POST {tools_url}/get_metadata` with `{"paper_id"}`
 
-**Test runs.** Test gold isn't shipped. The console answers every test item, then offers `preds.jsonl` to download. Send that file to us, and we score it and post the result on the leaderboard.
+Each returns `{"result": ...}` or `{"error": "..."}`, including for a misspelled tool name, so pass errors back to your model and let it recover. Each item gets its own `tools_url`, so the console counts tool calls per item, and calls past the run's tool budget return an error.
 
-**Leaderboard.** Dev runs can be self-reported: in a finished run, choose **Copy leaderboard entry** and paste it into the leaderboard page. The page is linked from the class announcement; open it signed in to claude.ai.
+![One item opened in the console: the task, its metrics, and the agent's output beside the gold](docs/img/console-item.png)
 
-**Using a coding agent instead of an API.** `baselines/claude_code_workspace.py make` builds a folder holding only the corpus, the tasks, the agent prompt, and a `tool.py` that logs every call and enforces the budget. Any coding agent (Claude Code, Codex, Cursor) can work in that folder blind to the gold. `claude_code_workspace.py collect` turns its answers into a predictions file. Our strong baseline was produced this way.
+In the console, enter your agent's URL, choose **Check**, pick a split, and run. Each item appears as it finishes, colored by score. Select one to compare its output with the gold. A finished run shows scores per task type with 95% intervals, offers its predictions as `preds.jsonl`, and can copy a leaderboard entry. Runs are saved in `app/runs/` and reload when the console restarts.
+
+`examples/http_agent.py` is a complete agent that follows this contract, and `prompts/agent.md` is our reference prompt. Both are starting points: use any model, framework, or prompt.
+
+**Serving the console to other machines.** `app/server.py --host 0.0.0.0 --public-url http://<your-ip>:8765` listens on every interface and hands agents a tools address they can reach.
+
+### Using a coding agent instead of an API
+
+`baselines/claude_code_workspace.py make` builds a folder that holds only the corpus, the tasks, the agent prompt, and a `tool.py` that logs every call and enforces the 15-call budget. Any coding agent (Claude Code, Codex, Cursor) can work in that folder without seeing the gold. `claude_code_workspace.py collect` turns its answers into a predictions file. Our Claude baselines were produced this way.
+
+## Score from the command line
+
+```
+.venv\Scripts\python baselines\b1_search_read.py --tasks tasks\dev.jsonl --provider ollama --out preds.jsonl
+.venv\Scripts\python scoring\score.py --tasks tasks\dev.jsonl --gold gold\dev_gold.jsonl --preds preds.jsonl --judge ollama:qwen3.5:9b
+```
+
+For the hard track, use `tasks\hard\...` and `gold\hard\...`, add `--corpus corpus\hard\papers.jsonl` to `score.py`, and set `PAPERPILOT_CORPUS=corpus/hard/papers.jsonl` for the baseline.
+
+## Rules
+
+1. **Closed corpus.** Your agent may learn about papers only through the four tools. No web access and no outside APIs: Semantic Scholar and similar services would hand over the citation answers.
+2. **Cite by corpus ID.** IDs are bare arXiv numbers such as `2210.03629`. Any ID outside the corpus counts as a hallucinated citation.
+3. **Quote verbatim.** Quotes are checked against the paper text, and every number in a quote must appear exactly.
+4. **Abstain when the corpus doesn't answer.** Some items are traps with no correct answer in the corpus. Abstaining on those scores full marks, and returning any paper scores zero.
+5. **Tune on dev, report on test.** Test gold is public in `gold/test_gold.jsonl` and `gold/hard/test_gold.jsonl` so anyone can check our scoring. Don't read it, or train or prompt on it, before you report. The leaderboard takes self-reported dev runs; send test predictions to the benchmark team for an official row.
 
 ## The tools
 
@@ -69,24 +142,13 @@ While solving, call the corpus tools at `tools_url`: `POST {tools_url}/search` w
 | `search(query, k=10)` | `[{paper_id, title, section, snippet, score}]`. BM25 over ~300-word chunks of every section except References, plus each paper's title and abstract. |
 | `read(paper_id, section=None)` | One section's text. Section numbers are optional, so `"Results"` finds `"4 Results"`. Without a section, the whole paper (often 50k+ tokens). |
 | `list_sections(paper_id)` | Section names in order. |
-| `get_metadata(paper_id)` | Title, authors, year, abstract. |
+| `get_metadata(paper_id)` | Title, authors, year, abstract. Not references, which are the citation answers. |
 
-`tools/tool_schemas.json` has all four as JSON-schema function definitions. `tools.corpus_tools.call_tool(name, args)` dispatches a call and returns errors as text, so your agent can recover. To poke around by hand, run `py tools/corpus_tools.py search "prompt injection defenses"`.
-
-## Files
-
-| Path | What it is |
-|---|---|
-| `corpus/papers.jsonl` | One paper per line: `id, title, authors, year, abstract, sections[{name, text}]`. Built locally by `build/extract_text.py`; not in git |
-| `corpus/papers.sha256` | Checksum of our `papers.jsonl`, so a rebuild can be checked |
-| `corpus/licenses.csv` | arXiv license per paper |
-| `tasks/dev.jsonl`, `tasks/test.jsonl` | Task items. No gold, no trap flags |
-| `gold/dev_gold.jsonl` | Gold for dev only. Test gold is held back |
-| `tasks/schemas/*.json` | Input and output schema per task type |
+`tools/tool_schemas.json` has all four as JSON-schema function definitions. To explore by hand, run `py tools/corpus_tools.py search "prompt injection defenses"`.
 
 ## Task types
 
-Every prediction line is `{"id": ..., "abstain": false, "output": {...}, "trace": {...}}`. To abstain, send `{"id": ..., "abstain": true, "output": {"reason": "..."}}`. `trace` is optional; if you include `steps`, `input_tokens`, `output_tokens`, and `cost_usd`, the scorer reports their means.
+Every prediction line is `{"id": ..., "abstain": false, "output": {...}, "trace": {...}}`. To abstain, send `{"id": ..., "abstain": true, "output": {"reason": "..."}}`. `trace` is optional; if it has `steps`, `input_tokens`, `output_tokens`, and `cost_usd`, the scorer reports their means. Full schemas are in `tasks/schemas/`.
 
 **find_papers.** Find the corpus papers relevant to a topic.
 
@@ -95,7 +157,7 @@ Every prediction line is `{"id": ..., "abstain": false, "output": {...}, "trace"
 {"id": "fp-03", "abstain": false, "output": {"ranked_ids": ["2302.12173", "..."]}}
 ```
 
-**comparison_table.** Fill typed columns for a set of papers. Each column names the exact setting (dataset, model, metric) its value must come from. `paper_ids: null` means you choose the papers.
+**comparison_table.** Fill typed columns for a set of papers. Each column names the exact setting (dataset, model, metric) its value must come from. `paper_ids: null` means you choose the papers. Use `NOT_REPORTED` for a value the paper doesn't give.
 
 ```json
 {"id": "ct-01", "type": "comparison_table", "input": {"topic": "...", "paper_ids": ["..."],
@@ -106,16 +168,12 @@ Every prediction line is `{"id": ..., "abstain": false, "output": {...}, "trace"
   "evidence": {"attack_success_rate": "<verbatim sentence or table row>"}}]}}
 ```
 
-Use `NOT_REPORTED` for a value the paper doesn't give.
-
-**citation_links.** Say which papers in a set cite which others.
+**citation_links.** Say which papers in a set cite which others. Each edge is `[citing, cited]`.
 
 ```json
 {"id": "cl-02", "type": "citation_links", "input": {"paper_ids": ["a", "b", "c"]}}
 {"id": "cl-02", "abstain": false, "output": {"edges": [["a", "b"], ["c", "a"]]}}
 ```
-
-Each edge is `[citing, cited]`.
 
 **grounded_claims.** Answer a question with claims, each tied to a paper and a verbatim quote.
 
@@ -125,7 +183,7 @@ Each edge is `[citing, cited]`.
   "claims": [{"text": "...", "paper_id": "...", "quote": "<at least 6 words, copied from the paper>"}]}}
 ```
 
-**followup_questions.** Propose 3–5 research questions the given papers leave open.
+**followup_questions.** Propose 3 to 5 research questions the given papers leave open.
 
 ```json
 {"id": "fu-01", "type": "followup_questions", "input": {"topic": "...", "paper_ids": ["..."]}}
@@ -134,28 +192,32 @@ Each edge is `[citing, cited]`.
 
 ## Metrics
 
-Each type has one primary metric (★). Results are reported per type with a 95% bootstrap confidence interval. Test has only a few items per type, so check the interval before calling one agent better than another. The macro average across types is printed last and is secondary.
+Each type has one primary metric (★), reported with a 95% bootstrap interval. Each split has only a few items per type, so check that intervals don't overlap before calling one agent better than another.
 
 | Type | Metrics |
 |---|---|
 | find_papers | ★nDCG@10 with graded relevance (0/1/2), Recall@10, Precision@10. Duplicates are dropped, and only the top 10 count. |
 | comparison_table | ★Cell accuracy. Numeric cells are correct within 2% relative; enum cells must match exactly after normalizing; text cells are judged. A missing row makes all its cells wrong. Secondary: evidence match rate, where a numeric cell's quote must be in the paper and contain the value. |
 | citation_links | ★Edge F1. Edges with an endpoint outside the input set are false positives. |
-| grounded_claims | ★0.5 × support rate + 0.5 × supporting-paper recall. Only the first 10 claims count. A claim earns support only if its quote is in the cited paper (fuzzy match ≥ 90, every number exact, at least 6 words). Every number in the claim must also appear in the paper's text at that spot, or the claim scores 0 without reaching the judge. The judge then decides whether that text supports the claim. |
-| followup_questions | ★Judge rubric: specific, grounded, and novel, each 1–5, averaged and scaled to 0–1. Only the first 5 questions count. |
+| grounded_claims | ★0.5 × support rate + 0.5 × supporting-paper recall, over the first 10 claims. A claim earns support only if its quote is in the cited paper (fuzzy match ≥ 90, every number exact, at least 6 words, not from the title or front matter). Every number in the claim must also appear in the quoted passage, or the claim scores 0 without reaching the judge. The judge then decides whether the passage supports the claim. |
+| followup_questions | ★Judge rubric: specific, grounded, and novel, each 1 to 5, averaged and scaled to 0 to 1, over the first 5 questions. |
 | traps | 1 if you abstain or return an empty list with no invented IDs, else 0. |
 
-Also reported: **hallucination rate**, the share of items whose output contains at least one ID outside the corpus. A missing prediction scores 0.
-
-## How test scoring works
-
-Run your agent on `tasks/test.jsonl` and send us the predictions file. We score it against the held-out gold with the same command and judge, and send back `results.json`. Use dev, which ships with gold, for everything else.
+The scorer also reports the **hallucination rate**: the share of items whose output contains at least one ID outside the corpus. A missing prediction scores 0.
 
 ## The judge
 
-The judge decides claim support, short-text cell equivalence, and follow-up quality. Everything else is string and set math. It's `qwen3.5:9b`, run locally through Ollama at temperature 0, with the prompts in `prompts/judge.md`. `results.json` records the model's digest, and every decision is cached, so a rerun gives the same scores. `gemma4:12b` also works (`--judge ollama:gemma4:12b`), but scores are only comparable between runs that used the same judge.
+The judge decides claim support, short-text cell equivalence, and follow-up quality; everything else is string and set math. It's `qwen3.5:9b` through Ollama at temperature 0, with the prompts in `prompts/judge.md`. `results.json` records the model's digest, and every decision is cached by digest and prompt version, so a rerun gives the same scores.
 
-Use `--judge none` to skip the judge. Judge-based metrics then come back as `null`, and grounded-claims and follow-up items have no primary score.
+We compared it with `gemma4:12b` on 44 known-answer cases (`docs/judge_comparison.md`). With the claim number check in place, Qwen's claim-support error was half of Gemma's (1.0 against 2.0 over 22 claims). Those labels are Claude's drafts, not yet checked by a person. Scores are comparable only between runs that used the same judge. `--judge none` skips it, and judged metrics come back as `null`.
+
+## Leaderboard and label review
+
+![The leaderboard with the official baseline rows](docs/img/leaderboard.png)
+
+The [leaderboard](https://claude.ai/artifact/WDm8vrjf8kRVfsn4QVM8q8) is a claude.ai page. Official rows are test results scored by the benchmark team. To self-report a dev run, choose **Copy leaderboard entry** in the console and paste it into the page's form.
+
+The [label review page](https://claude.ai/artifact/1SKtkn7kN5JwLseD135KNq) is where teammates second-check a sample of gold labels and judge decisions. `build/apply_reviews.py` folds their verdicts back into `docs/judge_validation.csv` and the gold drafts; `docs/RESUME.md` has the steps.
 
 ## Running the tests
 
@@ -163,14 +225,30 @@ Use `--judge none` to skip the judge. Judge-based metrics then come back as `nul
 .venv\Scripts\python -m pytest -q
 ```
 
-The tests use a three-paper fixture corpus (`tests/fixtures/`), so they need neither the real corpus nor network access.
+The tests use a three-paper fixture corpus in `tests/fixtures/`, so they need neither the real corpus nor network access.
 
-## For our team
+## Repository layout
 
-The design is in `docs/plan.md`. Building the corpus and labels uses `build/`, which doesn't ship to Phase 3:
+| Path | What it is |
+|---|---|
+| `app/` | The run console: `server.py` (standard library only) and `static/index.html` |
+| `examples/http_agent.py` | Reference agent that follows the HTTP contract |
+| `tools/` | The four corpus tools and their JSON schemas |
+| `tasks/`, `tasks/hard/` | Task items per split, plus `schemas/` |
+| `gold/`, `gold/hard/` | Gold per split, `provenance.csv`, and the label drafts with who checked them |
+| `corpus/` | Freeze records, checksums, and licenses. `papers.jsonl` is built locally |
+| `scoring/` | `score.py`, `judge.py`, `normalize.py` |
+| `baselines/` | B0 and B1 agents, the coding-agent workspace, and `runs/` with every result |
+| `prompts/` | Agent, judge, and label-drafting prompts |
+| `leaderboard/` | Source for the leaderboard and review pages |
+| `build/` | Corpus and gold tooling for the benchmark team |
+| `docs/` | Design (`plan.md`), execution notes, and judge validation |
 
-1. `py build/fetch_corpus.py` picks the papers and the S2 citation edges. `py build/extract_text.py` downloads the PDFs and splits them into sections. **The corpus was frozen on 2026-11-09 (`corpus/FREEZE.json`), and `fetch_corpus.py` now refuses to run.** Semantic Scholar's data changes, so a fresh fetch can pick a different paper set and break every drafted label. To drop a paper, add it to `_exclude` in `build/seeds.json` before the freeze, not after.
-2. Write task items in `tasks/items.jsonl`; `prompts/label_draft.md` says how. Then run `py build/draft_labels.py --type <type> --provider anthropic` and verify each file in `gold/drafts/`.
-3. `py build/draft_labels.py --sample-check` marks the 20% second-check sample.
-4. `py build/assemble_gold.py --perfect-preds gold/dev_perfect.jsonl` writes the task and gold files. Scoring that file must give 1.0 on every deterministic metric; anything less points at a gold quote that doesn't match the corpus.
-5. `py build/make_release.py` builds the Phase 3 zip and refuses to include held-back files.
+## For the benchmark team
+
+The design is in `docs/plan.md`, and `docs/RESUME.md` tracks status.
+
+1. **Both corpora are frozen** (`corpus/FREEZE.json`, `corpus/hard/FREEZE.json`), and the fetch scripts refuse to run without `--unfreeze`. Semantic Scholar's data changes, so a fresh fetch can pick a different paper set and break every label.
+2. Task items live in `tasks/items.jsonl` and `tasks/hard/items.jsonl`; `prompts/label_draft.md` says how to write them. `build/draft_labels.py` drafts gold into `gold/drafts/`, and a person verifies each file.
+3. `build/draft_labels.py --sample-check` marks the 20% second-check sample, and `build/review_items.py` exports it to the review page.
+4. `build/assemble_gold.py --perfect-preds <file>` writes the task and gold files. Scoring that file must give 1.0 on every deterministic metric; anything less points at a gold quote that doesn't match the corpus.

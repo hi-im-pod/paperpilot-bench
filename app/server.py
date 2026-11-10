@@ -305,8 +305,12 @@ def make_handler(bench):
             m = re.fullmatch(r"/runs/([\w-]+)/items/([\w-]+)/tools/(\w+)", p)
             if m:
                 run = bench.runs.get(m.group(1))
-                if run is None or m.group(3) not in TOOL_NAMES:
-                    return self.send(404, {"error": "unknown run or tool"})
+                if run is None:
+                    return self.send(404, {"error": f"unknown run {m.group(1)}"})
+                if m.group(3) not in TOOL_NAMES:
+                    # 200, not 404: models invent tool names, and the error has to reach the
+                    # model as text it can correct, like every other tool error.
+                    return self.send(200, {"error": f"no tool named {m.group(3)!r}; the tools are {', '.join(sorted(TOOL_NAMES))}"})
                 return self.send(200, run.call_tool(m.group(2), m.group(3), body))
             m = re.fullmatch(r"/tools/(\w+)", p)
             if m and m.group(1) in TOOL_NAMES:

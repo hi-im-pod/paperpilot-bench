@@ -12,6 +12,7 @@ tools (called over HTTP at the tools_url the bench sends), and a final JSON answ
 import argparse
 import json
 import sys
+import urllib.error
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -28,8 +29,16 @@ def http_tools(tools_url):
     def call(name, args):
         req = urllib.request.Request(f"{tools_url}/{name}", data=json.dumps(args or {}).encode(), method="POST",
                                      headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            out = json.loads(resp.read())
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                out = json.loads(resp.read())
+        except urllib.error.HTTPError as e:
+            # Hand the bench's error to the model instead of dropping the whole item.
+            try:
+                out = json.loads(e.read())
+            except ValueError:
+                out = {}
+            out.setdefault("error", f"HTTP {e.code} from {name}")
         if "error" in out:
             return f"error: {out['error']}"
         r = out["result"]

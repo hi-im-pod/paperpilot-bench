@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-time setup on macOS, Linux, or Git Bash on Windows: a virtualenv, the
-# dependencies, and both corpora rebuilt from arXiv (about 25 minutes, because
+# dependencies, and both corpora rebuilt from arXiv (about 15 minutes, because
 # arXiv asks for 3 seconds between downloads). Safe to rerun: downloads are cached.
 set -euo pipefail
 cd "$(dirname "$0")/.."

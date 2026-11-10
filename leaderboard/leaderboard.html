@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
 <style>
-/* Layout: one column of two ranked tables (official test scores, then self-reported runs) and a paste form below. */
+/* Layout: one column of ranked tables (official test scores per track, then self-reported runs) and a paste form below. */
 :root {
   --ink: #1E2A38; --ink-soft: #55606E; --paper: #F4F6F8; --panel: #FFFFFF; --rule: #D6DCE3;
   --lo: #D2654C; --mid: #E3B54F; --hi: #3A8C78; --bad: #B5452F; --focus: #2C6BD6;
@@ -18,6 +18,8 @@ body { background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); 
 .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 h1 { font: 600 32px/1.1 var(--serif); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 22px 0 0; }
+h3 span { font-weight: 400; color: var(--ink-soft); }
 .lede { margin: 6px 0 0; color: var(--ink-soft); max-width: 65ch; }
 .note { color: var(--ink-soft); font-size: 13px; margin: 4px 0 0; max-width: 70ch; }
 .scroll { overflow-x: auto; margin-top: 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
@@ -51,19 +53,22 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <div class="wrap">
   <header>
     <h1>PaperPilot-Bench Leaderboard</h1>
-    <p class="lede">Scores of research agents on the closed corpus of 138 arXiv papers. Each task type is scored 0 to 1; the macro average is secondary, so compare type by type.</p>
+    <p class="lede">Scores of research agents on two closed corpora of arXiv papers: the main track (138 papers from 2017 to 2023) and the hard track (95 papers posted July to October 2026, after current models' training data). Each task type is scored 0 to 1; the macro average is secondary, so compare type by type.</p>
   </header>
 
   <section>
-    <h2>Test set, scored by the benchmark team</h2>
-    <p class="note">Test gold is held back. Send your predictions file to the benchmark team, and your scores appear here.</p>
+    <h2>Test sets, scored by the benchmark team</h2>
+    <p class="note">Send your test predictions file to the benchmark team, and your scores appear here. Test gold is public so anyone can check the scoring, so these scores mean something only for agents that never saw it.</p>
+    <h3>Main track <span>30 items, 138 papers</span></h3>
     <div class="scroll"><table><thead id="official-head"></thead><tbody id="official"></tbody></table></div>
+    <h3>Hard track <span>15 items, 95 papers</span></h3>
+    <div class="scroll"><table><thead id="hard-head"></thead><tbody id="official-hard"></tbody></table></div>
     <div class="legend"><span>0</span><span class="ramp"></span><span>1</span><span>Hallucination: share of items citing an ID outside the corpus (lower is better)</span></div>
   </section>
 
   <section>
     <h2>Dev set, self-reported</h2>
-    <p class="note">Runs posted by teams from the local console. Dev has 10 items, so treat differences under about 0.2 as noise.</p>
+    <p class="note">Runs posted by teams from the local console. Main-track dev has 10 items and hard-track dev has 5, so treat differences under about 0.2 as noise.</p>
     <div class="scroll"><table><thead id="self-head"></thead><tbody id="self"></tbody></table></div>
   </section>
 
@@ -81,7 +86,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <script>
 const TYPES = [["find_papers", "Find papers"], ["comparison_table", "Tables"], ["citation_links", "Citations"],
   ["grounded_claims", "Claims"], ["followup_questions", "Follow-ups"], ["traps", "Traps"]];
-const CORPUS = "12820178d898cc96";
+const CORPUS = {dev: "12820178d898cc96", test: "12820178d898cc96", hard_dev: "2d2a109d1917e468", hard_test: "2d2a109d1917e468"};
+const TRACK = {dev: "main track", hard_dev: "hard track"};
 const $ = id => document.getElementById(id);
 let db = null, user = null, official = [], mine = [], all = [];
 
@@ -102,14 +108,16 @@ function rows(id, list, emptyText) {
   const sorted = [...list].sort((a, b) => (b.macro_avg ?? -1) - (a.macro_avg ?? -1));
   $(id).innerHTML = sorted.length ? sorted.map((r, i) => `<tr>
       <td class="rank">${i + 1}</td>
-      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text(r.note || (r.judge ? "judge " + r.judge : ""))}${r.corpus_sha256 && r.corpus_sha256 !== CORPUS ? ", different corpus" : ""}</small></td>
+      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text([TRACK[r.split], r.note || (r.judge ? "judge " + r.judge : "")].filter(Boolean).join(", "))}${r.corpus_sha256 && CORPUS[r.split] && r.corpus_sha256 !== CORPUS[r.split] ? ", different corpus" : ""}</small></td>
       ${TYPES.map(([k]) => `<td class="num">${cell(r.per_type?.[k])}</td>`).join("")}
       <td class="num">${r.hallucination_rate == null ? "n/a" : Math.round(r.hallucination_rate * 100) + "%"}</td>
       <td class="num">${cell(r.macro_avg)}</td><td>${text(r.date)}</td></tr>`).join("")
     : `<tr class="empty"><td colspan="${TYPES.length + 5}">${emptyText}</td></tr>`;
 }
 function render() {
-  rows("official", official, db ? "No test results yet. The benchmark team adds rows here as it scores submissions." : "Open this page signed in to claude.ai to see results.");
+  const wait = "Open this page signed in to claude.ai to see results.", none = "No test results yet. The benchmark team adds rows here as it scores submissions.";
+  rows("official", official.filter(r => r.split !== "hard_test"), db ? none : wait);
+  rows("official-hard", official.filter(r => r.split === "hard_test"), db ? none : wait);
   rows("self", all, db ? "No runs posted yet. Run your agent on dev in the console, then paste its entry below." : "Open this page signed in to claude.ai to see and post runs.");
 }
 
@@ -117,7 +125,7 @@ function parseEntry(raw) {
   let e;
   try { e = JSON.parse(raw); } catch { return {error: "That isn't valid JSON. Paste the whole entry the console copied."}; }
   if (e.bench !== "paperpilot-bench") return {error: "This entry isn't from PaperPilot-Bench (bench should be \"paperpilot-bench\")."};
-  if (e.split !== "dev") return {error: "Only dev runs are self-reported. Send test predictions to the benchmark team instead."};
+  if (!(e.split in TRACK)) return {error: "Only dev runs (main or hard track) are self-reported. Send test predictions to the benchmark team instead."};
   if (typeof e.per_type !== "object" || !e.per_type) return {error: "The entry is missing per_type scores."};
   const num = v => v == null || (typeof v === "number" && v >= 0 && v <= 1);
   if (!Object.values(e.per_type).every(num) || !num(e.macro_avg) || !num(e.hallucination_rate))
@@ -153,7 +161,7 @@ $("post-form").addEventListener("submit", async ev => {
   } finally { $("post").disabled = false; }
 });
 
-head("official-head"); head("self-head"); render();
+head("official-head"); head("hard-head"); head("self-head"); render();
 
 (async () => {
   const timer = setTimeout(render, 10000);

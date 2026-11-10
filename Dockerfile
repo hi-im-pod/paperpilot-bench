@@ -1,5 +1,5 @@
 # The console in a container. The image rebuilds both corpora from arXiv while
-# it builds (about 25 minutes, since arXiv asks for 3 seconds between
+# it builds (about 15 minutes, since arXiv asks for 3 seconds between
 # downloads), so `docker run` starts in seconds afterwards. Build it yourself
 # rather than pulling a published image: most papers' licenses forbid
 # redistributing their text, which is also why the text isn't in git.
@@ -17,7 +17,7 @@ RUN python build/extract_text.py \
  && rm -rf build/cache
 
 # The judge runs in Ollama on the host. Pass --judge ollama:qwen3.5:9b to use it.
-ENV OLLAMA_HOST=http://host.docker.internal:11434
+ENV OLLAMA_HOST=host.docker.internal:11434
 
 EXPOSE 8765
 # 0.0.0.0 so the port mapping reaches the server. --public-url is the tools

@@ -9,6 +9,7 @@ confirm or fix. Judge items leave the judge's answer out so the reviewer labels 
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -51,14 +52,14 @@ def reference_line(citing, cited, papers):
     return refs[max(0, m.start() - 220):m.end() + 60]
 
 
-def gold_items(papers, drafts_dir, tasks):
+def gold_items(papers, drafts_dir, tasks, track="v1"):
     out = []
     for path in sorted(drafts_dir.glob("*.json")):
         d = json.loads(path.read_text(encoding="utf-8"))
         if not d.get("second_check_requested"):
             continue
         t, inp = d["type"], d["input"]
-        base = {"id": f"gold-{d['id']}", "source": "gold", "item_id": d["id"], "task_type": t, "input": inp}
+        base = {"id": f"gold-{d['id']}", "source": "gold", "item_id": d["id"], "task_type": t, "input": inp, "track": track}
         if t == "find_papers":
             base["papers"] = [{**paper_card(papers, g["paper_id"]), "claude": g["grade"]} for g in d["grades"]]
         elif t == "comparison_table":
@@ -104,15 +105,24 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True)
     ap.add_argument("--drafts", default=str(ROOT / "gold" / "drafts"))
-    ap.add_argument("--judge-csv", default=str(ROOT / "docs" / "judge_validation.csv"))
+    ap.add_argument("--judge-csv", default=str(ROOT / "docs" / "judge_validation.csv"), help="'none' to skip judge items")
+    ap.add_argument("--track", choices=["v1", "hard"], default="v1",
+                    help="hard reads corpus/hard and, unless --drafts is given, gold/hard/drafts")
+    ap.add_argument("--order-start", type=int, default=0, help="first order number, to append to items already on the page")
     args = ap.parse_args()
+    if args.track == "hard":
+        os.environ["PAPERPILOT_CORPUS"] = str(ROOT / "corpus" / "hard" / "papers.jsonl")
+        if args.drafts == str(ROOT / "gold" / "drafts"):
+            args.drafts = str(ROOT / "gold" / "hard" / "drafts")
     papers = corpus_tools._state()[0]
     tasks = {t["id"]: t for t in read_jsonl(ROOT / "tasks" / "items.jsonl")}
-    items = gold_items(papers, Path(args.drafts), tasks) + judge_items(args.judge_csv)
+    items = gold_items(papers, Path(args.drafts), tasks, args.track)
+    if args.judge_csv != "none":
+        items += judge_items(args.judge_csv)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     for n, item in enumerate(items):
-        item["order"] = n
+        item["order"] = args.order_start + n
         (out / f"{item['id']}.json").write_text(json.dumps(item, ensure_ascii=False), encoding="utf-8")
     print(f"wrote {len(items)} review items to {out} "
           f"({sum(i['source'] == 'gold' for i in items)} gold, {sum(i['source'] == 'judge' for i in items)} judge)")

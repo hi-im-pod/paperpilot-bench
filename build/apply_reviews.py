@@ -111,7 +111,8 @@ def main():
         lines.append("")
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     for item_id, people in confirmed.items():
-        path = DRAFTS / f"{item_id}.json"
+        # Hard-track drafts live in gold/hard/drafts; DRAFTS may point elsewhere in tests.
+        path = (DRAFTS.parent / "hard" / "drafts" if item_id.startswith("h") else DRAFTS) / f"{item_id}.json"
         d = json.loads(path.read_text(encoding="utf-8"))
         d["checked_by"] = ", ".join(sorted(set(people)))
         path.write_text(json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")

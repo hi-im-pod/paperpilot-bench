@@ -112,7 +112,7 @@ function renderNav() {
     h("span", {class: "note", text: others ? `${others} other reviewer${others > 1 ? "s" : ""} so far.` : "No one else has reviewed yet."}));
 }
 function navLabel(i) {
-  return i.source === "gold" ? `${i.item_id}, ${TYPE[i.task_type]}` : `${i.id.replace("judge-", "Decision ")}: ${i.kind === "claim_support" ? "claim" : i.kind === "text_equiv" ? "table cell" : "follow-up"}`;
+  return i.source === "gold" ? `${i.item_id}, ${TYPE[i.task_type]}${i.track === "hard" ? " (hard)" : ""}` : `${i.id.replace("judge-", "Decision ")}: ${i.kind === "claim_support" ? "claim" : i.kind === "text_equiv" ? "table cell" : "follow-up"}`;
 }
 
 function radios(name, options, value) {
@@ -194,7 +194,9 @@ function show(id) {
   const i = items.find(x => x.id === id), v = mine(id);
   const body = i.source === "gold" ? GOLD[i.task_type](i, v) : JUDGE[i.kind](i, v);
   const head = i.source === "gold"
-    ? [h("h2", {text: `${i.item_id}: ${TYPE[i.task_type]}`}), h("div", {class: "task", text: i.input.topic || i.input.question || `Papers: ${(i.input.paper_ids || []).join(", ")}`})]
+    ? [h("h2", {text: `${i.item_id}: ${TYPE[i.task_type]}`}),
+       i.track === "hard" ? h("p", {class: "note", text: "Hard track: papers first posted July to October 2026, so check everything against the paper itself."}) : null,
+       h("div", {class: "task", text: i.input.topic || i.input.question || `Papers: ${(i.input.paper_ids || []).join(", ")}`})]
     : [h("h2", {text: TYPE[i.kind]})];
   const others = reviewers(id) - (v ? 1 : 0);
   document.getElementById("item").replaceChildren(...head, ...body,

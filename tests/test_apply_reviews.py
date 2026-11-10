@@ -52,3 +52,19 @@ def test_reviews_become_labels_report_and_checked_by(tmp_path, monkeypatch):
     # Running again replaces Alice's rows instead of duplicating them.
     apply_reviews.main()
     assert len(list(csv.DictReader(open(csv_path, encoding="utf-8")))) == 2
+
+
+def test_hard_track_confirmations_go_to_hard_drafts(tmp_path, monkeypatch):
+    csv_path, drafts = tmp_path / "jv.csv", tmp_path / "gold" / "drafts"
+    csv_path.write_text("kind,inputs,judge_label,human_label,labeler\n", encoding="utf-8")
+    write(tmp_path / "gold" / "hard" / "drafts" / "hfp-08.json", {"id": "hfp-08", "checked_by": None})
+    monkeypatch.setattr(apply_reviews, "CSV_PATH", csv_path)
+    monkeypatch.setattr(apply_reviews, "REPORT", tmp_path / "report.md")
+    monkeypatch.setattr(apply_reviews, "DRAFTS", drafts)
+    export = tmp_path / "export"
+    write(export / "items" / "gold-hfp-08.json", {"source": "gold", "item_id": "hfp-08", "task_type": "find_papers",
+                                                   "track": "hard", "papers": [{"paper_id": "X", "claude": 1}]})
+    write(export / "reviews" / "u_bob.json", {"verdicts": {"gold-hfp-08": {"grades": {"X": 1}}}})
+    monkeypatch.setattr(sys, "argv", ["apply_reviews.py", "--export", str(export)])
+    apply_reviews.main()
+    assert json.loads((tmp_path / "gold" / "hard" / "drafts" / "hfp-08.json").read_text())["checked_by"] == "u_bob"

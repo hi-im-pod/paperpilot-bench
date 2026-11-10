@@ -1,0 +1,132 @@
+{
+  "id": "hfp-04",
+  "type": "find_papers",
+  "input": {
+    "topic": "Defenses that detect or filter poisoned documents in retrieval-augmented generation"
+  },
+  "grades": [
+    {
+      "paper_id": "2610.35071",
+      "title": "GuardRAG: A Post-Retrieval Defense against Poisoning Attacks in Retrieval-Augmented Generation",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.26339",
+      "title": "RAGuard: A Layered Defense Framework for Retrieval-Augmented Generation Systems Against Data Poisoning",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.08100",
+      "title": "Defending Retrieval-Augmented Intrusion Detection Against Knowledge Poisoning and Prompt Injection",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.04379",
+      "title": "Knowledge Base Poisoning Attacks and Defense for Policy-Aware LLM-RAG Framework",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.41012",
+      "title": "Language Models Show Conformity Bias in RAG: When the Majority Endorses a Poisoned Claim",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.17153",
+      "title": "When Detection Does Not Guarantee Resistance: Reasoning and Poisoned Context in RAG",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.04756",
+      "title": "PURPOSE: Poisoning Conflict Resolution in RAG via Proxy-Fact-Grounded Updates",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.28389",
+      "title": "CamoDocs: A Poisoning Attack Against Retrieval-Augmented Language Models Using Camouflaged Documents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.21573",
+      "title": "Micro-Collaborative Poisoning: A Distributed Attack on RAG Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.00422",
+      "title": "KidnapRAG: A Black-Box Attack for Hijacking Reasoning in Agentic Retrieval-Augmented Generation Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.14685",
+      "title": "ViTeGate: Visual-Textual Triggered Knowledge Poisoning for Vision-Language Retrieval-Augmented Generation",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.02678",
+      "title": "DenialRAG: Single-Document RAG Poisoning via Embedded Parametric Denial",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

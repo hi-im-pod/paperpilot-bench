@@ -1,0 +1,28 @@
+{
+  "id": "hgc-06",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How well do defenses trained against adaptive or co-evolving attackers resist adaptive indirect prompt injection?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2609.07529",
+      "quote": "CoER reduces adaptive attack success from 41.3% to 0.2% and raises safe task completion from 39.6% to 76.2%",
+      "why": "Co-evolution cuts adaptive ASR to 0.2%."
+    },
+    {
+      "paper_id": "2608.21500",
+      "quote": "our defended Qwen3.6-27B achieves a 9.0% ASR against the SoTA PISmith adaptive prompt injections, compared to 94.0% for the prior SoTA, Meta-SecAlign",
+      "why": "Token-level distillation reaches 9.0% ASR vs 94.0%."
+    },
+    {
+      "paper_id": "2609.34463",
+      "quote": "CODEL reduces attack success rate (ASR) by 88.5%",
+      "why": "CoDeL cuts ASR by 88.5%."
+    }
+  ],
+  "draft_answer": "Well in the reported settings: co-evolutionary training cut adaptive attack success to 0.2%, token-level on-policy distillation reached 9.0% against an adaptive attack where the prior best had 94.0%, and another co-evolved defense cut ASR by 88.5%.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

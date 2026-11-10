@@ -27,6 +27,14 @@ The baselines read `ANTHROPIC_API_KEY` (or an `ant auth login` profile) for `--p
 
 Your agent can be built any way you like: any model, any framework, any prompt. `prompts/agent.md` is our reference prompt and `baselines/b1_search_read.py` is our reference agent. Both are starting points, not requirements.
 
+## The hard track
+
+The main corpus is well-known 2017–2023 work, and frontier models know much of it by heart. With only the paper titles, Claude scored 0.93 on our test set, against 0.97 with the tools. The hard track uses 95 papers first submitted from July to October 2026, after current models' training data. There, an agent has to read.
+
+- **Corpus:** `corpus/hard/papers.jsonl`. Build it with `py build/extract_text.py --track hard`; it's checked against `corpus/hard/papers.sha256`.
+- **Tasks:** `tasks/hard/dev.jsonl` (5 items) and `tasks/hard/test.jsonl` (15 items), with dev gold in `gold/hard/dev_gold.jsonl`.
+- **Scoring:** the same scorer and metrics, with `--corpus corpus/hard/papers.jsonl`. The console lists the hard splits once the corpus is built.
+
 ## Connect your agent
 
 The easiest way to attempt the bench is the run console:

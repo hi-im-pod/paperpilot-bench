@@ -81,10 +81,14 @@ def main():
     ap.add_argument("--items", default=str(ROOT / "tasks" / "items.jsonl"))
     ap.add_argument("--drafts", default=str(DRAFTS))
     ap.add_argument("--out", default=str(ROOT), help="root folder for the tasks/ and gold/ outputs")
+    ap.add_argument("--track", choices=["v1", "hard"], default="v1",
+                    help="hard writes to tasks/hard/ and gold/hard/ under --out")
     args = ap.parse_args()
 
     items = read_jsonl(args.items)
     drafts_dir, out = Path(args.drafts), Path(args.out)
+    sub = "hard" if args.track == "hard" else ""
+    tasks_out, gold_out = out / "tasks" / sub, out / "gold" / sub
     drafts = {}
     for item in items:
         if item.get("trap"):
@@ -121,9 +125,9 @@ def main():
                      d.get("verified_by", ""), d.get("checked_by", "")])
 
     for split, (tasks, golds) in by_split.items():
-        write_jsonl(out / "tasks" / f"{split}.jsonl", tasks)
-        write_jsonl(out / "gold" / f"{split}_gold.jsonl", golds)
-    with open(out / "gold" / "provenance.csv", "w", newline="", encoding="utf-8") as f:
+        write_jsonl(tasks_out / f"{split}.jsonl", tasks)
+        write_jsonl(gold_out / f"{split}_gold.jsonl", golds)
+    with open(gold_out / "provenance.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["id", "type", "split", "drafting_model", "verified_by", "checked_by"])
         w.writerows(prov)

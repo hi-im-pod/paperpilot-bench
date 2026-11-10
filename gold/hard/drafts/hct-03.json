@@ -1,0 +1,101 @@
+{
+  "id": "hct-03",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Long-term memory frameworks for LLM agents",
+    "paper_ids": [
+      "2609.16053",
+      "2610.19472",
+      "2609.32584"
+    ],
+    "columns": [
+      {
+        "name": "locomo_accuracy_gpt4omini",
+        "type": "numeric",
+        "setting": "overall LoCoMo accuracy of the paper's full method (including any consolidation step) with GPT-4o-mini as the backbone model",
+        "unit": "percent"
+      },
+      {
+        "name": "memory_structure",
+        "type": "enum",
+        "setting": "how memory is organized",
+        "allowed": [
+          "graph",
+          "discrete codebook",
+          "flat records"
+        ]
+      },
+      {
+        "name": "key_mechanism",
+        "type": "text",
+        "setting": "the mechanism that distinguishes the method"
+      }
+    ]
+  },
+  "rows": {
+    "2609.16053": {
+      "locomo_accuracy_gpt4omini": {
+        "value": "75.97",
+        "quote": "REALM achieves an average accuracy of 75.97% on LoCoMo",
+        "section": "",
+        "note": ""
+      },
+      "memory_structure": {
+        "value": "graph",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "key_mechanism": {
+        "value": "reconsolidates memories into a heterogeneous cognitive graph based on retrieval feedback",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2610.19472": {
+      "locomo_accuracy_gpt4omini": {
+        "value": "79.55",
+        "quote": "on LoCoMo it reaches 79.55%/76.88%",
+        "section": "",
+        "note": "GPT-4o-mini/Qwen3 after asynchronous consolidation; 78.12 before it"
+      },
+      "memory_structure": {
+        "value": "discrete codebook",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "key_mechanism": {
+        "value": "atomic memory units mapped to a learnable codebook whose co-occurrence topology is a retrieval path",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2609.32584": {
+      "locomo_accuracy_gpt4omini": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "uses Gemini 2.5 Flash for memory and generation; GPT-4o-mini only as judge"
+      },
+      "memory_structure": {
+        "value": "graph",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "key_mechanism": {
+        "value": "a state-evolving memory graph with intent-guided multi-round retrieval",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

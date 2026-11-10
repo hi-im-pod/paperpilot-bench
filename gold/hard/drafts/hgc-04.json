@@ -1,0 +1,23 @@
+{
+  "id": "hgc-04",
+  "type": "grounded_claims",
+  "input": {
+    "question": "When do LLM multi-agent systems fail to beat single agents, and what collective failure modes do they show?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2609.19759",
+      "quote": "it confers systematic benefits specifically in long-horizon tasks with sparse dependencies, while single-agent harnesses remain superior in tightly coupled, sequential workflows",
+      "why": "Single agents win on tightly coupled sequential work."
+    },
+    {
+      "paper_id": "2610.30769",
+      "quote": "LLM populations were generally far more susceptible to herding behavior, and unlike humans, LLM cascades were less able to self-correct",
+      "why": "LLM populations herd and cascade."
+    }
+  ],
+  "draft_answer": "Multi-agent setups help mainly on long-horizon tasks with sparse dependencies and lose to single agents on tightly coupled work; populations of LLM agents also herd and cascade without self-correcting.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

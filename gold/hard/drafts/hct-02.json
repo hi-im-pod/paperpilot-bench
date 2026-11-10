@@ -1,0 +1,121 @@
+{
+  "id": "hct-02",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Training-based defenses against adaptive prompt injection",
+    "paper_ids": [
+      "2608.19982",
+      "2608.21500",
+      "2609.07529",
+      "2609.34463"
+    ],
+    "columns": [
+      {
+        "name": "adaptive_asr_after_defense",
+        "type": "numeric",
+        "setting": "absolute attack success rate of the defended model against adaptive attacks, as the paper's abstract states it; a relative reduction doesn't count",
+        "unit": "percent"
+      },
+      {
+        "name": "feedback_granularity",
+        "type": "enum",
+        "setting": "granularity of the training signal the defense learns from",
+        "allowed": [
+          "token-level",
+          "sequence-level or episode-level"
+        ]
+      },
+      {
+        "name": "training_method",
+        "type": "text",
+        "setting": "how the defended model is trained"
+      }
+    ]
+  },
+  "rows": {
+    "2608.19982": {
+      "adaptive_asr_after_defense": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "reports relative reductions (up to 6.3x, 4.4x on average)"
+      },
+      "feedback_granularity": {
+        "value": "sequence-level or episode-level",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "training_method": {
+        "value": "continual GRPO-based preference optimization with margin-weighted experience replay",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2608.21500": {
+      "adaptive_asr_after_defense": {
+        "value": "9.0",
+        "quote": "achieves a 9.0% ASR against the SoTA PISmith adaptive prompt injections",
+        "section": "",
+        "note": ""
+      },
+      "feedback_granularity": {
+        "value": "token-level",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "training_method": {
+        "value": "on-policy distillation with token-level scores from the initialization model given the clean input",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2609.07529": {
+      "adaptive_asr_after_defense": {
+        "value": "0.2",
+        "quote": "CoER reduces adaptive attack success from 41.3% to 0.2%",
+        "section": "",
+        "note": ""
+      },
+      "feedback_granularity": {
+        "value": "sequence-level or episode-level",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "training_method": {
+        "value": "bilateral adversarial RL against attacker populations, then fine-tuning on verified demonstrations",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2609.34463": {
+      "adaptive_asr_after_defense": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "reports an 88.5% relative ASR reduction"
+      },
+      "feedback_granularity": {
+        "value": "sequence-level or episode-level",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "training_method": {
+        "value": "LoRA-based GDPO with a decoupled reward, against a co-evolving injection prober",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

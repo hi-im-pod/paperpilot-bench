@@ -1,0 +1,22 @@
+{
+ "fp:adaptive-pi-defenses": "hfp-01",
+ "fp:rag-poison-attacks": "hfp-07",
+ "fp:trap-watermark": "hfp-03",
+ "fp:rag-poison-defenses": "hfp-04",
+ "fp:mcp-security": "hfp-08",
+ "fp:lrm-safety": "hfp-02",
+ "fp:memory-architectures": "hfp-06",
+ "fp:deep-research-eval": "hfp-05",
+ "ct:mcp": "hct-04",
+ "ct:pi-defenses": "hct-02",
+ "ct:rag-poison-attacks": "hct-01",
+ "ct:agent-memory": "hct-03",
+ "cl:pi-defenses": "hcl-01",
+ "gc:adaptive-defenses": "hgc-06",
+ "gc:poison-detection": "hgc-01",
+ "gc:mcp-trust": "hgc-05",
+ "gc:multi-agent-limits": "hgc-04",
+ "gc:deep-research-reliability": "hgc-03",
+ "gc:trap-llmlingua": "hgc-02",
+ "fu:co-evolution": "hfu-01"
+}

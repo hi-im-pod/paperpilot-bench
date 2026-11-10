@@ -1,0 +1,29 @@
+{
+  "id": "hgc-01",
+  "type": "grounded_claims",
+  "input": {
+    "question": "Why can retrieval-augmented models still be swayed by poisoned documents even when they detect them, and how does the number of poisoned documents matter?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2608.17153",
+      "quote": "reasoning reduces Cordon Rate from 0.205 to 0.075 and Leakage Rate from 0.235 to 0.140",
+      "why": "Detected poison can still steer answers; reasoning reduces that."
+    },
+    {
+      "paper_id": "2610.41012",
+      "quote": "poisondetection rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition",
+      "why": "A majority of poisoned documents lowers detection."
+    },
+    {
+      "paper_id": "2609.21573",
+      "quote": "is not driven by a single dominant poisoned passage, but by the accumulation of weak adversarial signals across retrieved sources",
+      "why": "Many weak poisoned documents add up."
+    }
+  ],
+  "draft_answer": "Detecting poison doesn't stop it from shaping answers, though reasoning reduces this; when poisoned documents are the majority, detection drops; and distributed attacks work by accumulating many weak poisoned signals.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

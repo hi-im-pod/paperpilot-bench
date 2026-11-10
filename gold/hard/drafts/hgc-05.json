@@ -1,0 +1,28 @@
+{
+  "id": "hgc-05",
+  "type": "grounded_claims",
+  "input": {
+    "question": "What security weaknesses come from how MCP agents trust tool metadata, tool outputs, and server permissions?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2609.18217",
+      "quote": "every tool interaction exposes the model to attacker-controlled text through multiple input channels (tool descriptions, tool results, sampling messages) that share a single context window without privilege separation",
+      "why": "Tool channels share context without privilege separation."
+    },
+    {
+      "paper_id": "2609.26761",
+      "quote": "The Attraction phase optimizes tool metadata to increase invocation probability",
+      "why": "Optimized tool metadata hijacks tool selection."
+    },
+    {
+      "paper_id": "2610.22301",
+      "quote": "787 of 4,806 triaged servers (16.4%) exhibit filesystem capabilities despite non-filesystem functional classifications",
+      "why": "Servers hold filesystem access beyond their declared role."
+    }
+  ],
+  "draft_answer": "Tool descriptions and outputs share the model's context without privilege separation, optimized tool metadata can hijack tool selection, and many servers hold filesystem access beyond their declared purpose.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

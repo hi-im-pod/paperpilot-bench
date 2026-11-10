@@ -1,0 +1,156 @@
+{
+  "id": "hfp-05",
+  "type": "find_papers",
+  "input": {
+    "topic": "Benchmarks and error analyses of deep research agents"
+  },
+  "grades": [
+    {
+      "paper_id": "2610.29346",
+      "title": "Benchmarking and Error Analysis of Deep Search and Deep Research LLM Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.11318",
+      "title": "Mr.LHDR: A Benchmark for Multimodal Real-World Long-Horizon Deep Research Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.20891",
+      "title": "Is Deep Research Reliable? Misleading Knowledge Induces False Conclusions",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.14412",
+      "title": "Question's Gambit: The First Move Matters in Agentic Deep Search",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.30604",
+      "title": "The Hard Part Comes After Search: Benchmarking Web Agents on Synthesizing, Organizing, and Displaying Knowledge",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.15910",
+      "title": "RIVO: Lightweight Adaptive Rerouting for Deep Research Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.27853",
+      "title": "FinanceHarness: Autonomous Financial Deep Research Framework",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.03174",
+      "title": "FinNextAssist: Towards Professional Financial Deep Research Assistant",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.09375",
+      "title": "From Retrieval to Customer Context: Evaluating Frontier-Model Systems for Voice-of-Customer Analysis",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2610.25779",
+      "title": "OpenSaC: A Python Library for Search as Code in Deep Research Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2609.36344",
+      "title": "DeepRewind: Predicting and Repairing Premature Commitments in Deep Research Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.19759",
+      "title": "Rethinking Multi-Agent Collaboration: When More Is Less",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.05876",
+      "title": "Personalized Deep Research Query Refinement with Graph-Scaffolded Evidence Grounding",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.04672",
+      "title": "MASBench: Benchmarking LLM-based Multi-Agent Collaboration under Partial Observability",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.00392",
+      "title": "Measuring LLM Agent Defenses by Layer: GDA Measurement and an Envelope-Layer Attack-Defense Model",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

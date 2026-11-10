@@ -1,0 +1,26 @@
+{
+  "id": "hfu-01",
+  "type": "followup_questions",
+  "input": {
+    "topic": "co-evolutionary training of defenses against indirect prompt injection",
+    "paper_ids": [
+      "2609.07529",
+      "2609.34463"
+    ]
+  },
+  "gaps": [
+    {
+      "paper_id": "2609.07529",
+      "quote": "The attacker shares the defender’s base model—heterogeneous attackers could expose weaknesses that same-family co-evolution misses"
+    },
+    {
+      "paper_id": "2609.34463",
+      "quote": "Our experiments cover only 7B- and 8B-scale backbones, so how model scale shapes vulnerability to latent injection remains open"
+    }
+  ],
+  "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

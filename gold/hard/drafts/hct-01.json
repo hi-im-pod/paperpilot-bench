@@ -1,0 +1,100 @@
+{
+  "id": "hct-01",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Poisoning attacks on retrieval-augmented generation",
+    "paper_ids": [
+      "2608.02678",
+      "2608.28389",
+      "2608.04756"
+    ],
+    "columns": [
+      {
+        "name": "defenses_evaluated",
+        "type": "numeric",
+        "setting": "number of defenses or conflict-resolution methods the attack is evaluated against",
+        "unit": "count"
+      },
+      {
+        "name": "attacker_access",
+        "type": "enum",
+        "setting": "the attacker's access to the RAG system",
+        "allowed": [
+          "black-box",
+          "white-box"
+        ]
+      },
+      {
+        "name": "poison_design",
+        "type": "text",
+        "setting": "what makes the poisoned content effective"
+      }
+    ]
+  },
+  "rows": {
+    "2608.02678": {
+      "defenses_evaluated": {
+        "value": "5",
+        "quote": "eight target LLMs from four vendors, and five inference-time defenses",
+        "section": "",
+        "note": ""
+      },
+      "attacker_access": {
+        "value": "black-box",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "poison_design": {
+        "value": "one passage that names the correct answer, denies it, and argues for the attacker's answer",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2608.28389": {
+      "defenses_evaluated": {
+        "value": "7",
+        "quote": "Across seven RAG defenses, three open-weight LLMs, and three benchmarks",
+        "section": "",
+        "note": ""
+      },
+      "attacker_access": {
+        "value": "black-box",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "poison_design": {
+        "value": "camouflages adversarial content among benign chunks with dispersion tokens instead of including the query",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2608.04756": {
+      "defenses_evaluated": {
+        "value": "3",
+        "quote": "Across three QA benchmarks, five generators, and three conflict-resolution methods",
+        "section": "",
+        "note": ""
+      },
+      "attacker_access": {
+        "value": "black-box",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "poison_design": {
+        "value": "frames the injection as a non-contradicting update grounded in proxy facts",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

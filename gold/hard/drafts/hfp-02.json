@@ -1,0 +1,164 @@
+{
+  "id": "hfp-02",
+  "type": "find_papers",
+  "input": {
+    "topic": "Jailbreaks and safety alignment failures specific to large reasoning models"
+  },
+  "grades": [
+    {
+      "paper_id": "2608.07892",
+      "title": "Capability-Routed Guard: Defending Large Reasoning Models Against Reasoning-Centric Jailbreaks",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.09542",
+      "title": "Dual-Adversarial Safety Alignment: Cultivating Intrinsic Threat Comprehension in LRMs",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.08186",
+      "title": "Does Deeper Reasoning Compromise Alignment? Revealing and Mitigating of Alignment Collapse in Large Reasoning Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.23587",
+      "title": "On the Efficiency-Safety Dilemma in Large Reasoning Models",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.31121",
+      "title": "Monitor Jailbreaking: Evading Chain-of-Thought Monitoring Without Encoded Reasoning",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.37054",
+      "title": "ACTR: Aligning Thoughts and Responses for Multilingual Safety in Reasoning LLMs",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.29775",
+      "title": "Prefilling the Reasoning Channel: Output-Prefix Attacks on Reasoning LLMs",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.35350",
+      "title": "Jailbreaks for Black-Box Uncertainty Quantification in Large Reasoning Models",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.07529",
+      "title": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2609.36603",
+      "title": "Self-Evolving Defense: Continual Security Policy Learning for LLM Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2610.29346",
+      "title": "Benchmarking and Error Analysis of Deep Search and Deep Research LLM Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2610.03174",
+      "title": "FinNextAssist: Towards Professional Financial Deep Research Assistant",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.17153",
+      "title": "When Detection Does Not Guarantee Resistance: Reasoning and Poisoned Context in RAG",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.41012",
+      "title": "Language Models Show Conformity Bias in RAG: When the Majority Endorses a Poisoned Claim",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.04756",
+      "title": "PURPOSE: Poisoning Conflict Resolution in RAG via Proxy-Fact-Grounded Updates",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.08100",
+      "title": "Defending Retrieval-Augmented Intrusion Detection Against Knowledge Poisoning and Prompt Injection",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

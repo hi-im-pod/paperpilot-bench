@@ -116,7 +116,7 @@ def make(args):
     (out / "answers").mkdir(parents=True)
     (out / "tasks.jsonl").write_text("".join(json.dumps(t, ensure_ascii=False) + "\n" for t in tasks), encoding="utf-8")
     shutil.copy(ROOT / "prompts" / "agent.md", out / "agent.md")
-    corpus = ROOT / "corpus" / "papers.jsonl"
+    corpus = Path(args.corpus)
     if args.titles_only:
         titles = [json.loads(line) for line in corpus.open(encoding="utf-8")]
         (out / "titles.txt").write_text("".join(f"{p['id']}: {p['title']}\n" for p in titles), encoding="utf-8")
@@ -175,6 +175,7 @@ def main():
     m.add_argument("--tasks", required=True)
     m.add_argument("--types", nargs="*")
     m.add_argument("--titles-only", action="store_true")
+    m.add_argument("--corpus", default=str(ROOT / "corpus" / "papers.jsonl"), help="corpus to copy in (the hard track: corpus/hard/papers.jsonl)")
     m.add_argument("--python", help="python that has rank_bm25 installed (default: this one)")
     m.add_argument("--out", required=True)
     c = sub.add_parser("collect")

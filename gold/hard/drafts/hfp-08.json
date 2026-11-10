@@ -1,0 +1,165 @@
+{
+  "id": "hfp-08",
+  "type": "find_papers",
+  "input": {
+    "topic": "Security of the Model Context Protocol and LLM agent tool-calling ecosystems"
+  },
+  "grades": [
+    {
+      "paper_id": "2609.18217",
+      "title": "Measuring and Exploiting Implicit Trust in LLM Tool-Calling Pipelines",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.17275",
+      "title": "When Agents Act on Web3: An Attack-Surface Survey of MCP, Skills, and Tool Calling",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.04378",
+      "title": "COPEX: Benchmarking LLM Robustness to Adversarial Context Across Model Context Protocol (MCP) Layers",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.20481",
+      "title": "AEGIS: Preventing Cross-Domain Resource Abuse in MCP",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.19432",
+      "title": "ChainWatch: A Kill Chain-Aligned Sequential Detection Framework for Multi-Step Attacks in MCP-Based AI Agent Systems",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.26761",
+      "title": "A2M: Trace-Optimized Agent Hijacking in the MCP Ecosystem",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.22301",
+      "title": "My Credentials, Please: Detecting Filesystem Capability Laundering in MCP Servers at Scale",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.02690",
+      "title": "ACLE-MCP: Attested Capability Leases for Execution-Time Trust in Remote LLM Tool Use",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.23858",
+      "title": "Beyond the Mandate: A Systematic Security Analysis of the Agent Payments Protocol (AP2)",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2610.00392",
+      "title": "Measuring LLM Agent Defenses by Layer: GDA Measurement and an Envelope-Layer Attack-Defense Model",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.30441",
+      "title": "ECLIPSE: Self-Evolving Stealthy Prompt Injection Attack against Long-Horizon Agentic Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2607.24625",
+      "title": "APPA: Recoverable Information-Flow Control for Real-World LLM Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.21500",
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2609.16098",
+      "title": "Universal Defenses for Tool-Integrated LLM Agents Against Adversarial Attacks",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.07892",
+      "title": "Capability-Routed Guard: Defending Large Reasoning Models Against Reasoning-Centric Jailbreaks",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.30769",
+      "title": "LLM Multi-Agent Systems Are Vulnerable to Herding and Runaway Cascades",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

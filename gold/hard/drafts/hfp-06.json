@@ -1,0 +1,140 @@
+{
+  "id": "hfp-06",
+  "type": "find_papers",
+  "input": {
+    "topic": "New memory architectures that change how LLM agents store or update long-term memory"
+  },
+  "grades": [
+    {
+      "paper_id": "2609.16053",
+      "title": "Retrieval-Driven Memory Reconsolidation for Long-Term LLM Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.27773",
+      "title": "ChronoMem: Version Control and Semantic Rollback for Large Language Model Agent Memory",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.32584",
+      "title": "EMIR$^2$: Evolution-Aware Memory with Intent-Guided Multi-Round Retrieval",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.19472",
+      "title": "MemCode: Discrete Semantic Representations for Long-Term Agent Memory",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.08566",
+      "title": "BIO-MEMART: Biometric-Aware KV Cache Memory for Multi-User LLM Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.08550",
+      "title": "CreaMem: A Scene-Aware Memory Architecture for Personalized Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.08599",
+      "title": "Graph-Based Personalized Memory for LLM Agents: Representation, Evolution, Retrieval, and Evaluation",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.33432",
+      "title": "ConMem: Counterfactual Multi-Scenario Probing for Resolving LLM Memory Misalignment",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.26637",
+      "title": "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.30177",
+      "title": "Understanding Stage-Wise Utility-Risk Trade-offs in LLM Agent Memory",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2607.28527",
+      "title": "MANTA: Multi-Agent Network Topology Adaptation for Self-Evolving Multi-Agent Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.15008",
+      "title": "Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.30769",
+      "title": "LLM Multi-Agent Systems Are Vulnerable to Herding and Runaway Cascades",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

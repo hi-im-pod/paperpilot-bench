@@ -1,0 +1,164 @@
+{
+  "id": "hfp-01",
+  "type": "find_papers",
+  "input": {
+    "topic": "Training-based defenses against indirect prompt injection that adapt to adaptive or evolving attackers"
+  },
+  "grades": [
+    {
+      "paper_id": "2609.07529",
+      "title": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.19982",
+      "title": "COPA: Continual Preference Optimization for Adaptive Prompt Injection Defense",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.34463",
+      "title": "CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.21500",
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "grade": 2,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.36603",
+      "title": "Self-Evolving Defense: Continual Security Policy Learning for LLM Agents",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.16098",
+      "title": "Universal Defenses for Tool-Integrated LLM Agents Against Adversarial Attacks",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.28411",
+      "title": "LongPIBench: A Long-Context Benchmark for Prompt Injection",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2610.00392",
+      "title": "Measuring LLM Agent Defenses by Layer: GDA Measurement and an Envelope-Layer Attack-Defense Model",
+      "grade": 1,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.30441",
+      "title": "ECLIPSE: Self-Evolving Stealthy Prompt Injection Attack against Long-Horizon Agentic Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25",
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2609.18217",
+      "title": "Measuring and Exploiting Implicit Trust in LLM Tool-Calling Pipelines",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2607.19432",
+      "title": "ChainWatch: A Kill Chain-Aligned Sequential Detection Framework for Multi-Step Attacks in MCP-Based AI Agent Systems",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2609.33102",
+      "title": "ORBIT: A Framework for Multi-Agent Safety and Security Evaluations",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.28389",
+      "title": "CamoDocs: A Poisoning Attack Against Retrieval-Augmented Language Models Using Camouflaged Documents",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "bm25"
+      ]
+    },
+    {
+      "paper_id": "2608.09542",
+      "title": "Dual-Adversarial Safety Alignment: Cultivating Intrinsic Threat Comprehension in LRMs",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.08100",
+      "title": "Defending Retrieval-Augmented Intrusion Detection Against Knowledge Poisoning and Prompt Injection",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    },
+    {
+      "paper_id": "2608.07892",
+      "title": "Capability-Routed Guard: Defending Large Reasoning Models Against Reasoning-Centric Jailbreaks",
+      "grade": 0,
+      "evidence": "",
+      "found_by": [
+        "emb"
+      ]
+    }
+  ],
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

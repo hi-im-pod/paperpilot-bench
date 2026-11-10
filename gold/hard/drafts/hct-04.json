@@ -1,0 +1,102 @@
+{
+  "id": "hct-04",
+  "type": "comparison_table",
+  "input": {
+    "topic": "Security studies of the Model Context Protocol ecosystem",
+    "paper_ids": [
+      "2610.04378",
+      "2609.26761",
+      "2610.22301"
+    ],
+    "columns": [
+      {
+        "name": "mean_attack_success",
+        "type": "numeric",
+        "setting": "the headline mean attack success rate the paper reports for its own attacks or benchmark (not a per-surface or transfer number)",
+        "unit": "percent"
+      },
+      {
+        "name": "contribution",
+        "type": "enum",
+        "setting": "the paper's main contribution",
+        "allowed": [
+          "benchmark",
+          "attack",
+          "measurement study"
+        ]
+      },
+      {
+        "name": "evaluation_scale",
+        "type": "text",
+        "setting": "what the main evaluation covers (scenarios, models, servers)"
+      }
+    ]
+  },
+  "rows": {
+    "2610.04378": {
+      "mean_attack_success": {
+        "value": "64.4",
+        "quote": "the mean attack success rate is 64.4%",
+        "section": "",
+        "note": ""
+      },
+      "contribution": {
+        "value": "benchmark",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "evaluation_scale": {
+        "value": "25 attack types in 125 scenarios across four entry surfaces, nine models, 3,375 trials",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2609.26761": {
+      "mean_attack_success": {
+        "value": "74.4",
+        "quote": "attain a mean attack success rate of 74.4%",
+        "section": "",
+        "note": ""
+      },
+      "contribution": {
+        "value": "attack",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "evaluation_scale": {
+        "value": "LiveMCPBench, four scenarios, optimized on GLM-4.6 and transferred to four other models",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    },
+    "2610.22301": {
+      "mean_attack_success": {
+        "value": "NOT_REPORTED",
+        "quote": "",
+        "section": "",
+        "note": "reports the share of servers with filesystem capabilities, not an attack success rate"
+      },
+      "contribution": {
+        "value": "measurement study",
+        "quote": "",
+        "section": "",
+        "note": ""
+      },
+      "evaluation_scale": {
+        "value": "21,097 MCP servers from nine registries, 4,806 triaged",
+        "quote": "",
+        "section": "",
+        "note": ""
+      }
+    }
+  },
+  "rows_were_searched": false,
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null,
+  "second_check_requested": true
+}

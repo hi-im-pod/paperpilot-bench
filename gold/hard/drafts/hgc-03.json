@@ -1,0 +1,28 @@
+{
+  "id": "hgc-03",
+  "type": "grounded_claims",
+  "input": {
+    "question": "How reliable are deep research agents when the evidence they find is misleading or incomplete?"
+  },
+  "supporting": [
+    {
+      "paper_id": "2607.20891",
+      "quote": "introducing one misleading document increases the mean FCAR from 0% in the no-injection control to 54.7%",
+      "why": "One misleading document leads to false conclusions in 54.7% of reports."
+    },
+    {
+      "paper_id": "2609.36344",
+      "quote": "they may commit to claims before sufficient evidence is available, causing later reasoning to reinforce an incorrect interpretation",
+      "why": "Agents commit prematurely to wrong claims."
+    },
+    {
+      "paper_id": "2610.29346",
+      "quote": "existing evaluation paradigms predominantly focus on final task outcomes, leaving a significant gap in understanding the intermediate execution traces",
+      "why": "Errors hide in intermediate traces."
+    }
+  ],
+  "draft_answer": "Not very: one misleading document pushed mean false-conclusion adoption from 0% to 54.7%, agents commit to claims too early, and outcome-only evaluation hides errors in intermediate steps.",
+  "drafting_model": "claude-session",
+  "verified_by": "claude-session (self-check)",
+  "checked_by": null
+}

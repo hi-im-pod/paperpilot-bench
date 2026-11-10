@@ -1,0 +1,4 @@
+# Shell scripts and the Dockerfile run in bash and Linux, which choke on CRLF
+# endings that a Windows checkout would otherwise give them.
+*.sh text eol=lf
+Dockerfile text eol=lf

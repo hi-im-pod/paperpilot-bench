@@ -1,0 +1,11 @@
+.venv/
+.git/
+**/__pycache__/
+.pytest_cache/
+build/cache/
+build/*.log
+release/
+app/runs/
+corpus/papers.jsonl
+corpus/hard/papers.jsonl
+scoring/.judge_cache.jsonl

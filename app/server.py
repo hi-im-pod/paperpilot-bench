@@ -62,8 +62,28 @@ class Run:
                                 "seconds": None, "error": None, "primary": None} for t in self.tasks}
         self.preds = {}
         self.status, self.error, self.results, self.agent_name = "running", None, None, None
-        self.started = time.time()
+        self.started, self.finished = time.time(), None
         self.lock = threading.Lock()
+
+    @classmethod
+    def load(cls, bench, d):
+        """Rebuild a finished run from app/runs/<id>, so history survives a restart."""
+        st = json.loads((d / "state.json").read_text(encoding="utf-8"))
+        if st.get("split") not in bench.splits:
+            return None
+        run = cls.__new__(cls)
+        run.id, run.bench, run.split, run.agent_url = st["id"], bench, st["split"], st["agent_url"]
+        run.judge_spec, run.budget, run.agent_name = st.get("judge"), st.get("budget"), st.get("agent_name")
+        run.timeout, run.workers, run.lock = None, 1, threading.Lock()
+        run.items = {i["id"]: i for i in st["items"]}
+        run.tasks = [t for t in bench.splits[run.split]["tasks"] if t["id"] in run.items]
+        run.preds = {p["id"]: p for p in read_jsonl(d / "preds.jsonl")} if (d / "preds.jsonl").exists() else {}
+        run.results = json.loads((d / "results.json").read_text(encoding="utf-8")) if (d / "results.json").exists() else None
+        run.status, run.error = st["status"], st.get("error")
+        if run.status in ("running", "scoring"):
+            run.status, run.error = "error", "the console stopped before this run finished"
+        run.started, run.finished = 0.0, float(st.get("elapsed") or 0)
+        return run
 
     def tools_url(self, item_id):
         return f"{self.bench.base_url}/runs/{self.id}/items/{item_id}/tools"
@@ -113,6 +133,7 @@ class Run:
         except Exception as e:
             self.status, self.error = "error", f"{type(e).__name__}: {e}"
             traceback.print_exc()
+        self.finished = time.time()
         self.save()
 
     def score(self):
@@ -149,7 +170,7 @@ class Run:
     def state(self, full=False):
         out = {"id": self.id, "split": self.split, "agent_url": self.agent_url, "agent_name": self.agent_name,
                "status": self.status, "error": self.error, "judge": self.judge_spec, "budget": self.budget,
-               "elapsed": round(time.time() - self.started, 1), "items": list(self.items.values()),
+               "elapsed": round((self.finished or time.time()) - self.started, 1), "items": list(self.items.values()),
                "has_gold": self.bench.splits[self.split]["gold"] is not None}
         if self.results:
             out["results"] = {k: self.results[k] for k in ("per_type", "hallucination_rate", "macro_avg", "trace_means", "judge")}
@@ -167,7 +188,7 @@ class Run:
 
 
 class Bench:
-    def __init__(self, splits, corpus_path, host, port, default_judge):
+    def __init__(self, splits, corpus_path, host, port, default_judge, public_url=None):
         """splits: {name: (tasks, gold) or (tasks, gold, corpus)}; corpus defaults to corpus_path."""
         import hashlib
         self.splits, self.corpora = {}, {}
@@ -185,9 +206,18 @@ class Bench:
         os.environ["PAPERPILOT_CORPUS"] = self.default_corpus
         self.corpus = scoring.load_corpus(corpus_path)
         self.corpus_sha = hashlib.sha256(Path(corpus_path).read_bytes()).hexdigest()
-        self.base_url = f"http://{host}:{port}"
+        # Agents reach the tools at base_url; behind --host 0.0.0.0 that has to be an address they can route to.
+        self.base_url = (public_url or f"http://{host}:{port}").rstrip("/")
         self.default_judge = default_judge
         self.runs = {}
+        for d in sorted(RUNS_DIR.glob("*/state.json")) if RUNS_DIR.exists() else []:
+            try:
+                run = Run.load(self, d.parent)
+            except Exception as e:  # one damaged run folder shouldn't stop the console
+                print(f"skipped saved run {d.parent.name}: {e}")
+                continue
+            if run:
+                self.runs[run.id] = run
 
     def judges(self):
         out = ["none"]
@@ -320,6 +350,9 @@ def main():
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--corpus", default=str(ROOT / "corpus" / "papers.jsonl"))
     ap.add_argument("--judge", default="none", help="default judge for runs, e.g. ollama:qwen3.5:9b")
+    ap.add_argument("--public-url", help="address agents use to reach this console, when serving beyond localhost "
+                    "(e.g. --host 0.0.0.0 --public-url http://192.168.0.12:8765)")
+    ap.add_argument("--open", action="store_true", help="open the console in your browser")
     args = ap.parse_args()
     if not Path(args.corpus).exists():
         raise SystemExit("corpus/papers.jsonl is missing; build it with: py build/extract_text.py")
@@ -328,11 +361,14 @@ def main():
     hard_corpus = ROOT / "corpus" / "hard" / "papers.jsonl"
     for s in ("dev", "test"):
         splits[f"hard_{s}"] = (ROOT / "tasks" / "hard" / f"{s}.jsonl", ROOT / "gold" / "hard" / f"{s}_gold.jsonl", hard_corpus)
-    bench = Bench(splits, args.corpus, args.host, args.port, args.judge)
+    bench = Bench(splits, args.corpus, args.host, args.port, args.judge, args.public_url)
     server = serve(bench, args.host, args.port)
     print(f"PaperPilot-Bench console at {bench.base_url}  (splits: "
           + ", ".join(f"{k} {v['n']} items{'' if v['has_gold'] else ', no gold'}" for k, v in bench.info()["splits"].items()) + ")")
     try:
+        if args.open:
+            import webbrowser
+            webbrowser.open(bench.base_url)
         server.serve_forever()
     except KeyboardInterrupt:
         pass

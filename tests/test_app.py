@@ -96,3 +96,12 @@ def test_run_through_the_console(tmp_path, monkeypatch):
     assert all(i["steps"] == 1 for i in state2["items"])
     preds = urllib.request.urlopen(f"{base}/api/runs/{run2}/preds.jsonl").read().decode().splitlines()
     assert len(preds) == len(TASKS)
+
+    # A restarted console reloads finished runs from disk, scores and all.
+    reloaded = app.Bench({"dev": (tasks, gold), "test": (tasks, None)}, FIXTURE_CORPUS, "127.0.0.1", port, "none")
+    again = reloaded.runs[run_id]
+    assert again.state()["summary"]["macro_avg"] == state["summary"]["macro_avg"]
+    # elapsed is frozen at the saved value, not counting time since the restart
+    assert again.state()["elapsed"] == json.loads((tmp_path / run_id / "state.json").read_text())["elapsed"]
+    assert reloaded.item_detail(again, "fp-1")["metrics"] is not None
+    assert reloaded.runs[run2].status == "no_gold"

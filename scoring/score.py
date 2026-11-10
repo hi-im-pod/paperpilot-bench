@@ -39,10 +39,15 @@ class Corpus:
         return pid in self.papers
 
     def norm_text(self, pid):
-        """Normalized title + abstract + all sections; quotes may come from any of them."""
+        """Normalized abstract + all sections; quotes may come from any of them.
+
+        The title is left out: on the hard track, a titles-only agent scored 0.97
+        on grounded claims by quoting titles, which proves nothing about the paper.
+        """
         if pid not in self._norm:
             p = self.papers[pid]
-            parts = [p.get("title", ""), p.get("abstract", "")] + [s["text"] for s in p.get("sections", [])]
+            # "Front matter" repeats the title and author list, so it's left out too.
+            parts = [p.get("abstract", "")] + [s["text"] for s in p.get("sections", []) if s["name"] != "Front matter"]
             self._norm[pid] = normalize("\n\n".join(parts))
         return self._norm[pid]
 

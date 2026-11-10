@@ -55,29 +55,26 @@ Paused partway through `docs/phase2_execution.md`. Steps 2–4 and the front end
 - **Session scripts.** The scripts that wrote the items and gold are in `build/session/`. They expect `lab.py` and `item_keys.json` beside them. `make_gold.py` regenerates `gold/drafts/`; after any change, rerun `draft_labels.py --sample-check` and `assemble_gold.py`.
 - **Blind workspaces.** `baselines/claude_code_workspace.py make|collect`. Keep workspaces outside the repo. Subagents also wrote into the session scratchpad, but their transcripts show no reads of the gold files.
 
-## Hard track, in progress (paused 2026-11-09 evening)
+## Hard track (done 2026-11-10)
 
-Done:
-- **Corpus.** 95 papers, all first submitted July–October 2026, in 9 subtopics. Frozen in `corpus/hard/FREEZE.json` (sha `2d2a109d…`). Built from `build/hard/selected.jsonl` with `extract_text.py --track hard`.
-- **Console.** It serves `hard_dev` and `hard_test` once `tasks/hard/{dev,test}.jsonl` and `gold/hard/*_gold.jsonl` exist.
-- **Review page.** https://claude.ai/artifact/1SKtkn7kN5JwLseD135KNq, seeded with 7 gold items and 30 judge decisions. Garrett still needs to share it. When reviews come in, export `items` and `reviews` with ArtifactData `out_dir`, then run `py build/apply_reviews.py --export <dir>`.
+- **Corpus.** 95 papers first submitted July–October 2026, frozen in `corpus/hard/FREEZE.json`.
+- **Items.** 20 items, 5 dev and 15 test, in `tasks/hard/`, with gold in `gold/hard/`. The gold-copy gate passes. A 5-item sample is marked for a second check; it isn't in the review page yet.
+- **Baselines on hard test** (`baselines/runs/hard_*`), now on the leaderboard:
 
-Next: write about 20 hard items (5 dev, 15 test) and their gold, then run blind baselines B1 and B0 on hard test. The expected result is that B0 collapses on the hard track.
+  | Agent | Macro | Tables | Citations | Claims | Find papers |
+  |---|---|---|---|---|---|
+  | B1, Claude subagents with tools | 0.97 | 0.94 | 1.00 | 0.96 | 0.93 |
+  | B0, titles only | 0.61 | 0.23 | 0.00 | 0.50 | 0.96 |
 
-Planned items. All values below were checked against the abstracts or the full text.
-- **Find papers (7).** Dev: training-based or adaptive indirect-prompt-injection defenses; new RAG-poisoning attack methods (defenses grade 0). Test: poisoned-document defenses in RAG; MCP and tool-ecosystem security; reasoning-model jailbreaks and alignment; new agent memory architectures (evaluation studies grade 0); deep-research benchmarks and error analyses.
-- **Table, dev, MCP security** (2610.04378, 2609.26761, 2610.22301):
-  - mean ASR: 64.4 / 74.4 / NOT_REPORTED
-  - type: benchmark / attack / measurement study
-  - scale: 125 scenarios over 25 attack types, nine models, 3,375 trials / LiveMCPBench, four scenarios / 21,097 servers from nine registries
-- **Table, test, injection defenses** (COPA 2608.19982, SecOPD 2608.21500, CoER 2609.07529, CoDeL 2609.34463):
-  - absolute adaptive ASR: NOT_REPORTED / 9.0 / 0.2 / NOT_REPORTED. COPA and CoDeL give only relative reductions.
-  - feedback: SecOPD token-level, the other three sequence-level
-- **Table, test, RAG poisoning attacks:**
-  - defenses evaluated: DenialRAG 5, CamoDocs 7, PURPOSE 3 (conflict-resolution methods), KidnapRAG 3 (Sandwich, Spotlighting, RAGDefender)
-  - access: all four are black-box
-- **Table, test, agent memory:**
-  - LoCoMo accuracy with a GPT-4o-mini backbone, full method: REALM 2609.16053 75.97 (Table 1); MemCode 2610.19472 79.55 (after consolidation, from its contributions list); EMIR² 2609.32584 NOT_REPORTED (it generates with Gemini 2.5 Flash)
-  - structure: graph / discrete codebook / state-evolving memory graph
-- **Citations (1, test).** The prompt-injection-defense set: 5 of the corpus's 8 edges are there (`build/hard/ref_edges.json`).
-- **Traps (2).** Check candidate topics against the hard corpus before using them.
+  On v1, B0 scored 0.93, so the hard track restores headroom for frontier models.
+- **Scorer fix.** Quotes no longer match a paper's title or front matter. Before the fix, titles-only "grounded" claims on the hard track by quoting titles, scoring 0.97. No other baseline score changed, and both gold gates still pass.
+- **Still weak at telling agents apart:**
+  - find-papers: titles alone find the right papers
+  - follow-up questions: the judge gave both baselines 0.97
+
+  Candidates for the next round: stricter find-papers topics that need body text, and a stricter follow-up rubric.
+
+## Next
+1. Teammates use the review page (shared?) and the leaderboard (now shared with anyone who has the link).
+2. Optionally add the 5 hard second-check items to the review page: `build/review_items.py --drafts gold/hard/drafts` needs `--corpus` support first.
+3. Presentation (Nov 16).

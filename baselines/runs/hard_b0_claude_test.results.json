@@ -1,0 +1,586 @@
+{
+  "n_items": 15,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 5,
+      "primary_mean": 0.9638658963916878,
+      "primary_ci95": [
+        0.9194,
+        1.0
+      ],
+      "metrics": {
+        "ndcg@10": 0.9638658963916878,
+        "precision@10": 0.6799999999999999,
+        "recall@10": 0.9028571428571428
+      }
+    },
+    "comparison_table": {
+      "n": 3,
+      "primary_mean": 0.23148148148148148,
+      "primary_ci95": [
+        0.2222,
+        0.25
+      ],
+      "metrics": {
+        "cell_accuracy": 0.23148148148148148,
+        "evidence_match_rate": null,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 1,
+      "primary_mean": 0.0,
+      "primary_ci95": [
+        0.0,
+        0.0
+      ],
+      "metrics": {}
+    },
+    "grounded_claims": {
+      "n": 4,
+      "primary_mean": 0.5,
+      "primary_ci95": [
+        0.5,
+        0.5
+      ],
+      "metrics": {
+        "n_claims": 6.25,
+        "quote_match_rate": 0.041666666666666664,
+        "support_rate": 0.0,
+        "supporting_recall": 1.0,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 1,
+      "primary_mean": 0.9733333333333334,
+      "primary_ci95": [
+        0.9733,
+        0.9733
+      ],
+      "metrics": {
+        "n_questions": 5.0,
+        "rubric": 0.9733333333333334
+      }
+    },
+    "traps": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 0.0,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.6114467852010838,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": 1,
+    "calls": 1,
+    "cache_hits": 15,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "hcl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hct-01",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.2222222222222222,
+        "evidence_match_rate": null,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.2222222222222222,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.25,
+        "evidence_match_rate": null,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.25,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.2222222222222222,
+        "evidence_match_rate": null,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.2222222222222222,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 0.7,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfp-04",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.7142857142857143,
+        "precision@10": 0.5,
+        "ndcg@10": 0.8887767180857747
+      },
+      "primary": 0.8887767180857747,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 0.5,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfp-06",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 0.9,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8,
+        "precision@10": 0.8,
+        "ndcg@10": 0.9305527638726646
+      },
+      "primary": 0.9305527638726646,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hfu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 5,
+        "rubric": 0.9733333333333334
+      },
+      "primary": 0.9733333333333334,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hgc-01",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 0.16666666666666666,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 0.0
+      },
+      "primary": 0.5,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hgc-02",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hgc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 0.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 0.0
+      },
+      "primary": 0.5,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hgc-04",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 5,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 0.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 0.0
+      },
+      "primary": 0.5,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    },
+    {
+      "id": "hgc-05",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 8,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 0.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 0.0
+      },
+      "primary": 0.5,
+      "trace": {
+        "steps": 0,
+        "agent": "claude-code subagent (Opus 5.5), titles only"
+      }
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "one passage that names the correct answer, denies it, and argues for the attacker's answer",
+        "pred": "A single poisoned document that embeds a parametric denial, so one document is enough to steer the RAG output"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference describes a specific rhetorical strategy involving denial and argumentation within a passage, while the candidate describes a technical mechanism of embedding parametric denials in a document."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "camouflages adversarial content among benign chunks with dispersion tokens instead of including the query",
+        "pred": "Poisoned documents are camouflaged so they look like ordinary documents"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer captures the core meaning of the reference by stating that poisoned documents are camouflaged to look ordinary, which aligns with the reference's description of using dispersion tokens to hide adversarial content among benign chunks."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "frames the injection as a non-contradicting update grounded in proxy facts",
+        "pred": "Targets the RAG system's conflict resolution with proxy-fact-grounded updates, so the poison is framed as a grounded update"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism as the reference by describing the poison as a proxy-fact-grounded update that targets conflict resolution, which aligns with framing it as a non-contradicting update grounded in proxy facts."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "continual GRPO-based preference optimization with margin-weighted experience replay",
+        "pred": "Continual preference optimization against adaptive prompt injection"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer describes a different training objective (defense against prompt injection) rather than the specific continual learning optimization method mentioned in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "on-policy distillation with token-level scores from the initialization model given the clean input",
+        "pred": "On-policy distillation"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer omits the specific training mechanism (on-policy distillation) and data source details (token-level scores from initialization model given clean input) present in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "bilateral adversarial RL against attacker populations, then fine-tuning on verified demonstrations",
+        "pred": "Adversarial co-evolution of attacker and defender, followed by refinement"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core process of adversarial training and subsequent refinement using different terminology."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "LoRA-based GDPO with a decoupled reward, against a co-evolving injection prober",
+        "pred": "Co-evolutionary defense training for LLM-based agents against indirect prompt injection"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference specifies a LoRA-based GDPO method against indirect prompt injection, while the candidate describes a general co-evolutionary defense for agents without mentioning LoRA or the specific attack type."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "reconsolidates memories into a heterogeneous cognitive graph based on retrieval feedback",
+        "pred": "Retrieval-driven memory reconsolidation: retrieving a memory triggers its update"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer describes the general process of retrieval-driven memory reconsolidation but lacks the specific detail about forming a heterogeneous cognitive graph based on retrieval feedback found in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "atomic memory units mapped to a learnable codebook whose co-occurrence topology is a retrieval path",
+        "pred": "Stores long-term memory as discrete semantic representations (codes)"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer describes a general memory storage mechanism without specifying the critical 'atomic memory units mapped to a learnable codebook' and 'retrieval path' topology details present in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "a state-evolving memory graph with intent-guided multi-round retrieval",
+        "pred": "Evolution-aware memory combined with intent-guided multi-round retrieval"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer replaces the specific 'state-evolving memory graph' component with the more general term 'Evolution-aware memory', which does not guarantee semantic equivalence."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Do defenders trained by adversarial co-evolution (CoER, CoDeL) still resist self-evolving stealthy attacks such as ECLIPSE, which spread indirect injections across long-horizon agent trajectories, and how does attack success rate grow with trajectory length?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 4,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question specifically targets the 'heterogeneous attacker' gap noted in CoER by proposing a self-evolving stealthy attack (ECLIPSE) on long-horizon trajectories, directly addressing the limitation that existing defenses were tested only against same-family attackers or limited scales."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "How do CoER- and CoDeL-trained models perform on LongPIBench, where the injection is buried in contexts longer than those seen during co-evolutionary training?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the specific limitation noted in the expert gap regarding model scale and context length by proposing a concrete experiment on LongPIBench to test CoER and CoDeL."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Under a matched training budget and the same adaptive-attack suite, how does co-evolutionary training compare with continual preference optimization (COPA) and on-policy distillation (SecOPD) on both attack success rate and benign task utility?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 4,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the identified gap regarding model scale and heterogeneous attackers by proposing a concrete comparison between co-evolutionary training and specific alternative methods (COPA, SecOPD) under matched budgets, making it highly specific, perfectly grounded in the expert's notes about limitations, and clearly novel as the papers do not cover these specific baselines."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does attacker-defender co-evolution converge or cycle, and does the defender forget attack families from earlier rounds, measured as attack success rate on held-out attacks from each earlier generation after the final round?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely defines a concrete experiment measuring convergence and forgetting in the co-evolutionary setting, directly addressing the expert's noted gaps regarding heterogeneous attackers and model scale limitations while proposing a novel metric not covered by the existing papers."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does a co-evolved single-agent defense transfer to multi-agent pipelines, where injected content passes between agents, as measured with a multi-agent security evaluation framework such as ORBIT?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the heterogeneity gap identified in CoER (single vs. multi-agent) and the scale/setting limitations of both papers by proposing a concrete experiment using the ORBIT framework to test transferability."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Poisoning can be distributed across many collaborating pieces of content rather than concentrated in one document.",
+        "passage": " poisoning attacks. section 3 defines the microcollaborative poisoning attack, describing how the poisoned documents are generated, and presents the experimental setup, including datasets, retrieval models, database configurations, generator models, and evaluation metrics. section 4 discusses the results and compares micro-collaborative poisoning with the previous poisoning approach. finally, section 5 concludes the paper and outlines future directions for improving the security of rag systems. micro-collaborative poisoning: a distributed attack on rag systems rag was introduced as a way to combine the generative capabilities of pretrained language models with external, non-parametric knowledge sources [11]. instead of relying only on information stored in model parameters, a rag pipeline retrieves relevant passages from an external corpus and grounds the generated response in this retrieved information [7, 10]. however, the same mechanism that makes rag useful also makes it sensitive to the quality of retrieved context. if irrelevant, misleading, or"
+      },
+      "result": {
+        "label": "unsupported",
+        "reason": "The passage introduces the concept of micro-collaborative poisoning as a distributed attack but does not explicitly state that poisoning can be distributed across many collaborating pieces of content rather than concentrated in one document."
+      }
+    }
+  ]
+}

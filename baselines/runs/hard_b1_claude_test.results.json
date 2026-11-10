@@ -1,0 +1,992 @@
+{
+  "n_items": 15,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 5,
+      "primary_mean": 0.9338503433341436,
+      "primary_ci95": [
+        0.906,
+        0.9676
+      ],
+      "metrics": {
+        "ndcg@10": 0.9338503433341436,
+        "precision@10": 0.64,
+        "recall@10": 0.846984126984127
+      }
+    },
+    "comparison_table": {
+      "n": 3,
+      "primary_mean": 0.9351851851851851,
+      "primary_ci95": [
+        0.8889,
+        0.9722
+      ],
+      "metrics": {
+        "cell_accuracy": 0.9351851851851851,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {
+        "edges_outside_set": 0.0,
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "grounded_claims": {
+      "n": 4,
+      "primary_mean": 0.9583333333333333,
+      "primary_ci95": [
+        0.875,
+        1.0
+      ],
+      "metrics": {
+        "n_claims": 9.25,
+        "quote_match_rate": 1.0,
+        "support_rate": 1.0,
+        "supporting_recall": 0.9166666666666666,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 1,
+      "primary_mean": 0.9733333333333334,
+      "primary_ci95": [
+        0.9733,
+        0.9733
+      ],
+      "metrics": {
+        "n_questions": 5.0,
+        "rubric": 0.9733333333333334
+      }
+    },
+    "traps": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 10.066666666666666,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.9667836991976659,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": 1,
+    "calls": 9,
+    "cache_hits": 43,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "hcl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 11,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-01",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.8888888888888888,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.8888888888888888,
+      "trace": {
+        "steps": 13,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.9166666666666666,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.9166666666666666,
+      "trace": {
+        "steps": 8,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 0.7,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 11,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-04",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8571428571428571,
+        "precision@10": 0.6,
+        "ndcg@10": 0.9462331419174447
+      },
+      "primary": 0.9462331419174447,
+      "trace": {
+        "steps": 12,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8,
+        "precision@10": 0.4,
+        "ndcg@10": 0.915210949803576
+      },
+      "primary": 0.915210949803576,
+      "trace": {
+        "steps": 13,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-06",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.7777777777777778,
+        "precision@10": 0.7,
+        "ndcg@10": 0.9160801914007335
+      },
+      "primary": 0.9160801914007335,
+      "trace": {
+        "steps": 15,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8,
+        "precision@10": 0.8,
+        "ndcg@10": 0.8917274335489642
+      },
+      "primary": 0.8917274335489642,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hfu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 5,
+        "rubric": 0.9733333333333334
+      },
+      "primary": 0.9733333333333334,
+      "trace": {
+        "steps": 13,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-01",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 8,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 6,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-02",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 3,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 10,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 7,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-04",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 9,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-05",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 10,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 9,
+        "agent": "claude-code subagent (Opus 5.5), tools"
+      }
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "one passage that names the correct answer, denies it, and argues for the attacker's answer",
+        "pred": "A single short (at most 100 words) poisoned passage that explicitly names the correct answer, denies it, and gives an attacker-controlled explanation for the wrong answer, embedding the knowledge conflict directly in the retrieved context; the embedded denial is the most influential component."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same mechanism as the reference answer, using slightly more detailed wording but conveying identical meaning regarding the poisoned passage's structure and components."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "camouflages adversarial content among benign chunks with dispersion tokens instead of including the query",
+        "pred": "Camouflages adversarial content among benign content without inserting the target query: synthesized benign and adversarial drafts are chunked and merged, benign chunks get dispersion tokens (chosen via a surrogate embedding model's gradients) that spread poisoned-document embeddings to evade clustering/filtering defenses, and a coherence filter limits readability loss."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism as the reference by describing the dispersion of poisoned content among benign chunks without including the query, despite adding extra implementation details."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "frames the injection as a non-contradicting update grounded in proxy facts",
+        "pred": "Frames the injection as a conflict-minimizing update rather than a counter-claim: it extracts query-related facts approximating the resolver's reference and grounds a pivot event in them, so the injection stays consistent with what the conflict resolver might verify while steering the generator to the target answer."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer describes a specific mechanism of conflict minimization and fact extraction that is not mentioned in the reference answer's description of grounding in proxy facts."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "continual GRPO-based preference optimization with margin-weighted experience replay",
+        "pred": "Continual preference optimization (COPA): the model is incrementally updated with GRPO on feedback from newly observed attacks across a lifelong attack stream, with margin-weighted experience replay to retain defenses against earlier attack classes and avoid catastrophic forgetting."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer provides a detailed description of the same training method (GRPO-based preference optimization with margin-weighted experience replay) mentioned in the reference, including its specific application to continual learning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "on-policy distillation with token-level scores from the initialization model given the clean input",
+        "pred": "Secure On-Policy Distillation (SecOPD): the LLM produces a rollout on an injected sample, and each rollout token is scored by the initialization model given the corresponding clean input, giving token-level feedback for defensive fine-tuning."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same training process as the reference answer, using a specific method name (SecOPD) and elaborating on the token-level scoring mechanism with clean inputs."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "bilateral adversarial RL against attacker populations, then fine-tuning on verified demonstrations",
+        "pred": "CoER: attacker and defender co-evolve in a general-sum Markov game via bilateral adversarial reinforcement learning (BA-RL) that mixes current and historical opponent populations; the resulting attackers then challenge teacher agents, and only demonstrations verified for both safety and task completion are used to fine-tune the defender."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same training process involving bilateral adversarial RL and fine-tuning on verified demonstrations as the reference answer, despite including additional context about co-evolution and teacher agents."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "LoRA-based GDPO with a decoupled reward, against a co-evolving injection prober",
+        "pred": "CODEL: the defender is updated each round with LoRA-based GDPO under a decoupled reward over safety, task progress, and format compliance, against a co-evolving prober that searches injection rounds, attack methods, and payloads for injections that still penetrate the current defender."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer includes specific details about the reward components (safety, task progress, format compliance) and the prober's search scope that are not present in the reference answer, making it more specific than the general reference description."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "reconsolidates memories into a heterogeneous cognitive graph based on retrieval feedback",
+        "pred": "Retrieval-driven memory reconsolidation: memories are autonomously organized into a heterogeneous cognitive graph, retrieved via adaptively composed graph-search atoms, and the graph is continually reorganized based on retrieval feedback after each retrieval."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer includes the core mechanism of reconsolidating memories into a heterogeneous cognitive graph based on retrieval feedback mentioned in the reference, while adding specific details about the process that do not contradict the main point."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "atomic memory units mapped to a learnable codebook whose co-occurrence topology is a retrieval path",
+        "pred": "Retrieval-oriented writing plus discrete associative retrieval: dialogue is rewritten into self-contained atomic memory units (AMUs) that are mapped into a learnable codebook via isomorphic semantic quantization (ISQ), and codebook co-occurrence topology serves as a retrieval path complementary to vector search, with asynchronous offline consolidation."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer includes all the specific components of the reference answer (atomic memory units, learnable codebook, co-occurrence topology as a retrieval path) while adding extra implementation details that do not change the core meaning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "a state-evolving memory graph with intent-guided multi-round retrieval",
+        "pred": "A State-Evolving Memory Graph (SEMG) that represents memory as evolving knowledge states backed by temporal event trajectories and evidential associations, with evidence-based state updates, combined with intent-guided multi-round retrieval that iteratively identifies missing evidence and expands retrieval."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer provides a detailed description of the mechanism named in the reference answer, confirming they describe the same core concept despite the added elaboration."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "In CoER's bilateral adversarial RL, does replacing the same-backbone attacker with attackers from different model families (or a mixed-family attacker population) expose vulnerabilities that same-family co-evolution misses, measured by adaptive ASR and Safe-U on the seven AgentDyn suites and on AgentLAB?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the 'same-family' limitation identified in the expert notes by proposing a concrete experiment with heterogeneous attackers on specific benchmarks using defined metrics."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Can a redesigned reward, such as CoDeL's decoupled safety, task-progress, and format reward optimized with GDPO, replace CoER's verified teacher demonstrations in the refinement stage while matching its 76.24% adaptive Safe-U and 0.22% ASR, and how much data-generation cost does that remove?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 4,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the gap regarding CoER's reliance on strong teachers and model scale limitations by proposing a specific GDPO-based reward redesign to match exact performance metrics while quantifying cost savings."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does CoDeL's co-evolution loop (MCTS prober guided by attack success and latency, LoRA-based GDPO defender) still help on backbones well beyond 7B and 8B, and on LatentDojo does larger scale shrink the attack latency an attacker can exploit, or does stronger instruction-following make compliance-style latent injections succeed more often?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the specific limitations noted by the expert (model scale beyond 8B and latent injection latency) while proposing a concrete experimental setup using LatentDojo to investigate the trade-off between instruction-following strength and vulnerability."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Can linear probes on the hidden states of a CoDeL- or CoER-trained defender detect a latent malicious precursor at the turn the injected content is first read, and how many turns before the deferred harmful tool call does such a probe fire compared with the defender's own behavioral refusal?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 4,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question is highly specific regarding the use of linear probes on hidden states to detect latent precursors in CoDeL/CoER, directly addressing the expert's noted gap about model scale limitations and the open problem of how defenses handle deferred injections without relying solely on behavioral refusal."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does CoER's co-evolution and refinement pipeline transfer to agent frameworks outside AgentDyn and to non-textual injections, for example image-based patches against multimodal computer-use agents, when the attacker edits visual content and the verifier checks both safety and task completion?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the specific limitations noted by the expert (heterogeneous attackers and model scale) while proposing a concrete experimental setup involving non-textual injections in multimodal agents that neither paper addresses."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Models may detect poisoned evidence yet still let it affect their final answers, a gap between monitoring and control.",
+        "passage": "98 and decreasing poison detection rate from 0.965 to 0.665. qwen3.6-plus shows the same qualitative pattern. these results demonstrate that poison detection and downstream influence capture distinct aspects of poisoning behavior. retrieval-augmented generation (rag) (lewis et al., 2020) enhances large language models by grounding outputs in external knowledge, but this reliance also exposes rag systems to knowledgepoisoning attacks, in which adversarial documents can influence model responses. prior work has shown that models may detect poisoned evidence while still allowing it to affect their final answers, revealing a gap between monitoring and control. for an example, see appendix h. the cordon principle (yu et al., 2026a) addresses this vulnerability by preventing agents responsible for final answer synthesis from directly accessing raw evidence, but such isolation introduces architectural and computational constraints. rather than proposing a new defense mechanism, we empirically investigate whether deliberative, system 2-style reasoning (kahneman, 2011; bengio, 2019) changes the relationship between poison detection and downstream influenc"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'models may detect poisoned evidence while still allowing it to affect their final answers, revealing a gap between monitoring and control,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Attack success and detection rates alone do not show whether detected poison still affects the answer, so detection and downstream influence must be measured separately.",
+        "passage": "r an example, see appendix h. the cordon principle (yu et al., 2026a) addresses this vulnerability by preventing agents responsible for final answer synthesis from directly accessing raw evidence, but such isolation introduces architectural and computational constraints. rather than proposing a new defense mechanism, we empirically investigate whether deliberative, system 2-style reasoning (kahneman, 2011; bengio, 2019) changes the relationship between poison detection and downstream influence. a key challenge is that attack success and poison detection alone do not reveal whether detected poisoned evidence continues to affect the final answer. we therefore distinguish detection from downstream influence and evaluate them separately. we use cordon rate, which measures the probability that a model both detects poisoned evidence and nevertheless produces a poison-aligned answer, conditioned on a non-poison-aligned no-rag response, and leakage rate, which measures the probability that poisoned context influences the answer despite an explicit instruction to ignore retrieved documents. the two measures target different stages of poisoning"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that attack success and poison detection alone do not reveal whether detected poisoned evidence affects the final answer, leading the authors to distinguish and evaluate detection from downstream influence separately."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Poisoned context can influence answers even when the model is explicitly instructed to ignore retrieved documents.",
+        "passage": "ess produces a poison-aligned answer, conditioned on a non-poison-aligned no-rag response, and leakage rate, which measures the probability that poisoned context influences the answer despite an explicit instruction to ignore retrieved documents. the two measures target different stages of poisoning behavior. poison detection rate asks whether the model recognizes the retrieved misinformation, whereas cordon rate asks whether that recognized misinformation nevertheless affects the final answer. leakage rate tests a different failure mode: whether poisoned context influences the answer even when the model is explicitly instructed to ignore the retrieved documents. thus, detection, resistance after detection, and resistance to explicit context suppression are related but distinct properties. under the expected behavior, detected or explicitly ignored poisoned context should not influence the final answer, yielding cr = 0 and lr = 0. we evaluate reasoning-disabled and reasoningenabled configurations of deepseek-v4-flash and qwen3.6-plus on 200 randomly selected scifact questions. within-model comparisons show that reasoning reduces both cordon rate and lea"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that leakage rate measures the probability that poisoned context influences the answer despite an explicit instruction to ignore retrieved documents, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "For DeepSeek-V4-Flash, reasoning cut Cordon Rate and Leakage Rate even though attack success rose and poison detection fell.",
+        "passage": "nfluence the final answer, we use two complementary measures: cordon rate, the probability that a model detects poison and nevertheless produces a poison-aligned answer, conditioned on a non-poison-aligned no-rag response; and leakage rate, the probability that poisoned context influences the answer despite an explicit instruction to ignore retrieved documents. across 200 scifact questions, we compare reasoning-disabled and reasoning-enabled configurations of deepseek-v4-flash and qwen3.6-plus. for deepseek-v4-flash, reasoning reduces cordon rate from 0.205 to 0.075 and leakage rate from 0.235 to 0.140, despite increasing attack success rate from 0.233 to 0.298 and decreasing poison detection rate from 0.965 to 0.665. qwen3.6-plus shows the same qualitative pattern. these results demonstrate that poison detection and downstream influence capture distinct aspects of poisoning behavior. retrieval-augmented generation (rag) exposes large language models to knowledgepoisoning attacks, where misinformation injected into retrieved documents can influence model outputs. prior work has shown that models may detect contradictory evidence yet still allow it to influence their responses, revealing a gap between monitor"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that for DeepSeek-V4-Flash, reasoning reduces cordon rate and leakage rate despite increasing attack success rate and decreasing poison detection rate, which matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "When poisoned documents form the majority of retrieved context, Gemma-3-12b detects misinformation far less often (25% vs 10%).",
+        "passage": " the retrieved evidence. retrieval-augmented generation (rag) can expose language models to misleading evidence in retrieved documents. we investigate whether increasing the number of mutually agreeing poisoned documents affects a model's ability to detect misinformation. we evaluate 200 randomly selected questions from scifact (random seed 38), comparing contexts with one poisoned and six healthy documents against contexts with six mutually agreeing poisoned documents and one healthy document. for gemma-3-12b, poisondetection rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition. among the 38 questions with different outcomes across conditions, 34 change from detected to undetected, while only four change in the opposite direction (exact mcnemar test, p = 6.04 \u00d7 10-7). this pattern is consistent with a conformity-like response to a majority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retriev"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that for Gemma-3-12b, poisoned detection rates decrease from 25% in the minority condition to 10% in the majority condition, which directly matches the claim's statistics and conclusion."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "This drop is consistent with conformity bias: models are less likely to detect poisoned claims that dominate the retrieved evidence.",
+        "passage": "tually agreeing poisoned documents and one healthy document. for gemma-3-12b, poison-detection rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition. among the 38 questions with different outcomes across conditions, 34 change from detected to undetected, while only four change in the opposite direction (exact mcnemar test, p = 6.04e-7). this pattern is consistent with a conformity-like response to a majority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retrieved evidence. retrieval-augmented generation (rag) can expose language models to misleading evidence in retrieved documents. we investigate whether increasing the number of mutually agreeing poisoned documents affects a model's ability to detect misinformation. we evaluate 200 randomly selected questions from scifact (random seed 38), comparing contexts with one poisoned and six healthy documents against contexts with six mutually agreeing poisoned documents and one healthy document. for gemma-3-12b, poisond"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the observed pattern is consistent with a conformity-like response and provides evidence that the model is less likely to detect poisoned claims when they dominate the retrieved evidence, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Distributed poisoning depends on retrieval breadth and redundancy across sources; poisoning more databases increases influence on the answer.",
+        "passage": "across multiple sources rather than concentrated in a few strongly poisoned documents. the study analyzed how this method of poisoning affects retrieval and generation behavior across different datasets, retrievers, retrieval depths, database compositions, and generator models, using metrics such as poison@k, poison rank, score margin, abstention rate, car, and asr. the results show that micro-collaborative poisoning depends mainly on retrieval breadth and adversarial redundancy across sources. increasing retrieval depth makes poisoned passages more likely to enter the context, while poisoning multiple databases increases their influence on the generated answer. clean database diversity improves robustness by strengthening legitimate evidence, whereas adversarial coverage across databases reduces car and increases asr. although dense bge and graph-based retrieval reduce poisoning exposure, their protective effect is weaker than in direct poisoning. overall, micro-collaborative poisoning can achieve comparable downstream attack success while leaving a weaker document-level poisoning signature, making it harder to detect. future work should evaluate the "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'micro-collaborative poisoning depends mainly on retrieval breadth and adversarial redundancy across sources' and that 'poisoning multiple databases increases their influence on the generated answer,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Spreading weak poison across sources achieves comparable attack success with a weaker document-level signature, making it harder to detect.",
+        "passage": "versarial redundancy across sources. increasing retrieval depth makes poisoned passages more likely to enter the context, while poisoning multiple databases increases their influence on the generated answer. clean database diversity improves robustness by strengthening legitimate evidence, whereas adversarial coverage across databases reduces car and increases asr. although dense bge and graph-based retrieval reduce poisoning exposure, their protective effect is weaker than in direct poisoning. overall, micro-collaborative poisoning can achieve comparable downstream attack success while leaving a weaker document-level poisoning signature, making it harder to detect. future work should evaluate the attack across additional datasets, retrievers, and generator models, and investigate defenses tailored to distributed poisoning, such as cross-document consistency checks, source-level trust estimation, redundancy-aware filtering, and coordinated-signal detection. more realistic collaborative settings, where documents evolve over time and contributors have different trust levels, should also be studied to better understand and mitigate this threat in deployed mul"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that micro-collaborative poisoning (spreading weak poison across sources) achieves comparable downstream attack success while leaving a weaker document-level poisoning signature, making it harder to detect."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "One misleading document raises the mean false-conclusion adoption rate (FCAR) from 0% to 54.7%.",
+        "passage": "sknow-agent, a controlled evaluation framework that constructs task-specific documents supporting manually audited false conclusions with controlled authority cues and source styles. applied to the tasks from deepresearch bench, it generates 5,933 misleading documents after filtering. we evaluate deerflow and webthinker with three backbone llms, together with gemini deep research, using a report-level false-conclusion adoption rate (fcar) that counts only reports endorsing the false conclusion. across the configurations, introducing one misleading document increases the mean fcar from 0% in the no-injection control to 54.7%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating c"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that introducing one misleading document increases the mean false-conclusion adoption rate (fcar) from 0% to 54.7%, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Adoption depends on lifecycle stage, framework design, source authority and style, but little on search rank or additional documents.",
+        "passage": "th controlled authority cues and source styles. applied to the tasks from deepresearch bench, it generates 5,933 misleading documents after filtering. we evaluate deerflow and webthinker with three backbone llms, together with gemini deep research, using a report-level false-conclusion adoption rate (fcar) that counts only reports endorsing the false conclusion. across the configurations, introducing one misleading document increases the mean fcar from 0\\% in the no-injection control to 54.7\\%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating continuous verification when evidence enters intermediate research states and final synthesis. to facilitate reproducibility, our code and dataset are publicly available at https://github.com/whfelingyu/misknow-agent a"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that factors like lifecycle stage, framework design, source authority, and style influence adoption, while search-result rank and additional documents have limited influence, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Agents adopt false conclusions even when cross-model verification classifies the documents as misleading.",
+        "passage": "ther with gemini deep research, using a report-level false-conclusion adoption rate (fcar) that counts only reports endorsing the false conclusion. across the configurations, introducing one misleading document increases the mean fcar from 0\\% in the no-injection control to 54.7\\%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating continuous verification when evidence enters intermediate research states and final synthesis. to facilitate reproducibility, our code and dataset are publicly available at https://github.com/whfelingyu/misknow-agent and https://huggingface.co/datasets/whfelingyu/misleading_knowledge, respectively. deep research agents conduct long-horizon investigations by iteratively planning, retrieving evidence, and genera"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that although cross-model verification classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Pre- and post-research defenses reduce but do not eliminate false-conclusion adoption.",
+        "passage": "eading document increases the mean fcar from 0\\% in the no-injection control to 54.7\\%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating continuous verification when evidence enters intermediate research states and final synthesis. to facilitate reproducibility, our code and dataset are publicly available at https://github.com/whfelingyu/misknow-agent and https://huggingface.co/datasets/whfelingyu/misleading_knowledge, respectively. deep research agents conduct long-horizon investigations by iteratively planning, retrieving evidence, and generating reports. however, it remains unclear whether they can resist apparently credible but factually false information introduced into these workflows. to study this failure mode, we"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'pre- and post-research defenses reduce fcar but do not eliminate adoption,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Spotting misleading documents in isolation is not enough; verification must be built into acquisition, intermediate states and synthesis.",
+        "passage": "uence and larger budgets produced no consistent increase beyond one document. results from the closed-source system broadly aligned with the corresponding open-source findings. although all searchenabled verifiers classified every retained instance as misleading, deep research agents could still adopt the false conclusions. we introduced pre- and post-research defenses that reduced fcar but did not eliminate false-conclusion adoption; their combination did not consistently yield additive gains. together, these findings reveal limitations in both model-level and workflow-level evidence handling: identifying misleading documents in isolation is insufficient unless verification and correction are integrated into evidence acquisition, intermediate research states, and final synthesis. artificial analysis. 2026. comparison of models: intelligence, performance & price analysis. https:// artificialanalysis.ai/models. accessed: 2026-07-15. boiko, d. a.; macknight, r.; kline, b.; and gomes, g. 2023. autonomous chemical research with large language models. nature, 624(7992): 570-578. bytedance. 2025. deerflow: deep exploration and efficient research flow. https://github.com/bytedance/deerflow. open-source deep research framework. accessed: 2026-07-01. chen, s.; li, z.; han, z.; he"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'identifying misleading documents in isolation is insufficient unless verification and correction are integrated into evidence acquisition, intermediate research states, and final synthesis,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "With incomplete or insufficient evidence, deep research agents produce synthesis hallucinations weakly grounded in sources.",
+        "passage": "imarily arise from breakdowns in global context management and evidence synthesis. we categorize these failures into three modes: contradiction neglect and sourcing bias. realworld information retrieval frequently produces conflicting evidence across sources. agents may fail to reconcile such discrepancies through cross-validation, instead disproportionately relying on early or prominently encountered sources, leading to unverified claims propagated in the final report. synthesis hallucination. when available evidence is incomplete or insufficient, the agent generates synthesized content that is weakly grounded in retrieved sources. this commonly occurs when fulfilling complex structural requirements, where missing information is implicitly filled using parametric knowledge rather than verified observations. goal drifting. as the context window expands during long-horizon research trajectories, accumulated observations may dilute task salience. the agent increasingly attends to tangential details within retrieved content and ultimately produces outputs that deviate from key constraints or formatting requirements specified "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that when available evidence is incomplete or insufficient, the agent generates synthesized content that is weakly grounded in retrieved sources, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Missing information is often filled from parametric knowledge rather than verified observations.",
+        "passage": "on neglect and sourcing bias. realworld information retrieval frequently produces conflicting evidence across sources. agents may fail to reconcile such discrepancies through cross-validation, instead disproportionately relying on early or prominently encountered sources, leading to unverified claims propagated in the final report. synthesis hallucination. when available evidence is incomplete or insufficient, the agent generates synthesized content that is weakly grounded in retrieved sources. this commonly occurs when fulfilling complex structural requirements, where missing information is implicitly filled using parametric knowledge rather than verified observations. goal drifting. as the context window expands during long-horizon research trajectories, accumulated observations may dilute task salience. the agent increasingly attends to tangential details within retrieved content and ultimately produces outputs that deviate from key constraints or formatting requirements specified in the original user instruction. setup. to empirically validate our proposed error taxonomy and systematically diagnose bottlenecks in long-horizon autonomous agents, we design a"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that missing information is implicitly filled using parametric knowledge rather than verified observations, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "With conflicting evidence, agents may skip cross-validation and over-rely on early or prominent sources, propagating unverified claims.",
+        "passage": "rgeted search tasks, deep research tasks require agents to autonomously aggregate, cross-reference, and synthesize large volumes of information into structured reports over extended interaction horizons. task-level errors in this setting primarily arise from breakdowns in global context management and evidence synthesis. we categorize these failures into three modes: contradiction neglect and sourcing bias. realworld information retrieval frequently produces conflicting evidence across sources. agents may fail to reconcile such discrepancies through cross-validation, instead disproportionately relying on early or prominently encountered sources, leading to unverified claims propagated in the final report. synthesis hallucination. when available evidence is incomplete or insufficient, the agent generates synthesized content that is weakly grounded in retrieved sources. this commonly occurs when fulfilling complex structural requirements, where missing information is implicitly filled using parametric knowledge rather than verified observations. goal drifting. as the context window expands during long-horizon research trajectories, accumulated observations may dilute task salience. the agent incre"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that agents may fail to reconcile conflicting evidence through cross-validation, instead disproportionately relying on early or prominent sources, which leads to unverified claims being propagated."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "On long-horizon multimodal research, the best run reaches only 43.1% overall and 34.3% strict accuracy, so final-answer accuracy overstates complete success.",
+        "passage": " hard inclusion criterion, every question contains at least one piece of non-text evidence that changes the reasoning state. mr.lhdr therefore evaluates both whether an agent returns the final answer and whether its stated intermediate conclusions are correct given the annotated dependencies. we evaluate regular models, dedicated deep research systems, and framework-based agents using overall accuracy (oa), strict accuracy (sa), checklist score (cs), and dependency-aware checklist score (dacs). empirically, we find that: (1) the run with the highest oa, gpt-5.5, reaches only 43.1% oa and 34.3% sa, while the dedicated deep research system with the highest oa, o3 deep research, reaches 32.4% oa and 19.6% sa, showing that final-answer accuracy substantially overstates complete, dependency-consistent task success; (2) withholding images lowers dacs by 12.6 percentage points in a controlled ablation, confirming that non-text evidence materially contributes to the reasoning chain; and (3) across checklist-length ranges with sufficient observations, sa decreases monotonically with chain length for every representative model. together, these findings identify sustained, dependency-consistent evidence integration, instead of isolated fact retrieval, as a central bottleneck for current deep research agents. co"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the run with the highest overall accuracy (GPT-5.5) reaches 43.1% OA and 34.3% SA, concluding that final-answer accuracy substantially overstates complete success, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Strict accuracy falls as the evidence chain gets longer for every representative model.",
+        "passage": "e (dacs). empirically, we find that: (1) the run with the highest oa, gpt-5.5, reaches only 43.1% oa and 34.3% sa, while the dedicated deep research system with the highest oa, o3 deep research, reaches 32.4% oa and 19.6% sa, showing that final-answer accuracy substantially overstates complete, dependency-consistent task success; (2) withholding images lowers dacs by 12.6 percentage points in a controlled ablation, confirming that non-text evidence materially contributes to the reasoning chain; and (3) across checklist-length ranges with sufficient observations, sa decreases monotonically with chain length for every representative model. together, these findings identify sustained, dependency-consistent evidence integration, instead of isolated fact retrieval, as a central bottleneck for current deep research agents. code and data are available at https://github.com/minghaoguo20/mr-lhdr. ai agents are increasingly expected to conduct deep research rather than answer isolated questions (zheng et al., 2025; zhang et al., 2025; du et al., 2025). a useful research assistant should decompose an underspecified goal, search across het"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'sa decreases monotonically with chain length for every representative model,' which directly supports the claim that strict accuracy falls as the evidence chain gets longer for every representative model."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "On densely coupled benchmarks, generic multi-agent methods fall below the single-agent baseline because decomposition fragments dependencies and coordination overhead outweighs context isolation.",
+        "passage": " invocations, file reads, and file writes form long upstream-downstream chains in which later steps must condition on earlier outputs, leaving little room for independent execution. deep research bench ii and agentif-oneday, by contrast, exhibit sparse dependencies, where large portions of the trajectory can proceed without conditioning on one another. this distinction provides a principled basis for the two regimes of multi-agent behavior observed below, with step-level evidence in appendix c. on the densely coupled benchmarks, generic multi-agent methods fall below the single-agent baseline, suggesting that decomposition fragments the dependency chain and that coordination overhead can outweigh the benefit of context isolation. saige does not exhibit the same degradation: it remains comparable to the single-agent baseline on terminal bench 2.1 and on nl2repo bench, while using fewer tokens than the other multi-agent methods. on the sparsely dependent benchmarks, decomposition appears more beneficial, and saige performs competitively on both, with the most visible margin on agentif-oneday, without the token inflation observed in the other multi-agent variants. goa, by contrast, employs a more elaborate orchestration de"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that on densely coupled benchmarks, generic multi-agent methods fall below the single-agent baseline because decomposition fragments dependencies and coordination overhead outweighs context isolation."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Multi-agent collaboration helps mainly on long-horizon tasks with sparse dependencies, while single-agent harnesses stay superior on tightly coupled, sequential workflows.",
+        "passage": "the rapid advancement of large language models and single-agent harnesses has reshaped the landscape of autonomous systems, raising a critical question of when multi-agent collaboration offers genuine value. as individual agent capabilities continue to scale, multi-agent collaboration faces diminishing returns while incurring growing context overhead. through systematic analysis, we delineate the capability boundaries of multi-agent collaboration relative to single-agent alternatives, showing that it confers systematic benefits specifically in long-horizon tasks with sparse dependencies, while single-agent harnesses remain superior in tightly coupled, sequential workflows. building on these insights, we propose saige, a lightweight multi-agent collaboration mechanism based on semantic-aware incremental graph evolution. saige models collaboration as a dynamically evolving graph, where nodes are agent instances spawned on demand and edges encode semantic dependencies established through content-based information retrieval. experiments on long-horizon, complex task benchmarks show that saige achieves a favorable trade-off between context efficiency and task performa"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that multi-agent collaboration confers benefits in long-horizon tasks with sparse dependencies while single-agent harnesses remain superior in tightly coupled, sequential workflows, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Scaling the agent pool or recursion depth does not consistently improve outcomes; multi-agent superiority is bounded by task structure.",
+        "passage": "ntic-aware incremental graph evolution. saige models collaboration as a dynamically evolving graph, where nodes are agent instances spawned on demand and edges encode semantic dependencies established through content-based information retrieval. experiments on long-horizon, complex task benchmarks show that saige achieves a favorable trade-off between context efficiency and task performance, and that scaling the agent pool or deepening the recursion level does not consistently improve outcomes. our findings suggest that multi-agent superiority is bounded by task structure rather than universal, and that more agents do not necessarily make a system more intelligent. the rapid advancement of large language models and single-agent harnesses has reshaped the landscape of autonomous systems, raising a critical question of when multi-agent collaboration offers genuine value. as individual agent capabilities continue to scale, multi-agent collaboration faces diminishing returns while incurring growing context overhead. through systematic analysis, we delineate the capability boundaries of multi-agent collaboration relative to single-agent alternatives, showing t"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that scaling the agent pool or deepening recursion does not consistently improve outcomes and that multi-agent superiority is bounded by task structure, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "On tightly coupled tasks, multi-agent methods are prone to local deadlock from waiting, cyclic dependencies and resource conflicts.",
+        "passage": ". 5.3 failure pattern analysis to understand how multi-agent collaboration affects execution, we collect trajectories whose evaluation scores are significantly below the benchmark average and use deepseek-v4-pro to semantically analyze their execution traces, yielding three recurring failure categories: task understanding and execution failure (tuef), incomplete workflow and premature termination (iwpt), and local deadlock (ld). figure 3 summarizes their distribution across the four benchmarks. on the tightly coupled benchmarks, multi-agent methods are more prone to local deadlock: coordination introduces waiting, cyclic dependencies, and resource conflicts that prevent global progress. on the decomposable benchmarks, by contrast, single-agent methods more frequently exhibit incomplete workflow and premature termination, as the accumulation of context progressively degrades their ability to track the full tool chain, leading them to stop before the workflow is validated or the resolution criterion is satisfied. these two tendencies together clarify why multi-agent collaboration is beneficial only when the task structure admits effective decomposition. 5.4 ablation study we con"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that on tightly coupled benchmarks, multi-agent methods are more prone to local deadlock due to coordination introducing waiting, cyclic dependencies, and resource conflicts."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Exposure to others' choices produces runaway cascades that diverge from a song's intrinsic appeal.",
+        "passage": "large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability in large populations of llm agents that recommended unfamiliar songs, with or without exposure to cumulative recommendation counts. exposure led to runaway cascades that generated extreme and unpredictable collective recommendations increasingly divergent from a song's intrinsic appeal. compared to humans, llm populations were generally far more susceptible to herding behavior, and unlike humans, llm cascades were less able to self-correct. this vulnerability has implications for multi-agent collaboration in recommender systems, automated evaluation, complex problem-solving, and unauthorized conspiracies. large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vuln"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that exposure to cumulative recommendation counts led to runaway cascades that generated collective recommendations increasingly divergent from a song's intrinsic appeal, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "LLM populations herd far more than humans and are less able to self-correct.",
+        "passage": "' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability in large populations of llm agents that recommended unfamiliar songs, with or without exposure to cumulative recommendation counts. exposure led to runaway cascades that generated extreme and unpredictable collective recommendations increasingly divergent from a song's intrinsic appeal. compared to humans, llm populations were generally far more susceptible to herding behavior, and unlike humans, llm cascades were less able to self-correct. this vulnerability has implications for multi-agent collaboration in recommender systems, automated evaluation, complex problem-solving, and unauthorized conspiracies. large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that LLM populations were 'generally far more susceptible to herding behavior' and 'less able to self-correct' compared to humans, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "In multi-agent search, LLM agents herd and fail to communicate with neighbors, breaking theoretical assumptions that rule-based agents satisfy.",
+        "passage": "nguishing four task types: needle, chain, hierarchical, and factorizable search (section 2.3). we derive theoretical values for the critical communication degree dc for each of these task types (section 3), finding that factorizable search benefits the most from inter-agent communication due to the potential for information reuse across disparate parts of the search graph. finally, we evaluate on three factorizable search tasks using deterministic agents as well as llm-based agents (section 4). we find that deterministic, rule-based agent behaviors agree with theory, but current llms exhibit behaviors under which theoretical assumptions break down, such as individual strategizing to choose the best candidates, herding behavior amongst agents, and failure to communicate with their neighbors (section 5). 2.1. problem setup: search tasks we consider multi-agent systems applied to solving search tasks. we formalize search tasks as a graph g(c, e) consisting of nodes c, representing the set of search candidates, and a set of directed edges e indicating dependency between candidates. we assume the graph has branching factor b. there is a single correct answer c\u22c6, the target of the search. we assume there exists a verification mechanism (e.g., empirical experiments in a scientific discovery context,"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that current LLMs exhibit herding behavior and failure to communicate with neighbors, causing theoretical assumptions to break down, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "A fully dense communication graph is expensive and can underperform sparser topologies.",
+        "passage": "efinement and verification. in cooperative search, agents can explore different regions simultaneously and share findings that guide one another's exploration. understanding these dynamics could help predict when collaboration accelerates discovery and when it leads to redundant effort or the propagation of unproductive search directions. a crucial question in the design of multi-agent systems is inter-agent communication topology design [zhang et al., 2024, zhu et al., 2025, kim et al., 2025]. a fully dense communication graph may seem like a clear choice, but this is often prohibitively computationally expensive and can underperform sparser topologies [li et al., 2024]. recent work has also shown that the optimal topology depends on the type of task the agents are asked to solve [rizvi-martel et al., 2025, kim et al., 2025, tang et al., 2025, qian et al., 2025, yang et al., 2025]. inter-agent communication should be most beneficial to solving search problems when evidence produced by one agent can affect the search space of others; however, there is little work demonstrating the effect of different inter-agent communication regimes on different search task typ"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that a fully dense communication graph is 'prohibitively computationally expensive and can underperform sparser topologies,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "As single agents scale, multi-agent collaboration faces diminishing returns and growing context overhead.",
+        "passage": "the rapid advancement of large language models and single-agent harnesses has reshaped the landscape of autonomous systems, raising a critical question of when multi-agent collaboration offers genuine value. as individual agent capabilities continue to scale, multi-agent collaboration faces diminishing returns while incurring growing context overhead. through systematic analysis, we delineate the capability boundaries of multi-agent collaboration relative to single-agent alternatives, showing that it confers systematic benefits specifically in long-horizon tasks with sparse dependencies, while single-agent harnesses remain superior in tightly coupled, sequential workflows. building on these insights, we propose saige, a lightweight multi-agent collaboration mechanism based on semantic-aware incremental graph evolution. saige models collabora"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that as individual agent capabilities scale, multi-agent collaboration faces diminishing returns while incurring growing context overhead, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "MCP draws no privilege boundary between tool descriptions, tool results, the user message and the system prompt.",
+        "passage": ". the model decides to invoke analyze_codebase, generates a json object conforming to the parameter schema, and the client forwards this call to the mcp server. the server executes the function and returns a tool result: a natural-language response that the client feeds back into the model's context for further processing. both the tool description and the tool result are authored by the mcp server. the model processes them in the same context window as the user's message and the system prompt. mcp draws no privilege boundary between these sources: the description, the result, the user message, and the system prompt all arrive as text in the model's input, distinguished only by role labels that the model has learned to interpret during training. trust model. developers install mcp servers through the same trust model as npm packages: the server runs as a local process with the developer's filesystem permissions, its tool calls are approved through the ide's standard confirmation ui, and its behavior can change after installation without any package update. openclaw (cve-2026-32979) demonstrated this time-of-check/time-of-use gap: a server modified its tool descriptions after passing an initial security scan. a malicious mcp server auth"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'MCP draws no privilege boundary between these sources: the description, the result, the user message, and the system prompt all arrive as text in the model's input,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "A tool's description is supplied to the model as trusted context at planning time, making it the most security-critical mechanism.",
+        "passage": "client host server\" model over json-rpc anthropic (2024). a host application embeds a client, which connects to one or more servers that expose tools. client and server negotiate capabilities at connection time, and the host's model selects and invokes tools over the session. the protocol exposes several primitives (e.g., resources, prompts, and tools, with later additions for sampling and elicitation) and supports both local (stdio) and networked (streamable http) transports hou et al. (2025). the most security-critical mechanism here is that a tool's description, the natural-language metadata that declares what the tool does and how to call it, is supplied to the model as trusted context at planning time. the model has no native means to distinguish a description authored by an honest server from one authored by an adversary. in mcp, the trust boundary is the schema. this single design fact seeds the largest class of protocol-level attacks in section 4. figure 2 makes the boundary concrete. mcp - tool access (resources / prompts / tools) a2a - agent-to-agent messaging ap2 - payment authorization x402 - stablecoin settlement (http 402) agent stack raw key session keys eip-7702 delegation mpc spli"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the most security-critical mechanism is supplying a tool's description as trusted context at planning time, which matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Cross-channel fragmentation lets models that resist single-channel injection exfiltrate data at up to 100%.",
+        "passage": "e the trust profile of an arbitrary llm based on a variety of payload framings sent through different channels. following this assessment, we devise cross-channel fragmentation attacks that distribute seemingly benign payloads across two or three channels; no individual channel carries a complete injection, yet the llm compiles the fragments into credential exfiltration. we evaluated our attacks across 12 frontier models, three production clients, and six payloads, totalling over 15,000 trials. our evaluation reveals that cross-channel attacks are an unexplored attack surface: models that fully resist single-channel injection (0% compliance) exfiltrate sensitive data at up to 100% under two-channel fragmentation (e.g., gpt-4o, llama 70b, composer 2, haiku 4.5). we further demonstrate value-aligned exploitation, where a tool's stated purpose requires the data the attacker targets, and a sampling system prompt override that injects persistent instructions via vs code's mcp implementation. finally, we evaluated our attacks against seven third-party mcp security tools and three prompt-based defenses. all tools failed to detect fragmented payloads, and prompt defenses proved model-specific rather than universal. in llm tool-calling pipelines murali ediga a"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that models resisting single-channel injection exfiltrate data at up to 100% under cross-channel fragmentation."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Third-party MCP security tools failed to detect fragmented payloads, and prompt defenses were model-specific.",
+        "passage": "e-channel injection (0% compliance) exfiltrate sensitive data at up to 100% under two-channel fragmentation (e.g., gpt-4o, llama 70b, composer 2, haiku 4.5). we further demonstrate value-aligned exploitation, where a tool's stated purpose requires the data the attacker targets, and a sampling system prompt override that injects persistent instructions via vs code's mcp implementation. finally, we evaluated our attacks against seven third-party mcp security tools and three prompt-based defenses. all tools failed to detect fragmented payloads, and prompt defenses proved model-specific rather than universal. in llm tool-calling pipelines murali ediga and sudipta chattopadhyay the model context protocol (mcp) enables llms to invoke external tools, but every tool interaction exposes the model to attacker-controlled text through multiple input channels (tool descriptions, tool results, sampling messages) that share a single context window without privilege separation. in this paper, we present a framework to measure the trust profile of an arbitrary llm based on a variety of payload framings sent thro"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that all seven third-party MCP security tools failed to detect fragmented payloads and that prompt defenses were model-specific rather than universal, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "MCP servers are trusted like npm packages, run with the developer's filesystem permissions, and can change behavior after installation.",
+        "passage": "s back into the model's context for further processing. both the tool description and the tool result are authored by the mcp server. the model processes them in the same context window as the user's message and the system prompt. mcp draws no privilege boundary between these sources: the description, the result, the user message, and the system prompt all arrive as text in the model's input, distinguished only by role labels that the model has learned to interpret during training. trust model. developers install mcp servers through the same trust model as npm packages: the server runs as a local process with the developer's filesystem permissions, its tool calls are approved through the ide's standard confirmation ui, and its behavior can change after installation without any package update. openclaw (cve-2026-32979) demonstrated this time-of-check/time-of-use gap: a server modified its tool descriptions after passing an initial security scan. a malicious mcp server author controls at least two input channels simultaneously: the tool description (delivered when the server connects) and the tool result (delivered each time the model calls the tool). the owasp mcp top 10 [15] identifies tool poisoning and rug pulls as top risks, but provides no empirical data on which channel an atta"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that developers install MCP servers through the same trust model as npm packages, where the server runs with the developer's filesystem permissions and its behavior can change after installation."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "A tool that looked benign at installation can have its metadata and output modified after gaining trust.",
+        "passage": "s, such as glama [10], pulsemcp [31], and apify store [1]. once such a tool is discovered and integrated into the target agent, its description becomes part of the tool metadata exposed to the llm and can consequently influence subsequent tool selection and execution. the scale of current tool ecosystems makes this threat practically relevant; for example, glama currently indexes more than 554k mcp tools and reports over one million tool calls per month [10]. (2) post-registration modification. even when a tool presents a completely benign description during installation or approval, its metadata and output may subsequently be modified after gaining the user's or agent's trust. this threat has been formalized as the rug pull attack [41], in which an mcp server table 1: task types represented in lase-bench. categories are assigned by the dominant security objective and sum to 120 tasks. task type number of tasks deployment and supply-chain compromise data exfiltration and privacy theft monitoring and security-control evasion cloud/api/iam privilege abuse phishing and malicious-content delivery iot, smart-home, and blockchain abuse security-report manipulation and offen"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that even when a tool presents a benign description during installation, its metadata and output may be modified after gaining trust."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Optimized malicious metadata and returns hijack MCP agents: 93.6% malicious tool invocation and 74.4% mean attack success on GLM-4.6.",
+        "passage": "odel context protocol (mcp) rely on semantic matching to select tools from third-party servers, exposing a semantic supply-chain risk through attackercontrolled metadata and outputs. we introduce a2m (attraction-to-manipulation), a twostage black-box framework for hijacking mcp agents. the attraction phase optimizes tool metadata to increase invocation probability; the manipulation phase uses execution traces to refine adversarial tool returns that steer agents toward attacker-desired outcomes. on livemcpbench, direct attacks optimized and evaluated on glm-4.6 achieve a macro-average malicious tool invocation rate of 93.6% across four scenarios, increase weighted token costs to 32.4\u00d7 the benign baseline under cognitive denial of service, and attain a mean attack success rate of 74.4% across information exfiltration, environment integrity compromise, and reasoning derailment. transfer to four other models without re-optimization yields corresponding macro-averages of 63.6%, 2.7\u00d7, and 24.5%. these findings motivate stronger tool vetting and runtime isolation in mcp ecosystems. code is publicly available.1 large language models (llms) are evolving from standalone conversational systems into autonomous agents capable of perceiving environments and executing complex tasks through external tools (yao et al., 2023; schick et al., 2023). the model context protocol (mcp) pr"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that optimized direct attacks on GLM-4.6 achieve a macro-average malicious tool invocation rate of 93.6% and a mean attack success rate of 74.4%, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Client-side approval grants the server process broad host filesystem permissions instead of restricting it to the declared operation.",
+        "passage": "the model context protocol (mcp) standardizes how ai agents invoke external tools. mcp servers expose tools through a declared contract consisting of a name, description, and argument schema. in typical local deployments, client-side approval of a tool call grants the underlying server process broad host filesystem permissions rather than restricting it to the declared operation. we study the resulting vulnerability class, filesystem capability laundering, where attacker-steered arguments cause a tool to access sensitive host files outside its declared contract and deployment scope. we analyze this capability gap across three layers: server-category screening (l1), per-tool contract analysis (l2), and bypassable path-validation checks (l3). we design mcp-fsd to catalog mcp servers, infer least-privilege boundaries per tool, plant credential fixtures outside those bounda"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that in typical local deployments, client-side approval grants the server process broad host filesystem permissions rather than restricting it to the declared operation."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "At scale, 16.4% of triaged servers have filesystem capabilities despite non-filesystem classifications, with 150 confirmed vulnerable instances.",
+        "passage": "acker-steered arguments cause a tool to access sensitive host files outside its declared contract and deployment scope. we analyze this capability gap across three layers: server-category screening (l1), per-tool contract analysis (l2), and bypassable path-validation checks (l3). we design mcp-fsd to catalog mcp servers, infer least-privilege boundaries per tool, plant credential fixtures outside those boundaries, and evaluate exploitability and sandbox containment via paired dynamic execution. across 21,097 mcp servers from nine registries, 787 of 4,806 triaged servers (16.4%) exhibit filesystem capabilities despite non-filesystem functional classifications. dynamic three-case validation confirms 150 vulnerable instances under tested sandbox policies. coordinated disclosure yielded 13 security advisories, including two cves in anthropic's git mcp server. leilahuang95@gmail.com 2 university of illinois urbana-champaign, urbana, il, usa mt55@illinois.edu 3 independent researcher guanaonan@gmail.com 4 santa clara university, santa clara, ca, usa qsun4@scu.edu 5 auburn university at montgomery, montgomery, al, usa phe@aum.edu the model context protocol"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 16.4% of the 787 triaged servers exhibit filesystem capabilities despite non-filesystem classifications and confirms 150 vulnerable instances, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The MCP specification leaves per-tool filesystem enforcement to individual servers or hosts.",
+        "passage": "tool-use security introduction the model context protocol (mcp) [17] has become the standard interface through which ai agents invoke external tools, data sources, and services. an mcp server implements tools that a client discovers through tools/list and invokes through tools/call. the tool's name, description, and argument schema form its declared contract [28]. mcp supports client-provided filesystem roots [27], and tool definitions can include output schemas and behavioral annotations [28]. however, the mcp specification delegates per-tool filesystem enforcement entirely to individual server implementations or host environments. the security question is whether attacker-influenced arguments can steer a tool's effects beyond the scope justified by its contract and deployment context. path-traversal flaws are documented in the agent harness itself: claude code's prefix-match bypass [5] and symlink-following [4] let crafted arguments escape the harness's intended scope. for locally launched servers, the code that accesses files instead runs in a separate server process. while the client's approval prompt gates execution b"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the MCP specification delegates per-tool filesystem enforcement entirely to individual server implementations or host environments, which directly matches the claim."
+      }
+    }
+  ]
+}

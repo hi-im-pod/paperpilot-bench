@@ -220,3 +220,10 @@ def test_claim_with_backed_numbers_goes_to_judge(corpus):
     gc = item(res, "gc-1")["metrics"]
     assert gc["unbacked_number_claims"] == 0 and gc["support_rate"] == 1.0
     assert len(judge.decisions) == 1
+
+
+def test_quoting_the_title_is_not_evidence(corpus):
+    title = "FIXTURE: Paper A on gradient jailbreak attacks"
+    res = score_all(TASKS[3:4], GOLD[3:4], with_output("gc-1", {"answer": "x", "claims": [
+        {"text": "Paper A studies gradient jailbreak attacks.", "paper_id": A, "quote": title}]}), corpus, judge=None)
+    assert item(res, "gc-1")["metrics"]["quote_match_rate"] == 0.0

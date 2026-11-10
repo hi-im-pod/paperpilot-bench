@@ -107,3 +107,10 @@ def test_run_through_the_console(tmp_path, monkeypatch):
     assert again.state()["elapsed"] == json.loads((tmp_path / run_id / "state.json").read_text())["elapsed"]
     assert reloaded.item_detail(again, "fp-1")["metrics"] is not None
     assert reloaded.runs[run2].status == "no_gold"
+
+    # A run saved with elapsed 0.0 (fast machines) must not reload as "elapsed since 1970".
+    st_path = tmp_path / run_id / "state.json"
+    st = json.loads(st_path.read_text())
+    st["elapsed"] = 0.0
+    st_path.write_text(json.dumps(st))
+    assert app.Run.load(reloaded, tmp_path / run_id).state()["elapsed"] == 0.0

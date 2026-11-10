@@ -65,14 +65,40 @@ bash scripts/setup.sh
 
 The setup script creates `.venv`, installs `requirements.txt`, and builds both corpora. `--open` opens the console at http://127.0.0.1:8765. On Windows, use `127.0.0.1` rather than `localhost`, which some setups block in the browser.
 
-**Docker**
+### Docker
+
+Docker needs no local Python. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (on Windows it also installs WSL 2, which can take a restart), then:
 
 ```bash
+git clone https://github.com/hi-im-pod/paperpilot-bench
+cd paperpilot-bench
 docker build -t paperpilot-bench .
 docker run --rm -p 8765:8765 paperpilot-bench
 ```
 
-The image builds both corpora while it builds, so `docker run` starts in seconds. Build it yourself instead of pulling a published image: most papers' licenses forbid redistributing their text. In the console, an agent running on your machine is at `http://host.docker.internal:<port>`, not `127.0.0.1`. On Linux, add `--add-host=host.docker.internal:host-gateway` to `docker run`.
+Open http://127.0.0.1:8765. The build downloads and extracts both corpora (about 15 minutes) and stops if either differs from the published checksum. After that, `docker run` starts in seconds, and rebuilding after a code change takes seconds too, since the corpus layer is cached. The image is about 780 MB. Build it yourself instead of pulling a published image: most papers' licenses forbid redistributing their text.
+
+Inside the container, `127.0.0.1` is the container itself, so:
+
+- **Agent URL.** In the console, an agent running on your machine is at `http://host.docker.internal:<port>`, for example `http://host.docker.internal:8001` for the reference agent. Have the agent listen on `0.0.0.0` or `127.0.0.1`; both work from Docker Desktop.
+- **Linux.** Add `--add-host=host.docker.internal:host-gateway` to `docker run`; Docker Desktop on Windows and macOS defines that name already.
+- **Judge.** The container uses Ollama on your machine, so the judge menu lists your local models. Nothing to configure.
+
+Arguments after the image name replace the defaults, so pass `--public-url` again whenever you add any:
+
+```bash
+# Default judge, and run history kept in ./app-runs after the container exits
+docker run --rm -p 8765:8765 -v "$PWD/app-runs:/bench/app/runs" paperpilot-bench \
+  --public-url http://localhost:8765 --judge ollama:qwen3.5:9b
+
+# A different host port: the tools address must use the same port
+docker run --rm -p 9000:8765 paperpilot-bench --public-url http://localhost:9000
+
+# Run the test suite inside the image
+docker run --rm --entrypoint python paperpilot-bench -m pytest -q
+```
+
+`--public-url` is the address the console hands your agent for the corpus tools. `http://localhost:8765` suits an agent on your machine. If your agent runs in another container, use an address that container can reach, such as `http://host.docker.internal:8765`.
 
 **The judge (optional).** Claim support and follow-up questions are scored by a local model. Install [Ollama](https://ollama.com), run `ollama pull qwen3.5:9b`, and pick it in the console's judge menu. Without it, those two metrics show `n/a` and everything else still scores. The container reaches Ollama on the host by itself.
 

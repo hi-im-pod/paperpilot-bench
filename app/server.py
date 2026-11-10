@@ -170,7 +170,7 @@ class Run:
     def state(self, full=False):
         out = {"id": self.id, "split": self.split, "agent_url": self.agent_url, "agent_name": self.agent_name,
                "status": self.status, "error": self.error, "judge": self.judge_spec, "budget": self.budget,
-               "elapsed": round((self.finished or time.time()) - self.started, 1), "items": list(self.items.values()),
+               "elapsed": round((time.time() if self.finished is None else self.finished) - self.started, 1), "items": list(self.items.values()),
                "has_gold": self.bench.splits[self.split]["gold"] is not None}
         if self.results:
             out["results"] = {k: self.results[k] for k in ("per_type", "hallucination_rate", "macro_avg", "trace_means", "judge")}

@@ -11,10 +11,23 @@ ENV PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Only what the corpus build reads, so that editing other code reuses this
+# layer instead of downloading every PDF again.
+COPY build/common.py build/extract_text.py build/selected.jsonl build/
+COPY build/hard/selected.jsonl build/hard/
+COPY tools/corpus_tools.py tools/
+COPY corpus/papers.sha256 corpus/
+COPY corpus/hard/papers.sha256 corpus/hard/
+# extract_text.py only warns on a checksum mismatch; here a mismatch fails the
+# build, because gold quotes may not line up with a different text.
 RUN python build/extract_text.py \
  && python build/extract_text.py --track hard \
- && rm -rf build/cache
+ && rm -rf build/cache \
+ && python -c "import sys; sys.path.insert(0, 'tools'); from corpus_tools import corpus_sha256 as h; \
+bad = [d for d in ('corpus', 'corpus/hard') if h(d + '/papers.jsonl') != open(d + '/papers.sha256').read().split()[0]]; \
+sys.exit('corpus checksum mismatch in ' + ', '.join(bad) + '; gold quotes may not line up' if bad else 0)"
+
+COPY . .
 
 # The judge runs in Ollama on the host. Pass --judge ollama:qwen3.5:9b to use it.
 ENV OLLAMA_HOST=host.docker.internal:11434

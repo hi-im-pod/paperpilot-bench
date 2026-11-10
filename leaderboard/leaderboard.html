@@ -86,7 +86,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <script>
 const TYPES = [["find_papers", "Find papers"], ["comparison_table", "Tables"], ["citation_links", "Citations"],
   ["grounded_claims", "Claims"], ["followup_questions", "Follow-ups"], ["traps", "Traps"]];
-const CORPUS = {dev: "12820178d898cc96", test: "12820178d898cc96", hard_dev: "2d2a109d1917e468", hard_test: "2d2a109d1917e468"};
+// Each corpus has two accepted hashes: line-ending-normalized (current) and the older raw hash of a Windows build.
+const MAIN = ["2f1b5a2f8a4cc589", "12820178d898cc96"], HARD = ["27a806089e549c3a", "2d2a109d1917e468"];
+const CORPUS = {dev: MAIN, test: MAIN, hard_dev: HARD, hard_test: HARD};
 const TRACK = {dev: "main track", hard_dev: "hard track"};
 const $ = id => document.getElementById(id);
 let db = null, user = null, official = [], mine = [], all = [];
@@ -108,7 +110,7 @@ function rows(id, list, emptyText) {
   const sorted = [...list].sort((a, b) => (b.macro_avg ?? -1) - (a.macro_avg ?? -1));
   $(id).innerHTML = sorted.length ? sorted.map((r, i) => `<tr>
       <td class="rank">${i + 1}</td>
-      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text([TRACK[r.split], r.note || (r.judge ? "judge " + r.judge : "")].filter(Boolean).join(", "))}${r.corpus_sha256 && CORPUS[r.split] && r.corpus_sha256 !== CORPUS[r.split] ? ", different corpus" : ""}</small></td>
+      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text([TRACK[r.split], r.note || (r.judge ? "judge " + r.judge : "")].filter(Boolean).join(", "))}${r.corpus_sha256 && CORPUS[r.split] && !CORPUS[r.split].includes(r.corpus_sha256) ? ", different corpus" : ""}</small></td>
       ${TYPES.map(([k]) => `<td class="num">${cell(r.per_type?.[k])}</td>`).join("")}
       <td class="num">${r.hallucination_rate == null ? "n/a" : Math.round(r.hallucination_rate * 100) + "%"}</td>
       <td class="num">${cell(r.macro_avg)}</td><td>${text(r.date)}</td></tr>`).join("")

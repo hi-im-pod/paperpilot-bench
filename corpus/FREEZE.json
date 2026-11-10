@@ -8,7 +8,8 @@
   },
   "cross_cluster": 10,
   "citation_edges": 1536,
-  "papers_sha256": "12820178d898cc96cb5868e34e3f1d186c4fba83760f7a1c7f877af956aed34b",
+  "papers_sha256": "2f1b5a2f8a4cc589d6158d5f03bb8f5052ae6e2b9a9c52aa2e8ae52e070686ad",
   "selected_sha256": "fef2a37d207c15d8ef21ee2d41f986f2837398991c4419ae8470c269987f3bd3",
-  "note": "Labels refer to this exact paper set and text. Do not rerun fetch_corpus.py; rebuild text with extract_text.py, which checks papers_sha256."
+  "note": "Labels refer to this exact paper set and text. Do not rerun fetch_corpus.py; rebuild text with extract_text.py, which checks papers_sha256.",
+  "papers_sha256_note": "Hash of papers.jsonl with CRLF read as LF. Before 2026-11-10 this was 12820178d898cc96cb5868e34e3f1d186c4fba83760f7a1c7f877af956aed34b, the hash of a Windows build with CRLF endings; the text is unchanged."
 }

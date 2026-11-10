@@ -44,3 +44,23 @@ def test_call_tool_returns_errors_as_text():
 def test_tool_schemas_match_functions():
     schemas = json.loads((ROOT / "tools" / "tool_schemas.json").read_text(encoding="utf-8"))
     assert {s["name"] for s in schemas} == set(ct.TOOLS)
+
+
+def test_corpus_checksum_ignores_line_endings(tmp_path):
+    # A Windows build wrote CRLF; Linux and Docker write LF. Same text, same checksum.
+    from corpus_tools import corpus_sha256
+    lf, crlf = tmp_path / "lf.jsonl", tmp_path / "crlf.jsonl"
+    lf.write_bytes(b'{"id": "a"}\n{"id": "b"}\n')
+    crlf.write_bytes(b'{"id": "a"}\r\n{"id": "b"}\r\n')
+    assert corpus_sha256(lf) == corpus_sha256(crlf)
+    other = tmp_path / "other.jsonl"
+    other.write_bytes(b'{"id": "a"}\n{"id": "c"}\n')
+    assert corpus_sha256(other) != corpus_sha256(lf)
+
+
+def test_build_writes_lf(tmp_path):
+    import sys
+    sys.path.insert(0, str(ROOT / "build"))
+    from common import write_jsonl
+    write_jsonl(tmp_path / "x.jsonl", [{"id": "a"}, {"id": "b"}])
+    assert b"\r" not in (tmp_path / "x.jsonl").read_bytes()

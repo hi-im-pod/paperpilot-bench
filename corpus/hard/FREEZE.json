@@ -15,7 +15,8 @@
     "multi-agent": 11
   },
   "citation_edges_in_corpus": 8,
-  "papers_sha256": "2d2a109d1917e468098a3248518c8a404c7e846b5fb6a7435f43943f686568b1",
+  "papers_sha256": "27a806089e549c3a1a27bcd005423eaede9d6d06f64655f8e04488759beba86e",
   "selected_sha256": "2e1df9a3d14178b209bf3b67b17ace84cb75746362426e9c1139ff4bbdf15048",
-  "note": "Labels refer to this exact paper set and text. Rebuild text with extract_text.py --track hard."
+  "note": "Labels refer to this exact paper set and text. Rebuild text with extract_text.py --track hard.",
+  "papers_sha256_note": "Hash of papers.jsonl with CRLF read as LF. Before 2026-11-10 this was 2d2a109d1917e468098a3248518c8a404c7e846b5fb6a7435f43943f686568b1, the hash of a Windows build with CRLF endings; the text is unchanged."
 }

@@ -3,14 +3,17 @@
 Reads build/selected.jsonl, writes corpus/papers.jsonl.
 """
 import argparse
-import hashlib
 import re
+import sys
 import unicodedata
 from collections import Counter
 
 import pymupdf as fitz
 
 from common import ROOT, arxiv_client, read_jsonl, write_jsonl
+
+sys.path.insert(0, str(ROOT / "tools"))
+from corpus_tools import corpus_sha256  # noqa: E402
 
 KNOWN = ["abstract", "introduction", "related work", "related works", "background", "preliminaries",
          "method", "methods", "methodology", "approach", "our approach", "experiments", "experimental setup",
@@ -139,7 +142,7 @@ def split_sections(lines):
 
 def check_checksum(path, ref):
     """Compare a rebuilt corpus with the published one, or record it on the first build."""
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    digest = corpus_sha256(path)
     if not ref.exists():
         ref.write_text(f"{digest}  papers.jsonl\n", encoding="utf-8")
         print(f"recorded corpus checksum {digest[:16]}... in {ref.relative_to(ROOT)}")

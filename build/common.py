@@ -20,7 +20,9 @@ def read_jsonl(path):
 def write_jsonl(path, records):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    # newline="\n": Windows would otherwise write CRLF, and the corpus checksum
+    # would differ from a Linux or Docker build of the same text.
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         for r in records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 

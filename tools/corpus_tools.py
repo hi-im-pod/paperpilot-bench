@@ -30,6 +30,17 @@ _STOP = set("a an the of and or to in on for with by from is are was were be as 
 _CORPUS = contextvars.ContextVar("paperpilot_corpus", default=None)
 
 
+def corpus_sha256(path):
+    """SHA-256 of a corpus file with CRLF read as LF.
+
+    Python on Windows used to write papers.jsonl with CRLF endings, so the same
+    text hashed differently there than on Linux or in Docker. Normalizing keeps
+    a Windows build that already exists matching the published checksum.
+    """
+    import hashlib
+    return hashlib.sha256(Path(path).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def _corpus_path():
     return Path(_CORPUS.get() or os.environ.get("PAPERPILOT_CORPUS") or ROOT / "corpus" / "papers.jsonl")
 

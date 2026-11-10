@@ -77,13 +77,13 @@ Paused partway through `docs/phase2_execution.md`. Steps 2–4 and the front end
 ## Deployability (done 2026-11-10)
 
 - **Setup scripts.** `scripts/setup.ps1` and `scripts/setup.sh` create `.venv`, install requirements, and build both corpora. `setup.sh` was tested from a fresh clone. `.gitattributes` keeps `.sh` and the Dockerfile on LF, since a Windows checkout gave `setup.sh` CRLF endings that broke bash.
-- **Dockerfile.** Builds both corpora into the image and runs the console on 0.0.0.0 with `--public-url http://localhost:8765`. Not built yet: Docker Desktop and WSL 2 are installed, but WSL needs a reboot before Docker can start. After the reboot, run `docker build -t paperpilot-bench .` and `docker run --rm -p 8765:8765 paperpilot-bench`.
+- **Dockerfile.** Builds both corpora into the image and runs the console on 0.0.0.0 with `--public-url http://localhost:8765`. Built and tested on 2026-11-10 after installing Docker Desktop and WSL 2.
 - **Console.** Reloads finished runs from `app/runs/` at startup. New flags `--open` and `--public-url`. A misspelled tool name now returns `{"error": ...}` with status 200 instead of a 404, and `examples/http_agent.py` passes HTTP errors back to the model. Qwen invents tool names, and both bugs together crashed whole items.
+- **Corpus checksums changed, text didn't.** The Docker build showed that a Linux build hashed differently from ours: Python on Windows wrote `papers.jsonl` with CRLF endings, and the checksum hashed raw bytes. `write_jsonl` now always writes LF, and `corpus_tools.corpus_sha256` hashes with CRLF read as LF, so older Windows builds still match. New checksums: main `2f1b5a2f8a4cc589`, hard `27a806089e549c3a` (old ones are kept in each `FREEZE.json`). The leaderboard accepts both, and its official rows now carry the new values.
 - **README** rewritten, with screenshots in `docs/img/`. The leaderboard screenshot comes from a local copy of the page with a mock database holding the official rows.
 - **Leaderboard** now has a table per track, accepts hard-track dev entries, and no longer claims test gold is held back.
 
 ## Next
 1. **Local-model test runs.** Cut on 2026-11-10 because the GPU is shared; only Qwen's dev run exists. To run them: `b1_search_read.py --tasks tasks/test.jsonl --provider ollama --model qwen3.5:9b`, the same with `gemma4:12b`, and the hard track with `PAPERPILOT_CORPUS=corpus/hard/papers.jsonl`. At about 3 minutes per item, all four take several hours. Score with `--judge ollama:qwen3.5:9b`, add rows to the README and the leaderboard's `official` collection.
-2. **Build and test the Docker image** after the reboot.
-3. Teammates use the review page (private; share it from its Share menu) and the leaderboard (shared with anyone who has the link).
-4. Presentation (Nov 16).
+2. Teammates use the review page (private; share it from its Share menu) and the leaderboard (shared with anyone who has the link).
+3. Presentation (Nov 16).

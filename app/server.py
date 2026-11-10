@@ -190,7 +190,6 @@ class Run:
 class Bench:
     def __init__(self, splits, corpus_path, host, port, default_judge, public_url=None):
         """splits: {name: (tasks, gold) or (tasks, gold, corpus)}; corpus defaults to corpus_path."""
-        import hashlib
         self.splits, self.corpora = {}, {}
         for name, spec in splits.items():
             tasks, gold = spec[0], spec[1]
@@ -199,13 +198,13 @@ class Bench:
                 continue
             if corpus not in self.corpora:
                 self.corpora[corpus] = {"corpus": scoring.load_corpus(corpus),
-                                        "sha": hashlib.sha256(Path(corpus).read_bytes()).hexdigest()}
+                                        "sha": corpus_tools.corpus_sha256(corpus)}
             self.splits[name] = {"tasks": read_jsonl(tasks), "corpus_path": corpus,
                                  "gold": read_jsonl(gold) if gold and Path(gold).exists() else None}
         self.default_corpus = str(corpus_path)
         os.environ["PAPERPILOT_CORPUS"] = self.default_corpus
         self.corpus = scoring.load_corpus(corpus_path)
-        self.corpus_sha = hashlib.sha256(Path(corpus_path).read_bytes()).hexdigest()
+        self.corpus_sha = corpus_tools.corpus_sha256(corpus_path)
         # Agents reach the tools at base_url; behind --host 0.0.0.0 that has to be an address they can route to.
         self.base_url = (public_url or f"http://{host}:{port}").rstrip("/")
         self.default_judge = default_judge

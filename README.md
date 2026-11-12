@@ -39,11 +39,11 @@ Scores on the test splits. Each task type's primary metric is described under [M
 What the numbers show:
 
 - **The main track is close to saturated for frontier models.** With only the paper titles, Claude scored 0.91 against 0.95 with tools, because it already knows these papers. That small gap is why the hard track exists.
-- **The hard track separates reading from recall.** Without tools, Claude's table accuracy fell from 0.94 to 0.23 and citation F1 from 1.00 to 0.00.
+- **The hard track separates reading from recall.** Without tools, Claude's table accuracy fell from 0.94 to 0.23 and citation F1 from 1.00 to 0.00. Astra, also with tools, kept 0.84 and 1.00 there; much of its lower macro comes from the items its runner zeroed, which include the only follow-up item.
 - **Find papers and follow-up questions discriminate weakly.** Titles are enough to rank papers on a topic. Follow-up scores fell from about 0.97 to 0.80 to 0.87 under the stricter rubric v2, but with 1 or 2 items per split the differences between agents are within noise. Treat those two columns as sanity checks.
-- **Small local models are far from the ceiling.** `qwen3.5:9b` as the B1 agent scored a macro average of 0.22 on main-track dev (10 items), with 10% of items citing an ID outside the corpus. Two of its items failed when the agent crashed on a tool error, a bug since fixed. Full local-model runs on the test splits are still to come.
+- **Small local models are far from the ceiling.** `qwen3.5:9b` as the B1 agent scored a macro average of 0.22 on main-track dev (10 items), with 10% of items citing an ID outside the corpus. Two of its items failed when the agent crashed on a tool error, a bug since fixed. Local models haven't been run on the test splits yet.
 
-The Claude baselines ran as blind Claude Code subagents in a workspace that held only the corpus tools and the tasks (see [Using a coding agent](#using-a-coding-agent-instead-of-an-api)). The Qwen run used `examples/http_agent.py` through the console, with Ollama on one RTX 5070 Ti (12 GB). Raw predictions and per-item scores are in `baselines/runs/`.
+The Claude baselines ran as blind Claude Code subagents in a workspace that held only the corpus tools and the tasks (see [Using a coding agent](#using-a-coding-agent-instead-of-an-api)). The Astra run came from outside the team: Codex CLI in the same kind of workspace, with its own stricter runner. `baselines/runs/astra/` has its manifest, checksums, and compliance audit. The Qwen run used `examples/http_agent.py` through the console, with Ollama on one RTX 5070 Ti (12 GB). Raw predictions and per-item scores are in `baselines/runs/`.
 
 ## Quick start
 
@@ -279,6 +279,12 @@ The tests use a three-paper fixture corpus in `tests/fixtures/`, so they need ne
 ## For the benchmark team
 
 The design is in `docs/plan.md`, and `docs/RESUME.md` tracks status.
+
+**Status (2026-11-12).** Phase 2 is complete: both tracks are frozen and labeled, a teammate has second-checked the gold sample and 30 judge decisions, and the leaderboard has official rows for B1, B0, and Astra on both tracks. Still open:
+
+- A person still needs to check the expected labels in `scoring/judge_eval_cases.jsonl`, which are Claude's drafts.
+- Local models haven't been run on the test splits.
+- The claim rubric could use an explicit paraphrase example, since 6 of the 8 claim disagreements came from reading paraphrases strictly.
 
 1. **Both corpora are frozen** (`corpus/FREEZE.json`, `corpus/hard/FREEZE.json`), and the fetch scripts refuse to run without `--unfreeze`. Semantic Scholar's data changes, so a fresh fetch can pick a different paper set and break every label.
 2. Task items live in `tasks/items.jsonl` and `tasks/hard/items.jsonl`; `prompts/label_draft.md` says how to write them. `build/draft_labels.py` drafts gold into `gold/drafts/`, and a person verifies each file.

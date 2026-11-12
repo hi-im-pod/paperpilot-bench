@@ -61,14 +61,14 @@
     },
     "followup_questions": {
       "n": 2,
-      "primary_mean": 0.9533333333333334,
+      "primary_mean": 0.8333333333333333,
       "primary_ci95": [
-        0.9333,
-        0.9733
+        0.8133,
+        0.8533
       ],
       "metrics": {
         "n_questions": 5.0,
-        "rubric": 0.9533333333333334
+        "rubric": 0.8333333333333333
       }
     },
     "traps": {
@@ -87,13 +87,18 @@
     "output_tokens": null,
     "cost_usd": null
   },
-  "macro_avg": 0.9338635344643998,
+  "macro_avg": 0.9138635344643999,
   "judge": {
     "model": "qwen3.5:9b",
     "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
-    "prompt_version": 1,
-    "calls": 20,
-    "cache_hits": 46,
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 8,
+    "cache_hits": 58,
     "errors": 0
   },
   "items": [
@@ -482,9 +487,9 @@
       "hallucinated_ids": [],
       "metrics": {
         "n_questions": 5,
-        "rubric": 0.9333333333333333
+        "rubric": 0.8133333333333332
       },
-      "primary": 0.9333333333333333,
+      "primary": 0.8133333333333332,
       "trace": {
         "steps": 0,
         "agent": "claude-code subagent (Opus 5.5), titles only"
@@ -499,9 +504,9 @@
       "hallucinated_ids": [],
       "metrics": {
         "n_questions": 5,
-        "rubric": 0.9733333333333334
+        "rubric": 0.8533333333333333
       },
-      "primary": 0.9733333333333334,
+      "primary": 0.8533333333333333,
       "trace": {
         "steps": 0,
         "agent": "claude-code subagent (Opus 5.5), titles only"
@@ -879,10 +884,12 @@
         "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
       },
       "result": {
-        "specific": 4,
+        "gap": "test-driven code feedback is unreliable for non-deterministic or impure functions",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely targets the specific limitation of Reflexion's test-based evaluator mentioned in the expert notes (unreliability for non-deterministic functions) and proposes a concrete experimental setup to investigate it, which is not addressed by the existing papers."
+        "reason": "The question directly addresses the unreliability of test-driven feedback gap by proposing a specific experiment to measure accuracy degradation under false positives and testing a gating mechanism, which is neither performed nor fully explored in the provided papers."
       }
     },
     {
@@ -894,10 +901,12 @@
         "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely targets the specific gap regarding unverified insight accumulation in ExpeL as tasks scale, directly addressing the expert's note about lifelong learning requiring retrieval over insights while proposing concrete metrics (success rate and oracle judgment) to measure the problem."
+        "reason": "The question precisely targets the lack of verification and potential accumulation of stale/contradictory insights in ExpeL's open-ended insight pool, proposing a concrete experiment with specific metrics (success rate vs. pool size and oracle judgment fraction) that neither paper addresses."
       }
     },
     {
@@ -909,10 +918,12 @@
         "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely defines the attack vector (indirect prompt injection via observations), the target mechanisms (Reflexion reflections and ExpeL insights), and the evaluation metric (success rate drop on clean tasks), directly addressing the identified gaps regarding memory persistence and security limitations in lifelong learning."
+        "reason": "This question precisely targets the security implications of storing unverified text in memory mechanisms (addressing the gap about memory limitations and reliability) while proposing a concrete adversarial experiment that neither paper covers."
       }
     },
     {
@@ -924,10 +935,12 @@
         "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 3,
         "novel": 5,
-        "reason": "The question precisely defines a concrete experiment involving specific models and benchmarks to address the identified gap regarding Reflexion's reliance on strong models and its lack of lifelong learning mechanisms."
+        "reason": "The question addresses the gap regarding Reflexion's limitations with strong models and local minima by proposing a specific experiment on open-source model sizes and fine-tuning, though it does not directly tackle the memory or test-driven feedback gaps mentioned in the notes."
       }
     },
     {
@@ -939,10 +952,12 @@
         "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
       },
       "result": {
-        "specific": 4,
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely defines a comparison between Reflexion and ExpeL approaches on HotpotQA using a specific metric (success per million tokens) to address the noted gaps regarding memory limitations and local minima, representing an open research direction not fully resolved by the existing papers."
+        "reason": "The question directly addresses the gap regarding Reflexion's memory limitations by proposing a specific comparison between verbal retry and retrieved trajectories, though it combines two distinct experimental setups (retry vs. voting) into one query."
       }
     },
     {
@@ -954,10 +969,12 @@
         "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
       },
       "result": {
+        "gap": "Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 1,
         "specific": 5,
-        "grounded": 5,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely defines a concrete experiment using specific methods (fine-tuning on mixed data), settings (20/30 documents), and metrics (NaturalQuestions accuracy vs. position) that directly address the identified gaps regarding robustness to irrelevant context and the 'Lost in the Middle' phenomenon."
+        "reason": "The question is highly specific and testable, directly addresses the open problem of general robustness to irrelevant context while proposing a novel experiment combining fine-tuning with position-based accuracy analysis not covered in the original papers."
       }
     },
     {
@@ -969,10 +986,12 @@
         "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
       },
       "result": {
-        "specific": 4,
+        "gap": "Models struggle to use information in the middle of long contexts",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question is highly specific about multi-hop QA metrics and passage positions, directly addresses the 'Lost in the Middle' gap regarding middle-context usage, and proposes a novel comparison not covered by the existing papers."
+        "reason": "The question directly addresses the 'Lost in the Middle' gap by investigating how absolute position affects accuracy in a multi-hop setting, which is not covered by the provided papers, though it lacks a specific named method or dataset to achieve a perfect specificity score."
       }
     },
     {
@@ -984,10 +1003,12 @@
         "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
       },
       "result": {
-        "specific": 5,
-        "grounded": 5,
+        "gap": "Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely defines a concrete experiment involving knowledge-corruption attacks at specific context positions and NLI filtering, directly addressing the open problem of robustness to irrelevant context and the 'Lost in the Middle' phenomenon noted in the expert gaps."
+        "reason": "The question is highly specific and testable, directly addressing the open problem of general robustness to irrelevant context while extending the gap by investigating position-dependence and filter efficacy."
       }
     },
     {
@@ -999,10 +1020,12 @@
         "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
       },
       "result": {
-        "specific": 4,
+        "gap": "the NLI filter discarding relevant passages",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely defines metrics (recall loss on gold passages) and conditions (varying k, fine-tuning vs filtering) directly addressing the open problem of NLI filter robustness and saturation limits noted in the expert gaps."
+        "reason": "This question directly addresses the specific gap regarding the NLI filter's impact on recall and robustness trade-offs, is highly specific with defined metrics and settings, and proposes a novel experimental comparison not covered in the provided papers."
       }
     },
     {
@@ -1014,10 +1037,12 @@
         "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
       },
       "result": {
-        "specific": 5,
-        "grounded": 5,
+        "gap": "Models struggle to use information in the middle of long contexts",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely targets the 'Lost in the Middle' phenomenon with a concrete reordering intervention, directly addresses the open problem of robustness to irrelevant context by comparing against RECOMP, and proposes a novel comparative experiment not covered by the existing literature."
+        "reason": "The question precisely targets the mid-context gap by proposing a specific reordering intervention to test it, while also introducing a novel comparison against an existing compression method not yet evaluated in this context."
       }
     },
     {

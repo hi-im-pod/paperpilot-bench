@@ -2,7 +2,7 @@
 
 `scoring/judge.py` uses these verbatim with the pinned local model (default `ollama:qwen3.5:9b`, temperature 0, JSON mode, thinking off; `ollama:gemma4:12b` also works). The judge only covers what string and set math can't: claim support, short-text cell equivalence, and follow-up question quality.
 
-They're written for a 9B model, so each prompt asks one narrow question, gives one example, and fixes the JSON shape. Bump `JUDGE_PROMPT_VERSION` in `judge.py` whenever you edit a prompt. The version is part of the cache key, so an edit invalidates the cached decisions.
+They're written for a 9B model, so each prompt asks one narrow question, gives one example, and fixes the JSON shape. Bump that prompt's entry in `PROMPT_VERSIONS` in `judge.py` whenever you edit it. The version is part of the cache key, so an edit invalidates that prompt's cached decisions and leaves the others alone.
 
 ## 1. claim_support
 
@@ -59,9 +59,12 @@ Answer with JSON only: {"equivalent": true | false, "reason": "<one sentence>"}
 
 ## 3. followup_score
 
+Version 2 (2026-11-12). Version 1 gave nearly every baseline question 5/5/5, while a human reviewer rated the same questions 3.1 on average. This version anchors every score level, and the scorer enforces two caps in code (`apply_followup_caps` in `judge.py`), because a 9B model doesn't apply them reliably.
+
 ```
 You rate one follow-up research question that an assistant proposed after reading
-some papers.
+some papers. Most proposed questions are reasonable. Your job is to separate the
+excellent ones from the merely reasonable ones, so use the whole scale.
 
 Topic: {topic}
 Papers read: {paper_titles}
@@ -70,17 +73,37 @@ Gaps noted by a human expert: {gap_notes}
 Question to rate:
 {question}
 
-Score each criterion from 1 to 5:
-- specific: 1 = vague ("How can LLMs be safer?"); 5 = names a method, setting, or
-  measurement and could become a concrete experiment.
-- grounded: 1 = unrelated to these papers; 5 = follows directly from a limitation
-  or open problem in the papers or in the expert's gap notes.
-- novel: 1 = one of these papers already answers it; 5 = the papers clearly leave it open.
+First decide two things:
+- gap: copy the phrase from the gap notes that this question addresses most
+  directly, or "none" if it addresses none of them.
+- parts: how many separate questions it asks. "Does X raise A, and how does that
+  compare with Y?" asks 2.
 
-Be strict. Give a 5 only when the question fully meets the description.
+Then score each criterion from 1 to 5:
+- specific:
+  5 = one testable question that names the method, the setting, and the measurement.
+  4 = testable, but one of those three is missing or vague.
+  3 = a clear direction but not yet an experiment, or two or more questions at once.
+  2 = a broad area with a little detail.
+  1 = vague ("How can LLMs be safer?").
+- grounded:
+  5 = tackles the gap you copied, as the notes or papers state it.
+  4 = follows from a stated gap but extends or shifts it.
+  3 = related to the papers but to no stated gap.
+  2 = related to the topic only.
+  1 = unrelated to these papers.
+- novel:
+  5 = the papers clearly leave it open, and none of them runs this test.
+  4 = open, but close to an experiment one of the papers already reports.
+  3 = partly answered by one of the papers.
+  2 = mostly answered by one of the papers.
+  1 = one of these papers already answers it.
+
+A 5 needs every part of its description to hold. When unsure between two scores,
+choose the lower one.
 
 Answer with JSON only:
-{"specific": <1-5>, "grounded": <1-5>, "novel": <1-5>, "reason": "<one sentence>"}
+{"gap": "<phrase or none>", "parts": <number>, "specific": <1-5>, "grounded": <1-5>, "novel": <1-5>, "reason": "<one sentence>"}
 ```
 
 ## Validating the judge

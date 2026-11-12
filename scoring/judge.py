@@ -22,8 +22,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PROMPTS_FILE = ROOT / "prompts" / "judge.md"
 CACHE_FILE = Path(__file__).resolve().parent / ".judge_cache.jsonl"
-# Bump on any edit to prompts/judge.md: the version is part of the cache key.
-JUDGE_PROMPT_VERSION = 1
+# Bump a prompt's entry when you edit it in prompts/judge.md. Each version is part
+# of that prompt's cache key, so an edit re-judges only that prompt's decisions.
+# claim_support and text_equiv stay at 1, the old single version, so their cached
+# decisions still hit.
+PROMPT_VERSIONS = {"claim_support": 1, "text_equiv": 1, "followup_score": 2}
 DEFAULT_MODEL = "qwen3.5:9b"
 
 
@@ -31,7 +34,8 @@ def load_prompts(path=PROMPTS_FILE):
     text = path.read_text(encoding="utf-8")
     prompts = {}
     for name in ("claim_support", "text_equiv", "followup_score"):
-        m = re.search(rf"## \d+\. {name}\s*\n+```\n(.*?)\n```", text, re.S)
+        # The prompt is the first fenced block under its heading; notes may sit between.
+        m = re.search(rf"## \d+\. {name}\b.*?\n```\n(.*?)\n```", text, re.S)
         if not m:
             raise ValueError(f"prompt {name} not found in {path}")
         prompts[name] = m.group(1)
@@ -73,6 +77,12 @@ class Judge:
         if model not in tags:
             raise SystemExit(f"judge model {model!r} is not pulled; run: ollama pull {model}")
         self.digest = tags[model]
+        # Recorded because the same model digest gave different answers on 2 of 44
+        # known-answer cases after Ollama updated itself (to 0.40.16 on 2026-11-09).
+        try:
+            self.ollama_version = self.client._client.get("/api/version").json().get("version")
+        except Exception:
+            self.ollama_version = None
         self.prompts = load_prompts()
         # Off only for judge_eval.py, which reruns each case to check the model is deterministic.
         self.use_cache = use_cache
@@ -93,7 +103,8 @@ class Judge:
         return cls(model)
 
     def info(self):
-        return {"model": self.model, "digest": self.digest, "prompt_version": JUDGE_PROMPT_VERSION,
+        return {"model": self.model, "digest": self.digest, "prompt_version": dict(PROMPT_VERSIONS),
+                "ollama_version": self.ollama_version,
                 "calls": self.calls, "cache_hits": self.cache_hits, "errors": self.errors}
 
     def _chat(self, prompt):
@@ -108,7 +119,7 @@ class Judge:
 
     def _ask(self, name, inputs):
         prompt = fill(self.prompts[name], **inputs)
-        key = hashlib.sha256(json.dumps([self.digest, JUDGE_PROMPT_VERSION, name, prompt]).encode()).hexdigest()
+        key = hashlib.sha256(json.dumps([self.digest, PROMPT_VERSIONS[name], name, prompt]).encode()).hexdigest()
         if key in self.cache:
             self.cache_hits += 1
             result = self.cache[key]
@@ -140,8 +151,29 @@ class Judge:
         return self._ask("text_equiv", {"column": column, "setting": setting, "gold": gold, "pred": pred})
 
     def followup_score(self, topic, paper_titles, question, gap_notes):
-        return self._ask("followup_score", {"topic": topic, "paper_titles": "; ".join(paper_titles),
-                                            "question": question, "gap_notes": gap_notes or "(none)"})
+        raw = self._ask("followup_score", {"topic": topic, "paper_titles": "; ".join(paper_titles),
+                                           "question": question, "gap_notes": gap_notes or "(none)"})
+        result = apply_followup_caps(raw)
+        self.decisions[-1]["result"] = result  # validation exports see what the scorer used
+        return result
+
+
+def apply_followup_caps(r):
+    """The rubric's two hard limits, enforced here because the 9B judge skips them.
+
+    A question asking two or more things can't be one experiment, so specific is at
+    most 3. A question tied to none of the stated gaps is grounded at most 3.
+    """
+    if r.get("error"):
+        return r
+    out = dict(r)
+    parts = r.get("parts")
+    if isinstance(parts, (int, float)) and parts >= 2 and isinstance(out.get("specific"), int):
+        out["specific"] = min(out["specific"], 3)
+    gap = str(r.get("gap", "")).strip().strip('"').lower()
+    if gap in ("", "none", "n/a") and isinstance(out.get("grounded"), int):
+        out["grounded"] = min(out["grounded"], 3)
+    return out
 
 
 # ---------- validation against human labels ----------

@@ -60,14 +60,14 @@
     },
     "followup_questions": {
       "n": 1,
-      "primary_mean": 0.9733333333333334,
+      "primary_mean": 0.8666666666666668,
       "primary_ci95": [
-        0.9733,
-        0.9733
+        0.8667,
+        0.8667
       ],
       "metrics": {
         "n_questions": 5.0,
-        "rubric": 0.9733333333333334
+        "rubric": 0.8666666666666668
       }
     },
     "traps": {
@@ -86,13 +86,18 @@
     "output_tokens": null,
     "cost_usd": null
   },
-  "macro_avg": 0.9667836991976659,
+  "macro_avg": 0.9490059214198882,
   "judge": {
     "model": "qwen3.5:9b",
     "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
-    "prompt_version": 1,
-    "calls": 9,
-    "cache_hits": 43,
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 5,
+    "cache_hits": 47,
     "errors": 0
   },
   "items": [
@@ -268,9 +273,9 @@
       "hallucinated_ids": [],
       "metrics": {
         "n_questions": 5,
-        "rubric": 0.9733333333333334
+        "rubric": 0.8666666666666668
       },
-      "primary": 0.9733333333333334,
+      "primary": 0.8666666666666668,
       "trace": {
         "steps": 13,
         "agent": "claude-code subagent (Opus 5.5), tools"
@@ -515,10 +520,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
+        "gap": "heterogeneous attackers could expose weaknesses same-family co-evolution misses",
+        "parts": 1,
         "specific": 5,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely targets the 'same-family' limitation identified in the expert notes by proposing a concrete experiment with heterogeneous attackers on specific benchmarks using defined metrics."
+        "reason": "The question precisely targets the identified limitation regarding heterogeneous attackers in CoER by proposing a specific experimental modification and measurement within the existing evaluation framework."
       }
     },
     {
@@ -530,10 +537,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely targets the gap regarding CoER's reliance on strong teachers and model scale limitations by proposing a specific GDPO-based reward redesign to match exact performance metrics while quantifying cost savings."
+        "reason": "The question precisely targets the 'strong teachers' dependency gap by proposing a specific alternative method (GDPO with decoupled rewards) and asks for both performance parity and cost reduction metrics."
       }
     },
     {
@@ -545,10 +554,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 5,
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely targets the specific limitations noted by the expert (model scale beyond 8B and latent injection latency) while proposing a concrete experimental setup using LatentDojo to investigate the trade-off between instruction-following strength and vulnerability."
+        "reason": "The question precisely targets the identified gap regarding model scale limitations in CoDeL by proposing a concrete experimental setup on larger backbones and LatentDojo to measure specific metrics (attack latency and compliance success) that were not covered in the original papers."
       }
     },
     {
@@ -560,10 +571,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question is highly specific regarding the use of linear probes on hidden states to detect latent precursors in CoDeL/CoER, directly addressing the expert's noted gap about model scale limitations and the open problem of how defenses handle deferred injections without relying solely on behavioral refusal."
+        "reason": "The question precisely defines a testable experiment using specific methods (linear probes) and metrics (turn count comparison) to address the open issue of how model scale affects vulnerability to latent, deferred injections, which is not covered by the existing papers."
       }
     },
     {
@@ -575,10 +588,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 5,
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses",
+        "parts": 2,
+        "specific": 3,
         "grounded": 5,
         "novel": 5,
-        "reason": "The question precisely targets the specific limitations noted by the expert (heterogeneous attackers and model scale) while proposing a concrete experimental setup involving non-textual injections in multimodal agents that neither paper addresses."
+        "reason": "The question directly addresses the heterogeneity gap by testing transfer to non-textual injections and different frameworks, though it slightly lacks a specific measurement metric for the 'how' component."
       }
     },
     {

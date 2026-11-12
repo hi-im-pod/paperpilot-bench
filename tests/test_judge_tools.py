@@ -34,3 +34,22 @@ def test_agreement_filters_by_labeler(tmp_path, capsys):
         w.writerow(["claim_support", "{}", "partial", "unsupported", "bob"])
     agreement(out, "alice")
     assert "agreement=1.00" in capsys.readouterr().out
+
+
+def test_followup_caps():
+    from judge import apply_followup_caps
+    # Two questions in one can't be one experiment; no stated gap can't be fully grounded.
+    assert apply_followup_caps({"gap": "none", "parts": 2, "specific": 5, "grounded": 5, "novel": 5}) == \
+        {"gap": "none", "parts": 2, "specific": 3, "grounded": 3, "novel": 5}
+    kept = {"gap": "reader saturates before recall", "parts": 1, "specific": 5, "grounded": 4, "novel": 4}
+    assert apply_followup_caps(kept) == kept
+    assert apply_followup_caps({"gap": "x", "parts": 1, "specific": 2, "grounded": 2, "novel": 2})["specific"] == 2
+    err = {"specific": None, "grounded": None, "novel": None, "error": True}
+    assert apply_followup_caps(err) == err
+
+
+def test_prompts_load_with_notes_under_headings():
+    from judge import load_prompts
+    p = load_prompts()
+    assert p["followup_score"].startswith("You rate one follow-up research question")
+    assert '"parts"' in p["followup_score"] and p["claim_support"].startswith("You check whether a passage")

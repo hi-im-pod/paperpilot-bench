@@ -58,7 +58,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
   <section>
     <h2>Test sets, scored by the benchmark team</h2>
-    <p class="note">Send your test predictions file to the benchmark team, and your scores appear here. Test gold is public so anyone can check the scoring, so these scores mean something only for agents that never saw it.</p>
+    <p class="note">Send your test predictions file to the benchmark team, and your scores appear here. Test gold is public so anyone can check the scoring, so these scores mean something only for agents that never saw it. Follow-up questions use the stricter rubric v2 from 2026-11-12 unless a row says v1.</p>
     <h3>Main track <span>30 items, 138 papers</span></h3>
     <div class="scroll"><table><thead id="official-head"></thead><tbody id="official"></tbody></table></div>
     <h3>Hard track <span>15 items, 95 papers</span></h3>
@@ -106,11 +106,17 @@ function head(id) {
   $(id).innerHTML = `<tr><th class="rank">#</th><th>Agent</th>${TYPES.map(([, n]) => `<th class="num">${n}</th>`).join("")}
     <th class="num">Hallucination</th><th class="num">Macro</th><th>Date</th></tr>`;
 }
+// Follow-up rubric v2 (2026-11-12) is stricter. Rows judged before it carry no rubric
+// marker, so label them: their follow-up scores run about 0.1 to 0.17 higher.
+function judgeText(j) {
+  if (!j || j === "none") return j === "none" ? "no judge" : "";
+  return /rubric/.test(j) ? "judge " + j : "judge " + j + ", follow-up rubric v1 (more lenient)";
+}
 function rows(id, list, emptyText) {
   const sorted = [...list].sort((a, b) => (b.macro_avg ?? -1) - (a.macro_avg ?? -1));
   $(id).innerHTML = sorted.length ? sorted.map((r, i) => `<tr>
       <td class="rank">${i + 1}</td>
-      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text([TRACK[r.split], r.note || (r.judge ? "judge " + r.judge : "")].filter(Boolean).join(", "))}${r.corpus_sha256 && CORPUS[r.split] && !CORPUS[r.split].includes(r.corpus_sha256) ? ", different corpus" : ""}</small></td>
+      <td class="agent">${text(r.team ? r.team + ": " + r.agent : r.agent)}<small>${text([TRACK[r.split], (r.note || "").replace(/\.$/, ""), judgeText(r.judge)].filter(Boolean).join(", "))}${r.corpus_sha256 && CORPUS[r.split] && !CORPUS[r.split].includes(r.corpus_sha256) ? ", different corpus" : ""}</small></td>
       ${TYPES.map(([k]) => `<td class="num">${cell(r.per_type?.[k])}</td>`).join("")}
       <td class="num">${r.hallucination_rate == null ? "n/a" : Math.round(r.hallucination_rate * 100) + "%"}</td>
       <td class="num">${cell(r.macro_avg)}</td><td>${text(r.date)}</td></tr>`).join("")

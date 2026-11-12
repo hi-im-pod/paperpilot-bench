@@ -1,6 +1,6 @@
 # PaperPilot-Bench
 
-PaperPilot-Bench tests whether a research-literature agent can work from evidence instead of memory. The agent gets a topic or question and a closed corpus of full-text arXiv papers it can reach only through four tools. It has to find the relevant papers, fill comparison tables with the exact reported numbers, recover which papers cite which, answer with claims backed by verbatim quotes, and propose follow-up questions. Answers are scored against gold labels that were drafted with an LLM and verified against the paper text. A human second check of a 20% sample is in progress.
+PaperPilot-Bench tests whether a research-literature agent can work from evidence instead of memory. The agent gets a topic or question and a closed corpus of full-text arXiv papers it can reach only through four tools. It has to find the relevant papers, fill comparison tables with the exact reported numbers, recover which papers cite which, answer with claims backed by verbatim quotes, and propose follow-up questions. Answers are scored against gold labels that were drafted with an LLM and verified against the paper text. The team second-checked a 20% sample: 11 of 12 items were confirmed, and 1 disputed citation edge was kept after checking the paper.
 
 It has two tracks:
 
@@ -16,27 +16,31 @@ It has two tracks:
 
 ## Results
 
-Scores on the test splits. Each task type's primary metric is described under [Metrics](#metrics); the macro average is secondary. All rows use the `qwen3.5:9b` judge.
+Scores on the test splits. Each task type's primary metric is described under [Metrics](#metrics); the macro average is secondary. All rows use the `qwen3.5:9b` judge with follow-up rubric v2 (2026-11-12).
 
 **Main track** (30 test items, 138 papers)
 
 | Agent | Find papers | Table | Citations | Claims | Follow-up | Traps | Macro |
 |---|---|---|---|---|---|---|---|
-| B1: Claude Opus 5.5 with the corpus tools | 0.96 | 0.98 | 1.00 | 0.92 | 0.97 | 1.00 | 0.97 |
-| B0: Claude Opus 5.5, titles only, no tools | 0.98 | 0.89 | 0.78 | 1.00 | 0.95 | 1.00 | 0.93 |
+| B1: Claude Opus 5.5 with the corpus tools | 0.96 | 0.98 | 1.00 | 0.92 | 0.84 | 1.00 | 0.95 |
+| B0: Claude Opus 5.5, titles only, no tools | 0.98 | 0.89 | 0.78 | 1.00 | 0.83 | 1.00 | 0.91 |
+| Astra: gpt-6-astra (high), Codex CLI, with the corpus tools* | 0.67 | 0.78 | 1.00 | 0.76 | 0.86 | 1.00 | 0.85 |
 
 **Hard track** (15 test items, 95 papers)
 
 | Agent | Find papers | Table | Citations | Claims | Follow-up | Traps | Macro |
 |---|---|---|---|---|---|---|---|
-| B1: Claude Opus 5.5 with the corpus tools | 0.93 | 0.94 | 1.00 | 0.96 | 0.97 | 1.00 | 0.97 |
-| B0: Claude Opus 5.5, titles only, no tools | 0.96 | 0.23 | 0.00 | 0.50 | 0.97 | 1.00 | 0.61 |
+| B1: Claude Opus 5.5 with the corpus tools | 0.93 | 0.94 | 1.00 | 0.96 | 0.87 | 1.00 | 0.95 |
+| B0: Claude Opus 5.5, titles only, no tools | 0.96 | 0.23 | 0.00 | 0.50 | 0.80 | 1.00 | 0.58 |
+| Astra: gpt-6-astra (high), Codex CLI, with the corpus tools* | 0.72 | 0.84 | 1.00 | 0.66 | 0.00 | 1.00 | 0.70 |
+
+\* An external run with a strict runner that scored an item 0 when its first tool call was malformed: 4 of 30 main items and 3 of 15 hard items, including the hard track's only follow-up item. Its other scores are on the items it answered plus those zeros. Details in `baselines/runs/astra/`.
 
 What the numbers show:
 
-- **The main track is close to saturated for frontier models.** With only the paper titles, Claude scored 0.93 against 0.97 with tools, because it already knows these papers. That small gap is why the hard track exists.
+- **The main track is close to saturated for frontier models.** With only the paper titles, Claude scored 0.91 against 0.95 with tools, because it already knows these papers. That small gap is why the hard track exists.
 - **The hard track separates reading from recall.** Without tools, Claude's table accuracy fell from 0.94 to 0.23 and citation F1 from 1.00 to 0.00.
-- **Find papers and follow-up questions discriminate weakly.** Titles are enough to rank papers on a topic, and the judge is lenient on follow-up questions. Treat those two columns as sanity checks.
+- **Find papers and follow-up questions discriminate weakly.** Titles are enough to rank papers on a topic. Follow-up scores fell from about 0.97 to 0.80 to 0.87 under the stricter rubric v2, but with 1 or 2 items per split the differences between agents are within noise. Treat those two columns as sanity checks.
 - **Small local models are far from the ceiling.** `qwen3.5:9b` as the B1 agent scored a macro average of 0.22 on main-track dev (10 items), with 10% of items citing an ID outside the corpus. Two of its items failed when the agent crashed on a tool error, a bug since fixed. Full local-model runs on the test splits are still to come.
 
 The Claude baselines ran as blind Claude Code subagents in a workspace that held only the corpus tools and the tasks (see [Using a coding agent](#using-a-coding-agent-instead-of-an-api)). The Qwen run used `examples/http_agent.py` through the console, with Ollama on one RTX 5070 Ti (12 GB). Raw predictions and per-item scores are in `baselines/runs/`.
@@ -226,18 +230,18 @@ Each type has one primary metric (★), reported with a 95% bootstrap interval. 
 | comparison_table | ★Cell accuracy. Numeric cells are correct within 2% relative; enum cells must match exactly after normalizing; text cells are judged. A missing row makes all its cells wrong. Secondary: evidence match rate, where a numeric cell's quote must be in the paper and contain the value. |
 | citation_links | ★Edge F1. Edges with an endpoint outside the input set are false positives. |
 | grounded_claims | ★0.5 × support rate + 0.5 × supporting-paper recall, over the first 10 claims. A claim earns support only if its quote is in the cited paper (fuzzy match ≥ 90, every number exact, at least 6 words, not from the title or front matter). Every number in the claim must also appear in the quoted passage, or the claim scores 0 without reaching the judge. The judge then decides whether the passage supports the claim. |
-| followup_questions | ★Judge rubric: specific, grounded, and novel, each 1 to 5, averaged and scaled to 0 to 1, over the first 5 questions. |
+| followup_questions | ★Judge rubric v2: specific, grounded, and novel, each 1 to 5, summed and divided by 15, over the first 5 questions. The judge also names the gap a question addresses and counts its parts; the scorer caps specific at 3 for a question that asks two or more things, and grounded at 3 for one tied to no stated gap. |
 | traps | 1 if you abstain or return an empty list with no invented IDs, else 0. |
 
 The scorer also reports the **hallucination rate**: the share of items whose output contains at least one ID outside the corpus. A missing prediction scores 0.
 
 ## The judge
 
-The judge decides claim support, short-text cell equivalence, and follow-up quality; everything else is string and set math. It's `qwen3.5:9b` through Ollama at temperature 0, with the prompts in `prompts/judge.md`. `results.json` records the model's digest, and every decision is cached by digest and prompt version, so a rerun gives the same scores.
+The judge decides claim support, short-text cell equivalence, and follow-up quality; everything else is string and set math. It's `qwen3.5:9b` through Ollama at temperature 0, with the prompts in `prompts/judge.md`. `results.json` records the model's digest, the Ollama version, and each prompt's version, and every decision is cached by digest and prompt version, so a rerun gives the same scores. Without the cache, results can drift slightly across Ollama versions: the same model digest gave different answers on 2 of 44 known-answer cases after Ollama updated itself.
 
 We compared it with `gemma4:12b` on 44 known-answer cases (`docs/judge_comparison.md`). With the claim number check in place, Qwen's claim-support error was half of Gemma's (1.0 against 2.0 over 22 claims). Those labels are Claude's drafts, not yet checked by a person.
 
-A teammate also labeled 30 of the judge's real decisions on baseline outputs, blind to the judge's answers (`docs/judge_validation.md`). They agreed on 14 of 22 claims. In every disagreement the judge was more generous, though most came down to the reviewer reading paraphrases more strictly than the rubric intends. On follow-up questions the judge averaged 4.9 out of 5 against the human's 3.1, so treat follow-up scores as lenient. Scores are comparable only between runs that used the same judge. `--judge none` skips it, and judged metrics come back as `null`.
+A teammate also labeled 30 of the judge's real decisions on baseline outputs, blind to the judge's answers (`docs/judge_validation.md`). They agreed on 14 of 22 claims. In every disagreement the judge was more generous, though most came down to the reviewer reading paraphrases more strictly than the rubric intends. On follow-up questions the original rubric averaged 4.9 out of 5 against the human's 3.1. Rubric v2 (2026-11-12) anchors every score level and caps compound and ungrounded questions; it cut the distance from the human's ratings from 1.9 to 1.2 points and lowered the baselines' follow-up scores by 0.1 to 0.17. The judge still rates novelty 5 almost every time, because it sees paper titles but not their text. Scores are comparable only between runs that used the same judge. `--judge none` skips it, and judged metrics come back as `null`.
 
 ## Leaderboard and label review
 

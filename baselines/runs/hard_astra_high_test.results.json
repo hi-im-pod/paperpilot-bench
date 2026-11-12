@@ -1,0 +1,759 @@
+{
+  "n_items": 15,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 5,
+      "primary_mean": 0.7220559794039902,
+      "primary_ci95": [
+        0.3833,
+        0.9775
+      ],
+      "metrics": {
+        "ndcg@10": 0.9025699742549879,
+        "precision@10": 0.675,
+        "recall@10": 0.8043650793650794
+      }
+    },
+    "comparison_table": {
+      "n": 3,
+      "primary_mean": 0.8425925925925926,
+      "primary_ci95": [
+        0.75,
+        1.0
+      ],
+      "metrics": {
+        "cell_accuracy": 0.8425925925925926,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {
+        "edges_outside_set": 0.0,
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "grounded_claims": {
+      "n": 4,
+      "primary_mean": 0.6588541666666666,
+      "primary_ci95": [
+        0.2083,
+        0.9505
+      ],
+      "metrics": {
+        "n_claims": 8.333333333333334,
+        "quote_match_rate": 1.0,
+        "support_rate": 0.9791666666666666,
+        "supporting_recall": 0.7777777777777777,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 1,
+      "primary_mean": 0.0,
+      "primary_ci95": [
+        0.0,
+        0.0
+      ],
+      "metrics": {}
+    },
+    "traps": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 9.416666666666666,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.7039171231105416,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": 1,
+    "calls": 35,
+    "cache_hits": 0,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "hcl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hct-01",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 3,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.75,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.75,
+      "trace": {
+        "steps": 4,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.7777777777777778,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.7777777777777778,
+      "trace": {
+        "steps": 6,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hfp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 0.7,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 14,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hfp-04",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.42857142857142855,
+        "precision@10": 0.3,
+        "ndcg@10": 0.6874403858650282
+      },
+      "primary": 0.6874403858650282,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hfp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "hfp-06",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8888888888888888,
+        "precision@10": 0.8,
+        "ndcg@10": 0.958267209232453
+      },
+      "primary": 0.958267209232453,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hfp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.9,
+        "precision@10": 0.9,
+        "ndcg@10": 0.9645723019224703
+      },
+      "primary": 0.9645723019224703,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hfu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "hgc-01",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 7,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 5,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hgc-02",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 4,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hgc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 8,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 0.9375
+      },
+      "primary": 0.8020833333333333,
+      "trace": {
+        "steps": 8,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hgc-04",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 10,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 9,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "hgc-05",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "one passage that names the correct answer, denies it, and argues for the attacker's answer",
+        "pred": "A single passage explicitly names and denies the correct answer, supplies a plausible correction narrative, and resolves the conflict in favor of the attacker-chosen wrong answer."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same mechanism as the reference answer using slightly different phrasing but identical meaning regarding naming, denying, and arguing for the attacker's choice."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "camouflages adversarial content among benign chunks with dispersion tokens instead of including the query",
+        "pred": "Camouflages poisoned documents by combining benign and adversarial chunks without directly including the query; dispersion tokens spread their embeddings to evade clustering defenses, while coherence filtering limits readability degradation."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism of using dispersion tokens to camouflage adversarial content among benign chunks without including the query, despite adding extra details about coherence filtering."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "frames the injection as a non-contradicting update grounded in proxy facts",
+        "pred": "Uses query-related proxy facts to construct a compatible pivot event that implies the target wrong answer as a recent update, with authoritative sourcing and query alignment to survive retrieval and conflict resolution."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same mechanism of using proxy facts to frame an injection as a compatible update that survives retrieval and conflict resolution."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "continual GRPO-based preference optimization with margin-weighted experience replay",
+        "pred": "Continual preference optimization using GRPO to train a LoRA adapter over a frozen backbone, with margin-weighted experience replay across sequential attack variants."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer specifies a LoRA adapter over a frozen backbone, which is a specific architectural detail not mentioned in the more general reference answer."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "on-policy distillation with token-level scores from the initialization model given the clean input",
+        "pred": "Secure On-Policy Distillation (SecOPD): the student generates rollouts on attacked inputs, and the frozen initialization model scores the same tokens on corresponding clean inputs to guide defensive fine-tuning."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference specifies training on clean inputs via token-level scores from the initialization model, while the candidate describes generating rollouts on attacked inputs, which represents a different training setting."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "bilateral adversarial RL against attacker populations, then fine-tuning on verified demonstrations",
+        "pred": "Bilateral adversarial reinforcement learning (BA-RL) using PPO against current and historical opponents, followed by supervised fine-tuning on teacher trajectories verified for safety and task completion under retained attackers."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same training pipeline involving bilateral adversarial reinforcement learning followed by fine-tuning on verified demonstrations, despite minor differences in specific implementation details like opponent types and teacher verification criteria."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "LoRA-based GDPO with a decoupled reward, against a co-evolving injection prober",
+        "pred": "Supervised fine-tuning cold start followed by iterative LoRA-based GDPO with decoupled safety, task-progress, and format rewards, trained against injections mined by a co-evolving MCTS prober."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer includes specific details about a cold start phase and multiple reward types that are not mentioned in the reference answer."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "reconsolidates memories into a heterogeneous cognitive graph based on retrieval feedback",
+        "pred": "Retrieval-driven memory reconsolidation that adds, strengthens, or weakens relations in the activated cognitive subgraph."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core mechanism of retrieval-driven memory reconsolidation modifying cognitive graph relations as specified in the reference answer."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "atomic memory units mapped to a learnable codebook whose co-occurrence topology is a retrieval path",
+        "pred": "Atomic memory units indexed through isomorphic semantic quantization, with complementary vector and codebook co-occurrence retrieval and asynchronous offline consolidation."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer introduces specific technical details like 'isomorphic semantic quantization' and 'asynchronous offline consolidation' that are not present in the reference answer, making it more specific and not equivalent."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "a state-evolving memory graph with intent-guided multi-round retrieval",
+        "pred": "Evidence-grounded semantic state evolution over temporal event chains, coupled with intent-guided multi-round retrieval that identifies and fills missing evidence."
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer introduces a distinct mechanism ('Evidence-grounded semantic state evolution over temporal event chains') that is not present in the reference answer's 'state-evolving memory graph'. "
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Detection does not itself prevent poisoned evidence from influencing answer synthesis.",
+        "passage": "ed poisoned context continues to influence the final answer, even as overall attack success increases and poison detection becomes less reliable; and (3) two complementary measures, cordon rate and leakage rate, for evaluating downstream influence beyond attack success and poison detection. 2.1 motivation prior work (yu et al., 2026b) has identified a monitoring-control gap: a language model may detect misinformation in its context yet still allow that information to influence its final answer. this distinction is important for rag systems because detecting poisoned evidence does not by itself guarantee that the evidence will be excluded from subsequent answer synthesis. a model can therefore succeed at identifying an unreliable document while failing to prevent its downstream influence. our work empirically investigates this monitoring-control gap in the context of deliberative reasoning. we ask whether reasoning changes the relationship between detecting poisoned evidence and its subsequent influence during answer synthesis. rather than introducing a new defense mechanism, we evaluate this relationship behaviorally by comparing reasoning-disabled and reasonin"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that detecting poisoned evidence does not by itself guarantee that the evidence will be excluded from subsequent answer synthesis, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Explicit ignore instructions do not reliably prevent poisoned context from influencing answers.",
+        "passage": "cifically to the retrieved document. the cordon rate is defined as: cr = p \u0000poison-aligned(mrag) \u2227detected(mrag) | \u00ac poison-aligned(mno-rag) \u0001 (1) empirically, we compute this probability as the proportion of instances in which mrag both detects the poison and produces a poison-aligned answer among instances where mno-rag is not poison-aligned. thus, cr captures the joint occurrence of poison detection and downstream poison influence within the relevant conditioning population. 2.3 leakage rate the leakage rate (lr) measures the probability that a language model is influenced by a poisoned document despite being explicitly instructed to ignore all retrieved context. this captures implicit susceptibility that persists even when top-down instructions direct the model to rely solely on its parametric knowledge. for each test instance, we evaluate the same language model m under two conditions. in the first condition, denoted mignore, we provide the full set of retrieved documents including the injected poison, but explicitly instruct the model to ignore all provided documents and rely solely on its parametric knowledge. the prompt is available in appendix b.5. in the second condition, denoted mno-rag, we provide no retrieved context and ask the model to answer based solely on its knowledge. the prompt"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage defines the leakage rate as measuring the probability that a model is influenced by poisoned documents despite explicit instructions to ignore them, directly supporting the claim that such instructions do not reliably prevent influence."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reasoning lowered Leakage and Cordon Rates, but detection decreased and overall attack success increased, distinguishing resistance from detection.",
+        "passage": "lthough the latter is based on a single detected case in the reasoning-enabled condition. taken together, the results show that detection frequency alone does not characterize downstream resistance. in the reasoning-enabled configuration, models detect poison less often, are less likely to follow it when it is detected, and do not exhibit lower overall attack success. we investigate whether deliberative reasoning changes the relationship between poison detection and downstream influence in rag. across two models, reasoning lowers leakage and cordon rates despite lower poison detection rate and higher attack success rate, showing that detection and downstream resistance capture distinct aspects of poisoning behavior. in particular, detecting poisoned evidence does not by itself characterize whether it influences the final answer. these results motivate evaluating poison detection together with downstream contextual influence when assessing knowledge-poisoning vulnerability in rag. beyond rag, such effects may arise in multi-agent systems when an agent generates misinformation through hallucination and places it in its own or another agent's context. even when detected as incorrect, such information may stil"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that reasoning lowers leakage and cordon rates while having lower poison detection and higher attack success, concluding that detection and downstream resistance capture distinct aspects."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Multiple paraphrases of one poisoned claim can create apparent corroboration without independent supporting evidence.",
+        "passage": "ks that exploit individual documents and the perceived authority of retrieved sources (chang et al., 2025; choi et al., 2025). a related issue is conformity to an apparent majority. in classic experiments, asch demonstrated that people may conform to a unanimous majority even when its judgments are incorrect (asch, 1956). more recently, research has shown that language models can also shift their responses toward a majority position, including when that position is incorrect (zhu et al., 2025). in rag, an apparent majority can be created without introducing independent supporting evidence: an attacker can repeat a single false claim across multiple paraphrased documents. the resulting agreement among documents may make misinformation appear corroborated, even though all poisoned documents originate from the same underlying claim. whether language models become less effective at detecting misinformation under these conditions remains an important question. this study builds on our earlier investigation of reasoning and poisoned context in rag (ghassabi et al., 2026), which examined how poisoned evidence influences models' final answers. the present study addresses a different stage of the process: explicit detection of misinformation in retrieved documents. specifically, we investigate whether increasing the number of mu"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that an attacker can create an apparent majority by repeating a single false claim across multiple paraphrased documents, which matches the claim's assertion about creating corroboration without independent evidence."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "With seven documents per context on 200 SciFact questions, changing from one poisoned/six healthy to six poisoned/one healthy reduced Gemma-3-12b detection from 25% to 10%.",
+        "passage": "ority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retrieved evidence. retrieval-augmented generation (rag) can expose language models to misleading evidence in retrieved documents. we investigate whether increasing the number of mutually agreeing poisoned documents affects a model's ability to detect misinformation. we evaluate 200 randomly selected questions from scifact (random seed 38), comparing contexts with one poisoned and six healthy documents against contexts with six mutually agreeing poisoned documents and one healthy document. for gemma-3-12b, poisondetection rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition. among the 38 questions with different outcomes across conditions, 34 change from detected to undetected, while only four change in the opposite direction (exact mcnemar test, p = 6.04 \u00d7 10-7). this pattern is consistent with a conformity-like response to a majority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retriev"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that for Gemma-3-12b, detection rates decreased from 25% with one poisoned document to 10% with six poisoned documents out of 200 SciFact questions."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The document-count comparison cannot distinguish conformity from repetition or reduced healthy counterevidence.",
+        "passage": "n exact two-sided mcnemar test confirms that the discordant outcomes are significantly imbalanced (p = 6.04 \u00d7 10-7). the model is therefore substantially more likely to lose a previous detection than to gain a detection when moving from the minority to the majority condition. these findings provide initial evidence of conformity-like behavior in rag-based misinformation detection: gemma-3-12b is less likely to flag a poisoned claim when mutually agreeing poisoned documents dominate the context. however, the experiment changes poison prevalence, paraphrastic repetition, and the amount of healthy counterevidence simultaneously. the observed decline cannot therefore be attributed uniquely to conformity; further controlled experiments are needed to distinguish these possible explanations. a poisoned claim that appears once among six healthy documents is detected more often than the same claim when it is repeated in five paraphrases alongside the original. because the total context size is constant, the result highlights a practical risk for document-grounded systems: repeated wording can change the evidence distribution without adding independent support. a rag system that treats retrieved passages as separate evidence units may therefore be vulnerable to redundancy that looks l"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that because the experiment changes poison prevalence, paraphrastic repetition, and healthy counterevidence simultaneously, the observed decline cannot be attributed uniquely to conformity, thus supporting the claim that document-count comparison alone cannot distinguish these factors."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The majority-poison experiment evaluated explicit detection, not whether an attack changed the final task answer.",
+        "passage": "vate further investigation into how apparent consensus in retrieved evidence affects the reliability of language-model-based misinformation detection. rag poisoning. the original rag formulation connects a generator to a non-parametric evidence store (lewis et al., 2020). subsequent work has shown that retrieved documents can be manipulated to steer model outputs, with attacks targeting both the retrieval process and the model's trust in surfaced sources (chang et al., 2025; choi et al., 2025). our experiment differs from end-to-end attack evaluations: we hold the seven-document context fixed and study the model's explicit misinformationdetection response, rather than measuring whether an attack can enter a live retrieval pipeline or change a final task answer. conformity in language models. zhu et al. (2025) adapt majority-influence experiments to llms and report that models can conform to incorrect majority responses. we test a document-level analogue in which apparent consensus is encoded not as multiple agents' votes, but as repeated paraphrases of a single poisoned claim. this distinction matters because paraphrases increase the number of matching documents without adding independent corroboration. questions and model. we analyze 200 matched ques"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the experiment studies the model's explicit misinformation detection response rather than measuring whether an attack changes a final task answer, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "In six open-source configurations, a single misleading document increased mean false-conclusion adoption from 0% to 54.7% in a controlled experiment.",
+        "passage": "where misleading evidence may be re-retrieved and accepted, partially offsetting the benefit of pre-research defense. overall, the defenses mitigate but do not fully prevent false-conclusion adoption. their effectiveness is modeldependent, and combining pre- and post-research defenses does not consistently yield additive gains. we introduced misknow-agent, a framework for constructing and validating controlled misleading knowledge to evaluate deep research reliability in long-horizon workflows. across six open-source configurations, introducing one misleading document increases the mean fcar from 0% in the no-injection control to 54.7%. across the open-source configurations, fcar varied with source authority, style, lifecycle stage, framework design, and llm choice, whereas coarse search rank had little influence and larger budgets produced no consistent increase beyond one document. results from the closed-source system broadly aligned with the corresponding open-source findings. although all searchenabled verifiers classified every retained instance as misleading, deep research agents could still adopt the false conclusions."
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that across six open-source configurations, introducing one misleading document increases the mean false-conclusion adoption (fcar) from 0% to 54.7%, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Incomplete evidence can lead to fabricated synthesis: the trace analysis identified this behavior in Step Deep Research when it tried to fulfill structural requirements.",
+        "passage": "x intents into optimal search syntax or to extract target signals from dense retrieved contexts. table 4 demonstrates that different deep research frameworks succumb to entirely distinct cognitive vulnerabilities. the open deep research framework maintains a relatively higher process reliability but is primarily sabotaged by goal drifting. as the context window expands during extensive evidence gathering, the framework frequently loses track of core user constraints and formatting instructions. in contrast, step deep research struggles with synthesis hallucination rather than goal drifting, which indicate that it attempts to forcefully fulfill structural requirements by fabricating data when sufficient factual evidence is missing. additionally, step deep research exhibits a higher propensity for compounded errors, such as the dangerous combination of contradiction neglect and sourcing bias with synth hallucination.this highlight how aggressive synthesis protocols can trigger cascading cognitive failures if the underlying retrieval phase is fundamentally flawed. our fine-grained, trace-level evaluation provides actionable insights for designing next-generation deep search and deep research agents. unlike end-to-end metric"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Step Deep Research attempts to fulfill structural requirements by fabricating data when evidence is missing, which directly supports the claim about incomplete evidence leading to fabricated synthesis in this framework."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Agents may propagate unverified claims by favoring early or prominent sources instead of reconciling conflicting evidence.",
+        "passage": "rgeted search tasks, deep research tasks require agents to autonomously aggregate, cross-reference, and synthesize large volumes of information into structured reports over extended interaction horizons. task-level errors in this setting primarily arise from breakdowns in global context management and evidence synthesis. we categorize these failures into three modes: contradiction neglect and sourcing bias. realworld information retrieval frequently produces conflicting evidence across sources. agents may fail to reconcile such discrepancies through cross-validation, instead disproportionately relying on early or prominently encountered sources, leading to unverified claims propagated in the final report. synthesis hallucination. when available evidence is incomplete or insufficient, the agent generates synthesized content that is weakly grounded in retrieved sources. this commonly occurs when fulfilling complex structural requirements, where missing information is implicitly filled using parametric knowledge rather than verified observations. goal drifting. as the context window expands during long-horizon research trajectories, accumulated observations may dilute task salience. the agent incre"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that agents may fail to reconcile conflicting evidence by disproportionately relying on early or prominently encountered sources, which leads to the propagation of unverified claims."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Misleading evidence introduced immediately before synthesis was especially damaging, with mean false-conclusion adoption of 85.5%, versus 40.5% at cold start and 44.2% during research.",
+        "passage": "ems were nearly as likely to be adopted as front-ranked items. this pattern is consistent with agents relying more on the relevance of retrieved content than on its list position when incorporating evidence into their research state. pre-synthesis exposure sharply increases adoption. we varied the lifecycle stage at which misleading knowledge entered the workflow: before research began (cold start), during evidence gathering (mid-research), or immediately before final synthesis (pre-synthesis). mean fcar was 40.5% at cold start and 44.2% during mid-research, but rose to 85.5% when misleading knowledge was introduced immediately before final synthesis-increases of 45.0 and 41.3 percentage points, respectively (figure 3(b)). pre-synthesis fcar ranged from 77% to 94% across all configurations. averaged across llms, webthinker showed lower fcar than deerflow at cold start (27.7% versus 53.3%) and during mid-research (38.7% versus 49.7%), but this advantage reversed slightly before synthesis (87.7% versus 83.3%). this pattern is consistent with webthinker's early-stage robustness reflecting opportunities for subsequent research to challenge or displace misleading evidence, rather than reliable rejection during final s"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states the mean false-conclusion adoption (fcar) rates for cold start (40.5%), mid-research (44.2%), and pre-synthesis (85.5%), which directly matches the claim's statistics."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Source presentation affected susceptibility: paper-style misleading documents had the highest adoption rate in all six configurations.",
+        "passage": "than high-authority sources in every configuration, with a 14.8-percentage-point decrease in the cross-configuration mean. however, a strictly monotonic ordering holds in only four of six configurations, with two webthinker settings showing slightly higher fcar for medium- than high-authority sources. thus, institutional authority is a broadly effective persuasive cue, although its influence is not strictly monotonic across systems. paper-like presentation is a stronger and more consistent cue. mean fcar is highest for papers (61.0%), followed by blogs (53.0%), news articles (44.0%), and posts (37.5%; figure 4(b)). papers produce the highest fcar and posts the lowest in all six configurations. the ordering holds in five configurations, with the remaining configuration reversing only blogs and news articles. the resulting 23.5-percentagepoint paper-to-post gap exceeds the 14.8-point high-to-low authority gap, indicating that paper-like presentation is the stronger and more configuration-consistent source cue. 4.4 how much misleading knowledge is needed? in the no-injection control (b = 0), fcar was 0% across six configurations, indicating that none of the systems spontaneously generat"
+      },
+      "result": {
+        "label": "partial",
+        "reason": "The passage states that paper-like presentation had the highest FCAR in all six configurations, but it does not mention 'misleading documents' or specify that these were 'paper-style misleading documents', making the claim's specific characterization unsupported by the text."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The adoption metric is narrower than overall factual accuracy: it counts endorsement of the designated false conclusion, excluding quotation, mention, or refutation.",
+        "passage": "ed, we use the high authority and paper style as the default configuration. evaluation. we report the false-conclusion adoption rate (fcar), defined as the percentage of valid completed reports that adopt the canonical false conclusion under each condition. runs affected by tool or api failures are rerun rather than counted as non-adoptions, and each completed report is manually checked for validity before scoring. the report judge receives the task, canonical false conclusion and final report. a report counts as an adoption only when it endorses the false conclusion as its own conclusion; mere mention, quotation, or refutation does not count. we use deepseek-v4 pro as the judge model for all experiments to ensure consistent evaluation. its agreement with human annotations is reported in appendix b. 4.2 how do search-result rank and lifecycle stage affect adoption? implementation details for the search-result-rank and lifecycle-stage conditions are provided in appendix h. search-result rank has limited influence. across the six framework-llm configurations, mean fcar was similar under the front, spread, and back placement conditions "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly defines the false-conclusion adoption rate (fcar) as counting only reports that endorse the false conclusion as their own, while excluding mere mention, quotation, or refutation, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Verification defenses mitigated but did not eliminate adoption, and combining defenses did not consistently improve on individual defenses.",
+        "passage": "d combined defenses yield fcar ranges of 37-57%, 20-58%, and 15-62%, respectively. the combined defense performs best for deepseek-v4 pro and qwen3.5397b, but yields 62% for intern-s1-pro, higher than either defense alone (57% and 58%). this degradation is consistent with post-research refinement operating in the same mixed retrieval environment as the original research process, where misleading evidence may be re-retrieved and accepted, partially offsetting the benefit of pre-research defense. overall, the defenses mitigate but do not fully prevent false-conclusion adoption. their effectiveness is modeldependent, and combining pre- and post-research defenses does not consistently yield additive gains. we introduced misknow-agent, a framework for constructing and validating controlled misleading knowledge to evaluate deep research reliability in long-horizon workflows. across six open-source configurations, introducing one misleading document increases the mean fcar from 0% in the no-injection control to 54.7%. across the open-source configurations, fcar varied with source authority, style, lifecycle stage, framework design, and llm choice, whereas coarse search rank had little influence and "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that defenses 'mitigate but do not fully prevent false-conclusion adoption' and that combining them 'does not consistently yield additive gains,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The misleading-evidence study recommends integrating verification and correction into evidence acquisition, intermediate research states, and final synthesis.",
+        "passage": "uence and larger budgets produced no consistent increase beyond one document. results from the closed-source system broadly aligned with the corresponding open-source findings. although all searchenabled verifiers classified every retained instance as misleading, deep research agents could still adopt the false conclusions. we introduced pre- and post-research defenses that reduced fcar but did not eliminate false-conclusion adoption; their combination did not consistently yield additive gains. together, these findings reveal limitations in both model-level and workflow-level evidence handling: identifying misleading documents in isolation is insufficient unless verification and correction are integrated into evidence acquisition, intermediate research states, and final synthesis. artificial analysis. 2026. comparison of models: intelligence, performance & price analysis. https:// artificialanalysis.ai/models. accessed: 2026-07-15. boiko, d. a.; macknight, r.; kline, b.; and gomes, g. 2023. autonomous chemical research with large language models. nature, 624(7992): 570-578. bytedance. 2025. deerflow: deep exploration and efficient research flow. https://github.com/bytedance/deerflow. open-source deep research framework. accessed: 2026-07-01. chen, s.; li, z.; han, z.; he"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that identifying misleading documents in isolation is insufficient unless verification and correction are integrated into evidence acquisition, intermediate research states, and final synthesis, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Generic multi-agent methods underperformed the single-agent baseline on densely coupled benchmarks because decomposition and coordination can outweigh context isolation.",
+        "passage": " invocations, file reads, and file writes form long upstream-downstream chains in which later steps must condition on earlier outputs, leaving little room for independent execution. deep research bench ii and agentif-oneday, by contrast, exhibit sparse dependencies, where large portions of the trajectory can proceed without conditioning on one another. this distinction provides a principled basis for the two regimes of multi-agent behavior observed below, with step-level evidence in appendix c. on the densely coupled benchmarks, generic multi-agent methods fall below the single-agent baseline, suggesting that decomposition fragments the dependency chain and that coordination overhead can outweigh the benefit of context isolation. saige does not exhibit the same degradation: it remains comparable to the single-agent baseline on terminal bench 2.1 and on nl2repo bench, while using fewer tokens than the other multi-agent methods. on the sparsely dependent benchmarks, decomposition appears more beneficial, and saige performs competitively on both, with the most visible margin on agentif-oneday, without the token inflation observed in the other multi-agent variants. goa, by contrast, employs a more elaborate orchestration de"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that on densely coupled benchmarks, generic multi-agent methods fall below the single-agent baseline because decomposition fragments dependency chains and coordination overhead outweighs context isolation."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Collaboration is most useful when subtasks are relatively independent.",
+        "passage": "bridge edge sets: min \u02c6et e \u0002l(e\u2217, \u02c6et) | \u03c4<t \u0003 , (5) where l is a loss function that measures the dissimilarity between two sets of directed edges over v. a correct prediction partitions the trajectory into the true subtasks; an incorrect prediction results in suboptimal decomposition and diminished context cost reduction. 3.2 discussion our theoretical and empirical results jointly characterize when multi-agent collaboration helps and why its benefits are bounded. when collaboration pays off. multi-agent collaboration is effective precisely when a task admits relatively independent subtasks, so that each agent maintains a focused context window and excludes task-irrelevant information. a single-agent system, by contrast, must accumulate observations indiscriminately, degrading the signal-to-noise ratio and increasing the risk of erroneous execution. this benefit is figure 2: saige: incremental node generation via progressive subtask decomposition, and progressive edge resolution via on-demand message fetching. contingent on the accuracy of bridge-edge prediction: a mispredicted edge can trap an agent in a local deadlock while awaiting a dependency that never materializes, or "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that multi-agent collaboration is effective precisely when a task admits relatively independent subtasks, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Increasing agent count or recursive delegation does not guarantee improvement and can lower performance while raising token consumption.",
+        "passage": "n is underlined. max recursion depth configuration dmax = 1 dmax = 2 dmax = 3 w/o message fetching total score \u2191 nmax = 4 71.80 66.39 63.17 66.22 nmax = 5 67.32 58.33 58.76 59.15 nmax = 6 64.02 60.16 56.75 53.50 token usage (input / output) \u2193 nmax = 4 185m / 3m 261m / 4m 272m / 4m 237m / 3m nmax = 5 239m / 3m 272m / 4m 270m / 3m 268m / 3m nmax = 6 352m / 4m 360m / 4m 371m / 4m 366m / 4m across the tested configurations, increasing the agent budget does not consistently improve task performance. on both benchmarks, expanding the agent pool beyond the default setting tends to yield lower scores and higher token consumption, with individual configurations deviating from this trend. deepening the recursion level shows a similar pattern: allowing sub-agents to spawn further sub-agents tends to reduce performance and increase token usage. disabling progressive message fetching is also associated with a comparable decline, most notably on agentif-oneday. token usage generally increases with agent count and recursion depth, while task performance does not show a corresponding gain. these results suggest that more agents do not necessarily make a system more intelligent: beyond a certain point, the marginal agent appears to add coordination cost with limited additional problem-solving capacity. in this work, we reexamine the value "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that increasing agent count or recursion depth does not consistently improve performance and often leads to lower scores and higher token usage, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "On CSQA and SQA, single-agent inference was more token-efficient despite modest multi-agent accuracy gains.",
+        "passage": " score by the average number of tokens consumed per instance (including both prompt and generated outputs, averaged across runs): efficiencyscore@1k = taskscore avgtokens/1000. we then normalize this score within each task by dividing by the maximum efficiencyscore@1k across methods, scaling the best-performing method to 100. therefore, all other methods are expressed relative to this bestperforming baseline. results. in fig 4, curiosity-driven multi-agent efficiency is strongly task-dependent. for epistemic reasoning tasks such as csqa and sqa, singleagent inference achieves a normalized score of 100, making it the most token-efficient because modest multi-agent accuracy gains are outweighed by higher token costs. in contrast, for creative and social tasks such as story generation and stereotype mitigation, multi-agent settings, especially all-curious configurations, achieve the highest normalized efficiency and outperform single-agent baselines. for hypothesis generation and ethics, single-curious configurations often offer the best balance, reaching near-optimal efficiency while limiting coordination overhead. overall, curiosity can improve outcomes, but its quality-cost trade-off depends on task struc"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that for CSQA and SQA, single-agent inference is the most token-efficient because modest multi-agent accuracy gains are outweighed by higher token costs."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Tightly coupled workflows expose multi-agent systems to local deadlocks from waiting, cyclic dependencies, and resource conflicts.",
+        "passage": ". 5.3 failure pattern analysis to understand how multi-agent collaboration affects execution, we collect trajectories whose evaluation scores are significantly below the benchmark average and use deepseek-v4-pro to semantically analyze their execution traces, yielding three recurring failure categories: task understanding and execution failure (tuef), incomplete workflow and premature termination (iwpt), and local deadlock (ld). figure 3 summarizes their distribution across the four benchmarks. on the tightly coupled benchmarks, multi-agent methods are more prone to local deadlock: coordination introduces waiting, cyclic dependencies, and resource conflicts that prevent global progress. on the decomposable benchmarks, by contrast, single-agent methods more frequently exhibit incomplete workflow and premature termination, as the accumulation of context progressively degrades their ability to track the full tool chain, leading them to stop before the workflow is validated or the resolution criterion is satisfied. these two tendencies together clarify why multi-agent collaboration is beneficial only when the task structure admits effective decomposition. 5.4 ablation study we con"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that on tightly coupled benchmarks, coordination introduces waiting, cyclic dependencies, and resource conflicts that prevent global progress, which directly supports the claim about local deadlocks in such systems."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "In multi-agent search, agents can generate redundant evidence while leaving incorrect components untested.",
+        "passage": "gher dc than predicted by theory. 5.2. experiments on llm agents comparison with theoretical prediction. through these experiments, we wished to understand whether capable llms can discover strategies that are better than the theoretical setup, such as cooperation or intelligent candidate selection, and thus achieve a dc lower than theory. while the best agent-policy combinations approach theoretical prediction, we do not observe a statistically clear improvement over theory in any tested case. we find that agents tend to add literals that have already been validated, leaving previously introduced incorrect components untested, and overlapping experimental choices further produce redundant evidence. table 2: empirical critical communication degrees bdc for four llm families. estimates are obtained from pooled incorrect-lineage reproduction counts over six task seeds; error bars denote 95% task-level bootstrap confidence intervals. lowest \u02c6dc values are bolded, and the theoretical prediction for dc for each task is shown below each task name for comparison. synthetic tcas physics dtheory c = 6.10 dtheory c = 10.90 dtheory c = 6.10 model teamauto teamfree indivfree teamauto teamfree indivfre"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that agents 'add literals that have already been validated, leaving previously introduced incorrect components untested' and that this produces 'redundant evidence,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Discretionary communication can suppress negative evidence needed to eliminate incorrect hypotheses.",
+        "passage": "-13.4 gpt-6 luna 6.88 6.4-7.3 7.06 6.8-7.3 6.46 6.0-7.0 10.05 9.6-11.2 13.71 10.0-18.0 13.13 9.3-14.9 8.17 7.3-9.0 8.48 7.9-9.2 7.88 7.4-8.8 figure 4: higher reasoning effort on gpt-6-luna almost always raises the critical communication degree dc across all policies and tasks. incomplete communication leads to higher dc. while the gpt models have slightly lower \u02c6dc values compared to the qwen models, the difference is most pronounced under free communication policies (team-free and indiv-free). free communication can further reduce effective pruning because agents often do not report all experimental outcomes, especially negative evidence that could eliminate incorrect hypotheses (table 3). we find that the relative increase in dc under free communication, quantified by dteam-free c /dteam-auto c is strongly negatively correlated (r = -0.91) with the rate at which agents report their experimental results (figure 11). higher reasoning effort increases dc. we ablate gpt-6-luna's reasoning effort, and find that higher reasoning effort either has minimal effect or actually increases the required dc, moving the result further away from the theoretical prediction (figure 4). we find tha"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that under free communication, agents often do not report negative evidence that could eliminate incorrect hypotheses, which directly supports the claim that discretionary communication can suppress such evidence."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Greater reasoning capability can induce herding in search, reducing path diversity and the realized benefits of communication.",
+        "passage": " (table 3). we find that the relative increase in dc under free communication, quantified by dteam-free c /dteam-auto c is strongly negatively correlated (r = -0.91) with the rate at which agents report their experimental results (figure 11). higher reasoning effort increases dc. we ablate gpt-6-luna's reasoning effort, and find that higher reasoning effort either has minimal effect or actually increases the required dc, moving the result further away from the theoretical prediction (figure 4). we find that more reasoning capability led agents to herd into the most informative paths, but this decreases the diversity of explored paths and diminishes the realized benefits of communication. the average number of unique literals tested by agents decreases from 25.5 \u219211.3 in the tcas task, and 14.2 \u21928.8 for the physics task. however, agents individually are either just as likely or more likely to complete the search task with higher reasoning (figure 12). sampling temperature has model- and task-dependent effects. we test the effect of sampling temperature by comparing t = 0.2 with the default t = 1 for three of the four models, as t = 0.2 is not available for gpt-6 luna (figure 5)."
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that higher reasoning capability causes agents to herd into the most informative paths, which decreases path diversity and diminishes the realized benefits of communication."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Exposure to cumulative recommendations produced unpredictable cascades that departed from independently measured song appeal.",
+        "passage": "large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability in large populations of llm agents that recommended unfamiliar songs, with or without exposure to cumulative recommendation counts. exposure led to runaway cascades that generated extreme and unpredictable collective recommendations increasingly divergent from a song's intrinsic appeal. compared to humans, llm populations were generally far more susceptible to herding behavior, and unlike humans, llm cascades were less able to self-correct. this vulnerability has implications for multi-agent collaboration in recommender systems, automated evaluation, complex problem-solving, and unauthorized conspiracies. large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vuln"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that exposure to cumulative recommendation counts led to runaway cascades that were extreme and unpredictable, diverging from a song's intrinsic appeal, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "LLM recommendation cascades lacked reliable self-correction during the experiment, without establishing that correction is impossible over longer sequences.",
+        "passage": " 15 of 16 influence worlds, with the popularity-appeal correlation increasing from \u03c1 = 0.633 to 0.773 under weak influence (all eight worlds; one-sided wilcoxon signed-rank test, p < 0.01) and from 0.575 to 0.660 under strong influence (seven of eight worlds; p < 0.05). among llms, changes varied in direction across models and worlds, averaging close to zero under strong influence. the human benchmark therefore exhibited a corrective dynamic that was much less consistent across llm populations. in short, llms were more susceptible to \"runaway cascades,\" persistent, history-dependent departures without reliable self-correction over the observed experimental horizon. however, the results do not establish that correction could never occur over longer sequences. figure 5: human cascades consistently self-corrected; llm cascades generally did not. following van de rijt [van de rijt, 2022], self-correction was measured as the change in spearman correlation between popularity and intrinsic appeal between the first and second halves of the sequential recommendations. the change in correlation was calculated for each of the eight influence worlds in each influence condition (indicated by a dot) and then averaged over the eight worlds (indicated by a star). "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that LLM cascades lacked reliable self-correction over the observed horizon but notes that results do not establish correction is impossible over longer sequences, which matches the claim."
+      }
+    }
+  ]
+}

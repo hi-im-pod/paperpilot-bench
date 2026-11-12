@@ -18,7 +18,32 @@ There are 30 judge decisions (`qwen3.5:9b`, temperature 0), drawn at random (see
 | Table-cell equivalence | 3 | 2/3 agree, kappa 0.40 |
 | Follow-up rubric (1 to 5 per criterion) | 5 | Mean absolute difference 2.0 on specific, 2.0 on grounded, 1.6 on novel. Human mean 3.1, judge mean 4.9 |
 
-**Follow-up questions.** The judge is far more lenient than the human. On no question did the two come within one point on average, and the human rated every question lower. This confirms what the baselines suggested: both scored 0.97 on follow-ups, so the metric barely separates agents. The rubric or the judge prompt needs tightening before follow-up scores mean much.
+**Follow-up questions.** The judge is far more lenient than the human. On no question did the two come within one point on average, and the human rated every question lower. This confirms what the baselines suggested: both scored 0.97 on follow-ups, so the metric barely separates agents.
+
+### Rubric v2 (2026-11-12)
+
+The follow-up prompt was rewritten in response (`prompts/judge.md`, `PROMPT_VERSIONS["followup_score"] = 2`):
+
+- Every level of each criterion has an anchor, and the prompt asks for the lower score when unsure.
+- The judge first copies the gap-note phrase the question addresses (or "none") and counts how many separate questions it asks.
+- The scorer then enforces two caps in code (`apply_followup_caps`): specific is at most 3 for a question with two or more parts, and grounded is at most 3 when no gap applies. Four of the five rated questions asked two things at once.
+
+Results:
+
+| Check | v1 | v2 |
+|---|---|---|
+| Mean absolute distance from the human, 5 questions (in-sample) | 1.87 | 1.20 |
+| Known-answer pairs ranked correctly (`judge_eval.py`) | 6/6 | 6/6, mean gap 1.8 points |
+| Follow-up score, main B1 / B0 | 0.97 / 0.95 | 0.84 / 0.83 |
+| Follow-up score, hard B1 / B0 | 0.97 / 0.97 | 0.87 / 0.80 |
+
+Read these with care:
+
+- **In-sample.** The five human-rated questions shaped the rubric, so the drop from 1.87 to 1.20 is a sanity check, not a validation. A fresh human-labeled sample would be needed to claim the judge now matches people.
+- **Novelty stays saturated.** The judge rated every question 5 on novelty under both rubrics, while the human gave 2 to 4. The judge sees paper titles and gap notes, not the papers' text, so it can't tell whether a paper already ran the proposed test. Fixing that would mean giving it the papers, which a 9B model with a short prompt handles poorly.
+- **Still a weak discriminator.** With one or two follow-up items per split, B1 and B0 differ by 0.01 on the main track and 0.07 on the hard track, both within noise.
+
+Only follow-up decisions were re-judged. Claim and table-cell decisions came from the cache, and every other score is unchanged.
 
 **Claim support.** All 8 disagreements go one way: the human said "partly supported" where the judge said "supported". The human's notes put them in two groups:
 

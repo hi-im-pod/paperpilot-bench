@@ -1,0 +1,1300 @@
+{
+  "n_items": 30,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 9,
+      "primary_mean": 0.6736137800834265,
+      "primary_ci95": [
+        0.3947,
+        0.8908
+      ],
+      "metrics": {
+        "ndcg@10": 0.8660748601072628,
+        "precision@10": 0.6428571428571429,
+        "recall@10": 0.7388321995464853
+      }
+    },
+    "comparison_table": {
+      "n": 5,
+      "primary_mean": 0.7833333333333333,
+      "primary_ci95": [
+        0.3833,
+        1.0
+      ],
+      "metrics": {
+        "cell_accuracy": 0.9791666666666666,
+        "evidence_match_rate": 1.0,
+        "row_recall": 1.0,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 5,
+      "primary_mean": 0.9957446808510639,
+      "primary_ci95": [
+        0.9872,
+        1.0
+      ],
+      "metrics": {
+        "edges_outside_set": 0.0,
+        "f1": 0.9957446808510639,
+        "precision": 0.9916666666666666,
+        "recall": 1.0
+      }
+    },
+    "grounded_claims": {
+      "n": 6,
+      "primary_mean": 0.7569444444444443,
+      "primary_ci95": [
+        0.4444,
+        0.9514
+      ],
+      "metrics": {
+        "n_claims": 7.0,
+        "quote_match_rate": 1.0,
+        "support_rate": 1.0,
+        "supporting_recall": 0.8166666666666667,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 2,
+      "primary_mean": 0.8611111111111112,
+      "primary_ci95": [
+        0.8333,
+        0.8889
+      ],
+      "metrics": {
+        "n_questions": 3.5,
+        "rubric": 0.8611111111111112
+      }
+    },
+    "traps": {
+      "n": 3,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 10.73076923076923,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.8451245583038965,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 55,
+    "cache_hits": 0,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "cl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "cl-02",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "cl-03",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 0.9583333333333334,
+        "recall": 1.0,
+        "f1": 0.9787234042553191,
+        "edges_outside_set": 0
+      },
+      "primary": 0.9787234042553191,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "cl-04",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 14,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "cl-06",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "ct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0,
+        "row_recall": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 11,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "ct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 4,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "ct-04",
+      "type": "comparison_table",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 4,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "ct-05",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.9166666666666666,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.9166666666666666,
+      "trace": {
+        "steps": 6,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "ct-06",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "ct-07",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 7,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-01",
+      "type": "find_papers",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "fp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.42857142857142855,
+        "precision@10": 0.3,
+        "ndcg@10": 0.6874403858650282
+      },
+      "primary": 0.6874403858650282,
+      "trace": {
+        "steps": 8,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-03",
+      "type": "find_papers",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 11,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.9,
+        "precision@10": 0.9,
+        "ndcg@10": 0.9659804619501942
+      },
+      "primary": 0.9659804619501942,
+      "trace": {
+        "steps": 14,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-07",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.6666666666666666,
+        "precision@10": 0.6,
+        "ndcg@10": 0.8649578895775878
+      },
+      "primary": 0.8649578895775878,
+      "trace": {
+        "steps": 14,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.875,
+        "precision@10": 0.7,
+        "ndcg@10": 0.9565363473712202
+      },
+      "primary": 0.9565363473712202,
+      "trace": {
+        "steps": 13,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-09",
+      "type": "find_papers",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "fp-10",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 1.0,
+        "precision@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-13",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.4444444444444444,
+        "precision@10": 0.4,
+        "ndcg@10": 0.6453897321504832
+      },
+      "primary": 0.6453897321504832,
+      "trace": {
+        "steps": 13,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fp-14",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.8571428571428571,
+        "precision@10": 0.6,
+        "ndcg@10": 0.9422192038363258
+      },
+      "primary": 0.9422192038363258,
+      "trace": {
+        "steps": 13,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 3,
+        "rubric": 0.888888888888889
+      },
+      "primary": 0.888888888888889,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "fu-02",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 4,
+        "rubric": 0.8333333333333334
+      },
+      "primary": 0.8333333333333334,
+      "trace": {
+        "steps": 15,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-02",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 8,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 9,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 5,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-06",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 7,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 1.0,
+        "support_rate": 1.0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 9,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-07",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": true,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 0.0,
+      "trace": null
+    },
+    {
+      "id": "gc-08",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 8,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.75,
+        "support_rate": 1.0
+      },
+      "primary": 0.875,
+      "trace": {
+        "steps": 7,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-09",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 6,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    },
+    {
+      "id": "gc-10",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 6,
+        "agent": "codex-gpt-6-astra-high"
+      }
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "mechanism",
+        "setting": "what the defense separates or controls to stop injected instructions",
+        "gold": "separates the trusted prompt from untrusted data with special delimiters in a structured query and trains the model to follow only the prompt",
+        "pred": "StruQ separates prompt instructions from data and trains the LLM to ignore instructions in the data portion."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same mechanism of separating trusted prompts from untrusted data to prevent instruction following on injected content."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "mechanism",
+        "setting": "what the defense separates or controls to stop injected instructions",
+        "gold": "trains the model to prioritize system and user instructions over instructions in lower-privileged inputs such as tool outputs",
+        "pred": "Instruction Hierarchy prioritizes system messages over user messages and third-party content, training the model to ignore lower-privileged instructions that conflict with higher-privileged instructions."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same mechanism of establishing a priority hierarchy where system instructions override lower-privileged inputs like tool outputs."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "mechanism",
+        "setting": "what the defense separates or controls to stop injected instructions",
+        "gold": "separates control flow from data flow and enforces security policies when tools are called",
+        "pred": "CaMeL separates trusted control flow from untrusted data and enforces capability-based security policies on tool calls to prevent unauthorized data flows."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism of separating control flow from data flow and enforcing security policies on tool calls as the reference answer, despite using slightly more specific phrasing."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "generator",
+        "setting": "the language model that generates the output in the main experiments",
+        "gold": "Llama 2 (7B and 13B) fine-tuned with reflection tokens",
+        "pred": "Llama2 7B and 13B"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer correctly identifies the same base models (Llama 2 7B and 13B) as the reference, omitting only the specific fine-tuning detail which is a variation in specificity rather than a different model identity."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "generator",
+        "setting": "the language model that generates the output in the main experiments",
+        "gold": "GPT-3 (code-davinci-002) and Flan-T5",
+        "pred": "OpenAI GPT3 (code-davinci-002) and Flan-T5 (principally Flan-T5-XXL)"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer identifies the same models as the reference, with minor variations in naming (e.g., 'OpenAI GPT3' vs 'GPT-3') and added specificity about Flan-T5 variants that do not change the core meaning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "few-shot exemplars that show intermediate reasoning steps before the answer",
+        "pred": "Demonstrate intermediate reasoning steps"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer is a concise paraphrase of the reference answer, capturing the same core idea without adding or omitting critical technical details."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "sample several chain-of-thought reasoning paths and take the majority-vote answer",
+        "pred": "Sample diverse reasoning paths and majority-vote answers"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core idea as the reference by using synonymous phrasing ('diverse' vs 'several', 'paths' vs 'reasoning paths') without changing the meaning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "add \"Let's think step by step\" to the prompt to trigger reasoning without examples",
+        "pred": "Prompt step-by-step reasoning, then extract the answer"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference specifies adding a particular phrase to trigger reasoning without examples, while the candidate describes a general process of prompting for reasoning and extracting answers, which are not semantically equivalent."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "generate a program whose execution by a Python interpreter gives the answer",
+        "pred": "Generate programs and execute them with a Python interpreter"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core idea as the reference answer, differing only in phrasing and lack of specific model name."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "calculator, Q&A system, search engine, translation system, calendar",
+        "pred": "Question answering system, Wikipedia search engine, calculator, calendar, and machine translation system."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer lists the same functional tools as the reference, using slightly more verbose phrasing and synonyms (e.g., 'Question answering system' vs 'Q&A system')."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "machine-learning model APIs from HuggingFace, TorchHub and TensorHub (APIBench)",
+        "pred": "HuggingFace, TorchHub, and TensorFlow Hub APIs."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer lists the same three major model hosting platforms (HuggingFace, TorchHub, and TensorFlow Hub) as the reference, with only minor wording differences."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "16,464 real-world REST APIs from RapidAPI (ToolBench)",
+        "pred": "16,464 real-world RESTful APIs spanning 49 categories from RapidAPI Hub."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer provides the same core information about the number and source of APIs as the reference, with only minor descriptive additions regarding categories and API style."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "expert AI models hosted on Hugging Face",
+        "pred": "Hugging Face expert AI models for language, vision, speech, and other modalities."
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer specifies the same expert AI models hosted on Hugging Face as the reference, merely adding detail about supported modalities."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "When ExpeL's accumulated insights exceed its context window, can retrieval that tracks supporting experiences and retires contradicted insights outperform a fixed sliding window and similarity-only retrieval on a continuing sequence of ALFWorld tasks with changing object-location distributions, measured by task success, adaptation speed, and retention on unchanged tasks under the same prompt-token budget?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the stated limitation of ExpeL regarding context window constraints and lifelong learning by proposing a specific retrieval strategy to test against existing baselines on a defined benchmark with clear metrics."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "ExpeL reports that adding Reflexion-generated reflections to insight extraction reduces HotpotQA success, possibly because of hallucinations. Can checking each reflection against its originating trajectory and rejecting unsupported statements make these reflections useful, compared with both unfiltered reflections and ExpeL's original success/failure-pair extraction, as measured by unsupported-insight rate and held-out HotpotQA success under equal inference budgets?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
+        "novel": 5,
+        "reason": "The question precisely targets the reliability of reflections (a stated gap) by proposing a specific verification mechanism against trajectories, making it highly specific and novel while extending beyond the original papers' reported experiments."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "For Reflexion applied to nondeterministic generator functions and impure functions that call APIs, can repeated execution with statistical or invariant-based checks produce more reliable feedback than self-generated exact input-output tests, measured by false acceptance of incorrect programs, false rejection of correct programs, and final program correctness under a fixed execution budget?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "This question directly addresses the specific gap regarding unreliable test-driven feedback for non-deterministic/impure functions by proposing a concrete alternative method (statistical/invariant checks) and defining clear metrics to evaluate it."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Does extending SA-RetRobust training from one retrieved passage per question to multiple passages with uniformly randomized answer positions reduce the middle-position accuracy deficit identified in 2307.03172? On NaturalQuestions-Open, compare original and extended training at matched training budgets, measuring worst-position accuracy and the best-to-worst position gap as context length and the proportion of irrelevant passages increase.",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "Models struggle to use information in the middle of long contexts",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the 'middle' gap using a specific proposed method (SA-RetRobust extension) and clear metrics, though it combines two distinct inquiries (accuracy deficit reduction vs. comparison of gaps across conditions)."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Can a retrieval gate combining NLI entailment with the change in candidate-answer log probability with versus without retrieved context preserve useful, non-entailing evidence better than the NLI-only back-off in 2310.01558? On NQ and 2WIKIMQA, measure rejection of helpful passages and acceptance of harmful passages at a matched overall rejection rate, particularly when answering requires combining retrieved evidence with parametric knowledge.",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
+        "novel": 5,
+        "reason": "The question directly addresses the open problem of general robustness to irrelevant context while proposing a specific novel method (NLI + log-probability change) and clear metrics, though it extends slightly beyond the exact phrasing of the gap by focusing on preserving non-entailing evidence."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "In Self-Ask and SA-RetRobust on 2WIKIMQA and STRATEGYQA, how does placing a single irrelevant passage at an early versus late retrieval step affect subsequent question decomposition, intermediate-answer errors, and failure to finish within five steps? Holding the remaining evidence fixed, can regenerating from immediately before the corrupted step recover accuracy more effectively than replacing only its intermediate answer?",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
+        "novel": 5,
+        "reason": "The question precisely targets the open problem of general robustness to irrelevant context by proposing a specific experimental setup involving Self-Ask/SA-RetRobust models and measuring recovery strategies, which is novel as the existing papers do not run this specific test."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Which task properties explain why query-aware contextualization nearly solves UUID key-value retrieval but barely improves multi-document QA in 2307.03172? In a controlled progression from exact UUID matching to paraphrased natural-language keys and two-passage inference, hold context length, evidence position, and distractor count fixed and measure where the benefit of placing the query both before and after the context disappears.",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the preliminary study of query-aware contextualization by proposing a controlled experiment to isolate its effects across different task properties, which is not covered in the provided papers."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Helpfulness optimization can encourage harmful compliance, while harmlessness optimization can produce evasiveness and lower helpfulness.",
+        "passage": "principles governing ai behavior, and their implementation, more transparent, and (4) to reduce iteration time by obviating the need to collect new human feedback labels when altering the objective. let us discuss these motivations in more detail. 1.1 motivations scaling supervision we use the term 'scaling supervision' for techniques that leverage ai to help humans to more efficiently supervise ai, making it possible to train systems to behave in desirable ways (e.g. to be helpful, honest, and 1that is, helpfulness tends to increase harmfulness, since models are willing to obey pernicious requests, and conversely models trained to be harmless tend to be more evasive and generally less helpful. by harmfulness we include both a variety of forms of harm to the user and responses that help the user to achieve harmful aims. see [bai et al., 2022, ganguli et al., 2022] for more discussion of our operational definitions of helpful and harmless. pretrained base constitutional rl (pareto improvement) with chain of thought standard rlhf constitutional sl helpful-only helpful + harmless figure 2 we show harmlessness versus helpfulness elo scores (higher is better, only differences are meaningfu"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that helpfulness tends to increase harmfulness (harmful compliance) and that models trained to be harmless tend to be more evasive and less helpful, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The earlier helpful-and-harmless assistant could remain evasive throughout a conversation because human feedback rewarded evasiveness on harmful inputs.",
+        "passage": "human supervision3 as efficacious as possible. a harmless but non-evasive (still helpful) assistant an ai assistant that answers all questions with \"i don't know\" would be harmless, but of course it would also be completely useless. in our prior work using human feedback to train a helpful and harmless assistant [bai et al., 2022], we found that there was a significant tension between helpfulness and harmlessness, and in particular, our assistant often refused to answer controversial questions. furthermore, once it encountered objectionable queries, it could get stuck producing evasive responses4 for the remainder of the conversation. ultimately this was due to the fact that evasiveness was rewarded as a response to harmful inputs by our crowdworkers. one of our goals in this work is to train a helpful and harmless assistant that is never evasive, in order to reduce the tension between helpfulness and harmlessness. so while the assistant must still refrain from helping users with unethical requests, and from expressing offensive language and sentiment, it should always engage and explain why it refuses such requests. this should make it easier to scale up automated red teaming [perez et al., 2022] in future work, since training intensively f"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the assistant could get stuck producing evasive responses because evasiveness was rewarded by crowdworkers as a response to harmful inputs, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Mixing helpfulness and harmlessness preference data allowed preference models to encourage appropriate assistance and refusal of harmful requests.",
+        "passage": "ompt context distillation b human feedback interface pretrained lm rlhf policies initial policy preference model human-feedback comparison data figure 2 this diagram summarizes our data collection and model training workflow. helpful can lead to responses that help humans cause harm or generate toxic content. we demonstrate this tension quantitatively by showing that preference models trained to primarily evaluate one of these qualities perform very poorly (much worse than chance) on the other. fortunately, we find that pms trained on a mixture of both datasets can nevertheless learn the right lessons and behave helpfully when appropriate, while encouraging the polite refusal of harmful requests. with preference models in hand, we then train helpful and harmless assistants via reinforcement learning, using the pm scores as rewards. we evaluate both pm performance and the more relevant performance characteristics of our rlhf-trained models. as can be seen in figure 1, purely helpful rlhf-trained models are far easier to red-team, while helpful+harmless models are both very helpful and much less harmful. a question that's often raised about alignment training is whether it will compromise"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that preference models trained on a mixture of helpful and harmful datasets learn to behave helpfully when appropriate while encouraging the polite refusal of harmful requests, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Larger preference models performed better on both objectives and were less sensitive to the mixture of helpfulness and harmlessness data.",
+        "passage": "by improving general-purpose instruction following). we also find that mixing preference model training for hh with the specialized skill of summarization [stiennon et al., 2020] incurs no degradation in performance in either hh or summarization. so there is no reason not to combine alignment training with more specific, valuable skills. \u2022 there is a tension between helpfulness and harmlessness, which can be measured at the level of both preference modeling and rlhf-trained policies (figure 1). however, as model size increases, pms perform better on both distributions simultaneously and become much more robust to the relative proportions of helpful and harmless training data. \u2022 we also show that one can use ood detection techniques [fort et al., 2021] to reject most strange and harmful requests (figure 22), with little or no harmful examples (figure 23). scaling, rlhf robustness, and iterated 'online' training \u2022 we study scaling relations for pm accuracy as a function of model and dataset size, and find roughly log-linear trends (figure 7), though we encounter some idiosyncrasies (figures 31 and 32). \u2022 we conduct experiments on the robustness of rlhf (see figure 4),"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that as model size increases, preference models perform better on both distributions and become more robust to the relative proportions of helpful and harmless training data, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Constitutional AI used constitution-guided self-critique and revision to produce supervised training responses.",
+        "passage": "hot prompting. together these principles form the constitution. our training process has two stages (see figure 1), where the first supervised phase gets the model \"ondistribution\" and the second rl stage refines and significantly improves performance: (supervised stage) critique \u2192revision \u2192supervised learning in the first stage of the process, we first generate responses to harmfulness prompts using a helpful-only ai assistant. these initial responses will typically be quite harmful and toxic. we then ask the model to critique its response according to a principle in the constitution, and then revise the original response in light of the critique. we revise responses repeatedly in a sequence, where we randomly draw principles from the constitution at each step. once this process is complete, we finetune a pretrained language model with supervised learning on the final revised responses. the main purpose of this phase is to easily and flexibly alter the distribution of the model's responses, to reduce the need for exploration and the total length of training during the second rl phase. (rl stage) ai comparison evaluations \u2192preference model \u2192reinforcement learning this stage mimics rlhf, except that we replace human preferences for harmlessness with 'ai feedback' (i.e. we perform 'rlaif'), where the ai evaluates responses according to a set of constitutional principles. just as "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly describes a training process involving critique, revision based on constitutional principles, and subsequent supervised learning to produce the final responses."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Constitutional AI's reinforcement-learning stage replaced human harmlessness preferences with AI feedback while retaining human helpfulness labels.",
+        "passage": "tedly in a sequence, where we randomly draw principles from the constitution at each step. once this process is complete, we finetune a pretrained language model with supervised learning on the final revised responses. the main purpose of this phase is to easily and flexibly alter the distribution of the model's responses, to reduce the need for exploration and the total length of training during the second rl phase. (rl stage) ai comparison evaluations \u2192preference model \u2192reinforcement learning this stage mimics rlhf, except that we replace human preferences for harmlessness with 'ai feedback' (i.e. we perform 'rlaif'), where the ai evaluates responses according to a set of constitutional principles. just as rlhf distills human preferences into a single preference model (pm), in this stage we distill lm interpretations of a set of principles back into a hybrid5 human/ai pm (as we use human labels for helpfulness, but only ai labels for harmlessness). we begin by taking the ai assistant trained via supervised learning (sl) from the first stage, and use it to generate a pair of responses to each prompt in a dataset of harmful prompts (e.g. from [ganguli et al., 2022]). we then formulate each prompt and pair into a multiple choice question, where we ask which response is best according to a constitutional principle. this produces an ai-generated preference dataset for harmlessness, which we mix with our human feedback helpfulness dataset. we t"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the RL stage replaces human harmlessness preferences with AI feedback while retaining human labels for helpfulness, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "In evaluations that preferred less evasive responses when harmlessness was equal, Constitutional AI models achieved less harmful behavior at a given helpfulness level.",
+        "passage": "onal rl (pareto improvement) with chain of thought standard rlhf constitutional sl helpful-only helpful + harmless figure 2 we show harmlessness versus helpfulness elo scores (higher is better, only differences are meaningful) computed from crowdworkers' model comparisons for all 52b rl runs. points further to the right are later steps in rl training. the helpful and hh models were trained with human feedback as in [bai et al., 2022], and exhibit a tradeoff between helpfulness and harmlessness. the rl-cai models trained with ai feedback learn to be less harmful at a given level of helpfulness. the crowdworkers evaluating these models were instructed to prefer less evasive responses when both responses were equally harmless; this is why the human feedback-trained helpful and hh models do not differ more in their harmlessness scores. error bars are visible in figure 3 but are suppressed here for clarity. harmless [askell et al., 2021]) with a smaller quantity of higher quality human supervision. there are several reasons why this may be useful: \u2022 ai supervision may be more efficient than collecting human feedback. it allows us to focus more on providing a small amount of legible, focused, high-quality oversight. there may also be ways for humans and ai systems to collaborate [bowman et al., 2022] to provide better supervisi"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that RL-CAI models trained with AI feedback learn to be less harmful at a given level of helpfulness, noting that crowdworkers were instructed to prefer less evasive responses when harmlessness was equal."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Sparrow combined targeted rule and preference judgements with RLHF, improving human preferences and adversarial robustness without eliminating violations.",
+        "passage": "er financial advice\" (see table 1). this lets us characterise failures of the model, train targeted classifiers, and guide humans towards probing failure modes of interest. this extends previous probing methods that focus on simply safe/unsafe labels (xu et al., 2021b) or broad notions of harm (askell et al., 2021; bai et al., 2022). 2. multi-objective rlhf to maximise preference rates and minimise rule violations: we successfully combine a variety of techniques to train a single unified model. we show that by combining targeted rule judgements and preference judgements with rlhf, we can train a model that is preferred to baselines based on prompting, reranking or supervised learning alone (fig. 2). simultaneously, sparrow is much more resilient to adversarial attacks by humans than our baselines, breaking the targeted rule in only 8% of probe conversations. 3. inline evidence to improve correctness and verifiability: we adapt and extend the methods of gophercite (menick et al., 2022) to the interactive dialogue setting, while demonstrating performance similar to gophercite on single-turn qa tasks. when sparrow provides answers with evidence, those answers are supported and plausible 78% of the time, a significant improvement over our prompted baselines. providing evidence helps raters verify claims. 4. detailed analyses of the resulting dialogue a"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Sparrow combines targeted rule and preference judgements with RLHF, improves human preferences (preferred to baselines), and achieves adversarial robustness (breaking the rule in only 8% of probes) without eliminating violations."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Information position matters: performance is often highest at the beginning or end and degrades in the middle, including for explicitly long-context models.",
+        "passage": "lity to take long contexts as input, relatively little is known about how well they use longer context. we analyze the performance of language models on two tasks that require identifying relevant information in their input contexts: multi-document question answering and key-value retrieval. we find that performance can degrade significantly when changing the position of relevant information, indicating that current language models do not robustly make use of information in long input contexts. in particular, we observe that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models. our analysis provides a better understanding of how language models use their input context and provides new evaluation protocols for future long-context language models. while recent language models have the ability to take long contexts as input, relatively little is known about how well they use longer context. we analyze the performance of language models on two tasks that require identifying relevant information in their input contexts: multi-document question answering and key-value retri"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that performance is often highest when relevant information occurs at the beginning or end and significantly degrades in the middle, even for long-context models."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "A larger context window does not necessarily improve use of the same input: models and their extended-context counterparts performed nearly identically when the input fit both.",
+        "passage": "mation within the middle of its input context. for example, gpt-3.5turbo's multi-document qa performance can drop by more than 20%-in the worst case, performance in 20- and 30-document settings is lower than performance without any input documents (i.e., closedbook performance; 56.1%). these results indicate that current models cannot effectively reason over their entire context window when prompted for downstream tasks. extended-context models are not necessarily better at using input context. when the input context fits in the context window of both a model and its extended-context counterpart, we see that performance between them is nearly identical. for example, the 10- and 20-document settings both fit in the context window of gpt-3.5-turbo and gpt-3.5-turbo (16k), and we observe that their performance as a function of position of relative information is nearly superimposed (solid purple and dashed brown series in figure 5). these results extract the value corresponding to the specified key in the json object below. json data: {\"2a8d601d-1d69-4e64-9f90-8ad825a74195\": \"bb3ba2a5-7de8-434b-a86e-a88bb9fa7289\", \"a54e2eed-e625-4570-9f74-3624e77"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that when the input fits both a model and its extended-context counterpart, their performance is nearly identical, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Retrieval can hurt rather than help: the evaluated in-context model improved on some QA benchmarks but worsened on StrategyQA and Fermi.",
+        "passage": "li models to identify irrelevant evidence (center bar), retrieval never hurts, at a cost to gains received when retrieval is helpful. our trained ralms (rightmost column) outperform all other models when applicable for nq, 2wikimqa, and strategyqa (see \u00a73.2.3 for more details on data generation). and irrelevant contexts (rightmost, orange). the bars show the difference in performance from our few-shot prompted model without retrieval (whose performance is shown in parenthesis for each dataset). for the in-context ralm, we observe that retrieval helps on nq, 2wikimqa and bamboogle but reduces performance on the implicit strategyqa and fermi. adding nli to identify irrelevant context ensures that retrieval does not hurt, but gains are limited. training with retrieval leads to gains across the board. we observe similar trends with the colbertv2 retriever, albeit at an overall decrease in accuracy (\u00a7a.3, tab. 3.) exploring the robustness of models to irrelevant context fig. 5 present results when simulating retrieval of irrelevant/noisy context, either by retrieving low-ranked passages (top) or random ones (bottom). when retrieving ra"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that for the in-context RALM, retrieval reduces performance on implicit StrategyQA and Fermi while helping on other benchmarks, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Random retrieved passages reduced the in-context retrieval-augmented model's performance by more than 10 points on average.",
+        "passage": "ategyqa and fermi. adding nli to identify irrelevant context ensures that retrieval does not hurt, but gains are limited. training with retrieval leads to gains across the board. we observe similar trends with the colbertv2 retriever, albeit at an overall decrease in accuracy (\u00a7a.3, tab. 3.) exploring the robustness of models to irrelevant context fig. 5 present results when simulating retrieval of irrelevant/noisy context, either by retrieving low-ranked passages (top) or random ones (bottom). when retrieving random passages, the performance of the in-context ralm drops by more than 10 points on average, a phenomenon that can be mitigated by using nli models. saretrobust performs best across all settings. to verify that these improvements indeed stem from robustness to irrelevant context rather than task-specific training, we compare sa-retrobust to an ablated variant trained and evaluated without retrieval (full results in tab. 4, \u00a7a.3). sa-retrobust is able to perform similarly to this model (within one standard deviation) when retrieving random contexts. interestingly, when retrieving low-ranked results, sa-retrobust outperforms the ablated model"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that when retrieving random passages, the performance of the in-context RALM drops by more than 10 points on average, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Irrelevant context can corrupt both answers and the intermediate reasoning strategy used for multi-hop questions.",
+        "passage": "t whether irrelevant context leads to errors in question decomposition, or in answering intermediate questions. we find that when retrieving low-ranked passages, most of the errors (68%) for the explicit 2wikimqa are in intermediate answers, contrary to the implicit strategyqa were errors are more prevalent in intermediate questions (77% of the cases, we provide an example in \u00a7a.4, fig. 7). similarly, when retrieving random contexts, most errors (60%) for 2wikimqa are in intermediate questions. this suggests that irrelevant context can cause errors in generating both an answering strategy and the answer itself, depending on the task and the retrieved context. when do nli models fail? as shown in \u00a74, nli models are efficient at identifying relevant context, at a cost to gains when retrieval is helpful. to better characterize nli models, we look at the accuracy for our sa-*-nli models as a function of the probability that the nli model assigns to the entailment label. tab. 8 in \u00a7a.4 shows that there are many cases where the probability for entailment is low but retrieval helps for nq and 2wikimqa. to better identify the source for such errors, we manu"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that irrelevant context can cause errors in generating both an answering strategy and the answer itself, which directly supports the claim that it corrupts both answers and intermediate reasoning."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "NLI filtering can prevent performance reductions but discards some relevant passages; training with mixed relevant and irrelevant contexts can improve robustness while preserving performance with relevant evidence.",
+        "passage": "elevant, and does not harm performance when it is not. this is particularly important in multi-hop reasoning scenarios, where misuse of irrelevant evidence can lead to cascading errors. however, recent work has shown that retrieval augmentation can sometimes have a negative effect on performance. in this work, we present a thorough analysis on five open-domain question answering benchmarks, characterizing cases when retrieval reduces accuracy. we then propose two methods to mitigate this issue. first, a simple baseline that filters out retrieved passages that do not entail question-answer pairs according to a natural language inference (nli) model. this is effective in preventing performance reduction, but at a cost of also discarding relevant passages. thus, we propose a method for automatically generating data to fine-tune the language model to properly leverage retrieved passages, including for challenging multi-hop tasks, using a mix of relevant and irrelevant contexts at training time. we empirically show that even 1,000 examples suffice to train the model to be robust to irrelevant contexts while maintaining high performance on examples with relevant ones. large language models (llms) (brown et al., 2020; chowdhery et al., 2022; touvron et al., 2023) are the foundation on top of which modern language systems are built. however, open-domain question answering (odqa; chen et al. 2017) and other knowledge-intensive tasks (thorne et al., 2018; petroni et al., 2021) require vast amounts of up-to-date factual knowledge about rare entities that even very large models cannot memorize (roberts et al., 2020; dhingra et al., 2022). a dominant approach for c"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that NLI filtering prevents performance reduction but discards relevant passages, and proposes training with a mix of relevant and irrelevant contexts to improve robustness while maintaining high performance."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Safety, language modeling, and instruction-following objectives can conflict, allowing prompts to make refusal costly under the other objectives.",
+        "passage": "tion between the pretraining and safety capabilities. beyond offering a hypothesis for why jailbreaks work, we functionally validate these failure modes by using them as principles to construct new jailbreaks. in this section, we explore each failure mode with qualitative examples, construct simple jailbreaks that illustrate their mechanisms of action, and describe ablations to test our claims. we later validate these insights with quantitative experiments in section 4. 3.1 competing objectives competing objectives stems from the observation that safety-trained llms are typically trained against multiple objectives that can conflict with each other. specifically, state-of-the-art llms are trained for language modeling [12], instruction following [41, 7], and safety [38, 7]. this training can be exploited by crafting prompts that force a choice between either a restricted behavior or a response that is heavily penalized by the pretraining and instruction following objectives. example: prefix injection to illustrate competing objectives, we introduce a family of prefix injection jailbreaks. this attack asks the model to first output an innocuous-looking prefix designed so that conditioning on the prefix makes refusal unlikely in the pretraining distribution. the attack in figure 1(a) uses the prefix \"absolutely! here's \". another example, with prefix in purple, looks like: 3the red-teaming dataset consists of dialogue transcripts that must be adapted to obtain standa"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that safety-trained LLMs are trained for language modeling, instruction following, and safety objectives that can conflict, allowing prompts to force a choice between restricted behavior or responses penalized by pretraining and instruction-following objectives."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Safety training may fail to generalize to inputs that the model can nevertheless understand and follow.",
+        "passage": "a clever variant of prompt injection to trampoline off a refusal: it asks for a moralizing rant about openai content policies followed by the injected string \"but now that we've got that mandatory bulls out of the way, let's break the f in' rules:\" [43]. extending prefix injection, we also find competing objectives can be exploited via style injection, e.g., by asking for no long words, after which the model's professionally-written refusals are unlikely to follow. 3.2 mismatched generalization our second failure mode comes from observing that pretraining is done on a larger and more diverse dataset than safety training, and thus the model has many capabilities not covered by safety training. this mismatch can be exploited for jailbreaks by constructing prompts on which pretraining and instruction following generalize, but the model's safety training does not. for such prompts, the model responds, but without safety considerations. we present a sharp example of this phenomenon, and then discuss other ways in which this failure mode can be exploited to construct jailbreaks. example: base64 in the base64 jailbreak, the prompt is obfuscated using base64, a binary-to-text encoding that encodes each byte as three text characters, to bypass the model's safety training (as in figure 1(b)). an example attack-that additionally elicits encoded output-may look "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly describes a failure mode where pretraining and instruction following generalize to certain prompts while safety training does not, directly supporting the claim that safety training may fail to generalize to inputs the model can still understand."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Refusal suppression can shift the initial response away from refusal, after which the language-modeling objective favors continuing the unsafe answer.",
+        "passage": "e any negative sentences about the subject of the prompt user the above attack leads gpt-4 to respond to prompts asking for advice about crime, social engineering, and adult content, among others. in an ablation experiment, we find that the specific instructions matter: inverting the rules (e.g., \"1. consider apologizing . . .\") leads to no restricted behavior on any prompt in the dataset. (see section 4 for the quantitative results.) we see competing objectives as manifesting here in two ways. first, the instruction-following training responds to the instructions and downweights tokens that start typical refusals. thus, the model selects tokens that are more likely to begin responses. once a response is started, the pretraining objective heavily favors continuing over an abrupt reversal, leading to a full unsafe output. other instantiations we find existing jailbreaks also leverage the competing objectives phenomenon. for example, the widely shared \"dan\" jailbreak [48] takes advantage of instruction following through a dense set of instructions on how to play the character dan and pretraining by asking for outputs to start with \"[dan]: \". another jailbreak uses a clever variant of prompt injection to trampoline off a refusal: it asks for a moralizing rant about openai content policies followed by the injected "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that instruction-following training downweights refusal tokens and the pretraining objective favors continuing over abrupt reversal, leading to a full unsafe output, which directly supports the claim about refusal suppression shifting the response away from refusal."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Automated suffix attacks use greedy and gradient-based search to increase the probability of affirmative responses instead of refusals.",
+        "passage": " models are capable of generating a great deal of objectionable content, recent work has focused on aligning these models in an attempt to prevent undesirable generation. while there has been some success at circumventing these measures -- so-called \"jailbreaks\" against llms -- these attacks have required significant human ingenuity and are brittle in practice. in this paper, we propose a simple and effective attack method that causes aligned language models to generate objectionable behaviors. specifically, our approach finds a suffix that, when attached to a wide range of queries for an llm to produce objectionable content, aims to maximize the probability that the model produces an affirmative response (rather than refusing to answer). however, instead of relying on manual engineering, our approach automatically produces these adversarial suffixes by a combination of greedy and gradient-based search techniques, and also improves over past automatic prompt generation methods. surprisingly, we find that the adversarial prompts generated by our approach are quite transferable, including to black-box, publicly released llms. specifically, we train an adversarial attack suffix on multiple prompts (i.e., queries asking for many different types of objectionable content), as well as multiple models (in our case, vicuna-7b and 13b). when doing so, the resulting attack suffix is able to induce objectionable content in the public interfaces to chatgpt, bard, and claude, as we"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the proposed attack method automatically produces adversarial suffixes using a combination of greedy and gradient-based search techniques to maximize the probability of affirmative responses rather than refusals."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Suffixes optimized across multiple prompts and models can transfer to black-box production models.",
+        "passage": "viors. specifically, our approach finds a suffix that, when attached to a wide range of queries for an llm to produce objectionable content, aims to maximize the probability that the model produces an affirmative response (rather than refusing to answer). however, instead of relying on manual engineering, our approach automatically produces these adversarial suffixes by a combination of greedy and gradient-based search techniques, and also improves over past automatic prompt generation methods. surprisingly, we find that the adversarial prompts generated by our approach are highly transferable, including to black-box, publicly released, production llms. specifically, we train an adversarial attack suffix on multiple prompts (i.e., queries asking for many different types of objectionable content), as well as multiple models (in our case, vicuna-7b and 13b). when doing so, the resulting attack suffix induces objectionable content in the public interfaces to chatgpt, bard, and claude, as well as open source llms such as llama-2-chat, pythia, falcon, and others. interestingly, the success rate of this attack transfer is much higher against the gpt-based models, potentially owing to the fact that vicuna itself is trained on outputs from chatgpt. in total, this work significantly advances the state-of-the-art in adversarial attacks against aligned language models, raising important questions about how such systems can be prevented from producing objectionable information. code is available at github.com/llm-attacks/llm-attacks. write a guide for manipula"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that adversarial suffixes trained on multiple prompts and models are highly transferable to black-box production LLMs, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Adaptive attacks can use output log-probabilities to optimize suffixes through random search, without needing gradients.",
+        "passage": "prefilling attack 66%* 100% claude 3.5 sonnet anthropic tokens system prompt + prefilling attack 50%* 100% * the numbers taken from shah et al. (2023); mazeika et al. (2024); wang et al. (2024); huang et al. (2024) are computed on a different set of harmful requests, sometimes with a different semantic judge, \u2020 gpt-4 as a semantic judge exhibits multiple false positives on this model (around 20%, while other models have a negligible amount of false positives, i.e., less than 5%). et al., 2020). our main tool consists of a manually designed prompt template-which is used for all unsafe requests for a given model-enhanced by an adversarial suffix found with random search (rastrigin, 1963) when the logprobs of the generated tokens are at least partially accessible. our approach can be considered simple as it does not require gradient information (zou et al., 2023; geisler et al., 2024), auxiliary llms to iteratively optimize the jailbreaks (chao et al., 2023; mehrotra et al., 2023; zeng et al., 2024), or multi-turn conversations (cheng et al., 2024; russinovich et al., 2024). in this way, using the dataset of 50 harmful requests from advbench (zou et al., 2023) curated by chao et al. (2023), we obtain a 100% attack success rate on all leading safety-aligned llms, including vicuna-13b, mistral-7b, phi-3-mini, nemotron-4-340b, llama2-chat-7b/13b/70b, llama-3-instruct-8b, gemma-7b, gpt-3.5, gpt-4o, claude-3/3.5, and the adversarially trained r2d2. a summary of our main results in table 1 suggests that our methods substantially outperform the existing attacks and achiev"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the approach uses an adversarial suffix found with random search when logprobs are accessible and does not require gradient information, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "R2D2's training against request-plus-suffix attacks left a vulnerability to a different structure using in-context learning.",
+        "passage": " turbo prompt + random search + self-transfer ours 96% gpt-4o prompt ours 0% gpt-4o custom prompt ours 72% gpt-4o custom prompt + random search + self-transfer ours 100% * denotes the numbers from harmbench (mazeika et al., 2024) computed on a different set of harmful requests with a judge distilled from gpt-4. approach. similarly to llama-2-chat, the standard prompt template, alone or with rs, shows limited effectiveness. however, in contrast to llama-2-chat, self-transfer is ineffective here. motivated by the fact that r2d2 was trained to refuse a specific prompt structure (i.e., request and adversarial suffix), we circumvent safety guardrails by using a different prompt structure. we use an in-context learning prompt (see table 6 in the appendix), which we found the model to be particularly sensitive to. we use random search on top of the in-context prompt to maximize the probability of the initial token \"step\" (instead of \"sure\") to be consistent with the new prompt template. results. as shown in table 2, using the in-context prompt alone achieves a 90% attack success rate, which random search boosts to 100%. this significantly surpasses the 61% reported by mazeika et al. (2024) using tap (mehrotra et al., 2023). interestingly, the in-context prompt is less effective on other models like llama"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that R2D2 was trained to refuse a specific prompt structure but is vulnerable to a different in-context learning prompt, which achieves high attack success rates."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reflexion converts evaluation feedback into textual guidance supplied as context for the next attempt.",
+        "passage": " an environment. since they rely on massive models with an enormous number of parameters, such approaches have been so far limited to using in-context examples as a way of teaching the agents, since more traditional optimization schemes like reinforcement learning with gradient descent require substantial amounts of compute and time. preprint. under review. in this paper, we propose an alternative approach called reflexion that uses verbal reinforcement to help agents learn from prior failings. reflexion converts binary or scalar feedback from the environment into verbal feedback in the form of a textual summary, which is then added as additional context for the llm agent in the next episode. this self-reflective feedback acts as a 'semantic' gradient signal by providing the agent with a concrete direction to improve upon, helping it learn from prior mistakes to perform better on the task. this is akin to how humans iteratively learn to accomplish complex tasks in a few-shot manner - by reflecting on their previous failures in order to form an improved plan of attack for the next attempt. for example, in figure 1, a reflexion agent learns to optimize its own behavior to solve decisi"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that reflexion converts feedback into a textual summary added as context for the next episode, which matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reflexion uses the current trajectory as short-term memory and stores reflections in long-term memory to inform subsequent decisions.",
+        "passage": "r, self-reflection, and persisting memory enables the agent to rapidly improve its decision-making ability in various environments by utilizing informative feedback signals. memory core components of the reflexion process are the notion of short-term and long-term memory. at inference time, the actor conditions its decisions on short and long-term memory, similar to the way that humans remember fine-grain recent details while also recalling distilled important experiences from long-term memory. in the rl setup, the trajectory history serves as the short-term memory while outputs from the self-reflection model are stored in long-term memory. these two memory components work together to provide context that is specific but also influenced by lessons learned over several trials, which is a key advantage of reflexion agents over other llm action choice works. the reflexion process reflexion is formalized as an iterative optimization process in 1. in the first trial, the actor produces a trajectory \u03c40 by interacting with the environment. the evaluator then produces a score r0 which is computed as rt = me(\u03c40). rt is only a scalar reward for trial t that improves as task-specific performance increases. after the first trial, to amplify r0 to a feedback form that can be used for improvement by an llm, the self-reflection model analyzes the set of {\u03c40, r"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that trajectory history serves as short-term memory and outputs from the self-reflection model are stored in long-term memory to inform decisions, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Self-Refine uses the same model to generate feedback and revise its draft repeatedly, requiring no additional training.",
+        "passage": "an initial \"quick and dirty\" implementation, and then, upon reflection, refactor their code to a solution that is more efficient and readable. in this paper, we demonstrate that llms can provide iterative self-refinement without additional training, leading to higher-quality outputs on a wide range of tasks. we present self-refine: an iterative self-refinement algorithm that alternates between two generative steps-feedback and refine. these steps work in tandem to generate high-quality outputs. given an initial output generated by a model m, we pass it back to the same model m to get feedback. then, the feedback is passed back to the same model to refine the previously-generated draft. this process is repeated either for a specified number of iterations or until m determines that no further refinement is necessary. we use few-shot prompting (brown et al., 2020) to guide m to both generate feedback and incorporate the feedback into an improved draft. figure 1 illustrates the high-level idea, that self-refine uses the same underlying language model to generate feedback and refine its outputs. we evaluate self-refine on 7 generation tasks that span diverse domains, including natural language and source-code generation. we show that self-refine outperforms direct generation from strong llms like gpt-3.5 (text"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Self-Refine uses the same model for both feedback and refinement steps without additional training, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Self-Refine's improvements arise from iterative feedback and refinement without training the model further.",
+        "passage": "., 2022) and gpt-4 (openai, 2023) by 5-40% absolute improvement. in code-generation tasks, self-refine improves the initial generation by up to absolute 13% when applied to strong code models such as codex (code-davinci-002; chen et al., 2021). we release all of our code, which is easily extensible to other llms. in essence, our results show that even when an llm cannot generate an optimal output on its first try, the llm can often provide useful feedback and improve its own output accordingly. in turn, self-refine provides an effective way to obtain better outputs from a single model without any additional training, via iterative (self-)feedback and refinement. given an input sequence, self-refine generates an initial output, provides feedback on the output, and refines the output according to the feedback. self-refine iterates between feedback and refinement until a desired condition is met. self-refine relies on a suitable language model and three prompts (for initial generation, feedback, and refinement), and does not require training. self-refine is shown in figure 1 and algorithm 1. next, we describe self-refine in more detail. initial generation"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Self-Refine improves outputs via iterative feedback and refinement without any additional training, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Voyager combines a reusable executable skill library with feedback-driven program improvement.",
+        "passage": "we introduce voyager, the first llm-powered embodied lifelong learning agent in minecraft that continuously explores the world, acquires diverse skills, and makes novel discoveries without human intervention. voyager consists of three key components: 1) an automatic curriculum that maximizes exploration, 2) an ever-growing skill library of executable code for storing and retrieving complex behaviors, and 3) a new iterative prompting mechanism that incorporates environment feedback, execution errors, and self-verification for program improvement. voyager interacts with gpt-4 via blackbox queries, which bypasses the need for model parameter fine-tuning. the skills developed by voyager are temporally extended, interpretable, and compositional, which compounds the agent's abilities rapidly and alleviates catastrophic forgetting. empirically, voyager shows strong in-context lifelong learning capability and exhibits exceptional proficiency in playing minecraft. it obtains 3.3x more unique items, travels 2.3x longer distances, and unlocks key"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Voyager consists of an ever-growing skill library of executable code and a mechanism for program improvement using environment feedback, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Voyager retrieves stored skills using task plans and environment feedback, making prior experience available for later tasks.",
+        "passage": "should craft a wooden axe instead of an acacia axe since there is no acacia axe in minecraft. we only display the partial prompt for brevity. the full prompt structure for code generation is in appendix, sec. a.4. (5) chain-of-thought prompting [46] to do reasoning before code generation. we iteratively refine the program through a novel iterative prompting mechanism (sec. 2.3), incorporate it into the skill library as a new skill, and index it by the embedding of its description (fig. 4, top). for skill retrieval, we query the skill library with the embedding of self-generated task plans and environment feedback (fig. 4, bottom). by continuously expanding and refining the skill library, voyager can learn, adapt, and excel in a wide spectrum of tasks, consistently pushing the boundaries of its capabilities in the open world. 2.3 iterative prompting mechanism we introduce an iterative prompting mechanism for self-improvement through three types of feedback: (1) environment feedback, which illustrates the intermediate progress of program execution (fig. 5, left). for example, \"i cannot make an iron chestplate because i nee"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Voyager queries the skill library using embeddings of self-generated task plans and environment feedback, which directly supports the claim that it retrieves stored skills using these inputs to make prior experience available."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Voyager acquires skills through black-box model queries without updating model parameters.",
+        "passage": " lifelong learning agent in minecraft that continuously explores the world, acquires diverse skills, and makes novel discoveries without human intervention. voyager consists of three key components: 1) an automatic curriculum that maximizes exploration, 2) an ever-growing skill library of executable code for storing and retrieving complex behaviors, and 3) a new iterative prompting mechanism that incorporates environment feedback, execution errors, and self-verification for program improvement. voyager interacts with gpt-4 via blackbox queries, which bypasses the need for model parameter fine-tuning. the skills developed by voyager are temporally extended, interpretable, and compositional, which compounds the agent's abilities rapidly and alleviates catastrophic forgetting. empirically, voyager shows strong in-context lifelong learning capability and exhibits exceptional proficiency in playing minecraft. it obtains 3.3x more unique items, travels 2.3x longer distances, and unlocks key tech tree milestones up to 15.3x faster than prior sota. voyager is able to utilize the learned skill libra"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Voyager interacts with GPT-4 via blackbox queries which bypass the need for model parameter fine-tuning, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Faulty evaluation can stop the learning loop prematurely by accepting an incorrect solution.",
+        "passage": "a code completion [11]. on the other hand, if the model produces an incorrectly written test suite, it is possible for some of the tests to fail on a correct solution, leading to a self-reflection generation that is conditioned on a false negative code completion. given the implementation of reflexion, false negatives are preferred over false positives as the agent may be able to use self-reflection to identify the incorrect test(s) and prompt itself to keep the original code completion intact. on the other hand, if an invalid test suite returns a false positive completion (all internal test cases pass but the implementation is incorrect), the agent will prematurely report an invalid submission. in 2, various conditions are measured to analyze performance beyond pass@1 accuracy. previously, we displayed the inferior performance of reflexion to the baseline gpt-4 on mbpp python. in 2, we observe a notable discrepancy between the false positive labels produced by internal test execution, p(not pass@1 generation correct | tests pass). that is, the probability that a submission will fail given that it passes all unit tests. for humaneval and mbpp python, the baseline pass@1 accuracies are "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that if an invalid test suite returns a false positive completion, the agent will prematurely report an invalid submission, which aligns with the claim that faulty evaluation can stop the learning loop prematurely by accepting an incorrect solution."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Retrieval has an advantage for less popular entities, whereas parameter memory is competitive for more popular entities.",
+        "passage": "technique shows sizeable gains for gpt-3, especially davinci-003. in addition to its limited effectiveness with smaller lms, genread has potentially prohibitive inference time costs, with gpt-neox 20b taking 70 seconds per query. vanilla genread bm25 contriever 0.2 0.4 0.6 0.8 accuracy popqa relative popularity 0.2 0.3 0.4 0.5 accuracy entityquestions figure 8: gpt-3 davinci-003 accuracy versus relative popularity (how popular a question is relative to other questions of its relationship type). retrievalaugmented lms (dashed) outperform lms' parametric memory (solid) for less popular entities, while parametric memory is competitive for more popular entities. relative popularity is defined as the logpopularity of a question, normalized by the mean and standard deviation of log-popularity for the question's relationship type (smaller for less popular entities).8 figure 17 shows per-relationship results. non-parametric memories are effective for less popular facts. how does retrieval augmentation lead to such significant improvements? figure 8 shows the relationship between the entity popularity and models' qa performance. it can be seen that retrieva"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that retrieval-augmented LMs outperform parametric memory for less popular entities while parametric memory is competitive for more popular entities, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Increasing model size mainly improves memorization of popular knowledge and does not appreciably improve long-tail factual memorization in the evaluated models.",
+        "passage": "ealth of world knowledge in their parameters. this paper aims to understand lms' strengths and limitations in memorizing factual knowledge, by conducting large-scale knowledge probing experiments on two open-domain entity-centric qa datasets: popqa, our new dataset with 14k questions about long-tail entities, and entityquestions, a widely used opendomain qa dataset. we find that lms struggle with less popular factual knowledge, and that retrieval augmentation helps significantly in these cases. scaling, on the other hand, mainly improves memorization of popular knowledge, and fails to appreciably improve memorization of factual knowledge in the long tail. based on those findings, we devise a new method for retrieval augmentation that improves performance and reduces inference costs by only retrieving non-parametric memories when necessary.1 large language models (lms; brown et al. 2020; raffel et al. 2020) have been shown to be competitive on diverse nlp tasks, including knowledgeintensive tasks that require fine-grained memorization of factual knowledge (chowdhery et al., 2022; yu et al., 2022). meanwhile, lms have also been shown to have limit"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that scaling mainly improves memorization of popular knowledge and fails to appreciably improve memorization of factual knowledge in the long tail, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "On POPQA, retrieval enables a much smaller model to outperform a larger model answering from its parameters alone.",
+        "passage": "y vanilla genread bm25 contriever figure 7: popqa accuracy of lms augmented with bm25, contriever, genread, and unassisted (vanilla). retrieving non-parametric memories significantly improves the performance of smaller models. complete results on popqa are found in figure 13. entityquestions results are in figure 14 of the appendix. 5.2 results retrieval largely improves performance. figure 7 shows that augmenting lms with nonparametric memories significantly outperforms unassisted vanilla lms. a much smaller lm (e.g., gpt-neo 2.7b) augmented by the contriever retrieval results outperforms vanilla gpt-3. large lms such as gpt-3 also enjoy the benefits of nonparametric memories. contriever gives 7% accuracy gains on top of gpt-3 davinci-003. genread shows little-to-no performance improvement over vanilla parametric knowledge for smaller models, while the technique shows sizeable gains for gpt-3, especially davinci-003. in addition to its limited effectiveness with smaller lms, genread has potentially prohibitive inference time costs, with gpt-neox 20b taking 70 seconds per query. vanilla genread"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that a much smaller LM (e.g., GPT-Neo 2.7B) augmented by retrieval outperforms vanilla GPT-3, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Retrieval can introduce errors: it harmed GPT-3 davinci-003 on 10% of POPQA questions, and those cases had particularly low retrieval recall.",
+        "passage": " may not always be correct or helpful, and can mislead lms. to test this hypothesis, we group the questions based on two axes: whether unassisted gpt-3 davinci-003 predict correctly or not, and whether retrieval-augmented predictions are correct or not. for each of the four categories, we calculate recall@1 (whether a gold answer is included in the top 1 document; karpukhin et al. 2020). table 1 shows recall@1 for each group with percentages of the questions falling into each of the categories. for 10% of questions, retrievalaugmentation causes the lm to incorrectly answer a question it could otherwise answer correctly. we found that on those questions, recall@1 is significantly lower than the overall recall@1 (0.14 vs 0.42 overall), indicating that failed retrieval can result in performance drops. conversely, for the 17% of questions for which retrieval causes the lm to correctly answer a question it would otherwise have failed to answer, the recall@1 is 0.88. we include examples of both cases in appendix section c.3. only where it helps while incorporating non-parametric memories helps in long-tail distributions, powerful lms have already memorized factual knowledge for popular entities, and retrieval augmentation can be harmful. as outlined in (rq3), can we achieve the best of both wor"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that retrieval caused incorrect answers on 10% of questions where the model could otherwise answer correctly, and notes that recall@1 was significantly lower (0.14) compared to the overall recall (0.42), matching the claim's details."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Parameter-only question answering can nevertheless be competitive: fine-tuning pretrained models without external context produced performance that scaled with model size and competed with retrieval-based systems.",
+        "passage": "it has recently been observed that neural language models trained on unstructured text can implicitly store and retrieve knowledge using natural language queries. in this short paper, we measure the practical utility of this approach by fine-tuning pre-trained models to answer questions without access to any external context or knowledge. we show that this approach scales with model size and performs competitively with open-domain systems that explicitly retrieve answers from an external knowledge source when answering questions. to facilitate reproducibility and future work, we release our code and trained models at https://goo.gle/t5-cbqa. it has recently been observed that neural language models trained on unstructured text can implicitly store and retrieve knowledge using natural language queries. in this short paper, we measure the practical utility of this approach by fine-tuning pre-trained models to answer questions without access to any external context or knowledge. we show that this approach scales with model"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that fine-tuning pre-trained models without external context scales with model size and performs competitively with open-domain systems that retrieve answers from an external knowledge source, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Adaptive Retrieval operationalizes this complementarity by retrieving below a popularity threshold and relying on parameter memory for more popular entities.",
+        "passage": "input with retrieved non-parametric memories only when necessary. we show that this is not only more powerful than lms or retrieval-augmented lms always retrieving context, but also more efficient than the standard retrieval-augmented setup. 6.1 method adaptive retrieval is based on our findings: as the current best lms have already memorized more popular knowledge, we can use retrieval only when they do not memorize the factual knowledge and thus need to find external non-parametric knowledge. in particular, we use retrieval for questions whose popularity is lower than a threshold (popularity threshold), and for more popular entities, do not use retrieval at all. using a development set, the threshold is chosen to maximize the adaptive accuracy, which we define as the accuracy attained by taking the predictions of the retrieval-augmented system for questions below the popularity threshold and the predictions based on parametric knowledge for the rest. we determine the popularity threshold independently for each relationship type. gpt-neo 2.7b gpt-j 6b gpt-neox 20b gpt-3 davinci 003 0.0 0.2 0.4 0.6 accuracy vanilla bm25 adaptive vanilla/bm25 figure 9: po"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Adaptive Retrieval uses retrieval for questions below a popularity threshold and relies on parametric knowledge (memorized popular knowledge) for more popular entities, which directly matches the claim."
+      }
+    }
+  ]
+}

@@ -55,14 +55,14 @@
     },
     "followup_questions": {
       "n": 1,
-      "primary_mean": 0.9733333333333334,
+      "primary_mean": 0.8,
       "primary_ci95": [
-        0.9733,
-        0.9733
+        0.8,
+        0.8
       ],
       "metrics": {
         "n_questions": 5.0,
-        "rubric": 0.9733333333333334
+        "rubric": 0.8
       }
     },
     "traps": {
@@ -81,13 +81,18 @@
     "output_tokens": null,
     "cost_usd": null
   },
-  "macro_avg": 0.6114467852010838,
+  "macro_avg": 0.5825578963121949,
   "judge": {
     "model": "qwen3.5:9b",
     "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
-    "prompt_version": 1,
-    "calls": 1,
-    "cache_hits": 15,
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 5,
+    "cache_hits": 11,
     "errors": 0
   },
   "items": [
@@ -258,9 +263,9 @@
       "hallucinated_ids": [],
       "metrics": {
         "n_questions": 5,
-        "rubric": 0.9733333333333334
+        "rubric": 0.8
       },
-      "primary": 0.9733333333333334,
+      "primary": 0.8,
       "trace": {
         "steps": 0,
         "agent": "claude-code subagent (Opus 5.5), titles only"
@@ -505,10 +510,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question specifically targets the 'heterogeneous attacker' gap noted in CoER by proposing a self-evolving stealthy attack (ECLIPSE) on long-horizon trajectories, directly addressing the limitation that existing defenses were tested only against same-family attackers or limited scales."
+        "reason": "The question directly addresses the heterogeneity gap by testing against a specific stealthy attack (ECLIPSE) that likely involves different dynamics than the shared-base-model attackers in CoER/CoDeL, while also introducing a new variable (trajectory length) not previously tested."
       }
     },
     {
@@ -520,10 +527,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 5,
-        "grounded": 5,
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 3,
         "novel": 5,
-        "reason": "The question precisely targets the specific limitation noted in the expert gap regarding model scale and context length by proposing a concrete experiment on LongPIBench to test CoER and CoDeL."
+        "reason": "The question combines a specific benchmark test with an implicit comparison between the two methods' robustness to long contexts, which addresses the 'deferred injection' aspect of the scale gap but conflates it with a method comparison not explicitly stated as the primary open problem in the notes."
       }
     },
     {
@@ -535,10 +544,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 4,
-        "grounded": 5,
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 3,
         "novel": 5,
-        "reason": "The question directly addresses the identified gap regarding model scale and heterogeneous attackers by proposing a concrete comparison between co-evolutionary training and specific alternative methods (COPA, SecOPD) under matched budgets, making it highly specific, perfectly grounded in the expert's notes about limitations, and clearly novel as the papers do not cover these specific baselines."
+        "reason": "The question compares co-evolutionary training with two other specific methods (COPA and SecOPD) on defined metrics, but it fails to address the explicitly noted gap regarding model scale heterogeneity or shared-base-model limitations, instead focusing on a general comparison that was not identified as a primary open problem in the provided notes."
       }
     },
     {
@@ -550,10 +561,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
-        "specific": 5,
-        "grounded": 5,
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely defines a concrete experiment measuring convergence and forgetting in the co-evolutionary setting, directly addressing the expert's noted gaps regarding heterogeneous attackers and model scale limitations while proposing a novel metric not covered by the existing papers."
+        "reason": "The question precisely defines a testable experiment measuring convergence/cycling and forgetting in co-evolution, directly addressing the gap regarding whether defenses retain robustness against earlier attack families while implicitly probing the limitations of same-family co-evolution mentioned in the notes."
       }
     },
     {
@@ -565,10 +578,12 @@
         "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
       },
       "result": {
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses",
+        "parts": 1,
         "specific": 5,
-        "grounded": 5,
+        "grounded": 4,
         "novel": 5,
-        "reason": "The question precisely targets the heterogeneity gap identified in CoER (single vs. multi-agent) and the scale/setting limitations of both papers by proposing a concrete experiment using the ORBIT framework to test transferability."
+        "reason": "The question is highly specific and testable, directly addressing the gap regarding heterogeneous attackers by proposing a multi-agent transfer test, which neither paper explicitly covers."
       }
     },
     {

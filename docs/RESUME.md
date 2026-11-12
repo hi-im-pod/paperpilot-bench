@@ -91,8 +91,16 @@ Phase 2 is built, published, and human-checked: both tracks, the console, the le
 - **To fold in more reviews:** list the page's `items` and `reviews` collections with ArtifactData into one folder, then run `build/apply_reviews.py --export <dir> --names <names.json>`, then `build/assemble_gold.py` for each track (`--track hard` for the hard one) to refresh `provenance.csv`. Reviewers need Contributor access, by email invite, to save.
 - **Fixed on the way:** `assemble_gold.py --track hard` used to read the main track's items by default and overwrite the hard-track files. Its inputs now follow `--track`.
 
+## Follow-up rubric v2 (done 2026-11-12)
+
+- `prompts/judge.md` follow-up prompt rewritten: anchored levels, the judge names the gap and counts parts, and `apply_followup_caps` in `judge.py` caps compound and ungrounded questions at 3. Prompt versions are now per prompt (`PROMPT_VERSIONS`), so claim and table-cell caches still hit.
+- Rescored all five runs in `baselines/runs/`. Only follow-ups moved: main B1 0.97 to 0.84 and B0 0.95 to 0.83; hard B1 0.97 to 0.87 and B0 0.97 to 0.80. Macro: main 0.95 / 0.91, hard 0.95 / 0.58. The leaderboard's four official rows were updated, and each row now shows its judge and rubric.
+- In-sample distance from 형중's ratings: 1.87 to 1.20. Novelty is still always 5. Details in `docs/judge_validation.md`.
+- **Astra** (gpt-6-astra, high, Codex CLI): an external run whose rows appeared on the leaderboard on 2026-11-10. Its predictions arrived on 2026-11-12 and are now in `baselines/runs/` with the run's audit in `baselines/runs/astra/`. The checksums match the rows. Rescored with rubric v2: main follow-ups 0.98 to 0.86, macro 0.865 to 0.845; hard unchanged at 0.70, because its only follow-up item is missing. Main 0.85 and hard 0.70 put it below Claude's B1, mostly on find-papers (0.67 and 0.72) and claims (0.76 and 0.66), with 7 items lost to malformed first tool calls.
+- Found on the way: Ollama auto-updated to 0.40.16 on 2026-11-09, and the same model digest now answers 2 of 44 known-answer cases differently. Results now record the Ollama version.
+
 ## Next
 1. **Local-model test runs.** Cut on 2026-11-10 because the GPU is shared; only Qwen's dev run exists. To run them: `b1_search_read.py --tasks tasks/test.jsonl --provider ollama --model qwen3.5:9b`, the same with `gemma4:12b`, and the hard track with `PAPERPILOT_CORPUS=corpus/hard/papers.jsonl`. At about 3 minutes per item, all four take several hours. Score with `--judge ollama:qwen3.5:9b`, add rows to the README and the leaderboard's `official` collection.
-2. **Optional: tighten the follow-up metric.** The human check shows the judge rates follow-up questions about 1.8 points too high. Options are a stricter rubric in `prompts/judge.md` (bump `JUDGE_PROMPT_VERSION`), or reporting follow-ups as a known-lenient metric. Also add a paraphrase example to the claim-support rubric, since most human disagreements came from reading it strictly.
+2. **Optional: a paraphrase example in the claim-support rubric**, since most human disagreements came from reading it strictly. Bump `PROMPT_VERSIONS["claim_support"]` and rescore the official rows if you do; every claim decision would be re-judged.
 3. **Optional: review `scoring/judge_eval_cases.jsonl`**, the known-answer cases behind `docs/judge_comparison.md`.
 4. **Presentation (Nov 16).** Findings are in this file and in `docs/judge_validation.md`.

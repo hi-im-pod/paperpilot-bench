@@ -2,6 +2,8 @@
 
 `qwen3.5:9b` stays the default judge. With the scorer's claim-number check in place, it scored claims with half the error of `gemma4:12b` (1.0 vs 2.0 over 22 cases), never rejected a correct claim, and ranked all six follow-up pairs correctly. The margin is small: 44 known-answer cases can show which errors each model makes, but not settle a close call. The plan's human validation on real benchmark outputs decides what ships.
 
+**Update 2026-11-12.** The follow-up prompt is now version 2 (see `docs/judge_validation.md`). With it, Qwen still orders all 6 follow-up pairs correctly, with a mean gap of 1.8 points. The same rerun showed drift: with an unchanged model digest, Qwen now gets table-cell pair te-16 wrong (15/16) and its claim score error with the number check is 1.5 rather than 1.0. Ollama had updated itself to 0.40.16 after the run below, and `results.json` now records the Ollama version. Scored runs are unaffected, because their decisions come from the cache.
+
 Reproduce with `py scoring/judge_eval.py --models qwen3.5:9b gemma4:12b`. The raw answers are in `docs/judge_eval_results.json`. Run on 2026-11-09, RTX 5070 Ti Laptop GPU (12 GB).
 
 ## The cases

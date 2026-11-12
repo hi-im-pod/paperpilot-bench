@@ -1,0 +1,52 @@
+{
+  "preflight": {
+    "commit": "0262c041a5bf9544d9cdb352ed2f73aeb83ee172",
+    "tracks": {
+      "main": {
+        "corpus_sha256": "2f1b5a2f8a4cc589d6158d5f03bb8f5052ae6e2b9a9c52aa2e8ae52e070686ad",
+        "papers": 138,
+        "tasks": 30,
+        "tasks_sha256": "574f015be9117af7fb186095ef2f3c12299613910ed13b6ca678663288359126"
+      },
+      "hard": {
+        "corpus_sha256": "27a806089e549c3a1a27bcd005423eaede9d6d06f64655f8e04488759beba86e",
+        "papers": 95,
+        "tasks": 15,
+        "tasks_sha256": "cc01d6baf9d422c660a3e247a18b039fd782b3d10c2b24271d34d99e428be0c7"
+      }
+    },
+    "sources": {
+      "baselines/claude_code_workspace.py": "5eac83c96e89a204281e412de7951cc5bed651b839d4801ced4a67d73b77526b",
+      "prompts/agent.md": "eed5a9eaa0ccf7d8affda613040a7359ec35df7c0ae6ded11c5b89a9fe19c585",
+      "tools/corpus_tools.py": "4af67109ad29d4a24749f346f623b3af8366387ea83f5f70d40ad5f50d593daf",
+      "scoring/score.py": "69b7a624eafd31fa25d1b8607a04a8d4c842ee66425aeff519b6f6e30bcc35e4"
+    }
+  },
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "codex": "C:\\Users\\SecAI\\.codex\\packages\\standalone\\releases\\0.167.0-x86_64-pc-windows-msvc\\bin\\codex.exe",
+  "codex_version": "codex-cli 0.167.0",
+  "config": [
+    "model_reasoning_effort=\"high\"",
+    "web_search=\"disabled\"",
+    "project_doc_max_bytes=0",
+    "memories.use_memories=false",
+    "memories.generate_memories=false",
+    "features.multi_agent=false",
+    "sandbox_workspace_write.network_access=false",
+    "allow_login_shell=false",
+    "windows.sandbox=\"unelevated\""
+  ],
+  "workers": 1,
+  "tool_budget": 15,
+  "clip_characters": 30000,
+  "script_sha256": "be28ee2c529b13293c6637c0316b4a482251e15122ca25312fbf5b61976ca659",
+  "python": "C:\\Users\\SecAI\\paperpilot-astra-run\\.venv-native\\Scripts\\python.exe",
+  "python_sha256": "0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+  "python_runtime": {
+    "version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "base_executable": "C:\\Users\\SecAI\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "rank_bm25": "0.2.2",
+    "numpy": "2.5.4"
+  }
+}

@@ -117,6 +117,6 @@
   "rows_were_searched": false,
   "drafting_model": "claude-session",
   "verified_by": "claude-session (self-check)",
-  "checked_by": null,
+  "checked_by": "Garrett",
   "second_check_requested": true
 }

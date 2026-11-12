@@ -21,6 +21,6 @@
   "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
   "drafting_model": "claude-session",
   "verified_by": "claude-session (self-check)",
-  "checked_by": null,
+  "checked_by": "Garrett",
   "second_check_requested": true
 }

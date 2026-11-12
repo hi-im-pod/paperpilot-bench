@@ -24,6 +24,6 @@
   "draft_answer": "Detecting poison doesn't stop it from shaping answers, though reasoning reduces this; when poisoned documents are the majority, detection drops; and distributed attacks work by accumulating many weak poisoned signals.",
   "drafting_model": "claude-session",
   "verified_by": "claude-session (self-check)",
-  "checked_by": null,
+  "checked_by": "Garrett",
   "second_check_requested": true
 }

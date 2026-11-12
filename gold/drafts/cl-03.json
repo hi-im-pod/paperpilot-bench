@@ -271,6 +271,7 @@
   ],
   "drafting_model": "claude-session",
   "verified_by": "claude-session (self-check)",
-  "checked_by": null,
-  "second_check_requested": true
+  "checked_by": "Garrett",
+  "second_check_requested": true,
+  "review_note": "2026-11-12: Garrett marked 2303.17760>2303.11366 as not citing. Kept: CAMEL's reference [105] is Shinn et al., 'Reflexion: an autonomous agent with dynamic memory and self-reflection', arXiv:2303.11366 (Reflexion's v1 title). Semantic Scholar misses this edge."
 }

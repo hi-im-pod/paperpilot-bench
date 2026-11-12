@@ -1,9 +1,9 @@
 id,type,split,drafting_model,verified_by,checked_by
-hcl-01,citation_links,test,claude-session,claude-session (self-check),
+hcl-01,citation_links,test,claude-session,claude-session (self-check),Garrett
 hct-01,comparison_table,test,claude-session,claude-session (self-check),
 hct-02,comparison_table,test,claude-session,claude-session (self-check),
 hct-03,comparison_table,test,claude-session,claude-session (self-check),
-hct-04,comparison_table,dev,claude-session,claude-session (self-check),
+hct-04,comparison_table,dev,claude-session,claude-session (self-check),Garrett
 hfp-01,find_papers,dev,claude-session,claude-session (self-check),
 hfp-02,find_papers,test,claude-session,claude-session (self-check),
 hfp-03,find_papers,dev,hand-written,,
@@ -11,9 +11,9 @@ hfp-04,find_papers,test,claude-session,claude-session (self-check),
 hfp-05,find_papers,test,claude-session,claude-session (self-check),
 hfp-06,find_papers,test,claude-session,claude-session (self-check),
 hfp-07,find_papers,dev,claude-session,claude-session (self-check),
-hfp-08,find_papers,test,claude-session,claude-session (self-check),
-hfu-01,followup_questions,test,claude-session,claude-session (self-check),
-hgc-01,grounded_claims,test,claude-session,claude-session (self-check),
+hfp-08,find_papers,test,claude-session,claude-session (self-check),Garrett
+hfu-01,followup_questions,test,claude-session,claude-session (self-check),Garrett
+hgc-01,grounded_claims,test,claude-session,claude-session (self-check),Garrett
 hgc-02,grounded_claims,test,hand-written,,
 hgc-03,grounded_claims,test,claude-session,claude-session (self-check),
 hgc-04,grounded_claims,test,claude-session,claude-session (self-check),

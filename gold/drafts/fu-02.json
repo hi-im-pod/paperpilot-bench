@@ -21,6 +21,6 @@
   "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
   "drafting_model": "claude-session",
   "verified_by": "claude-session (self-check)",
-  "checked_by": null,
+  "checked_by": "Garrett",
   "second_check_requested": true
 }

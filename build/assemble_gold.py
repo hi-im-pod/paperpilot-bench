@@ -78,16 +78,20 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--perfect-preds", help="also write gold-copy predictions to this path")
     ap.add_argument("--split", default="dev", help="split for --perfect-preds")
-    ap.add_argument("--items", default=str(ROOT / "tasks" / "items.jsonl"))
-    ap.add_argument("--drafts", default=str(DRAFTS))
+    ap.add_argument("--items", help="default: the track's items.jsonl")
+    ap.add_argument("--drafts", help="default: the track's drafts folder")
     ap.add_argument("--out", default=str(ROOT), help="root folder for the tasks/ and gold/ outputs")
     ap.add_argument("--track", choices=["v1", "hard"], default="v1",
                     help="hard writes to tasks/hard/ and gold/hard/ under --out")
     args = ap.parse_args()
+    sub = "hard" if args.track == "hard" else ""
+    # Inputs follow --track. Fixed defaults once let `--track hard` read the main
+    # track's items and overwrite tasks/hard/ and gold/hard/ with them.
+    args.items = args.items or str(ROOT / "tasks" / sub / "items.jsonl")
+    args.drafts = args.drafts or str(ROOT / "gold" / sub / "drafts")
 
     items = read_jsonl(args.items)
     drafts_dir, out = Path(args.drafts), Path(args.out)
-    sub = "hard" if args.track == "hard" else ""
     tasks_out, gold_out = out / "tasks" / sub, out / "gold" / sub
     drafts = {}
     for item in items:
@@ -137,7 +141,7 @@ def main():
         print(f"{split}: " + ", ".join(f"{t}={n}" for (s, t), n in sorted(counts.items()) if s == split))
     if reviewed:
         print(f"citation edges needing review: {reviewed}; the verifier overrode S2 on {changed} ({changed / reviewed:.0%})")
-    print(f"wrote tasks/dev.jsonl, tasks/test.jsonl, gold/dev_gold.jsonl, gold/test_gold.jsonl, gold/provenance.csv under {out}")
+    print(f"read {args.items} and {args.drafts}; wrote dev/test tasks to {tasks_out} and gold to {gold_out}")
 
     if args.perfect_preds:
         preds = [perfect_pred(i, drafts.get(i["id"], {})) for i in items if i["split"] == args.split]

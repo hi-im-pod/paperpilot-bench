@@ -85,5 +85,6 @@ Paused partway through `docs/phase2_execution.md`. Steps 2–4 and the front end
 
 ## Next
 1. **Local-model test runs.** Cut on 2026-11-10 because the GPU is shared; only Qwen's dev run exists. To run them: `b1_search_read.py --tasks tasks/test.jsonl --provider ollama --model qwen3.5:9b`, the same with `gemma4:12b`, and the hard track with `PAPERPILOT_CORPUS=corpus/hard/papers.jsonl`. At about 3 minutes per item, all four take several hours. Score with `--judge ollama:qwen3.5:9b`, add rows to the README and the leaderboard's `official` collection.
-2. Teammates use the review page (private; share it from its Share menu) and the leaderboard (shared with anyone who has the link).
-3. Presentation (Nov 16).
+2. **Gold second check.** 형중 labeled all 30 judge decisions on 2026-11-11 (applied; see `docs/judge_validation.md`), but no one has reviewed the 12 gold items yet. To fold in later reviews: export the page's `items` and `reviews` collections with ArtifactData into one folder, then run `build/apply_reviews.py --export <dir> --names <names.json>`. Teammates need Contributor access, by email invite, to save.
+3. Teammates use the review page (private; share it from its Share menu) and the leaderboard (shared with anyone who has the link).
+4. Presentation (Nov 16).

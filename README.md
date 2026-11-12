@@ -235,7 +235,9 @@ The scorer also reports the **hallucination rate**: the share of items whose out
 
 The judge decides claim support, short-text cell equivalence, and follow-up quality; everything else is string and set math. It's `qwen3.5:9b` through Ollama at temperature 0, with the prompts in `prompts/judge.md`. `results.json` records the model's digest, and every decision is cached by digest and prompt version, so a rerun gives the same scores.
 
-We compared it with `gemma4:12b` on 44 known-answer cases (`docs/judge_comparison.md`). With the claim number check in place, Qwen's claim-support error was half of Gemma's (1.0 against 2.0 over 22 claims). Those labels are Claude's drafts, not yet checked by a person. Scores are comparable only between runs that used the same judge. `--judge none` skips it, and judged metrics come back as `null`.
+We compared it with `gemma4:12b` on 44 known-answer cases (`docs/judge_comparison.md`). With the claim number check in place, Qwen's claim-support error was half of Gemma's (1.0 against 2.0 over 22 claims). Those labels are Claude's drafts, not yet checked by a person.
+
+A teammate also labeled 30 of the judge's real decisions on baseline outputs, blind to the judge's answers (`docs/judge_validation.md`). They agreed on 14 of 22 claims. In every disagreement the judge was more generous, though most came down to the reviewer reading paraphrases more strictly than the rubric intends. On follow-up questions the judge averaged 4.9 out of 5 against the human's 3.1, so treat follow-up scores as lenient. Scores are comparable only between runs that used the same judge. `--judge none` skips it, and judged metrics come back as `null`.
 
 ## Leaderboard and label review
 

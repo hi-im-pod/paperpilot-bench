@@ -1,0 +1,1299 @@
+{
+  "n_items": 30,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 9,
+      "primary_mean": 0.6191395617303059,
+      "primary_ci95": [
+        0.5597,
+        0.6803
+      ],
+      "metrics": {
+        "ndcg@10": 0.6191395617303059,
+        "precision@10": 0.35555555555555557,
+        "recall@10": 0.3966490299823633
+      }
+    },
+    "comparison_table": {
+      "n": 5,
+      "primary_mean": 0.8277777777777778,
+      "primary_ci95": [
+        0.6667,
+        0.9833
+      ],
+      "metrics": {
+        "cell_accuracy": 0.8277777777777778,
+        "evidence_match_rate": 1.0,
+        "row_recall": 0.6666666666666666,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 5,
+      "primary_mean": 0.7325386114859799,
+      "primary_ci95": [
+        0.4909,
+        0.9004
+      ],
+      "metrics": {
+        "edges_outside_set": 0.0,
+        "f1": 0.7325386114859799,
+        "precision": 1.0,
+        "recall": 0.6260799438990182
+      }
+    },
+    "grounded_claims": {
+      "n": 6,
+      "primary_mean": 0.7152777777777777,
+      "primary_ci95": [
+        0.6667,
+        0.7778
+      ],
+      "metrics": {
+        "n_claims": 4.5,
+        "quote_match_rate": 1.0,
+        "support_rate": 1.0,
+        "supporting_recall": 0.4305555555555555,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 2,
+      "primary_mean": 0.9622222222222223,
+      "primary_ci95": [
+        0.9467,
+        0.9778
+      ],
+      "metrics": {
+        "n_questions": 4.0,
+        "rubric": 0.9622222222222223
+      }
+    },
+    "traps": {
+      "n": 3,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 5.8,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.8094926584990105,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 50,
+    "cache_hits": 1,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "cl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.16129032258064516,
+        "f1": 0.27777777777777773,
+        "edges_outside_set": 0
+      },
+      "primary": 0.27777777777777773,
+      "trace": {
+        "steps": 8,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "cl-02",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.95,
+        "f1": 0.9743589743589743,
+        "edges_outside_set": 0
+      },
+      "primary": 0.9743589743589743,
+      "trace": {
+        "steps": 14,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "cl-03",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.6521739130434783,
+        "f1": 0.7894736842105263,
+        "edges_outside_set": 0
+      },
+      "primary": 0.7894736842105263,
+      "trace": {
+        "steps": 9,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "cl-04",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.7419354838709677,
+        "f1": 0.8518518518518519,
+        "edges_outside_set": 0
+      },
+      "primary": 0.8518518518518519,
+      "trace": {
+        "steps": 13,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "cl-06",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1": 0.7692307692307693,
+        "edges_outside_set": 0
+      },
+      "primary": 0.7692307692307693,
+      "trace": {
+        "steps": 11,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.5555555555555556,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0,
+        "row_recall": 0.6666666666666666
+      },
+      "primary": 0.5555555555555556,
+      "trace": {
+        "steps": 11,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-04",
+      "type": "comparison_table",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 5,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-05",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 11,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-06",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.6666666666666666,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.6666666666666666,
+      "trace": {
+        "steps": 12,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "ct-07",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.9166666666666666,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.9166666666666666,
+      "trace": {
+        "steps": 15,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-01",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.4,
+        "precision@10": 0.4,
+        "ndcg@10": 0.5890774339266783
+      },
+      "primary": 0.5890774339266783,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.42857142857142855,
+        "precision@10": 0.3,
+        "ndcg@10": 0.6874403858650282
+      },
+      "primary": 0.6874403858650282,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-03",
+      "type": "find_papers",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 3,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.5,
+        "precision@10": 0.5,
+        "ndcg@10": 0.6939980796744011
+      },
+      "primary": 0.6939980796744011,
+      "trace": {
+        "steps": 1,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-07",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.3333333333333333,
+        "precision@10": 0.3,
+        "ndcg@10": 0.5916822078387323
+      },
+      "primary": 0.5916822078387323,
+      "trace": {
+        "steps": 1,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.5,
+        "precision@10": 0.4,
+        "ndcg@10": 0.7058584019586066
+      },
+      "primary": 0.7058584019586066,
+      "trace": {
+        "steps": 1,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-09",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.3,
+        "precision@10": 0.3,
+        "ndcg@10": 0.5209104424854425
+      },
+      "primary": 0.5209104424854425,
+      "trace": {
+        "steps": 1,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-10",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.6,
+        "precision@10": 0.6,
+        "ndcg@10": 0.7650203144472757
+      },
+      "primary": 0.7650203144472757,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-13",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.2222222222222222,
+        "precision@10": 0.2,
+        "ndcg@10": 0.45285027148628615
+      },
+      "primary": 0.45285027148628615,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fp-14",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.2857142857142857,
+        "precision@10": 0.2,
+        "ndcg@10": 0.5654185178903028
+      },
+      "primary": 0.5654185178903028,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 5,
+        "rubric": 0.9466666666666667
+      },
+      "primary": 0.9466666666666667,
+      "trace": {
+        "steps": 6,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "fu-02",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 3,
+        "rubric": 0.9777777777777779
+      },
+      "primary": 0.9777777777777779,
+      "trace": {
+        "steps": 9,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-02",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.3333333333333333,
+        "support_rate": 1.0
+      },
+      "primary": 0.6666666666666666,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 5,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.5,
+        "support_rate": 1.0
+      },
+      "primary": 0.75,
+      "trace": {
+        "steps": 6,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-06",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 6,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 6,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-07",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 4,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.5,
+        "support_rate": 1.0
+      },
+      "primary": 0.75,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-08",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 3,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.25,
+        "support_rate": 1.0
+      },
+      "primary": 0.625,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-09",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 3,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.3333333333333333,
+        "support_rate": 1.0
+      },
+      "primary": 0.6666666666666666,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "gc-10",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 3,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "mechanism",
+        "setting": "what the defense separates or controls to stop injected instructions",
+        "gold": "separates the trusted prompt from untrusted data with special delimiters in a structured query and trains the model to follow only the prompt",
+        "pred": "Separates prompts and data into two channels, and fine-tunes the model to follow instructions only in the prompt portion"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same mechanism of separating prompts from data and training the model to follow only the prompt instructions, despite minor wording differences."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "mechanism",
+        "setting": "what the defense separates or controls to stop injected instructions",
+        "gold": "separates control flow from data flow and enforces security policies when tools are called",
+        "pred": "Extracts the control and data flows from the trusted query, so untrusted retrieved data cannot change the program flow, and uses capabilities to block data exfiltration"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference describes separating control and data flows while enforcing security policies on tool calls, whereas the candidate specifically mentions extracting flows from a trusted query to prevent untrusted data from altering program flow and blocking data exfiltration using capabilities, indicating different mechanisms."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "generator",
+        "setting": "the language model that generates the output in the main experiments",
+        "gold": "Llama 2 (7B and 13B) fine-tuned with reflection tokens",
+        "pred": "Llama2 7B and 13B"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer correctly identifies the same base models (Llama 2 7B and 13B) as the reference, omitting only the specific fine-tuning detail which is a variation in specificity rather than a different model identity."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "generator",
+        "setting": "the language model that generates the output in the main experiments",
+        "gold": "GPT-3.5 (text-davinci-003)",
+        "pred": "text-davinci-003"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer 'text-davinci-003' is the exact technical identifier for the reference model 'GPT-3.5 (text-davinci-003)', differing only by the version label."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "generator",
+        "setting": "the language model that generates the output in the main experiments",
+        "gold": "GPT-3 (code-davinci-002) and Flan-T5",
+        "pred": "GPT3 (code-davinci-002)"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer refers to the same specific model as the reference, differing only by a minor spelling variation (GPT3 vs GPT-3) and the omission of the second listed model in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "few-shot exemplars that show intermediate reasoning steps before the answer",
+        "pred": "intermediate natural-language reasoning steps in the prompt exemplars"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same concept of using exemplars containing intermediate reasoning steps in natural language."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "sample several chain-of-thought reasoning paths and take the majority-vote answer",
+        "pred": "sample diverse reasoning paths from the decoder and take the majority answer"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same core mechanism of sampling multiple reasoning paths and selecting the majority vote, differing only in minor phrasing ('chain-of-thought' vs 'diverse')."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "add \"Let's think step by step\" to the prompt to trigger reasoning without examples",
+        "pred": "append \"Let's think step by step\" to the question so the model reasons before answering"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same action of adding a specific phrase to trigger reasoning, differing only in wording ('append' vs 'add', 'question' vs 'prompt')."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "core_idea",
+        "setting": "the core idea of the proposed method, in a few words",
+        "gold": "generate a program whose execution by a Python interpreter gives the answer",
+        "pred": "use programs as intermediate reasoning steps and offload calculation to a Python interpreter"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core idea of using Python programs for reasoning as the reference answer, despite the difference in phrasing."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "optimization_method",
+        "setting": "how the attack searches for its adversarial input",
+        "gold": "greedy coordinate gradient search over adversarial suffix tokens",
+        "pred": "greedy and gradient-based search for an adversarial suffix, optimized over multiple prompts and models"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer describes a general class of methods (greedy and gradient-based search) rather than the specific technique (greedy coordinate gradient search) mentioned in the reference."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "optimization_method",
+        "setting": "how the attack searches for its adversarial input",
+        "gold": "random search over an adversarial suffix to maximize the log-probability of a target token such as \"Sure\"",
+        "pred": "random search on an adversarial suffix to maximize a target logprob, with restarts"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core mechanism of random search over an adversarial suffix to maximize log-probability, with 'restarts' being a minor implementation detail that does not change the fundamental method definition."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "optimization_method",
+        "setting": "how the attack searches for its adversarial input",
+        "gold": "gradient-guided search over trigger tokens",
+        "pred": "gradient-guided search over tokens to find short input-agnostic trigger sequences"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same optimization method as the reference, merely adding specificity about finding 'input-agnostic trigger sequences'."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "optimization_method",
+        "setting": "how the attack searches for its adversarial input",
+        "gold": "gradient-based optimization of adversarial inputs, notably adversarial images against multimodal models",
+        "pred": "brute-force search for adversarial text inputs, and adversarial perturbation of input images"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The reference specifies gradient-based optimization for images while the candidate describes brute-force search for text and perturbation for images, representing fundamentally different attack strategies."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "machine-learning model APIs from HuggingFace, TorchHub and TensorHub (APIBench)",
+        "pred": "APIs from TorchHub, TensorHub, and HuggingFace model cards (APIBench)"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer lists the same three tool sources as the reference, merely reordering them and using slightly different phrasing for 'model cards' versus 'models'. "
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "16,464 real-world REST APIs from RapidAPI (ToolBench)",
+        "pred": "over 16k real-world APIs in ToolBench"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same meaning as the reference by using 'over 16k' to approximate '16,464' and omitting the specific source name while retaining the dataset identifier."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "tools",
+        "setting": "the tools or API collections the system calls",
+        "gold": "expert AI models hosted on Hugging Face",
+        "pred": "AI models hosted on Hugging Face, selected by ChatGPT"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer introduces an additional selection criterion ('selected by ChatGPT') that is not present in the reference answer, making the descriptions different."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "How does replacing Reflexion's sliding-window episodic memory with a vector-embedding or SQL store change code-generation pass rates as the number of stored reflections grows?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the identified gap regarding Reflexion's memory limitations by proposing a specific architectural change (replacing sliding window with vector/SQL) and measuring its impact on code generation performance as storage scales, though it combines two distinct variables (memory type and growth scale) which prevents a perfect 'specific' score."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "Can Reflexion's test-driven self-correction work on non-deterministic, hardware-dependent, or concurrent functions, where the generated tests give unreliable feedback?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the specific gap regarding unreliable test-driven feedback in non-deterministic settings, is formulated as a single testable experiment involving Reflexion and hardware-dependent functions, and represents an open problem not addressed by the provided papers."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "Does ExpeL's insight extraction and retrieval keep its gains when the backbone is an open-source LLM instead of a closed-source API model?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "ExpeL is limited to text observations and closed-source API models",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the specific limitation of ExpeL regarding closed-source models by proposing a concrete test with open-source backbones to verify if performance gains persist."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "Can ExpeL's experience-gathering loop handle image observations by pairing the LLM with a vision-language model or captioner, and how do the extracted insights change?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly addresses the text-only limitation of ExpeL by proposing a concrete technical solution (pairing with a VLM) and asks for a specific measurement (change in insights), making it highly specific and novel while fully grounding itself in the identified gap."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "LLM agents that improve from their own past attempts",
+        "paper_titles": "Reflexion: Language Agents with Verbal Reinforcement Learning; ExpeL: LLM Agents Are Experiential Learners",
+        "question": "How should ExpeL retrieve a bounded subset of its extracted insights, instead of fitting all of them into the context window, once the agent learns over a long task stream?",
+        "gap_notes": "Reflexion limits long-term memory to a sliding window and suggests vector or SQL memory stores; it can settle in local minima, and test-driven code feedback is unreliable for non-deterministic or impure functions. ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights."
+      },
+      "result": {
+        "gap": "ExpeL is limited to text observations and closed-source API models, and its insights must fit in the context window, so lifelong learning would need retrieval over insights.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the stated limitation of ExpeL regarding context window constraints for lifelong learning and proposes a concrete retrieval-based solution that neither paper addresses."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Does fine-tuning a reader on a mix of relevant and irrelevant contexts, in the style of the RALM robustness method, remove the U-shaped penalty for relevant information placed in the middle of a long context that Lost in the Middle measures?",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the intersection of the 'Lost in the Middle' phenomenon and the open problem of robustness to irrelevant context by proposing a specific fine-tuning intervention to test if it resolves the positional penalty."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Can a retrieval filter that scores each passage by how much it raises the generator's answer probability, instead of by NLI entailment, keep the relevant passages that the NLI filter discards on multi-hop questions?",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "the NLI filter discarding relevant passages",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question directly targets the specific gap regarding NLI filters discarding relevant information by proposing a concrete alternative scoring method (probability raise) to test on multi-hop questions."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "how language models use long or noisy retrieved context",
+        "paper_titles": "Lost in the Middle: How Language Models Use Long Contexts; Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+        "question": "Does applying robust training to the intermediate sub-questions of multi-hop QA, not only to the final answer, reduce the decomposition errors that irrelevant retrieved context causes on 2WikiMultiHopQA?",
+        "gap_notes": "Models struggle to use information in the middle of long contexts, and reader performance saturates well before retriever recall; the role of architecture, query-aware contextualization and instruction tuning is only studied preliminarily. Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages."
+      },
+      "result": {
+        "gap": "Robustness to irrelevant retrieved context is shown in-domain, with a general robust retrieval-augmented model left open and the NLI filter discarding relevant passages.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 4,
+        "novel": 5,
+        "reason": "The question is highly specific and novel as it proposes a new robustness training strategy for intermediate sub-questions in multi-hop QA to address the open problem of general robustness to irrelevant context, though it extends slightly beyond the exact phrasing of the noted gap by focusing on decomposition errors."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "There is a tension between helpfulness and harmlessness in RLHF-trained assistants, measurable in both preference models and RLHF policies.",
+        "passage": "ge rlhf training for hh can be applied to models that have been first finetuned on code, and it improves their programming ability on evaluations (presumably by improving general-purpose instruction following). we also find that mixing preference model training for hh with the specialized skill of summarization [stiennon et al., 2020] incurs no degradation in performance in either hh or summarization. so there is no reason not to combine alignment training with more specific, valuable skills. \u2022 there is a tension between helpfulness and harmlessness, which can be measured at the level of both preference modeling and rlhf-trained policies (figure 1). however, as model size increases, pms perform better on both distributions simultaneously and become much more robust to the relative proportions of helpful and harmless training data. \u2022 we also show that one can use ood detection techniques [fort et al., 2021] to reject most strange and harmful requests (figure 22), with little or no harmful examples (figure 23). scaling, rlhf robustness, and iterated 'online' training \u2022 we study scaling relations for pm accuracy as a function of model and dat"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that there is a tension between helpfulness and harmlessness measurable at the level of both preference modeling and RLHF-trained policies, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Preference models trained on one quality perform very poorly on the other.",
+        "passage": "e release of such datasets can be a standard practice for researchers working towards safe and beneficial ai. human-feedback fine-tuning preference model pretraining (pmp) rlhf (ppo) hhh prompt context distillation b human feedback interface pretrained lm rlhf policies initial policy preference model human-feedback comparison data figure 2 this diagram summarizes our data collection and model training workflow. helpful can lead to responses that help humans cause harm or generate toxic content. we demonstrate this tension quantitatively by showing that preference models trained to primarily evaluate one of these qualities perform very poorly (much worse than chance) on the other. fortunately, we find that pms trained on a mixture of both datasets can nevertheless learn the right lessons and behave helpfully when appropriate, while encouraging the polite refusal of harmful requests. with preference models in hand, we then train helpful and harmless assistants via reinforcement learning, using the pm scores as rewards. we evaluate both pm performance and the more relevant performance characteristics of our rlhf-trained models. as can be seen in figure 1, purely helpful rl"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that preference models trained to evaluate one quality perform very poorly on the other, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Overemphasizing harm avoidance produces unhelpful safe responses.",
+        "passage": "se toxic language.2 at each stage of their conversations with the ai assistant, crowdworkers are presented with two possible responses. those engaged in the helpfulness task are instructed to choose the more helpful and honest (i.e. better) response. those engaged in the red teaming task are instructed to choose the more harmful (i.e. worse) response. these conversations and the expressed human preferences form our datasets.3 helpfulness and harmlessness often stand in opposition to each other. an excessive focus on avoiding harm can lead to 'safe' responses that don't actually address the needs of the human. an excessive focus on being 1we do not focus explicitly on honesty/truthfulness in this paper, as we believe that techniques other than pure human feedback may be more efficient and effective at training models to be honest. but we certainly believe that honesty is a crucial goal for ai alignment, and our models do improve on evaluations of honesty (see figure 5). 2we warn crowdworkers that they may encounter upsetting content, and we frequently invite them to cease this task and pursue 'helpfu"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that an excessive focus on avoiding harm can lead to 'safe' responses that don't actually address the needs of the human, which directly supports the claim that overemphasizing harm avoidance produces unhelpful safe responses."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Training preference models on a mixture of helpful and harmless data reduces the tension.",
+        "passage": "ompt context distillation b human feedback interface pretrained lm rlhf policies initial policy preference model human-feedback comparison data figure 2 this diagram summarizes our data collection and model training workflow. helpful can lead to responses that help humans cause harm or generate toxic content. we demonstrate this tension quantitatively by showing that preference models trained to primarily evaluate one of these qualities perform very poorly (much worse than chance) on the other. fortunately, we find that pms trained on a mixture of both datasets can nevertheless learn the right lessons and behave helpfully when appropriate, while encouraging the polite refusal of harmful requests. with preference models in hand, we then train helpful and harmless assistants via reinforcement learning, using the pm scores as rewards. we evaluate both pm performance and the more relevant performance characteristics of our rlhf-trained models. as can be seen in figure 1, purely helpful rlhf-trained models are far easier to red-team, while helpful+harmless models are both very helpful and much less harmful. a question that's often raised about alignment training is whether it will compromise"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that preference models trained on a mixture of helpful and harmless datasets can learn to be both helpful and less harmful, thereby reducing the tension between these qualities."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Larger preference models become much more robust to the mix of helpful and harmless training data.",
+        "passage": "ing general-purpose instruction following). we also find that mixing preference model training for hh with the specialized skill of summarization [stiennon et al., 2020] incurs no degradation in performance in either hh or summarization. so there is no reason not to combine alignment training with more specific, valuable skills. \u2022 there is a tension between helpfulness and harmlessness, which can be measured at the level of both preference modeling and rlhf-trained policies (figure 1). however, as model size increases, pms perform better on both distributions simultaneously and become much more robust to the relative proportions of helpful and harmless training data. \u2022 we also show that one can use ood detection techniques [fort et al., 2021] to reject most strange and harmful requests (figure 22), with little or no harmful examples (figure 23). scaling, rlhf robustness, and iterated 'online' training \u2022 we study scaling relations for pm accuracy as a function of model and dataset size, and find roughly log-linear trends (figure 7), though we encounter some idiosyncrasies (figures 31 and 32). \u2022 we conduct experiments on the robustness of rlhf (see figure 4),"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that as model size increases, preference models become much more robust to the relative proportions of helpful and harmless training data, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "OOD detection can reject most strange and harmful requests.",
+        "passage": "o degradation in performance in either hh or summarization. so there is no reason not to combine alignment training with more specific, valuable skills. \u2022 there is a tension between helpfulness and harmlessness, which can be measured at the level of both preference modeling and rlhf-trained policies (figure 1). however, as model size increases, pms perform better on both distributions simultaneously and become much more robust to the relative proportions of helpful and harmless training data. \u2022 we also show that one can use ood detection techniques [fort et al., 2021] to reject most strange and harmful requests (figure 22), with little or no harmful examples (figure 23). scaling, rlhf robustness, and iterated 'online' training \u2022 we study scaling relations for pm accuracy as a function of model and dataset size, and find roughly log-linear trends (figure 7), though we encounter some idiosyncrasies (figures 31 and 32). \u2022 we conduct experiments on the robustness of rlhf (see figure 4), where we split our datasets in half and train separate preference models on each half. then we train rl models against one pm while evaluating with the other. we conclude that large"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that OOD detection techniques can be used to reject most strange and harmful requests, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Performance degrades when relevant information moves away from the start or end of a long context, and it is often lowest in the middle.",
+        "passage": "uage models is perhaps surprising, since the selfattention mechanisms underlying transformer language models is technically equally capable of retrieving any token from their contexts. we empirically study how language models use long input contexts via a series of controlled experiments. we show that language model performance degrades significantly when changing the position of relevant information, indicating that models struggle to robustly access and use information in long input contexts. in particular, performance is often lowest when models must use information in the middle of long input contexts. we conduct a preliminary investigation of the role of (i) model architecture, (ii) query-aware contextualization, and (iii) instruction fine-tuning to better understand how they affect how language models use context. finally, we conclude with a practical case study of open-domain question answering, finding that the performance of language model readers saturates far before retriever recall. our results and analysis provide a better understanding of how language models use their input context "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that performance degrades when relevant information moves away from the start or end and is often lowest in the middle of long input contexts, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Changing the position of relevant information degrades language model performance significantly.",
+        "passage": "to best remember the first and last elements of the list. the serial-position effect plays a role in understanding how humans develop short- and long-term memory. observing a serial-position-like effect in language models is perhaps surprising, since the selfattention mechanisms underlying transformer language models is technically equally capable of retrieving any token from their contexts. we empirically study how language models use long input contexts via a series of controlled experiments. we show that language model performance degrades significantly when changing the position of relevant information, indicating that models struggle to robustly access and use information in long input contexts. in particular, performance is often lowest when models must use information in the middle of long input contexts. we conduct a preliminary investigation of the role of (i) model architecture, (ii) query-aware contextualization, and (iii) instruction fine-tuning to better understand how they affect how language models use context. finally, we conclude with a practical case study of open-domain question answering, finding that the performance of language model readers saturates far before retriev"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'language model performance degrades significantly when changing the position of relevant information,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Adding more context can help, but it also raises the amount of content the model must reason over.",
+        "passage": "ance curve (\u00a74.1). \u2022 query-aware contextualization (placing the query before and after the documents or keyvalue pairs) enables near-perfect performance on the synthetic key-value task, but minimally changes trends in multi-document qa (\u00a74.2). \u2022 even base language models (i.e., without instruction fine-tuning) show a u-shaped performance curve as we vary the position of relevant information in the input context. our results indicate that prompting language models with longer input contexts is a trade-offproviding the language model with more information may help it perform the downstream task, but it also increases the amount of content that the model must reason over, potentially decreasing accuracy. to better understand this trade-off in practice, we perform a case study with retriever-reader models on open-domain question answering (\u00a75). in contrast to our controlled multi-document qa task, where the context always contains exactly one document that answers the question, none or many of the top k documents may contain the answer in the open-domain qa setting. when retrieving from wikipedia to answer queries from naturalquestions-open, we find that model performance saturates long before r"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that providing more information helps performance but also increases the content the model must reason over, which matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Beyond about 20 retrieved documents, extra passages add little accuracy and substantial cost.",
+        "passage": "-3.5-turbo-16k-0613 mpt-30b-instruct longchat-13b-16k contriever recall figure 11: retriever recall and model performance as a function of the number of retrieved documents. model performance saturates long before retriever recall, indicating that the models have difficulty making use of the extra retrieved documents. domain qa results. we see that reader model performance saturates long before retriever performance saturates, indicating that readers are not effectively using the extra context. using more than 20 retrieved documents only marginally improves reader performance (\u223c1.5% for gpt-3.5turbo and \u223c1% for claude-1.3), while significantly increasing the input context length (and thus latency and cost). these results, coupled with the observation that models are often better at retrieving and using information at the start or end of the input contexts, suggest that effective reranking of retrieved documents (pushing relevant information closer to the start of the input context) or ranked list truncation (retrieving fewer documents when appropriate; arampatzis et al., 2009) may be promising directions for improving how languagemodel-based readers use retrieved context. 6.1 long-context language"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that using more than 20 retrieved documents only marginally improves performance while significantly increasing cost, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reader accuracy saturates long before retriever recall, so readers do not use the extra retrieved context well.",
+        "passage": " (as opposed to a table or a list). figure 11 presents retriever recall and opennumber of retrieved docs metric claude-1.3 claude-1.3-100k gpt-3.5-turbo-0613 gpt-3.5-turbo-16k-0613 mpt-30b-instruct longchat-13b-16k contriever recall figure 11: retriever recall and model performance as a function of the number of retrieved documents. model performance saturates long before retriever recall, indicating that the models have difficulty making use of the extra retrieved documents. domain qa results. we see that reader model performance saturates long before retriever performance saturates, indicating that readers are not effectively using the extra context. using more than 20 retrieved documents only marginally improves reader performance (\u223c1.5% for gpt-3.5turbo and \u223c1% for claude-1.3), while significantly increasing the input context length (and thus latency and cost). these results, coupled with the observation that models are often better at retrieving and using information at the start or end of the input contexts, suggest that effective reranking of retrieved documents (pushing relevant information closer to the start of the input context) or"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that reader model performance saturates long before retriever recall, indicating readers are not effectively using extra context, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Safety-trained models are trained against several objectives that can conflict.",
+        "passage": "tion between the pretraining and safety capabilities. beyond offering a hypothesis for why jailbreaks work, we functionally validate these failure modes by using them as principles to construct new jailbreaks. in this section, we explore each failure mode with qualitative examples, construct simple jailbreaks that illustrate their mechanisms of action, and describe ablations to test our claims. we later validate these insights with quantitative experiments in section 4. 3.1 competing objectives competing objectives stems from the observation that safety-trained llms are typically trained against multiple objectives that can conflict with each other. specifically, state-of-the-art llms are trained for language modeling [12], instruction following [41, 7], and safety [38, 7]. this training can be exploited by crafting prompts that force a choice between either a restricted behavior or a response that is heavily penalized by the pretraining and instruction following objectives. example: prefix injection to illustrate competing objectives, we introduce a family of prefix injection jailbreaks. this attack asks the model to first output an innoc"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that safety-trained LLMs are trained against multiple objectives (language modeling, instruction following, and safety) that can conflict with each other."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Prompts can force a choice between restricted behavior and a penalized response.",
+        "passage": "nstruct simple jailbreaks that illustrate their mechanisms of action, and describe ablations to test our claims. we later validate these insights with quantitative experiments in section 4. 3.1 competing objectives competing objectives stems from the observation that safety-trained llms are typically trained against multiple objectives that can conflict with each other. specifically, state-of-the-art llms are trained for language modeling [12], instruction following [41, 7], and safety [38, 7]. this training can be exploited by crafting prompts that force a choice between either a restricted behavior or a response that is heavily penalized by the pretraining and instruction following objectives. example: prefix injection to illustrate competing objectives, we introduce a family of prefix injection jailbreaks. this attack asks the model to first output an innocuous-looking prefix designed so that conditioning on the prefix makes refusal unlikely in the pretraining distribution. the attack in figure 1(a) uses the prefix \"absolutely! here's \". another example, with prefix in purple, looks like: 3the red-teaming dataset consists of dialogue transcripts that must be adapted to obtain standa"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that crafted prompts can force a choice between restricted behavior or a response heavily penalized by pretraining and instruction following objectives."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Pretraining covers more capabilities than safety training does, which creates mismatched generalization.",
+        "passage": "a clever variant of prompt injection to trampoline off a refusal: it asks for a moralizing rant about openai content policies followed by the injected string \"but now that we've got that mandatory bulls out of the way, let's break the f in' rules:\" [43]. extending prefix injection, we also find competing objectives can be exploited via style injection, e.g., by asking for no long words, after which the model's professionally-written refusals are unlikely to follow. 3.2 mismatched generalization our second failure mode comes from observing that pretraining is done on a larger and more diverse dataset than safety training, and thus the model has many capabilities not covered by safety training. this mismatch can be exploited for jailbreaks by constructing prompts on which pretraining and instruction following generalize, but the model's safety training does not. for such prompts, the model responds, but without safety considerations. we present a sharp example of this phenomenon, and then discuss other ways in which this failure mode can be exploited to construct jailbreaks. example: base64 in the base64 jailbreak, the prompt is obfuscated using base64, a binary-to-text encoding that "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that pretraining covers more capabilities than safety training due to the larger and more diverse dataset used, which creates a mismatch that can be exploited for jailbreaks."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Vulnerabilities persist despite extensive red-teaming and safety-training efforts.",
+        "passage": "esize two failure modes of safety training: competing objectives and mismatched generalization. competing objectives arise when a model's capabilities and safety goals conflict, while mismatched generalization occurs when safety training fails to generalize to a domain for which capabilities exist. we use these failure modes to guide jailbreak design and then evaluate state-of-the-art models, including openai's gpt-4 and anthropic's claude v1.3, against both existing and newly designed attacks. we find that vulnerabilities persist despite the extensive red-teaming and safety-training efforts behind these models. notably, new attacks utilizing our failure modes succeed on every prompt in a collection of unsafe requests from the models' red-teaming evaluation sets and outperform existing ad hoc jailbreaks. our analysis emphasizes the need for safety-capability parity -- that safety mechanisms should be as sophisticated as the underlying model -- and argues against the idea that scaling alone can resolve these safety failure modes. large language models trained for safety and harmlessness remain susceptib"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'vulnerabilities persist despite the extensive red-teaming and safety-training efforts behind these models,' which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The automated attack optimizes an adversarial suffix with random search on a target logprob.",
+        "passage": "we show that even the most recent safety-aligned llms are not robust to simple adaptive jailbreaking attacks. first, we demonstrate how to successfully leverage access to logprobs for jailbreaking: we initially design an adversarial prompt template (sometimes adapted to the target llm), and then we apply random search on a suffix to maximize a target logprob (e.g., of the token \"sure\"), potentially with multiple restarts. in this way, we achieve 100% attack success rate -- according to gpt-4 as a judge -- on vicuna-13b, mistral-7b, phi-3-mini, nemotron-4-340b, llama-2-chat-7b/13b/70b, llama-3-instruct-8b, gemma-7b, gpt-3.5, gpt-4o, and r2d2 from harmbench that was adversarially trained against the gcg attack. we also show how to jailbreak all claude models -- that do not expose logprobs -- via either a transfer or prefilling attack with a 100% success rate. in addition, we show how to use random search on a rest"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the method applies random search on a suffix to maximize a target logprob, which matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The automated attack reaches 100% success on several models, judged by GPT-4.",
+        "passage": "ailbreakbench format at https://github.com/tml-epfl/llm-adaptive-attacks. we show that even the most recent safety-aligned llms are not robust to simple adaptive jailbreaking attacks. first, we demonstrate how to successfully leverage access to logprobs for jailbreaking: we initially design an adversarial prompt template (sometimes adapted to the target llm), and then we apply random search on a suffix to maximize a target logprob (e.g., of the token \"sure\"), potentially with multiple restarts. in this way, we achieve 100% attack success rate-according to gpt-4 as a judge-on vicuna-13b, mistral-7b, phi-3-mini, nemotron-4-340b, llama-2-chat-7b/13b/70b, llama-3-instruct-8b, gemma-7b, gpt-3.5, gpt-4o, and r2d2 from harmbench that was adversarially trained against the gcg attack. we also show how to jailbreak all claude models-that do not expose logprobs-via either a transfer or prefilling attack with a 100% success rate. in addition, we show how to use random search on a restricted set of tokens for finding trojan strings in poisoned models-a task that shares many similarities with jailbreaking-which is the algorithm that brought us the first place in the satml'24 trojan detection competition. the common theme behind these attacks is that adaptivity is crucial: differe"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the attack achieves a 100% success rate according to GPT-4 on multiple specific models, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "LLM-integrated applications blur the line between data and instructions.",
+        "passage": "large language models (llms) are increasingly being integrated into various applications. the functionalities of recent llms can be flexibly modulated via natural language prompts. this renders them susceptible to targeted adversarial prompting, e.g., prompt injection (pi) attacks enable attackers to override original instructions and employed controls. so far, it was assumed that the user is directly prompting the llm. but, what if it is not the user prompting? we argue that llm-integrated applications blur the line between data and instructions. we reveal new attack vectors, using indirect prompt injection, that enable adversaries to remotely (without a direct interface) exploit llm-integrated applications by strategically injecting prompts into data likely to be retrieved. we derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. we demonstrate our attacks' practic"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states the argument that LLM-integrated applications blur the line between data and instructions."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Indirect prompt injection lets adversaries exploit applications remotely by injecting prompts into data that is likely to be retrieved.",
+        "passage": "tegrated into various applications. the functionalities of recent llms can be flexibly modulated via natural language prompts. this renders them susceptible to targeted adversarial prompting, e.g., prompt injection (pi) attacks enable attackers to override original instructions and employed controls. so far, it was assumed that the user is directly prompting the llm. but, what if it is not the user prompting? we argue that llm-integrated applications blur the line between data and instructions. we reveal new attack vectors, using indirect prompt injection, that enable adversaries to remotely (without a direct interface) exploit llm-integrated applications by strategically injecting prompts into data likely to be retrieved. we derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. we demonstrate our attacks' practical viability against both real-world systems, such as bing's gpt-4 powered chat and code-completion engines, and synthetic applications built on gpt-4. we show how processing retrieved prompts can act as arbitrary code execution, man"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that indirect prompt injection enables adversaries to remotely exploit LLM-integrated applications by injecting prompts into data likely to be retrieved, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The attacks work against real-world systems such as Bing's GPT-4 powered Chat and code-completion engines.",
+        "passage": "line between data and instructions. we reveal new attack vectors, using indirect prompt injection, that enable adversaries to remotely (without a direct interface) exploit llm-integrated applications by strategically injecting prompts into data likely to be retrieved. we derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. we demonstrate our attacks' practical viability against both real-world systems, such as bing's gpt-4 powered chat and code-completion engines, and synthetic applications built on gpt-4. we show how processing retrieved prompts can act as arbitrary code execution, manipulate the application's functionality, and control how and if other apis are called. despite the increasing integration and reliance on llms, effective mitigations of these emerging threats are currently lacking. by raising awareness of these vulnerabilities and providing key insights into their implications, we aim to promote the safe and responsible deployment of these powerful models and the development of rob"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the attacks demonstrate practical viability against real-world systems such as Bing's GPT-4 powered chat and code-completion engines, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Processing retrieved prompts can manipulate the application and control other API calls.",
+        "passage": "applications by strategically injecting prompts into data likely to be retrieved. we derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. we demonstrate our attacks' practical viability against both real-world systems, such as bing's gpt-4 powered chat and code-completion engines, and synthetic applications built on gpt-4. we show how processing retrieved prompts can act as arbitrary code execution, manipulate the application's functionality, and control how and if other apis are called. despite the increasing integration and reliance on llms, effective mitigations of these emerging threats are currently lacking. by raising awareness of these vulnerabilities and providing key insights into their implications, we aim to promote the safe and responsible deployment of these powerful models and the development of robust defenses that protect users and systems from potential attacks. large language models (llms) are increasingly being integrated into various applications. the functi"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that processing retrieved prompts can 'manipulate the application's functionality, and control how and if other apis are called,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reflexion improves agents through linguistic feedback rather than weight updates.",
+        "passage": "large language models (llms) have been increasingly used to interact with external environments (e.g., games, compilers, apis) as goal-driven agents. however, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require extensive training samples and expensive model fine-tuning. we propose reflexion, a novel framework to reinforce language agents not by updating weights, but instead through linguistic feedback. concretely, reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). f"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Reflexion reinforces language agents 'not by updating weights, but instead through linguistic feedback,' which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reflexion agents keep verbal reflections in an episodic memory buffer that guides later trials.",
+        "passage": "age models (llms) have been increasingly used to interact with external environments (e.g., games, compilers, apis) as goal-driven agents. however, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require extensive training samples and expensive model fine-tuning. we propose reflexion, a novel framework to reinforce language agents not by updating weights, but instead through linguistic feedback. concretely, reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). for example, reflexion achieves a 91% pass@1 accuracy on the humaneval coding benchmark, surpassing the previous state-of-the-art gpt-4 that achieves 80%. we also conduct ablation and analysis stud"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that reflexion agents maintain reflective text in an episodic memory buffer to induce better decision-making in subsequent trials, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Reflexion reaches 91% pass@1 on HumanEval, above the GPT-4 baseline of 80%.",
+        "passage": ". concretely, reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). for example, reflexion achieves a 91% pass@1 accuracy on the humaneval coding benchmark, surpassing the previous state-of-the-art gpt-4 that achieves 80%. we also conduct ablation and analysis studies using different feedback signals, feedback incorporation methods, and agent types, and provide insights into how they affect performance. large language models (llms) have been increasingly used to interact with external environments (e.g., games, compilers, apis) as goal-driven agents. however, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Reflexion achieves 91% pass@1 on HumanEval, surpassing GPT-4's 80%, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Language models struggle with less popular factual knowledge, and retrieval augmentation helps in those cases.",
+        "passage": "asks, large language models (lms) still struggle with tasks requiring rich world knowledge, implying the difficulty of encoding a wealth of world knowledge in their parameters. this paper aims to understand lms' strengths and limitations in memorizing factual knowledge, by conducting large-scale knowledge probing experiments on two open-domain entity-centric qa datasets: popqa, our new dataset with 14k questions about long-tail entities, and entityquestions, a widely used opendomain qa dataset. we find that lms struggle with less popular factual knowledge, and that retrieval augmentation helps significantly in these cases. scaling, on the other hand, mainly improves memorization of popular knowledge, and fails to appreciably improve memorization of factual knowledge in the long tail. based on those findings, we devise a new method for retrieval augmentation that improves performance and reduces inference costs by only retrieving non-parametric memories when necessary.1 large language models (lms; brown et al. 2020; raffel et al. 2020) have been shown to be competitive on diverse nlp tasks, including knowledgeinte"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that large language models struggle with less popular factual knowledge and that retrieval augmentation helps significantly in these cases, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Scaling mainly improves memorization of popular knowledge and does little for the long tail.",
+        "passage": "ealth of world knowledge in their parameters. this paper aims to understand lms' strengths and limitations in memorizing factual knowledge, by conducting large-scale knowledge probing experiments on two open-domain entity-centric qa datasets: popqa, our new dataset with 14k questions about long-tail entities, and entityquestions, a widely used opendomain qa dataset. we find that lms struggle with less popular factual knowledge, and that retrieval augmentation helps significantly in these cases. scaling, on the other hand, mainly improves memorization of popular knowledge, and fails to appreciably improve memorization of factual knowledge in the long tail. based on those findings, we devise a new method for retrieval augmentation that improves performance and reduces inference costs by only retrieving non-parametric memories when necessary.1 large language models (lms; brown et al. 2020; raffel et al. 2020) have been shown to be competitive on diverse nlp tasks, including knowledgeintensive tasks that require fine-grained memorization of factual knowledge (chowdhery et al., 2022; yu et al., 2022). meanwhile, lms have also been shown to have limit"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that scaling mainly improves memorization of popular knowledge and fails to appreciably improve memorization in the long tail, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Retrieving non-parametric memories only when necessary improves performance and reduces inference cost.",
+        "passage": "e knowledge probing experiments on two open-domain entity-centric qa datasets: popqa, our new dataset with 14k questions about long-tail entities, and entityquestions, a widely used opendomain qa dataset. we find that lms struggle with less popular factual knowledge, and that retrieval augmentation helps significantly in these cases. scaling, on the other hand, mainly improves memorization of popular knowledge, and fails to appreciably improve memorization of factual knowledge in the long tail. based on those findings, we devise a new method for retrieval augmentation that improves performance and reduces inference costs by only retrieving non-parametric memories when necessary.1 large language models (lms; brown et al. 2020; raffel et al. 2020) have been shown to be competitive on diverse nlp tasks, including knowledgeintensive tasks that require fine-grained memorization of factual knowledge (chowdhery et al., 2022; yu et al., 2022). meanwhile, lms have also been shown to have limited memorization for less frequent entities (kandpal et al., 2022), are prone to hallucinations (shuster et al., 2021), and suffer from temporal degradation (kasai et al., 2022; jang et al.,"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the devised method improves performance and reduces inference costs by only retrieving non-parametric memories when necessary."
+      }
+    }
+  ]
+}

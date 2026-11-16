@@ -1,0 +1,770 @@
+{
+  "n_items": 15,
+  "hallucination_rate": 0.0,
+  "per_type": {
+    "find_papers": {
+      "n": 5,
+      "primary_mean": 0.6803401301066873,
+      "primary_ci95": [
+        0.5899,
+        0.7546
+      ],
+      "metrics": {
+        "ndcg@10": 0.6803401301066873,
+        "precision@10": 0.38,
+        "recall@10": 0.49111111111111116
+      }
+    },
+    "comparison_table": {
+      "n": 3,
+      "primary_mean": 0.9722222222222222,
+      "primary_ci95": [
+        0.9167,
+        1.0
+      ],
+      "metrics": {
+        "cell_accuracy": 0.9722222222222222,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0.0
+      }
+    },
+    "citation_links": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {
+        "edges_outside_set": 0.0,
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "grounded_claims": {
+      "n": 4,
+      "primary_mean": 0.7708333333333333,
+      "primary_ci95": [
+        0.7083,
+        0.8333
+      ],
+      "metrics": {
+        "n_claims": 4.25,
+        "quote_match_rate": 1.0,
+        "support_rate": 1.0,
+        "supporting_recall": 0.5416666666666666,
+        "unbacked_number_claims": 0.0,
+        "valid_id_rate": 1.0
+      }
+    },
+    "followup_questions": {
+      "n": 1,
+      "primary_mean": 0.9166666666666666,
+      "primary_ci95": [
+        0.9167,
+        0.9167
+      ],
+      "metrics": {
+        "n_questions": 4.0,
+        "rubric": 0.9166666666666666
+      }
+    },
+    "traps": {
+      "n": 1,
+      "primary_mean": 1.0,
+      "primary_ci95": [
+        1.0,
+        1.0
+      ],
+      "metrics": {}
+    }
+  },
+  "trace_means": {
+    "steps": 7.133333333333334,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null
+  },
+  "macro_avg": 0.8900103920548182,
+  "judge": {
+    "model": "qwen3.5:9b",
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "prompt_version": {
+      "claim_support": 1,
+      "text_equiv": 1,
+      "followup_score": 2
+    },
+    "ollama_version": "0.40.16",
+    "calls": 31,
+    "cache_hits": 0,
+    "errors": 0
+  },
+  "items": [
+    {
+      "id": "hcl-01",
+      "type": "citation_links",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "edges_outside_set": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 15,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-01",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-02",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 0.9166666666666666,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 0.9166666666666666,
+      "trace": {
+        "steps": 10,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hct-03",
+      "type": "comparison_table",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "cell_accuracy": 1.0,
+        "evidence_match_rate": 1.0,
+        "text_cells_skipped": 0
+      },
+      "primary": 1.0,
+      "trace": {
+        "steps": 12,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-02",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.7142857142857143,
+        "precision@10": 0.5,
+        "ndcg@10": 0.8104616303452686
+      },
+      "primary": 0.8104616303452686,
+      "trace": {
+        "steps": 4,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-04",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.2857142857142857,
+        "precision@10": 0.2,
+        "ndcg@10": 0.5261398116173618
+      },
+      "primary": 0.5261398116173618,
+      "trace": {
+        "steps": 4,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-05",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.4,
+        "precision@10": 0.2,
+        "ndcg@10": 0.6421755823489528
+      },
+      "primary": 0.6421755823489528,
+      "trace": {
+        "steps": 2,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-06",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.5555555555555556,
+        "precision@10": 0.5,
+        "ndcg@10": 0.7289255465474522
+      },
+      "primary": 0.7289255465474522,
+      "trace": {
+        "steps": 4,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfp-08",
+      "type": "find_papers",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "recall@10": 0.5,
+        "precision@10": 0.5,
+        "ndcg@10": 0.6939980796744011
+      },
+      "primary": 0.6939980796744011,
+      "trace": {
+        "steps": 4,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hfu-01",
+      "type": "followup_questions",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_questions": 4,
+        "rubric": 0.9166666666666666
+      },
+      "primary": 0.9166666666666666,
+      "trace": {
+        "steps": 15,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-01",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 4,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 5,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-02",
+      "type": "grounded_claims",
+      "trap": true,
+      "missing": false,
+      "abstained": true,
+      "hallucinated_ids": [],
+      "metrics": {},
+      "primary": 1.0,
+      "trace": {
+        "steps": 3,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-03",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 5,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.3333333333333333,
+        "support_rate": 1.0
+      },
+      "primary": 0.6666666666666666,
+      "trace": {
+        "steps": 4,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-04",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 3,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.5,
+        "support_rate": 1.0
+      },
+      "primary": 0.75,
+      "trace": {
+        "steps": 7,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    },
+    {
+      "id": "hgc-05",
+      "type": "grounded_claims",
+      "trap": false,
+      "missing": false,
+      "abstained": false,
+      "hallucinated_ids": [],
+      "metrics": {
+        "n_claims": 5,
+        "valid_id_rate": 1.0,
+        "quote_match_rate": 1.0,
+        "unbacked_number_claims": 0,
+        "supporting_recall": 0.6666666666666666,
+        "support_rate": 1.0
+      },
+      "primary": 0.8333333333333333,
+      "trace": {
+        "steps": 8,
+        "agent": "claude-code subagent (Haiku 5.5), tools"
+      }
+    }
+  ],
+  "judge_decisions": [
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "one passage that names the correct answer, denies it, and argues for the attacker's answer",
+        "pred": "Names the correct answer inside the poisoned passage, denies it, and presents an attacker-controlled explanation for the wrong answer"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same mechanism as the reference answer using slightly different phrasing without changing the meaning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "camouflages adversarial content among benign chunks with dispersion tokens instead of including the query",
+        "pred": "Camouflages adversarial documents among benign content by replacing benign tokens with dispersion tokens and filtering for coherence, avoiding direct query inclusion"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism of using dispersion tokens to camouflage adversarial content while avoiding direct query inclusion, despite adding details about filtering for coherence."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "poison_design",
+        "setting": "what makes the poisoned content effective",
+        "gold": "frames the injection as a non-contradicting update grounded in proxy facts",
+        "pred": "Frames the injection as an update that minimizes conflict, grounding a pivot event in query-related facts instead of asserting a counter-claim"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism of framing the injection as a non-conflicting update based on relevant facts, despite using slightly different phrasing."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "continual GRPO-based preference optimization with margin-weighted experience replay",
+        "pred": "Continual preference optimization: GRPO on a binary safety judge over whole responses, with margin-weighted replay across a stream of attack variants"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same core methodology (GRPO-based preference optimization with margin-weighted replay) as the reference, despite adding specific details about the judge type and data stream that do not contradict the general description."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "on-policy distillation with token-level scores from the initialization model given the clean input",
+        "pred": "Secure on-policy distillation: the model's own rollouts on injected inputs are scored token by token by the initialization model run on the clean input"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "Both answers describe the same training procedure of using on-policy distillation where token-level scores from an initialization model on clean inputs are used to evaluate rollouts on injected inputs."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "bilateral adversarial RL against attacker populations, then fine-tuning on verified demonstrations",
+        "pred": "Adversarial co-evolution: attacker initialized from successful trajectories, bilateral RL against current and historical opponent populations, then fine-tuning on verified demonstrations"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same training process as the reference, using more detailed terminology like 'co-evolution' and specifying the initialization method without changing the core meaning."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "training_method",
+        "setting": "how the defended model is trained",
+        "gold": "LoRA-based GDPO with a decoupled reward, against a co-evolving injection prober",
+        "pred": "LoRA-based GDPO under a decoupled reward over safety, task progress, and format compliance, with a co-evolving prober that mines injections the current defender still fails on"
+      },
+      "result": {
+        "equivalent": false,
+        "reason": "The candidate answer adds specific reward dimensions (safety, task progress, format compliance) that are not mentioned in the reference answer, making it more specific and therefore not equivalent."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "reconsolidates memories into a heterogeneous cognitive graph based on retrieval feedback",
+        "pred": "Continually reconsolidates memories based on retrieval feedback, reorganizing a heterogeneous cognitive graph after each retrieval"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism of memory reconsolidation and graph reorganization based on retrieval feedback as the reference, despite slight differences in phrasing and word order."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "atomic memory units mapped to a learnable codebook whose co-occurrence topology is a retrieval path",
+        "pred": "Uses codebook co-occurrence topology as a retrieval path complementary to vector search, with discrete associative retrieval over atomic memory units"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer conveys the same core mechanism by describing the functional components (atomic memory units, codebook co-occurrence topology) and their role (retrieval path), even though it omits the specific detail about them being 'mapped to a learnable codebook'."
+      }
+    },
+    {
+      "kind": "text_equiv",
+      "inputs": {
+        "column": "key_mechanism",
+        "setting": "the mechanism that distinguishes the method",
+        "gold": "a state-evolving memory graph with intent-guided multi-round retrieval",
+        "pred": "Intent-guided multi-round retrieval that iteratively identifies missing evidence over a state-evolving memory graph"
+      },
+      "result": {
+        "equivalent": true,
+        "reason": "The candidate answer describes the same mechanism as the reference by simply reversing the order of the components without changing their meaning."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does the CoER bilateral co-evolution recipe (BA-RL with historical opponent populations) still reduce adaptive injection success when the attacker is a different model family from the defender, rather than sharing the defender's base model?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the identified limitation regarding heterogeneous attackers in CoER, is fully testable with specific methods and settings, and proposes a novel experiment not covered by the existing papers."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does co-evolutionary IPI defense training, as in CoDeL and CoER, keep its attack-success reduction on backbones of 27B and above? Both papers train only 7B to 9B backbones (CoER uses Qwen3.5-9B).",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 5,
+        "novel": 5,
+        "reason": "The question precisely targets the identified gap regarding model scale limitations in CoDeL by proposing a specific test on larger backbones (27B+) to determine if defense efficacy holds."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Can a probe on the defender's internal representations flag a deferred latent IPI precursor before the agent commits to the harmful action, and does that earlier signal shorten the attack latency interval that CoDeL measures?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "gap": "CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open.",
+        "parts": 2,
+        "specific": 3,
+        "grounded": 3,
+        "novel": 5,
+        "reason": "The question proposes a specific internal representation probe to detect deferred attacks (addressing the 'deferred' aspect of the gap) and compares latency against CoDeL, but it does not explicitly address the model scale limitation mentioned in the gap notes, making it grounded only in the general topic rather than the specific stated gaps."
+      }
+    },
+    {
+      "kind": "followup_score",
+      "inputs": {
+        "topic": "co-evolutionary training of defenses against indirect prompt injection",
+        "paper_titles": "CoER: Defending against Adaptive Indirect Prompt Injection via Adversarial Co-Evolution and Refinement; CoDeL: Co-Evolutionary Defense against Indirect Prompt Injection in LLM-based Agents",
+        "question": "Does co-evolutionary IPI training, such as CoDeL's latency-aware prober or CoER's population-guided attacker, extend to screenshot-borne injections in GUI agents, where the injected instruction appears as pixels rather than text in a tool output?",
+        "gap_notes": "Both defenses are tested on limited settings: CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers. CoDeL covers only 7B and 8B backbones, so how model scale affects vulnerability to latent, deferred injections is open."
+      },
+      "result": {
+        "gap": "CoER on seven AgentDyn suites, with an attacker that shares the defender's base model, so heterogeneous attackers could expose weaknesses same-family co-evolution misses, and its pipeline depends on strong teachers",
+        "parts": 1,
+        "specific": 5,
+        "grounded": 4,
+        "novel": 5,
+        "reason": "This question is highly specific and testable, directly addressing the gap regarding heterogeneous attackers by introducing a novel GUI-based attack vector that the papers did not cover."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Models can detect poisoned evidence and still let it influence their answers, which the paper frames as a gap between monitoring and control.",
+        "passage": "retrieval-augmented generation (rag) exposes large language models to knowledge-poisoning attacks, where misinformation injected into retrieved documents can influence model outputs. prior work has shown that models may detect contradictory evidence yet still allow it to influence their responses, revealing a gap between monitoring and control. we investigate whether deliberative reasoning changes this relationship. because attack success and poison detection alone do not reveal whether detected poison continues to influence the final answer, we use two complementary measures: cordon rate, the probability that a model detects poison and nevertheless produces a poison-aligned answer, conditioned on a non-poison-aligned no-rag response; and leakage rate, the probability that poisoned context influences the answer despite an explicit ins"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that prior work showed models may detect contradictory evidence yet still allow it to influence responses, revealing a gap between monitoring and control, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Detected poison can still influence the final answer, so detection and downstream influence measure different things.",
+        "passage": "t influences the answer despite an explicit instruction to ignore retrieved documents. across 200 scifact questions, we compare reasoning-disabled and reasoning-enabled configurations of deepseek-v4-flash and qwen3.6-plus. for deepseek-v4-flash, reasoning reduces cordon rate from 0.205 to 0.075 and leakage rate from 0.235 to 0.140, despite increasing attack success rate from 0.233 to 0.298 and decreasing poison detection rate from 0.965 to 0.665. qwen3.6-plus shows the same qualitative pattern. these results demonstrate that poison detection and downstream influence capture distinct aspects of poisoning behavior. retrieval-augmented generation (rag) exposes large language models to knowledgepoisoning attacks, where misinformation injected into retrieved documents can influence model outputs. prior work has shown that models may detect contradictory evidence yet still allow it to influence their responses, revealing a gap between monitoring and control. we investigate whether deliberative reasoning changes this relationship. because attack success and poison detection alone do not reveal whether detected"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage states that 'poison detection and downstream influence capture distinct aspects of poisoning behavior,' which directly supports the claim that they measure different things."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Gemma-3-12b is less likely to detect poisoned claims when poisoned documents form the majority of retrieved evidence.",
+        "passage": "rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition. among the 38 questions with different outcomes across conditions, 34 change from detected to undetected, while only four change in the opposite direction (exact mcnemar test, p = 6.04e-7). this pattern is consistent with a conformity-like response to a majority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retrieved evidence. retrieval-augmented generation (rag) can expose language models to misleading evidence in retrieved documents. we investigate whether increasing the number of mutually agreeing poisoned documents affects a model's ability to detect misinformation. we evaluate 200 randomly selected questions from scifact (random seed 38), comparing contexts with one poisoned and six healthy documents against contexts with six mutually agreeing poisoned documents and one healthy document. for gemma-3-12b, poisond"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that Gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retrieved evidence, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "The drop in detection with a majority of poisoned documents fits a conformity-like response.",
+        "passage": "fact (random seed 38), comparing contexts with one poisoned and six healthy documents against contexts with six mutually agreeing poisoned documents and one healthy document. for gemma-3-12b, poison-detection rates decrease from 25% (50/200) in the minority condition to 10% (20/200) in the majority condition. among the 38 questions with different outcomes across conditions, 34 change from detected to undetected, while only four change in the opposite direction (exact mcnemar test, p = 6.04e-7). this pattern is consistent with a conformity-like response to a majority of mutually agreeing poisoned documents. our results provide initial evidence of conformity bias in rag-based misinformation detection: gemma-3-12b is substantially less likely to detect poisoned claims when they dominate the retrieved evidence. retrieval-augmented generation (rag) can expose language models to misleading evidence in retrieved documents. we investigate whether increasing the number of mutually agreeing poisoned documents affects a model's ability to detect misinformation. we evaluate 200 randomly selected questions fr"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the observed pattern of detection rates decreasing when poisoned documents become the majority is consistent with a conformity-like response, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "A single misleading document raised the rate of false-conclusion adoption from 0% to 54.7% on average across configurations.",
+        "passage": "sknow-agent, a controlled evaluation framework that constructs task-specific documents supporting manually audited false conclusions with controlled authority cues and source styles. applied to the tasks from deepresearch bench, it generates 5,933 misleading documents after filtering. we evaluate deerflow and webthinker with three backbone llms, together with gemini deep research, using a report-level false-conclusion adoption rate (fcar) that counts only reports endorsing the false conclusion. across the configurations, introducing one misleading document increases the mean fcar from 0% in the no-injection control to 54.7%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating c"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that introducing one misleading document increases the mean false-conclusion adoption rate from 0% to 54.7% across configurations, which matches the claim exactly."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Deep research agents can still adopt false conclusions during long-horizon research even though cross-model verification classifies the retained documents as misleading.",
+        "passage": "hat counts only reports endorsing the false conclusion. across the configurations, introducing one misleading document increases the mean fcar from 0\\% in the no-injection control to 54.7\\%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating continuous verification when evidence enters intermediate research states and final synthesis. to facilitate reproducibility, our code and dataset are publicly available at https://github.com/whfelingyu/misknow-agent and https://huggingface.co/datasets/whfelingyu/misleading_knowledge, respectively. deep research agents conduct long-horizon investigations by iteratively planning, retrieving evidence, and genera"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that although cross-model verification classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Pre- and post-research defenses reduce adoption but do not eliminate it.",
+        "passage": "eading document increases the mean fcar from 0\\% in the no-injection control to 54.7\\%. fcar varies substantially with lifecycle stage and framework design, and also with source authority and presentation style, whereas search-result rank and additional documents beyond the first have limited influence. although cross-model verification consistently classifies retained instances as misleading, deep research agents can still adopt the corresponding false conclusions during long-horizon research. pre- and post-research defenses reduce fcar but do not eliminate adoption, motivating continuous verification when evidence enters intermediate research states and final synthesis. to facilitate reproducibility, our code and dataset are publicly available at https://github.com/whfelingyu/misknow-agent and https://huggingface.co/datasets/whfelingyu/misleading_knowledge, respectively. deep research agents conduct long-horizon investigations by iteratively planning, retrieving evidence, and generating reports. however, it remains unclear whether they can resist apparently credible but factually false information introduced into these workflows. to study this failure mode, we"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 'pre- and post-research defenses reduce fcar but do not eliminate adoption', which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Final-answer accuracy overstates how well agents complete dependency-consistent research.",
+        "passage": "stated intermediate conclusions are correct given the annotated dependencies. we evaluate regular models, dedicated deep research systems, and framework-based agents using overall accuracy (oa), strict accuracy (sa), checklist score (cs), and dependency-aware checklist score (dacs). empirically, we find that: (1) the run with the highest oa, gpt-5.5, reaches only 43.1% oa and 34.3% sa, while the dedicated deep research system with the highest oa, o3 deep research, reaches 32.4% oa and 19.6% sa, showing that final-answer accuracy substantially overstates complete, dependency-consistent task success; (2) withholding images lowers dacs by 12.6 percentage points in a controlled ablation, confirming that non-text evidence materially contributes to the reasoning chain; and (3) across checklist-length ranges with sufficient observations, sa decreases monotonically with chain length for every representative model. together, these findings identify sustained, dependency-consistent evidence integration, instead of isolated fact retrieval, as a central bottleneck for current deep research agents. co"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that final-answer accuracy substantially overstates complete, dependency-consistent task success, matching the claim's assertion."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Sustained, dependency-consistent evidence integration is a central bottleneck for current deep research agents.",
+        "passage": "ch system with the highest oa, o3 deep research, reaches 32.4% oa and 19.6% sa, showing that final-answer accuracy substantially overstates complete, dependency-consistent task success; (2) withholding images lowers dacs by 12.6 percentage points in a controlled ablation, confirming that non-text evidence materially contributes to the reasoning chain; and (3) across checklist-length ranges with sufficient observations, sa decreases monotonically with chain length for every representative model. together, these findings identify sustained, dependency-consistent evidence integration, instead of isolated fact retrieval, as a central bottleneck for current deep research agents. code and data are available at https://github.com/minghaoguo20/mr-lhdr. ai agents are increasingly expected to conduct deep research rather than answer isolated questions (zheng et al., 2025; zhang et al., 2025; du et al., 2025). a useful research assistant should decompose an underspecified goal, search across heterogeneous sources, inspect visual and document evidence, maintain intermediate conclusions, and verify a final answer against the accumulated evidence. many real-world tasks follow e"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly concludes that the identified findings show sustained, dependency-consistent evidence integration is a central bottleneck for current deep research agents."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Exposure to cumulative counts produced runaway cascades that drove collective recommendations away from each song's intrinsic appeal.",
+        "passage": "large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability in large populations of llm agents that recommended unfamiliar songs, with or without exposure to cumulative recommendation counts. exposure led to runaway cascades that generated extreme and unpredictable collective recommendations increasingly divergent from a song's intrinsic appeal. compared to humans, llm populations were generally far more susceptible to herding behavior, and unlike humans, llm cascades were less able to self-correct. this vulnerability has implications for multi-agent collaboration in recommender systems, automated evaluation, complex problem-solving, and unauthorized conspiracies. large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vuln"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that exposure to cumulative recommendation counts led to runaway cascades generating collective recommendations increasingly divergent from a song's intrinsic appeal, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "LLM populations herd more than humans and recover less well from cascades.",
+        "passage": "' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability in large populations of llm agents that recommended unfamiliar songs, with or without exposure to cumulative recommendation counts. exposure led to runaway cascades that generated extreme and unpredictable collective recommendations increasingly divergent from a song's intrinsic appeal. compared to humans, llm populations were generally far more susceptible to herding behavior, and unlike humans, llm cascades were less able to self-correct. this vulnerability has implications for multi-agent collaboration in recommender systems, automated evaluation, complex problem-solving, and unauthorized conspiracies. large language models (llms) increasingly operate in multi-agent systems where they collaborate by responding to others' choices, creating endogenous feedback loops with vulnerability to social influence, herding behavior and runaway cascades. following the design of the classic music lab experiment, we tested this vulnerability "
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that LLM populations were more susceptible to herding behavior and less able to self-correct (recover) from cascades compared to humans, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "LLM agents can develop individually beneficial strategies that limit the benefits of collaboration.",
+        "passage": "d by classical results in combinatorial search. we then theoretically derive a critical communication degree $d_c$, the minimum number of agents each agent can communicate with, above which incorrect hypotheses do not proliferate uncontrollably and the search enters the solved state. finally, we evaluate frontier llm-based multi-agent systems on real-world search and discovery tasks, software configuration debugging and physical mechanism discovery, and find that agreement with theory is mixed. llm agents may not communicate with their neighbors and can develop strategies that are individually beneficial but limits the benefits of collaboration. ai agents are increasingly being deployed in multi-agent systems, in which agents communicate, interact, and cooperate to complete tasks. multi-agent systems have been shown to improve over single agents across a variety of domains and task types [wu et al., 2023, guo et al., 2024, hong et al., 2024, qian et al., 2024, du et al., 2024, kim et al., 2024, agashe et al., 2025]. however, comparatively little is known about their collective dynamics, such as emergent or nonlinear behavior; and effec"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that LLM agents can develop strategies that are individually beneficial but limit the benefits of collaboration, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Attacker-controlled tool metadata and outputs create a semantic supply-chain risk for MCP agents.",
+        "passage": "agents using the model context protocol (mcp) rely on semantic matching to select tools from third-party servers, exposing a semantic supply-chain risk through attacker-controlled metadata and outputs. we introduce a2m (attraction-to-manipulation), a two-stage black-box framework for hijacking mcp agents. the attraction phase optimizes tool metadata to increase invocation probability; the manipulation phase uses execution traces to refine adversarial tool returns that steer agents toward attacker-desired outcomes. on livemcpbench, direct attacks optimized and evaluated on glm-4.6 achieve a macro-average malicious tool invocation rate of 93.6% across four scenarios, increase weighted token cos"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that agents using MCP rely on semantic matching, which exposes a semantic supply-chain risk through attacker-controlled metadata and outputs."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Optimized tool returns can steer agents toward attacker-desired outcomes.",
+        "passage": "agents using the model context protocol (mcp) rely on semantic matching to select tools from third-party servers, exposing a semantic supply-chain risk through attacker-controlled metadata and outputs. we introduce a2m (attraction-to-manipulation), a two-stage black-box framework for hijacking mcp agents. the attraction phase optimizes tool metadata to increase invocation probability; the manipulation phase uses execution traces to refine adversarial tool returns that steer agents toward attacker-desired outcomes. on livemcpbench, direct attacks optimized and evaluated on glm-4.6 achieve a macro-average malicious tool invocation rate of 93.6% across four scenarios, increase weighted token costs to 32.4$\\times$ the benign baseline under cognitive denial of service, and attain a mean attack success rate of 74.4% across information exfiltration, environment integrity compromise, and reasoning derailment. transfer to four other models without re-optimization yields corresponding macro-averages of 63.6%, 2.7$"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that the manipulation phase uses execution traces to refine adversarial tool returns that steer agents toward attacker-desired outcomes, directly supporting the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Client approval of a tool call gives the server process broad host filesystem permissions rather than the declared operation.",
+        "passage": "the model context protocol (mcp) standardizes how ai agents invoke external tools. mcp servers expose tools through a declared contract consisting of a name, description, and argument schema. in typical local deployments, client-side approval of a tool call grants the underlying server process broad host filesystem permissions rather than restricting it to the declared operation. we study the resulting vulnerability class, filesystem capability laundering, where attacker-steered arguments cause a tool to access sensitive host files outside its declared contract and deployment scope. we analyze this capability gap across three layers: server-category screening (l1), per-tool contract analysis (l2), and bypassable path-validation checks (l3). we design mcp-fsd to catalog mcp servers, infer least-privilege boundaries per tool, plant credential fixtures outside those bounda"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that in typical local deployments, client-side approval grants the server process broad host filesystem permissions rather than restricting it to the declared operation, which directly matches the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Many MCP servers show filesystem capabilities despite non-filesystem classifications.",
+        "passage": "ensitive host files outside its declared contract and deployment scope. we analyze this capability gap across three layers: server-category screening (l1), per-tool contract analysis (l2), and bypassable path-validation checks (l3). we design mcp-fsd to catalog mcp servers, infer least-privilege boundaries per tool, plant credential fixtures outside those boundaries, and evaluate exploitability and sandbox containment via paired dynamic execution. across 21,097 mcp servers from nine registries, 787 of 4,806 triaged servers (16.4%) exhibit filesystem capabilities despite non-filesystem functional classifications. dynamic three-case validation confirms 150 vulnerable instances under tested sandbox policies. coordinated disclosure yielded 13 security advisories, including two cves in anthropic's git mcp server. leilahuang95@gmail.com 2 university of illinois urbana-champaign, urbana, il, usa mt55@illinois.edu 3 independent researcher guanaonan@gmail.com 4 santa clara university, santa clara, ca, usa qsun4@scu.edu 5 auburn university at montgomery, montgomery, al, usa phe@aum.edu the model context protocol"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that 787 of 4,806 triaged servers (16.4%) exhibit filesystem capabilities despite non-filesystem functional classifications, which directly supports the claim."
+      }
+    },
+    {
+      "kind": "claim_support",
+      "inputs": {
+        "claim": "Measured defenses stop few attacks in the MCP-based systems the survey reviews.",
+        "passage": "es of that layer (irreversibility, signing authority, continuous autonomy, and sequence-level composition) qualitatively change the threat model, turning the recoverable failures of generic agent security into a standing, irreversible loss. we organize the fragmented mcp-security literature into an attack-surface taxonomy, then contribute a web3 risk-mapping matrix that ties each attack class to its amplified impact, the responsible amplifiers, a representative mitigation, and the residual gap. we synthesize defenses, including emerging blockchain-based mechanisms, and find them improving but insufficient: measured protections stop fewer than 30% of attacks, and model-level safety refuses fewer than 3%. we close by positioning the work against adjacent surveys and deriving a research agenda from the matrix's open cells. ai agents have crossed a threshold from reading to acting. across a sixteen-month window of the model context protocol (mcp) ecosystem, the share of deployed agent tools that take actions, modifying external state rather than only observing it, rose from 27% to 65% of tool use, while the number of distinct tools grew from roughly 5,000 to over 177,000 stein (2026). among the do"
+      },
+      "result": {
+        "label": "supported",
+        "reason": "The passage explicitly states that measured protections stop fewer than 30% of attacks in the surveyed MCP-security literature, which directly supports the claim that they stop few attacks."
+      }
+    }
+  ]
+}

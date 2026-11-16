@@ -25,6 +25,7 @@ Scores on the test splits. Each task type's primary metric is described under [M
 | B1: Claude Opus 5.5 with the corpus tools | 0.96 | 0.98 | 1.00 | 0.92 | 0.84 | 1.00 | 0.95 |
 | B0: Claude Opus 5.5, titles only, no tools | 0.98 | 0.89 | 0.78 | 1.00 | 0.83 | 1.00 | 0.91 |
 | Astra: gpt-6-astra (high), Codex CLI, with the corpus tools* | 0.67 | 0.78 | 1.00 | 0.76 | 0.86 | 1.00 | 0.85 |
+| Claude Haiku 5.5 with the corpus tools | 0.62 | 0.83 | 0.73 | 0.72 | 0.96 | 1.00 | 0.81 |
 
 **Hard track** (15 test items, 95 papers)
 
@@ -33,6 +34,7 @@ Scores on the test splits. Each task type's primary metric is described under [M
 | B1: Claude Opus 5.5 with the corpus tools | 0.93 | 0.94 | 1.00 | 0.96 | 0.87 | 1.00 | 0.95 |
 | B0: Claude Opus 5.5, titles only, no tools | 0.96 | 0.23 | 0.00 | 0.50 | 0.80 | 1.00 | 0.58 |
 | Astra: gpt-6-astra (high), Codex CLI, with the corpus tools* | 0.72 | 0.84 | 1.00 | 0.66 | 0.00 | 1.00 | 0.70 |
+| Claude Haiku 5.5 with the corpus tools | 0.68 | 0.97 | 1.00 | 0.77 | 0.92 | 1.00 | 0.89 |
 
 \* An external run with a strict runner that scored an item 0 when its first tool call was malformed: 4 of 30 main items and 3 of 15 hard items, including the hard track's only follow-up item. Its other scores are on the items it answered plus those zeros. Details in `baselines/runs/astra/`.
 
@@ -40,6 +42,7 @@ What the numbers show:
 
 - **The main track is close to saturated for frontier models.** With only the paper titles, Claude scored 0.91 against 0.95 with tools, because it already knows these papers. That small gap is why the hard track exists.
 - **The hard track separates reading from recall.** Without tools, Claude's table accuracy fell from 0.94 to 0.23 and citation F1 from 1.00 to 0.00. Astra, also with tools, kept 0.84 and 1.00 there; much of its lower macro comes from the items its runner zeroed, which include the only follow-up item.
+- **A smaller model with tools scores below a frontier model without them on the main track.** Haiku 5.5, run the same way as B1 (2026-11-16), scored 0.81 there against 0.91 for titles-only Opus. Most of the gap is find papers (0.62), where Haiku averaged under 2 tool calls per item and ranked from search snippets, and main-track citations (0.73), where long reference lists used up its budget. On the hard track it scored 0.89, with 1.00 on its one citation item.
 - **Find papers and follow-up questions discriminate weakly.** Titles are enough to rank papers on a topic. Follow-up scores fell from about 0.97 to 0.80 to 0.87 under the stricter rubric v2, but with 1 or 2 items per split the differences between agents are within noise. Treat those two columns as sanity checks.
 - **Small local models are far from the ceiling.** `qwen3.5:9b` as the B1 agent scored a macro average of 0.22 on main-track dev (10 items), with 10% of items citing an ID outside the corpus. Two of its items failed when the agent crashed on a tool error, a bug since fixed. Local models haven't been run on the test splits yet.
 

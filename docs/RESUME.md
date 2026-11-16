@@ -99,7 +99,15 @@ Phase 2 is built, published, and human-checked: both tracks, the console, the le
 - **Astra** (gpt-6-astra, high, Codex CLI): an external run whose rows appeared on the leaderboard on 2026-11-10. Its predictions arrived on 2026-11-12 and are now in `baselines/runs/` with the run's audit in `baselines/runs/astra/`. The checksums match the rows. Rescored with rubric v2: main follow-ups 0.98 to 0.86, macro 0.865 to 0.845; hard unchanged at 0.70, because its only follow-up item is missing. Main 0.85 and hard 0.70 put it below Claude's B1, mostly on find-papers (0.67 and 0.72) and claims (0.76 and 0.66), with 7 items lost to malformed first tool calls.
 - Found on the way: Ollama auto-updated to 0.40.16 on 2026-11-09, and the same model digest now answers 2 of 44 known-answer cases differently. Results now record the Ollama version.
 
-## Next
+## Judge in Docker (done 2026-11-16)
+
+- Two options, both pinned to Ollama 0.40.16 and `qwen3.5:9b` ID `56671c2ab938`, sharing the `paperpilot-models` volume:
+  - `compose.yaml` (+ `compose.gpu.yaml` for NVIDIA): Ollama in its own container, a one-shot `judge-model` service that pulls and verifies the model.
+  - `docker build --target bundled`: Ollama copied from the pinned image into ours, minus `mlx_cuda_v13` (2 GB, absent from the Windows install that made the official rows). `scripts/docker-entrypoint.sh` starts it only when `JUDGE` is set.
+- `scripts/judge_model.sh` does the pull and ID check for both.
+- Tested on the RTX 5070 Ti: both options matched the host judge on all 44 known-answer cases, on the same `cuda_v13` backend. `docker stop` on the bundled image takes about 1 second.
+- Not tested: CPU-only and Mac.
+
 1. **Local-model test runs.** Cut on 2026-11-10 because the GPU is shared; only Qwen's dev run exists. To run them: `b1_search_read.py --tasks tasks/test.jsonl --provider ollama --model qwen3.5:9b`, the same with `gemma4:12b`, and the hard track with `PAPERPILOT_CORPUS=corpus/hard/papers.jsonl`. At about 3 minutes per item, all four take several hours. Score with `--judge ollama:qwen3.5:9b`, add rows to the README and the leaderboard's `official` collection.
 2. **Optional: a paraphrase example in the claim-support rubric**, since most human disagreements came from reading it strictly. Bump `PROMPT_VERSIONS["claim_support"]` and rescore the official rows if you do; every claim decision would be re-judged.
 3. **Optional: review `scoring/judge_eval_cases.jsonl`**, the known-answer cases behind `docs/judge_comparison.md`.

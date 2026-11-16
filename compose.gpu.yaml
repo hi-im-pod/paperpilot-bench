@@ -1,0 +1,11 @@
+# Adds the NVIDIA GPU to the Ollama container. Kept separate because a GPU
+# reservation stops the container from starting on machines without one.
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

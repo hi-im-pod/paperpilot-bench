@@ -86,7 +86,7 @@ Inside the container, `127.0.0.1` is the container itself, so:
 
 - **Agent URL.** In the console, an agent running on your machine is at `http://host.docker.internal:<port>`, for example `http://host.docker.internal:8001` for the reference agent. Have the agent listen on `0.0.0.0` or `127.0.0.1`; both work from Docker Desktop.
 - **Linux.** Add `--add-host=host.docker.internal:host-gateway` to `docker run`; Docker Desktop on Windows and macOS defines that name already.
-- **Judge.** The container uses Ollama on your machine, so the judge menu lists your local models. Nothing to configure.
+- **Judge.** The container uses Ollama on your machine, so the judge menu lists your local models. Nothing to configure. To run Ollama in Docker instead, see [Docker with the judge included](#docker-with-the-judge-included).
 
 Arguments after the image name replace the defaults, so pass `--public-url` again whenever you add any:
 
@@ -105,6 +105,38 @@ docker run --rm --entrypoint python paperpilot-bench -m pytest -q
 `--public-url` is the address the console hands your agent for the corpus tools. `http://localhost:8765` suits an agent on your machine. If your agent runs in another container, use an address that container can reach, such as `http://host.docker.internal:8765`.
 
 **The judge (optional).** Claim support and follow-up questions are scored by a local model. Install [Ollama](https://ollama.com), run `ollama pull qwen3.5:9b`, and pick it in the console's judge menu. Without it, those two metrics show `n/a` and everything else still scores. The container reaches Ollama on the host by itself.
+
+### Docker with the judge included
+
+To run the judge in Docker too, with no Ollama install, pick one of two options. Both:
+- **Pin Ollama 0.40.16,** the version that judged the official rows.
+- **Pull `qwen3.5:9b` (6.6 GB) once** into a volume named `paperpilot-models`. The two options share it, so switching doesn't download the model again.
+- **Stop with an error if the model's ID isn't `56671c2ab938`,** the build behind the official scores. Ollama pulls by tag, so a re-uploaded model would otherwise change scores without warning.
+
+**Compose: Ollama in a second container.**
+
+```bash
+docker compose up --build                                        # CPU only
+docker compose -f compose.yaml -f compose.gpu.yaml up --build    # NVIDIA GPU
+```
+
+The console opens at http://127.0.0.1:8765 with the judge already selected. For another host port, set `BENCH_PORT=9000` before `up`; the tools address follows it. The Ollama container's port isn't published, so it doesn't clash with an Ollama already on your machine.
+
+**One container with Ollama inside.**
+
+```bash
+docker build --target bundled -t paperpilot-bench:ollama .
+docker run --rm --gpus all -p 8765:8765 -e JUDGE=qwen3.5:9b \
+  -v paperpilot-models:/root/.ollama paperpilot-bench:ollama
+```
+
+Leave out `--gpus all` on a machine without an NVIDIA GPU. Without `-e JUDGE=...`, this image behaves like the plain one and uses Ollama on your machine, if there is one. It's 5.2 GB on disk (a 2 GB download), against 780 MB for the plain image, because it carries Ollama's CUDA libraries.
+
+Either way:
+- **Same answers.** On the 44 known-answer judge cases, each option gave the same answer as Ollama on the Windows machine that scored the official rows, all 44 times (RTX 5070 Ti, 2026-11-16).
+- **GPU.** Docker on a Mac has no GPU access, so the judge runs on CPU there, and scoring a full run is much slower. CPU answers may also differ slightly from the GPU answers above.
+- **GPU memory.** The model has to fit on the GPU. If Ollama on your machine has it loaded too, free the memory with `ollama stop qwen3.5:9b`.
+- **Removing the model.** Run `docker volume rm paperpilot-models` to free the 6.6 GB.
 
 **Try the reference agent.** In a second terminal, start the example agent and give the console its URL, `http://127.0.0.1:8001`:
 
@@ -275,6 +307,7 @@ The tests use a three-paper fixture corpus in `tests/fixtures/`, so they need ne
 | `leaderboard/` | Source for the leaderboard and review pages |
 | `build/` | Corpus and gold tooling for the benchmark team |
 | `docs/` | Design (`plan.md`), execution notes, and judge validation |
+| `Dockerfile`, `compose*.yaml`, `scripts/` | Docker images (plain and with Ollama), Compose, and setup scripts |
 
 ## For the benchmark team
 

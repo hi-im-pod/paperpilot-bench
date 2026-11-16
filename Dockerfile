@@ -3,7 +3,7 @@
 # downloads), so `docker run` starts in seconds afterwards. Build it yourself
 # rather than pulling a published image: most papers' licenses forbid
 # redistributing their text, which is also why the text isn't in git.
-FROM python:3.12-slim
+FROM python:3.12-slim AS bench
 
 WORKDIR /bench
 ENV PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
@@ -29,7 +29,8 @@ sys.exit('corpus checksum mismatch in ' + ', '.join(bad) + '; gold quotes may no
 
 COPY . .
 
-# The judge runs in Ollama on the host. Pass --judge ollama:qwen3.5:9b to use it.
+# The judge runs in Ollama on the host. Pass --judge ollama:qwen3.5:9b to use it,
+# or use the bundled target or compose.yaml below to run Ollama in Docker too.
 ENV OLLAMA_HOST=host.docker.internal:11434
 
 EXPOSE 8765
@@ -38,3 +39,18 @@ EXPOSE 8765
 # host. An agent in another container needs that container's view instead.
 ENTRYPOINT ["python", "app/server.py", "--host", "0.0.0.0", "--port", "8765"]
 CMD ["--public-url", "http://localhost:8765"]
+
+# Ollama inside the container: docker build --target bundled -t paperpilot-bench:ollama .
+# The binary comes from the pinned Ollama image, the same version that judged the
+# official rows (0.40.16; an auto-update to it changed 2 of 44 known-answer cases).
+# mlx_cuda_v13 is left out, 2 GB that the host install which made those rows
+# doesn't have, so the judge runs on the same llama.cpp backend.
+FROM bench AS bundled
+COPY --from=ollama/ollama:0.40.16 /usr/bin/ollama /usr/bin/ollama
+COPY --from=ollama/ollama:0.40.16 --exclude=mlx_cuda_v13 /usr/lib/ollama /usr/lib/ollama
+ENV OLLAMA_HOST=127.0.0.1:11434 NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility
+ENTRYPOINT ["sh", "scripts/docker-entrypoint.sh"]
+CMD ["--public-url", "http://localhost:8765"]
+
+# The default target stays the plain image, with no Ollama.
+FROM bench

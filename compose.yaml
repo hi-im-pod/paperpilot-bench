@@ -1,0 +1,48 @@
+# The console with its judge, Ollama running in a second container.
+#
+#   docker compose up --build                                   CPU only
+#   docker compose -f compose.yaml -f compose.gpu.yaml up --build  NVIDIA GPU
+#
+# The first start pulls qwen3.5:9b (6.6 GB) into the paperpilot-models volume.
+# The bundled image (Dockerfile, --target bundled) uses the same volume, so
+# switching between the two options doesn't download it again.
+services:
+  ollama:
+    # Pinned: Ollama 0.40.16 judged the official rows, and an earlier
+    # auto-update changed 2 of 44 known-answer cases.
+    image: ollama/ollama:0.40.16
+    volumes:
+      - models:/root/.ollama
+    # No published port, so it doesn't collide with an Ollama on the host.
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      retries: 30
+
+  judge-model:
+    # One-shot: pulls the model if needed and checks its ID, then exits.
+    image: ollama/ollama:0.40.16
+    environment:
+      OLLAMA_HOST: ollama:11434
+    volumes:
+      - ./scripts/judge_model.sh:/judge_model.sh:ro
+    entrypoint: ["sh", "/judge_model.sh", "qwen3.5:9b"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  bench:
+    build: .
+    image: paperpilot-bench
+    ports:
+      - "${BENCH_PORT:-8765}:8765"
+    environment:
+      OLLAMA_HOST: ollama:11434
+    command: ["--judge", "ollama:qwen3.5:9b", "--public-url", "http://localhost:${BENCH_PORT:-8765}"]
+    depends_on:
+      judge-model:
+        condition: service_completed_successfully
+
+volumes:
+  models:
+    name: paperpilot-models
